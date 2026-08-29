@@ -6,7 +6,7 @@ const PASSAGE_HANOI_ENVIRONMENT_TRANS = `BẢO VỆ MÔI TRƯỜNG ĐÔ THỊ T�
 
 const PASSAGE_HANOI_DIGITAL_TRANSFORMATION = `Digital transformation in education has revolutionized teaching and learning practices across Vietnam. The adoption of online learning platforms and AI-assisted educational tools allows students to access personalized study materials anytime and anywhere. Furthermore, teachers can monitor student progress in real time and adapt their pedagogical techniques accordingly.
 
-However, the rapid transition to digital learning also highlights the digital divide between urban and rural areas. Students in remote regions often face limited internet connectivity and a lack of digital devices. Addressing this inequality requires strategic investments in telecommunications infrastructure and financial support for disadvantaged communities.
+However, the rapid transition to digital learning also highlights the digital divide between urban and rural areas. Students in remote regions often face limited internet connectivity and a lack of digital devices. Addressing this <mark>inequality</mark> requires strategic investments in telecommunications infrastructure and financial support for disadvantaged communities.
 
 In conclusion, while technology offers unprecedented opportunities for educational advancement, achieving equitable access remains a crucial priority for educational policymakers.`;
 

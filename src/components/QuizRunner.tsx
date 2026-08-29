@@ -149,7 +149,27 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     });
   };
 
-  const activePassage = formatPassageForTaking(activePassageData?.passage);
+  // Auto-highlight target vocabulary/pronoun/phrase mentioned in reading comprehension questions
+  const autoHighlightTargetWord = (passageText?: string, questionText?: string): string => {
+    if (!passageText) return '';
+    if (!questionText) return passageText;
+
+    const match = questionText.match(/(?:word|pronoun|phrase)\s+["'“]([^"'”]+)["'”]/i);
+    if (!match) return passageText;
+
+    const targetWord = match[1].trim();
+    if (!targetWord || targetWord.length < 2) return passageText;
+
+    const alreadyMarkedRegex = new RegExp(`<mark>\\s*${targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*<\\/mark>`, 'i');
+    if (alreadyMarkedRegex.test(passageText)) {
+      return passageText;
+    }
+
+    const replaceRegex = new RegExp(`(?<!<[^>]*)\\b(${targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b(?![^<]*>)`, 'gi');
+    return passageText.replace(replaceRegex, '<mark>$1</mark>');
+  };
+
+  const activePassage = autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText);
   const activeTranslation = activePassageData?.translation;
 
   // Timer countdown hook

@@ -44,13 +44,13 @@ Hơn nữa, việc áp dụng rộng rãi trí tuệ nhân tạo trong y tế đ
 
 Tuy nhiên, việc phụ thuộc vào công nghệ đặt ra những thách thức nghiêm trọng về bảo mật dữ liệu và an ninh mạng. Trừ khi các giao thức bảo mật nghiêm ngặt được thiết lập để bảo vệ thông tin cá nhân, người dùng vẫn sẽ dễ bị tổn thương trước các mối đe dọa trên mạng và nạn trộm cắp danh tính.`;
 
-const PASSAGE_NEWSPAPER_EVOLUTION = `For centuries, newspapers served as the primary source of news and information for communities worldwide. They played a vital role in keeping citizens informed, holding leaders accountable, and documenting historical events as they unfolded. However, the rise of the internet and digital technology has fundamentally altered the media landscape, placing traditional print newspapers in a precarious financial position.
+const PASSAGE_NEWSPAPER_EVOLUTION = `For centuries, newspapers served as the primary source of news and information for communities worldwide. <mark>They</mark> played a vital role in keeping citizens informed, holding leaders accountable, and documenting historical events as they unfolded. However, the rise of the internet and digital technology has fundamentally altered the media landscape, placing traditional print newspapers in a precarious financial position.
 
 In the past, traditional print newspapers relied heavily on subscriptions and print advertising revenues to sustain their operations. Display advertisements from local businesses and classified ads generated steady income that supported investigative journalism and international reporting. Today, however, digital advertising platforms and social media companies dominate the market, absorbing the vast majority of advertising dollars. Consequently, print circulation has plummeted, forcing many long-standing newspapers to cut staff, reduce publication frequency, or shut down entirely.
 
 <mark>To survive in the digital age, news organizations have had to adapt by transitioning to digital subscription models and paywalls.</mark> While some major global outlets have successfully built sustainable digital readership bases, many smaller local publications struggle to generate sufficient revenue online. This decline in local news coverage leaves communities with fewer resources to stay informed about local government decisions and community developments.
 
-Despite these formidable challenges, journalism remains essential for a healthy democratic society. Online news outlets now utilize interactive graphics, multimedia content, and real-time updates to engage modern readers in ways that print media never could. Going forward, the future of news will depend on finding innovative business models that protect independent reporting while embracing the possibilities of the digital age.`;
+Despite these <mark>formidable</mark> challenges, journalism remains essential for a healthy democratic society. Online news outlets now utilize interactive graphics, multimedia content, and real-time updates to engage modern readers in ways that print media never could. Going forward, the future of news will depend on finding innovative business models that protect independent, <mark>trusted</mark> reporting while embracing the possibilities of the digital age.`;
 
 const PASSAGE_NEWSPAPER_EVOLUTION_TRANS = `Trong nhiều thế kỷ, báo in đóng vai trò là nguồn tin tức và thông tin chính cho các cộng đồng trên toàn thế giới. Chúng giữ vai trò thiết yếu trong việc cung cấp thông tin cho công dân, giám sát trách nhiệm của các nhà lãnh đạo và ghi lại các sự kiện lịch sử khi chúng diễn ra. Tuy nhiên, sự phát triển của internet và công nghệ kỹ thuật số đã làm thay đổi căn bản cục diện truyền thông, đẩy các tờ báo in truyền thống vào thế bấp bấp tài chính.
 
@@ -60,13 +60,13 @@ Trước đây, báo in truyền thống phụ thuộc rất nhiều vào doanh 
 
 Mặc dù đối mặt với những thách thức to lớn này, báo chí vẫn là yếu tố thiết yếu cho một xã hội dân chủ khỏe mạnh. Các cơ quan tin tức trực tuyến hiện sử dụng đồ họa tương tác, nội dung đa phương tiện và cập nhật thời gian thực để thu hút độc giả hiện đại theo cách mà báo in chưa bao giờ làm được. Trong tương lai, số phận của báo chí sẽ phụ thuộc vào việc tìm ra các mô hình kinh doanh đổi mới giúp bảo vệ hoạt động đưa tin độc lập đồng thời đón nhận các khả năng của kỷ nguyên số.`;
 
-const PASSAGE_COOKIES_PRIVACY = `Every day, billions of internet users browse websites, click links, and make purchases without realizing that <mark>[I]</mark> a quiet trade takes place in the background. Online tracking technologies, most notably "cookies," record user behaviors, preferences, and location data. While first-party cookies are designed to enhance user experience by remembering login details and shopping cart items, third-party tracking cookies gather vast amounts of personal data to build detailed behavioral profiles for targeted advertising. <mark>[II]</mark>
+const PASSAGE_COOKIES_PRIVACY = `Every day, billions of internet users browse websites, click links, and make purchases without realizing that <mark>[I]</mark> <mark>a quiet trade takes place</mark> in the background. Online tracking technologies, most notably "cookies," record user behaviors, preferences, and location data. While first-party cookies are designed to enhance user experience by remembering login details and shopping cart items, third-party tracking cookies gather vast amounts of personal data to build detailed behavioral profiles for targeted advertising. <mark>[II]</mark>
 
 The monetization of personal data has turned the internet into a surveillance economy. Data brokers compile information from multiple online sources, creating comprehensive dossiers on individuals without their explicit knowledge or consent. This data is then sold to advertisers who use it to deliver hyper-personalized ads designed to influence consumer decisions. Critics argue that this constant monitoring erodes individual privacy, alters online behavior, and exposes users to potential data breaches and identity theft. <mark>[III]</mark>
 
-In response to growing public concern, governments around the world have enacted privacy regulations, such as the European Union’s General Data Protection Regulation (GDPR). These laws mandate that websites obtain clear consent from users before placing tracking cookies on their devices. However, many websites comply using deceptive interface designs—known as "dark patterns"—that make it frustrating for users to decline tracking while making acceptance effortless. Consequently, "cookie consent" banners often fail to provide genuine privacy protection, serving instead as a legal shield for continued data collection. <mark>[IV]</mark>
+In response to growing public concern, governments around the world have enacted privacy regulations, such as the European Union’s General Data Protection Regulation (GDPR). These laws mandate that websites obtain clear consent from users before placing tracking cookies on their devices. However, many websites comply using deceptive interface designs—known as "dark patterns"—that make <mark>it</mark> frustrating for users to decline tracking while making acceptance effortless. Consequently, "cookie consent" banners often fail to provide genuine privacy protection, serving instead as a legal shield for continued data collection. <mark>[IV]</mark>
 
-<mark>Protecting privacy in the digital age requires a combination of robust legal enforcement, privacy-respecting technology, and heightened user awareness.</mark> Privacy-focused browsers, virtual private networks (VPNs), and ad-blocking extensions empower individuals to regain control over their digital footprints. Ultimately, building a safer online ecosystem will require shifting away from intrusive tracking toward business models that respect fundamental human rights while supporting digital innovation.`;
+<mark>Protecting privacy in the digital age requires a combination of robust legal enforcement, privacy-respecting technology, and heightened user awareness.</mark> Privacy-focused browsers, virtual private networks (VPNs), and ad-blocking extensions empower individuals to regain control over their digital footprints. Ultimately, building a safer online ecosystem will require shifting away from <mark>intrusive</mark> tracking toward business models that respect fundamental human rights while supporting digital innovation.`;
 
 const PASSAGE_COOKIES_PRIVACY_TRANS = `Mỗi ngày, hàng tỷ người dùng internet truy cập các trang web, nhấp vào liên kết và mua sắm mà không nhận ra rằng một cuộc trao đổi thầm lặng đang diễn ra phía sau. Các công nghệ theo dõi trực tuyến, nổi bật nhất là "cookies", ghi lại hành vi, sở thích và dữ liệu vị trí của người dùng. Trong khi cookies bên thứ nhất được thiết kế để nâng cao trải nghiệm người dùng bằng cách ghi nhớ thông tin đăng nhập và giỏ hàng, cookies theo dõi của bên thứ ba lại thu thập lượng lớn dữ liệu cá nhân để xây dựng hồ sơ hành vi chi tiết phục vụ quảng cáo mục tiêu.
 
@@ -472,16 +472,16 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reading_comprehension',
     readingPassage: PASSAGE_NEWSPAPER_EVOLUTION,
     passageTranslation: PASSAGE_NEWSPAPER_EVOLUTION_TRANS,
-    questionText: 'Question 24. The word "instant" in paragraph 1 is OPPOSITE in meaning to:',
+    questionText: 'Question 24. The word "formidable" in paragraph 4 is OPPOSITE in meaning to:',
     options: [
-      { id: 'A', text: 'immediate', translation: 'ngay lập tức' },
-      { id: 'B', text: 'delayed', translation: 'bị trì hoãn / chậm trễ' },
-      { id: 'C', text: 'rapid', translation: 'nhanh chóng' },
-      { id: 'D', text: 'prompt', translation: 'kịp thời' }
+      { id: 'A', text: 'minor', translation: 'nhỏ bé / không đáng kể' },
+      { id: 'B', text: 'overwhelming', translation: 'to lớn / áp đảo' },
+      { id: 'C', text: 'severe', translation: 'nghiêm trọng' },
+      { id: 'D', text: 'difficult', translation: 'khó khăn' }
     ],
-    correctAnswer: 'B',
-    explanation: '• B. delayed - ĐÚNG: "Instant" nghĩa là tức thì/ngay lập tức, TRÁI NGHĨA với "delayed" (trì hoãn/chậm trễ).',
-    translation: 'Từ "instant" trong đoạn 1 TRÁI NGHĨA với từ nào dưới đây?',
+    correctAnswer: 'A',
+    explanation: '• A. minor - ĐÚNG: "Formidable" (to lớn/đáng sợ) TRÁI NGHĨA với "minor" (nhỏ bé/không đáng kể).',
+    translation: 'Từ "formidable" trong đoạn 4 TRÁI NGHĨA với từ nào dưới đây?',
     topicTag: 'Đọc hiểu - Từ trái nghĩa'
   },
   {
