@@ -261,7 +261,7 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             return (
               <div
                 key={exam.id}
-                className="card card-hover"
+                className="card card-hover hover-lift"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',

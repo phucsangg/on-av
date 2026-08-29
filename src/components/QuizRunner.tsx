@@ -502,16 +502,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   <div
                     key={opt.id}
                     onClick={() => handleSelectOption(opt.id)}
+                    className="hover-lift"
                     style={{
                       padding: '18px 24px',
-                      borderRadius: 'var(--radius-md)',
+                      borderRadius: 'var(--radius-lg)',
                       border: `2px solid ${isSelected ? 'var(--brand-primary)' : 'var(--border-light)'}`,
                       background: isSelected ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-surface)',
+                      boxShadow: isSelected ? '0 0 18px rgba(79, 70, 229, 0.25)' : '0 2px 6px rgba(0, 0, 0, 0.02)',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '16px',
-                      transition: 'all 0.15s ease',
+                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                       fontWeight: isSelected ? 700 : 500
                     }}
                   >

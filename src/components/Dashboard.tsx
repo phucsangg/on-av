@@ -232,7 +232,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         {filteredExams.map((exam) => (
           <div 
             key={exam.id} 
-            className="glass-card glass-card-hover animate-fade-in" 
+            className="glass-card glass-card-hover hover-lift animate-fade-in" 
             style={{
               padding: '28px',
               display: 'flex',
