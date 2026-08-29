@@ -796,8 +796,10 @@ import { THAI_PHIEN_2026_EXAM } from './thaiPhienExamData';
 import { CHUYEN_VINH_PHUC_2026_EXAM } from './chuyenVinhPhucExamData';
 import { CUM_HAI_PHONG_2026_EXAM } from './cumHaiPhongExamData';
 import { DA_NANG_2026_EXAM } from './daNangExamData';
+import { HANOI_2026_EXAM } from './hanoiExamData';
 
 export const SAMPLE_EXAM_SETS: ExamSet[] = [
+  HANOI_2026_EXAM,
   THAI_PHIEN_2026_EXAM,
   CHUYEN_VINH_PHUC_2026_EXAM,
   CUM_HAI_PHONG_2026_EXAM,
