@@ -122,7 +122,34 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     return null;
   })();
 
-  const activePassage = activePassageData?.passage;
+  // Mask answer keys in passage during quiz taking (only show chosen answer or blank ____________)
+  const formatPassageForTaking = (rawPassage?: string): string => {
+    if (!rawPassage) return '';
+
+    return rawPassage.replace(/<mark>\(?(\d+)\)?[\s\.\:]*\s*([\s\S]*?)<\/mark>/gi, (_fullMatch, blankNumStr) => {
+      const blankNum = parseInt(blankNumStr, 10);
+      
+      // Find matching question in exam.questions for this blank number
+      const targetQuestion = exam.questions.find(q => {
+        const numRegex = new RegExp(`(blank\\s*\\(?${blankNum}\\)?|Question\\s*${blankNum}\\b|Câu\\s*${blankNum}\\b)`, 'i');
+        return numRegex.test(q.questionText);
+      });
+
+      if (targetQuestion) {
+        const selectedOptId = answers[targetQuestion.id];
+        if (selectedOptId) {
+          const selectedOpt = targetQuestion.options.find(o => o.id === selectedOptId);
+          if (selectedOpt) {
+            return `<mark>(${blankNum}) ${selectedOpt.text}</mark>`;
+          }
+        }
+      }
+
+      return `<mark>(${blankNum}) ____________</mark>`;
+    });
+  };
+
+  const activePassage = formatPassageForTaking(activePassageData?.passage);
   const activeTranslation = activePassageData?.translation;
 
   // Timer countdown hook
