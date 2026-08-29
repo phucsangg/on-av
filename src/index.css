@@ -116,23 +116,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Reading Passage Highlight Tags */
 mark {
-  background: #4f46e5 !important;
+  background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%) !important;
   color: #ffffff !important;
-  font-weight: 800 !important;
-  padding: 3px 10px !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  margin: 0 1px !important;
   border-radius: 6px !important;
-  box-shadow: 0 0 16px rgba(79, 70, 229, 0.5) !important;
-  text-decoration: underline !important;
-  text-decoration-color: #cbd5e1 !important;
-  display: inline-block !important;
-  line-height: 1.45 !important;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3) !important;
+  display: inline !important;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  line-height: 1.75 !important;
   transition: all 0.25s ease !important;
 }
 
 [data-theme='dark'] mark {
-  background: #6366f1 !important;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 18px rgba(99, 102, 241, 0.7) !important;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.5) !important;
 }
 
 /* Glassmorphism Card System & Standard Cards */
