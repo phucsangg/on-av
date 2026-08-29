@@ -1,6 +1,10 @@
 import type { ExamSet, Question } from '../types/quiz';
 
 // PASSAGE DECLARATIONS FOR LÊ LỢI EXAM
+const PASSAGE_ACADEMIC_PRESSURE = `<mark>(9) Due to academic overload</mark>, many high school students face increasing stress and burnout. <mark>(10) Parental pressure is another factor that cannot be ignored</mark> when analyzing the root causes of adolescent mental health challenges. <mark>(11) Notwithstanding the provision of counseling services by certain institutions</mark>, many students still hesitate to seek professional help due to fear of stigma. <mark>(12) Parental pressure often forces students</mark> to choose career paths that do not align with their actual passions and abilities. <mark>(13) because they are influenced by external expectations blindly</mark>, they risk pursuing unfulfilling academic journeys.`;
+
+const PASSAGE_ACADEMIC_PRESSURE_TRANS = `ÁP LỰC HỌC ĐƯỜNG & SỨC KHỎE TÂM LÝ LỨA TUỔI HỌC SINH\nDo quá tải học tập, nhiều học sinh trung học phải đối mặt với căng thẳng và mệt mỏi gia tăng. Áp lực từ cha mẹ là một yếu tố khác không thể bỏ qua khi phân tích các nguyên nhân gốc rễ gây ra thách thức sức khỏe tâm thần lứa tuổi vị thành niên. Mặc dù các dịch vụ tư vấn được cung cấp bởi một số cơ sở, nhiều học sinh vẫn do dự khi tìm kiếm sự giúp đỡ chuyên nghiệp do sợ bị kỳ thị. Áp lực từ cha mẹ thường buộc học sinh phải chọn những con đường sự nghiệp không phù hợp với đam mê và khả năng thực sự của họ.`;
+
 const PASSAGE_INTEGRATED_ECOTOURISM = `The concept of integrated ecotourism, where local communities, conservationists, and travel agencies collaborate to protect biodiversity while hosting visitors, has gained significant traction. Modern technology keeps this delicate balance on track. Advanced tools such as satellite monitoring, mobile applications, and AI-driven management systems are used to optimize sustainable travel practices. Additionally, real-time data on wildlife movements and trail conditions enables managers to accelerate the decision-making process that maximizes visitor experience while minimizing environmental impact.
 GIS and remote sensing allow park rangers and tour operators to precisely map out sensitive ecological zones and create customized trekking routes. This ensures that human foot traffic is directed away from vulnerable habitats based on seasonal breeding patterns and soil erosion data. By avoiding "over-tourism" in fragile areas, communities can maintain their natural capital for the long term. Smart sensors and acoustic monitoring provide advance warnings of illegal activities like poaching or logging, allowing authorities to <mark>intercede</mark> without disturbing the entire forest. This, therefore, helps curb habitat destruction and save costs for every stakeholder involved in the project.
 Technology also plays a vital role in optimizing resource consumption for sustainable lodging. Specialized IoT (Internet of Things) devices report energy and water usage hour by hour, while smart grids manage renewable energy from solar or wind sources. Automated waste management systems track the footprint of each eco-lodge and suggest reductions in single-use materials. <mark>This</mark> cuts operational costs and protects local watersheds while keeping the ecosystem healthy. <mark>In remote, pristine environments, such efficiency keeps ecotourism projects economically viable without compromising the landscape.</mark>
@@ -217,6 +221,8 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
   {
     id: 'll-q9',
     type: 'cloze_test',
+    readingPassage: PASSAGE_ACADEMIC_PRESSURE,
+    passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 9. Choose the correct option to fill in blank (9):',
     options: [
       { id: 'A', text: 'Due to academic overload', translation: 'Do quá tải học tập' },
@@ -232,6 +238,8 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
   {
     id: 'll-q10',
     type: 'cloze_test',
+    readingPassage: PASSAGE_ACADEMIC_PRESSURE,
+    passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 10. Choose the correct option to fill in blank (10):',
     options: [
       { id: 'A', text: 'Parental pressure is another factor that cannot be ignored', translation: 'Áp lực từ cha mẹ là một yếu tố khác không thể bỏ qua' },
@@ -247,6 +255,8 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
   {
     id: 'll-q11',
     type: 'cloze_test',
+    readingPassage: PASSAGE_ACADEMIC_PRESSURE,
+    passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 11. Choose the correct option to fill in blank (11):',
     options: [
       { id: 'A', text: 'To alleviate this problem', translation: 'Để làm dịu vấn đề này (To-V chỉ mục đích)' },
@@ -262,6 +272,8 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
   {
     id: 'll-q12',
     type: 'cloze_test',
+    readingPassage: PASSAGE_ACADEMIC_PRESSURE,
+    passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 12. Choose the correct option to fill in blank (12):',
     options: [
       { id: 'A', text: 'The more supportive the educational environment is', translation: 'Môi trường giáo dục càng mang tính hỗ trợ' },
@@ -277,6 +289,8 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
   {
     id: 'll-q13',
     type: 'cloze_test',
+    readingPassage: PASSAGE_ACADEMIC_PRESSURE,
+    passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 13. Choose the correct option to fill in blank (13):',
     options: [
       { id: 'A', text: 'unless comprehensive mental health programs are implemented', translation: 'trừ khi các chương trình sức khỏe tâm thần toàn diện được triển khai' },

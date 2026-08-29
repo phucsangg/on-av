@@ -667,6 +667,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
   {
     id: 'hp-q36',
     type: 'cloze_test',
+    readingPassage: PASSAGE_FUEL_PRICE,
+    passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 36. Fill in blank (36):',
     options: [
       { id: 'A', text: 'at', translation: 'tại' },
@@ -682,6 +684,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
   {
     id: 'hp-q37',
     type: 'cloze_test',
+    readingPassage: PASSAGE_FUEL_PRICE,
+    passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 37. Fill in blank (37):',
     options: [
       { id: 'A', text: 'little', translation: 'rất ít (mang nghĩa phủ định: with little delay)' },
@@ -697,6 +701,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
   {
     id: 'hp-q38',
     type: 'cloze_test',
+    readingPassage: PASSAGE_FUEL_PRICE,
+    passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 38. Fill in blank (38):',
     options: [
       { id: 'A', text: 'regulate', translation: 'điều tiết / hạn chế' },
@@ -712,6 +718,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
   {
     id: 'hp-q39',
     type: 'cloze_test',
+    readingPassage: PASSAGE_FUEL_PRICE,
+    passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 39. Fill in blank (39):',
     options: [
       { id: 'A', text: 'complete', translation: 'hoàn chỉnh' },
@@ -727,6 +735,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
   {
     id: 'hp-q40',
     type: 'cloze_test',
+    readingPassage: PASSAGE_FUEL_PRICE,
+    passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 40. Fill in blank (40):',
     options: [
       { id: 'A', text: 'however', translation: 'tuy nhiên' },

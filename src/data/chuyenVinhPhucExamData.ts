@@ -142,6 +142,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q6',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 6. Fill in blank (6):',
     options: [
       { id: 'A', text: 'price fuel fluctuations', translation: 'sai trật tự cụm danh từ' },
@@ -157,6 +159,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q7',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 7. Fill in blank (7):',
     options: [
       { id: 'A', text: 'at', translation: 'tại' },
@@ -172,6 +176,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q8',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 8. Fill in blank (8):',
     options: [
       { id: 'A', text: 'every', translation: 'mỗi (dùng cho N số ít)' },
@@ -187,6 +193,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q9',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 9. Fill in blank (9):',
     options: [
       { id: 'A', text: 'encourage', translation: 'khuyến khích (encourage the use of)' },
@@ -202,6 +210,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q10',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 10. Fill in blank (10):',
     options: [
       { id: 'A', text: 'complete', translation: 'hoàn chỉnh' },
@@ -217,6 +227,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
   {
     id: 'vp-q11',
     type: 'cloze_test',
+    readingPassage: `Domestic fuel prices were adjusted today in accordance with recent international market trends. In this adjustment, amidst global <mark>(6) fuel price fluctuations</mark>, the Ministry of Industry and Trade and the Ministry of Finance decided <mark>(7) on</mark> a price management plan aimed at ensuring domestic retail prices closely follow international developments with <mark>(8) little</mark> delay. The inter-ministerial decision also maintains price differentials to <mark>(9) encourage</mark> the use of biofuel over traditional gasoline. Up to now, domestic fuel prices have undergone <mark>(10) a total of</mark> 11 adjustments, reflecting <mark>(11) continuous</mark> market shifts.`,
+    passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 11. Fill in blank (11):',
     options: [
       { id: 'A', text: 'however', translation: 'tuy nhiên' },
