@@ -510,15 +510,90 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
               </div>
             </div>
 
-            {/* Question Text */}
-            <div style={{
-              fontSize: '1.18rem',
-              fontWeight: 500,
-              lineHeight: 1.7,
-              marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '28px',
-              color: 'var(--text-main)',
-              whiteSpace: 'pre-line'
-            }} dangerouslySetInnerHTML={{ __html: currentQuestion.questionText }} />
+            {/* Question Text & Reordering Layout */}
+            {(() => {
+              let rawText = currentQuestion.questionText.replace(/\s*(?:A[\.\)]\s*.+?\s*B[\.\)]\s*.+?\s*C[\.\)]\s*.+?\s*D[\.\)]\s*.*)$/i, '').trim();
+
+              if (currentQuestion.type === 'reordering' || (rawText.includes('\na.') || rawText.includes('\na)'))) {
+                const lines = rawText.split('\n');
+                const headerPrompt = lines[0];
+                const sentenceItems = lines.slice(1).filter(line => line.trim().length > 0);
+
+                if (sentenceItems.length > 0) {
+                  return (
+                    <div style={{ marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '24px' }}>
+                      <div style={{
+                        fontSize: '1.18rem',
+                        fontWeight: 700,
+                        lineHeight: 1.65,
+                        color: 'var(--text-main)',
+                        marginBottom: '16px'
+                      }}>
+                        {headerPrompt}
+                      </div>
+
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '10px',
+                        marginBottom: '16px',
+                        background: 'var(--bg-subtle)',
+                        padding: '20px 24px',
+                        borderRadius: 'var(--radius-lg)',
+                        border: '1px solid var(--border-light)'
+                      }}>
+                        {sentenceItems.map((item, idx) => {
+                          const itemMatch = item.match(/^([a-e])[\.\)]\s*(.*)$/i);
+                          const label = itemMatch ? itemMatch[1].toLowerCase() : String.fromCharCode(97 + idx);
+                          const textContent = itemMatch ? itemMatch[2] : item;
+
+                          return (
+                            <div key={idx} style={{
+                              display: 'flex',
+                              alignItems: 'flex-start',
+                              gap: '12px',
+                              lineHeight: 1.6,
+                              fontSize: '1.02rem',
+                              color: 'var(--text-main)'
+                            }}>
+                              <span style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                minWidth: '28px',
+                                height: '28px',
+                                borderRadius: '8px',
+                                background: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+                                color: '#ffffff',
+                                fontWeight: 800,
+                                fontSize: '0.85rem',
+                                flexShrink: 0,
+                                marginTop: '1px',
+                                boxShadow: '0 2px 6px rgba(79, 70, 229, 0.25)'
+                              }}>
+                                {label}
+                              </span>
+                              <span style={{ fontWeight: 500 }}>{textContent}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                }
+              }
+
+              return (
+                <div style={{
+                  fontSize: '1.18rem',
+                  fontWeight: 500,
+                  lineHeight: 1.7,
+                  marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '28px',
+                  color: 'var(--text-main)',
+                  whiteSpace: 'pre-line'
+                }} dangerouslySetInnerHTML={{ __html: rawText }} />
+              );
+            })()}
 
             {/* Question Translation Box (Pure Translation ONLY - NO ANSWERS) */}
             {showQuestionTranslation && currentQuestion.translation && (
