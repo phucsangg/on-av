@@ -221,7 +221,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     return parts.join('');
   };
 
-  // Apply user-selected highlights to rendered passage HTML safely without breaking HTML or matching inside longer words
+  // Apply user-selected highlights to rendered passage HTML safely without breaking HTML
   const applyUserHighlights = (htmlContent?: string): string => {
     if (!htmlContent) return '';
     if (userHighlights.length === 0) return htmlContent;
@@ -232,9 +232,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       if (!textToMatch || textToMatch.length < 2) return;
 
       const escaped = textToMatch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      // For single word / alphanumeric terms, enforce word boundary \b so short words like "in", "is", "an" don't match inside longer words like "London" or "information"
-      const isSingleWord = /^[a-zA-Z0-9'-]+$/.test(textToMatch);
-      const pattern = isSingleWord ? `\\b(${escaped})\\b` : `(${escaped})`;
+      const pattern = `(${escaped})`;
 
       // Split HTML into tags and text tokens so we ONLY replace inside plain text content
       const parts = result.split(/(<[^>]+>)/g);
@@ -514,7 +512,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     {activeTranslation}
                   </div>
                 ) : (
-                  <div style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: activePassage || '' }} />
+                  <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: activePassage || '' }} />
                 )}
               </div>
             </div>
@@ -909,19 +907,19 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             <Highlighter size={13} /> Hồng
           </button>
 
-          {/* Dictionary Lookup Button (if short phrase) */}
-          {selectionPopup.text.length <= 40 && /^[a-zA-Z\s-]+$/.test(selectionPopup.text) && (
+          {/* Dictionary Lookup Button (Always show for selections up to 60 chars) */}
+          {selectionPopup.text && selectionPopup.text.length <= 60 && (
             <button
               onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openDictionary(selectionPopup.text);
+                openDictionary(selectionPopup.text.replace(/^[^\w]+|[^\w]+$/g, ''));
                 setSelectionPopup(null);
               }}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openDictionary(selectionPopup.text);
+                openDictionary(selectionPopup.text.replace(/^[^\w]+|[^\w]+$/g, ''));
                 setSelectionPopup(null);
               }}
               className="btn btn-primary"
