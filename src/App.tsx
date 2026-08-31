@@ -159,6 +159,24 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  // Auto-resolve activeExam from URL query parameter ?examId=... on direct page load
+  useEffect(() => {
+    if (currentView === 'runner' && !activeExam) {
+      const params = new URLSearchParams(window.location.search);
+      const examId = params.get('examId');
+      if (examId) {
+        const found = examSets.find(e => e.id === examId);
+        if (found) {
+          setActiveExam(found);
+          return;
+        }
+      }
+      if (examSets.length > 0) {
+        setActiveExam(examSets[0]);
+      }
+    }
+  }, [currentView, activeExam, examSets]);
+
   // Persist State to LocalStorage
   useEffect(() => {
     localStorage.setItem('eq_attempts', JSON.stringify(attempts));

@@ -15,11 +15,10 @@ import {
   X,
   BookOpen,
   Grid,
-  ChevronDown,
-  ChevronUp,
   Languages,
   Sparkles,
   Search,
+  Highlighter,
   Pause,
   Play
 } from 'lucide-react';
@@ -43,6 +42,19 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState<boolean>(true);
+  const [isGridModalOpen, setIsGridModalOpen] = useState<boolean>(false);
+
+  const navPillsContainerRef = React.useRef<HTMLDivElement>(null);
+
+  // Auto-scroll current question pill into view in bottom navigation bar
+  useEffect(() => {
+    if (navPillsContainerRef.current) {
+      const activePill = navPillsContainerRef.current.children[currentIndex] as HTMLElement;
+      if (activePill) {
+        activePill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [currentIndex, isNavigatorOpen]);
 
   // Translation & Dictionary States
   const [isPassageTranslated, setIsPassageTranslated] = useState<boolean>(false);
@@ -53,22 +65,54 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   // Floating selection lookup popup state
   const [selectionPopup, setSelectionPopup] = useState<{ text: string; x: number; y: number } | null>(null);
 
+  // User Drag & Highlight State
+  const [userHighlights, setUserHighlights] = useState<{ id: string; text: string; color: 'yellow' | 'green' | 'pink' }[]>([]);
+
+  const addHighlight = (textToHighlight: string, color: 'yellow' | 'green' | 'pink') => {
+    if (!textToHighlight || textToHighlight.length < 2) return;
+    setUserHighlights(prev => {
+      const filtered = prev.filter(h => h.text.toLowerCase() !== textToHighlight.toLowerCase());
+      return [...filtered, { id: Date.now().toString(), text: textToHighlight, color }];
+    });
+  };
+
+  const removeHighlight = (textToRemove: string) => {
+    setUserHighlights(prev => prev.filter(h => h.text.toLowerCase() !== textToRemove.toLowerCase()));
+  };
+
   const currentQuestion = exam.questions[currentIndex];
 
   // Listen for text selection across the exam workspace
   useEffect(() => {
-    const handleMouseUp = () => {
+    const handleMouseUp = (e: MouseEvent) => {
+      const targetElement = e.target as HTMLElement;
+
+      // If user clicked inside the selection popup toolbar itself, ignore mouseup
+      if (targetElement && targetElement.closest('.selection-toolbar-popup')) {
+        return;
+      }
+
+      // Check if user clicked directly on an existing user highlight mark tag to remove it
+      if (targetElement && targetElement.tagName === 'MARK' && targetElement.className.includes('user-hl-')) {
+        const textToRemove = targetElement.textContent?.trim();
+        if (textToRemove) {
+          removeHighlight(textToRemove);
+          setSelectionPopup(null);
+          return;
+        }
+      }
+
       const selection = window.getSelection();
       const selectedText = selection ? selection.toString().trim() : '';
 
-      if (selectedText && selectedText.length > 1 && selectedText.length < 40 && /^[a-zA-Z\s-]+$/.test(selectedText)) {
+      if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
         const range = selection?.getRangeAt(0);
         const rect = range?.getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
             text: selectedText,
             x: rect.left + rect.width / 2,
-            y: rect.top - 38
+            y: rect.top - 48
           });
           return;
         }
@@ -169,7 +213,22 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     return passageText.replace(replaceRegex, '<mark>$1</mark>');
   };
 
-  const activePassage = autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText);
+  // Apply user-selected highlights to rendered passage HTML
+  const applyUserHighlights = (htmlContent?: string): string => {
+    if (!htmlContent) return '';
+    if (userHighlights.length === 0) return htmlContent;
+    let result = htmlContent;
+
+    userHighlights.forEach(hl => {
+      const escaped = hl.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`(?<!<[^>]*)\\b(${escaped})\\b(?![^<]*>)`, 'gi');
+      result = result.replace(regex, `<mark class="user-hl-${hl.color}" title="Nhấp để xóa bôi đen">$1</mark>`);
+    });
+
+    return result;
+  };
+
+  const activePassage = applyUserHighlights(autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText));
   const activeTranslation = activePassageData?.translation;
 
   // Timer countdown hook
@@ -340,12 +399,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           </button>
 
           <button
-            onClick={() => setIsNavigatorOpen(!isNavigatorOpen)}
-            className="btn btn-secondary"
-            style={{ padding: '8px 14px', fontSize: '0.85rem' }}
+            onClick={() => setIsGridModalOpen(true)}
+            className="btn btn-secondary hover-lift"
+            style={{ padding: '8px 14px', fontSize: '0.85rem', color: 'var(--brand-primary)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
+            title="Mở Bảng Chọn 40 Câu Hỏi Trực Quan"
           >
             <Grid size={16} /> Bảng chọn ({answeredCount}/{exam.questions.length})
-            {isNavigatorOpen ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
           </button>
 
           <button
@@ -701,31 +760,159 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         </div>
       </div>
 
-      {/* Floating Selection Lookup Button */}
+      {/* Floating Selection Toolbar for Highlighting & Dictionary Lookup */}
       {selectionPopup && (
         <div
-          onClick={() => openDictionary(selectionPopup.text)}
-          className="animate-fade-in"
+          onMouseDown={(e) => e.preventDefault()}
+          className="selection-toolbar-popup glass-card animate-scale-up"
           style={{
             position: 'fixed',
-            left: `${selectionPopup.x}px`,
-            top: `${selectionPopup.y}px`,
+            left: `${Math.max(140, Math.min(window.innerWidth - 140, selectionPopup.x))}px`,
+            top: `${Math.max(10, selectionPopup.y)}px`,
             transform: 'translateX(-50%)',
-            zIndex: 100,
-            background: 'var(--brand-primary)',
-            color: '#fff',
-            padding: '6px 14px',
+            zIndex: 120,
+            background: 'var(--bg-card)',
+            backdropFilter: 'blur(16px)',
+            border: '1.5px solid var(--border-light)',
+            padding: '6px 12px',
             borderRadius: 'var(--radius-pill)',
-            fontSize: '0.82rem',
-            fontWeight: 800,
-            boxShadow: '0 6px 20px rgba(79, 70, 229, 0.4)',
-            cursor: 'pointer',
+            boxShadow: '0 10px 35px rgba(0, 0, 0, 0.25)',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px'
+            gap: '8px'
           }}
         >
-          <Search size={14} /> Tra từ "{selectionPopup.text}"
+          {/* Yellow Highlight Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'yellow');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
+            className="hover-lift"
+            style={{
+              background: '#fef08a',
+              color: '#713f12',
+              border: '1px solid #fde047',
+              padding: '5px 12px',
+              borderRadius: 'var(--radius-pill)',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+            title="Bôi màu Vàng"
+          >
+            <Highlighter size={13} /> Vàng
+          </button>
+
+          {/* Green Highlight Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'green');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
+            className="hover-lift"
+            style={{
+              background: '#bbf7d0',
+              color: '#14532d',
+              border: '1px solid #86efac',
+              padding: '5px 12px',
+              borderRadius: 'var(--radius-pill)',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+            title="Bôi màu Xanh"
+          >
+            <Highlighter size={13} /> Xanh
+          </button>
+
+          {/* Pink Highlight Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'pink');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
+            className="hover-lift"
+            style={{
+              background: '#fbcfe8',
+              color: '#831843',
+              border: '1px solid #f472b6',
+              padding: '5px 12px',
+              borderRadius: 'var(--radius-pill)',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
+            }}
+            title="Bôi màu Hồng"
+          >
+            <Highlighter size={13} /> Hồng
+          </button>
+
+          {/* Dictionary Lookup Button (if short phrase) */}
+          {selectionPopup.text.length <= 40 && /^[a-zA-Z\s-]+$/.test(selectionPopup.text) && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                openDictionary(selectionPopup.text);
+                setSelectionPopup(null);
+              }}
+              className="btn btn-primary"
+              style={{
+                padding: '5px 12px',
+                borderRadius: 'var(--radius-pill)',
+                fontSize: '0.8rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+              title="Tra từ điển Anh-Việt"
+            >
+              <Search size={13} /> Tra từ
+            </button>
+          )}
+
+          {/* Remove Highlight Button if already highlighted */}
+          {userHighlights.some(h => h.text.toLowerCase() === selectionPopup.text.toLowerCase()) && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                removeHighlight(selectionPopup.text);
+                setSelectionPopup(null);
+              }}
+              style={{
+                background: 'var(--danger-bg)',
+                color: 'var(--danger)',
+                border: '1px solid var(--danger-border)',
+                padding: '5px 12px',
+                borderRadius: 'var(--radius-pill)',
+                fontSize: '0.8rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+              title="Xóa bôi đen đoạn này"
+            >
+              <X size={13} /> Xóa bôi
+            </button>
+          )}
         </div>
       )}
 
@@ -752,14 +939,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             gap: '20px'
           }}>
             {/* Horizontal Pill Bar */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              overflowX: 'auto',
-              paddingBottom: '2px',
-              flex: 1
-            }}>
+            <div
+              ref={navPillsContainerRef}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                overflowX: 'auto',
+                paddingBottom: '4px',
+                flex: 1,
+                scrollBehavior: 'smooth'
+              }}
+            >
               {exam.questions.map((q, idx) => {
                 const isCurrent = idx === currentIndex;
                 const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
@@ -768,10 +959,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 let bg = 'var(--bg-subtle)';
                 let color = 'var(--text-main)';
                 let border = '1px solid var(--border-light)';
+                let boxShadow = 'none';
+                let transform = 'none';
 
                 if (isCurrent) {
-                  border = '2px solid var(--brand-primary)';
-                  bg = isAnswered ? 'var(--brand-primary)' : 'rgba(79, 70, 229, 0.2)';
+                  border = '2.5px solid var(--brand-primary)';
+                  boxShadow = '0 0 14px rgba(79, 70, 229, 0.45)';
+                  transform = 'scale(1.1)';
+                  bg = isAnswered ? 'var(--brand-primary)' : 'rgba(79, 70, 229, 0.18)';
                   color = isAnswered ? '#ffffff' : 'var(--brand-primary)';
                 } else if (isQuestionFlagged) {
                   bg = 'rgba(245, 158, 11, 0.25)';
@@ -801,7 +996,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       justifyContent: 'center',
                       position: 'relative',
                       flexShrink: 0,
-                      transition: 'all 0.15s ease'
+                      boxShadow: boxShadow,
+                      transform: transform,
+                      zIndex: isCurrent ? 2 : 1,
+                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                     title={`Câu ${idx + 1}`}
                   >
@@ -842,6 +1040,227 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--warning)' }} />
                 Đánh dấu ({Object.values(flagged).filter(Boolean).length})
               </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Question Grid Navigator Modal (Bảng Chọn 40 Câu Hỏi) */}
+      {isGridModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 100,
+          background: 'rgba(15, 23, 42, 0.65)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }}>
+          <div className="glass-card animate-fade-in" style={{
+            width: '100%',
+            maxWidth: '680px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            padding: '28px',
+            borderRadius: 'var(--radius-xl)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)'
+          }}>
+            {/* Modal Header */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '20px',
+              borderBottom: '1px solid var(--border-light)',
+              paddingBottom: '16px'
+            }}>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Grid size={22} style={{ color: 'var(--brand-primary)' }} />
+                  <span>BẢNG CHỌN CÂU HỎI TRỰC QUAN</span>
+                </h3>
+                <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                  Nhấp vào câu hỏi bất kỳ để chuyển nhanh đến câu đó
+                </p>
+              </div>
+
+              <button
+                onClick={() => setIsGridModalOpen(false)}
+                className="btn btn-secondary"
+                style={{ padding: '6px', borderRadius: '50%', minWidth: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Progress Summary Card */}
+            <div style={{
+              background: 'var(--bg-subtle)',
+              padding: '16px 20px',
+              borderRadius: 'var(--radius-md)',
+              marginBottom: '22px',
+              border: '1px solid var(--border-light)'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', fontWeight: 700, marginBottom: '8px' }}>
+                <span>Tiến độ hoàn thành bài thi</span>
+                <span style={{ color: 'var(--brand-primary)', fontWeight: 800 }}>
+                  {answeredCount} / {exam.questions.length} câu ({Math.round((answeredCount / exam.questions.length) * 100)}%)
+                </span>
+              </div>
+
+              <div style={{
+                height: '8px',
+                width: '100%',
+                background: 'var(--bg-tertiary)',
+                borderRadius: '4px',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  height: '100%',
+                  width: `${(answeredCount / exam.questions.length) * 100}%`,
+                  background: 'linear-gradient(90deg, #4f46e5 0%, #3b82f6 100%)',
+                  borderRadius: '4px',
+                  transition: 'width 0.3s ease'
+                }} />
+              </div>
+
+              {/* Status Legend Badges */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                marginTop: '14px',
+                fontSize: '0.82rem',
+                fontWeight: 600,
+                flexWrap: 'wrap'
+              }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'var(--brand-primary)' }} />
+                  Đã làm ({answeredCount})
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'var(--bg-surface)', border: '1.5px solid var(--border-light)' }} />
+                  Chưa làm ({exam.questions.length - answeredCount})
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'rgba(245, 158, 11, 0.25)', border: '1px solid var(--warning)' }} />
+                  Đánh dấu ({Object.values(flagged).filter(Boolean).length})
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', border: '2.5px solid var(--brand-primary)', background: 'rgba(79, 70, 229, 0.15)' }} />
+                  Đang chọn (Câu {currentIndex + 1})
+                </span>
+              </div>
+            </div>
+
+            {/* 40-Question Flex/Grid Layout */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: '10px',
+              marginBottom: '24px'
+            }}>
+              {exam.questions.map((q, idx) => {
+                const isCurrent = idx === currentIndex;
+                const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
+                const isQuestionFlagged = !!flagged[q.id];
+
+                let bg = 'var(--bg-surface)';
+                let color = 'var(--text-main)';
+                let border = '1.5px solid var(--border-light)';
+                let boxShadow = 'none';
+
+                if (isCurrent) {
+                  border = '2.5px solid var(--brand-primary)';
+                  boxShadow = '0 0 14px rgba(79, 70, 229, 0.4)';
+                  if (isAnswered) {
+                    bg = 'var(--brand-primary)';
+                    color = '#ffffff';
+                  } else {
+                    bg = 'rgba(79, 70, 229, 0.15)';
+                    color = 'var(--brand-primary)';
+                  }
+                } else if (isQuestionFlagged) {
+                  bg = 'rgba(245, 158, 11, 0.2)';
+                  color = 'var(--warning)';
+                  border = '1.5px solid var(--warning)';
+                } else if (isAnswered) {
+                  bg = 'var(--brand-primary)';
+                  color = '#ffffff';
+                  border = '1.5px solid var(--brand-primary)';
+                }
+
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      setCurrentIndex(idx);
+                      setIsGridModalOpen(false);
+                    }}
+                    className="hover-lift"
+                    style={{
+                      padding: '10px 6px',
+                      borderRadius: 'var(--radius-md)',
+                      border: border,
+                      background: bg,
+                      color: color,
+                      fontWeight: 800,
+                      fontSize: '0.92rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative',
+                      boxShadow: boxShadow,
+                      transition: 'all 0.18s ease'
+                    }}
+                  >
+                    Câu {idx + 1}
+                    {isQuestionFlagged && (
+                      <span style={{
+                        position: 'absolute',
+                        top: '4px',
+                        right: '4px',
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'var(--warning)'
+                      }} />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Bottom Actions */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+              <button
+                onClick={() => {
+                  setIsNavigatorOpen(!isNavigatorOpen);
+                }}
+                className="btn btn-secondary"
+                style={{ fontSize: '0.85rem' }}
+              >
+                {isNavigatorOpen ? 'Ẩn thanh câu hỏi bên dưới' : 'Hiện thanh câu hỏi bên dưới'}
+              </button>
+
+              <button
+                onClick={() => {
+                  setIsGridModalOpen(false);
+                  setIsSubmitModalOpen(true);
+                }}
+                className="btn btn-primary"
+                style={{ padding: '8px 20px', fontSize: '0.9rem' }}
+              >
+                <CheckCircle size={16} /> Nộp Bài Ngay
+              </button>
             </div>
           </div>
         </div>
