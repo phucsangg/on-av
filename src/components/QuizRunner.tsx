@@ -103,7 +103,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
 
       const selection = window.getSelection();
-      const selectedText = selection ? selection.toString().trim() : '';
+      const rawText = selection ? selection.toString() : '';
+      const selectedText = rawText.replace(/[\r\n]+/g, ' ').trim();
 
       if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
         const range = selection?.getRangeAt(0);
@@ -209,20 +210,41 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       return passageText;
     }
 
-    const replaceRegex = new RegExp(`(?<!<[^>]*)\\b(${targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b(?![^<]*>)`, 'gi');
-    return passageText.replace(replaceRegex, '<mark>$1</mark>');
+    const escaped = targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const parts = passageText.split(/(<[^>]+>)/g);
+    for (let i = 0; i < parts.length; i++) {
+      if (parts[i] && !parts[i].startsWith('<')) {
+        const replaceRegex = new RegExp(`\\b(${escaped})\\b`, 'gi');
+        parts[i] = parts[i].replace(replaceRegex, '<mark>$1</mark>');
+      }
+    }
+    return parts.join('');
   };
 
-  // Apply user-selected highlights to rendered passage HTML
+  // Apply user-selected highlights to rendered passage HTML safely without breaking HTML or matching inside longer words
   const applyUserHighlights = (htmlContent?: string): string => {
     if (!htmlContent) return '';
     if (userHighlights.length === 0) return htmlContent;
     let result = htmlContent;
 
     userHighlights.forEach(hl => {
-      const escaped = hl.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const regex = new RegExp(`(?<!<[^>]*)\\b(${escaped})\\b(?![^<]*>)`, 'gi');
-      result = result.replace(regex, `<mark class="user-hl-${hl.color}" title="Nhấp để xóa bôi đen">$1</mark>`);
+      const textToMatch = hl.text.trim();
+      if (!textToMatch || textToMatch.length < 2) return;
+
+      const escaped = textToMatch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      // For single word / alphanumeric terms, enforce word boundary \b so short words like "in", "is", "an" don't match inside longer words like "London" or "information"
+      const isSingleWord = /^[a-zA-Z0-9'-]+$/.test(textToMatch);
+      const pattern = isSingleWord ? `\\b(${escaped})\\b` : `(${escaped})`;
+
+      // Split HTML into tags and text tokens so we ONLY replace inside plain text content
+      const parts = result.split(/(<[^>]+>)/g);
+      for (let i = 0; i < parts.length; i++) {
+        if (parts[i] && !parts[i].startsWith('<')) {
+          const regex = new RegExp(pattern, 'gi');
+          parts[i] = parts[i].replace(regex, `<mark class="user-hl-${hl.color}" title="Nhấp để xóa bôi đen">$1</mark>`);
+        }
+      }
+      result = parts.join('');
     });
 
     return result;
