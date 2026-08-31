@@ -785,7 +785,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       {/* Floating Selection Toolbar for Highlighting & Dictionary Lookup */}
       {selectionPopup && (
         <div
-          onMouseDown={(e) => e.preventDefault()}
+          onMouseDown={(e) => e.stopPropagation()}
           className="selection-toolbar-popup glass-card animate-scale-up"
           style={{
             position: 'fixed',
@@ -806,7 +806,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         >
           {/* Yellow Highlight Button */}
           <button
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'yellow');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               addHighlight(selectionPopup.text, 'yellow');
               setSelectionPopup(null);
@@ -833,7 +841,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
           {/* Green Highlight Button */}
           <button
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'green');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               addHighlight(selectionPopup.text, 'green');
               setSelectionPopup(null);
@@ -860,7 +876,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
           {/* Pink Highlight Button */}
           <button
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addHighlight(selectionPopup.text, 'pink');
+              setSelectionPopup(null);
+              window.getSelection()?.removeAllRanges();
+            }}
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               addHighlight(selectionPopup.text, 'pink');
               setSelectionPopup(null);
@@ -888,7 +912,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           {/* Dictionary Lookup Button (if short phrase) */}
           {selectionPopup.text.length <= 40 && /^[a-zA-Z\s-]+$/.test(selectionPopup.text) && (
             <button
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                openDictionary(selectionPopup.text);
+                setSelectionPopup(null);
+              }}
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 openDictionary(selectionPopup.text);
                 setSelectionPopup(null);
@@ -912,7 +943,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           {/* Remove Highlight Button if already highlighted */}
           {userHighlights.some(h => h.text.toLowerCase() === selectionPopup.text.toLowerCase()) && (
             <button
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                removeHighlight(selectionPopup.text);
+                setSelectionPopup(null);
+              }}
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 removeHighlight(selectionPopup.text);
                 setSelectionPopup(null);
