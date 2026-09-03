@@ -106,6 +106,126 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     topicTag: 'Sắp xếp hội thoại'
   },
   {
+    id: 'hnc-q6',
+    type: 'grammar',
+    questionText: 'Question 6. Had the weather forecast predicted the heavy rain, we _____ our camping trip for another weekend.',
+    options: [
+      { id: 'A', text: 'would have rescheduled', translation: 'đảo ngữ điều kiện loại 3' },
+      { id: 'B', text: 'will reschedule', translation: 'tương lai đơn' },
+      { id: 'C', text: 'rescheduled', translation: 'quá khứ đơn' },
+      { id: 'D', text: 'would reschedule', translation: 'điều kiện loại 2' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ điều kiện loại 3: Had + S + P2, S + would have + P2. Chọn A.',
+    translation: 'Nếu dự báo thời tiết đoán trước mưa to, chúng tôi đã dời chuyến cắm trại sang tuần khác.',
+    topicTag: 'Đảo ngữ Điều kiện loại 3'
+  },
+  {
+    id: 'hnc-q7',
+    type: 'vocabulary',
+    questionText: 'Question 7. The school board voted to _____ the outdated curriculum in favor of a modern STEM-oriented program.',
+    options: [
+      { id: 'A', text: 'abolish', translation: 'bãi bỏ / bãi bỏ hoàn toàn' },
+      { id: 'B', text: 'preserve', translation: 'gìn giữ' },
+      { id: 'C', text: 'endorse', translation: 'tán thành' },
+      { id: 'D', text: 'accumulate', translation: 'tích lũy' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Động từ "abolish the outdated curriculum" = bãi bỏ chương trình giảng dạy lạc hậu. Chọn A.',
+    translation: 'Hội đồng nhà trường đã bỏ phiếu bãi bỏ chương trình học cũ để chuyển sang STEM.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'hnc-q8',
+    type: 'synonym',
+    questionText: 'Question 8. The environmentalist gave an eloquent speech advocating for rainforest preservation.',
+    options: [
+      { id: 'A', text: 'persuasive', translation: 'thuyết phục / hùng hồn (đồng nghĩa với eloquent)' },
+      { id: 'B', text: 'unclear', translation: 'không rõ ràng' },
+      { id: 'C', text: 'boring', translation: 'tẻ nhạt' },
+      { id: 'D', text: 'hesitant', translation: 'ngập ngừng' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "eloquent" = hùng hồn, giàu sức thuyết phục = persuasive. Chọn A.',
+    translation: 'Nhà môi trường học đã có bài phát biểu hùng hồn kêu gọi bảo vệ rừng rậm.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'hnc-q9',
+    type: 'antonym',
+    questionText: 'Question 9. She was reluctant to express her opinion during the heated debate.',
+    options: [
+      { id: 'A', text: 'eager', translation: 'háo hức / sẵn lòng (trái nghĩa với reluctant)' },
+      { id: 'B', text: 'hesitant', translation: 'ngập ngừng' },
+      { id: 'C', text: 'unwilling', translation: 'không sẵn lòng' },
+      { id: 'D', text: 'cautious', translation: 'thận trọng' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "reluctant" = miễn cưỡng, ngập ngừng. Trái nghĩa với nó là "eager" (háo hức, sẵn lòng). Chọn A.',
+    translation: 'Cô ấy ngập ngừng khi bày tỏ ý kiến trong cuộc tranh luận gay gắt.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'hnc-q10',
+    type: 'communication',
+    questionText: 'Question 10. Peter: "Shall we go for a walk in the park after dinner?" - Mary: "_____" ',
+    options: [
+      { id: 'A', text: 'That sounds like a great idea!', translation: 'Nghe có vẻ là ý kiến tuyệt vời!' },
+      { id: 'B', text: 'No, I don’t mind.', translation: 'Không, tôi không phiền' },
+      { id: 'C', text: 'Yes, it is very expensive.', translation: 'Vâng, nó rất đắt' },
+      { id: 'D', text: 'You’re welcome.', translation: 'Không có gì' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đáp lại lời rủ rê "Shall we...?": "That sounds like a great idea!". Chọn A.',
+    translation: 'Peter: Chúng ta đi dạo công viên sau giờ ăn tối nhé? - Mary: Nghe có vẻ tuyệt đấy!',
+    topicTag: 'Giao tiếp hàng ngày'
+  },
+  {
+    id: 'hnc-q11',
+    type: 'grammar',
+    questionText: 'Question 11. It was not until she moved to Hanoi _____ she realized the rich historical heritage of the city.',
+    options: [
+      { id: 'A', text: 'that', translation: 'cấu trúc It was not until... That + Clause' },
+      { id: 'B', text: 'when', translation: 'dùng when (sai)' },
+      { id: 'C', text: 'which', translation: 'dùng which (sai)' },
+      { id: 'D', text: 'where', translation: 'dùng where (sai)' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cấu trúc nhấn mạnh thời gian: "It was not until + Time/Clause + THAT + Clause". Chọn A. that.',
+    translation: 'Mãi cho đến khi chuyển đến Hà Nội cô ấy mới nhận ra di sản lịch sử phong phú của thành phố.',
+    topicTag: 'Câu chẻ Not until... That'
+  },
+  {
+    id: 'hnc-q12',
+    type: 'grammar',
+    questionText: 'Question 12. Having spent months conducting fieldwork in the mountains, _____ invaluable geological samples.',
+    options: [
+      { id: 'A', text: 'the research team collected', translation: 'chủ thể là người (the research team)' },
+      { id: 'B', text: 'invaluable samples were collected', translation: 'sai chủ thể bị động' },
+      { id: 'C', text: 'collecting was finished', translation: 'sai ngữ pháp' },
+      { id: 'D', text: 'the mountains provided', translation: 'ngược ngữ cảnh' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Phân từ hoàn thành "Having spent..." đòi hỏi chủ ngữ vế chính phải thực hiện hành động (the research team). Chọn A.',
+    translation: 'Dành nhiều tháng làm việc thực địa trên núi xong, đội nghiên cứu đã thu thập được mẫu địa chất vô giá.',
+    topicTag: 'Rút gọn mệnh đề phân từ'
+  },
+  {
+    id: 'hnc-q13',
+    type: 'grammar',
+    questionText: 'Question 13. The company introduced a novel incentive scheme, _____ led to a 20% boost in quarterly sales.',
+    options: [
+      { id: 'A', text: 'which', translation: 'bổ nghĩa cho cả mệnh đề đằng trước' },
+      { id: 'B', text: 'that', translation: 'không đứng sau dấu phẩy' },
+      { id: 'C', text: 'what', translation: 'không làm đại từ quan hệ nối' },
+      { id: 'D', text: 'where', translation: 'nơi chốn' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• ", which" dùng để bổ nghĩa cho cả mệnh đề đứng trước nó. Chọn A. which.',
+    translation: 'Công ty đã đưa ra chính sách thưởng mới, điều này dẫn đến mức tăng 20% doanh số quý.',
+    topicTag: 'Mệnh đề quan hệ'
+  },
+  {
     id: 'hnc-q14',
     type: 'reading_comprehension',
     readingPassage: PASSAGE_CARBON_FOOTPRINT,
@@ -376,6 +496,171 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     explanation: '• Sau tính từ "personal" cần danh từ chỉ phẩm chất: "personal effectiveness" (hiệu quả cá nhân). Chọn A. effectiveness.',
     translation: 'Nỗ lực bền bỉ sẽ nâng cao tính bền vững lâu dài và hiệu quả cá nhân.',
     topicTag: 'Từ loại (Word Form)'
+  },
+  {
+    id: 'hnc-q30',
+    type: 'grammar',
+    questionText: 'Question 30. No sooner _____ home than it started to rain heavily.',
+    options: [
+      { id: 'A', text: 'had he arrived', translation: 'đảo ngữ No sooner + had + S + P2... than...' },
+      { id: 'B', text: 'he had arrived', translation: 'không đảo ngữ' },
+      { id: 'C', text: 'did he arrive', translation: 'sai cấu trúc với than' },
+      { id: 'D', text: 'he arrived', translation: 'quá khứ đơn' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cấu trúc đảo ngữ "No sooner + had + S + P2 + than + S + V(quá khứ)". Chọn A.',
+    translation: 'Vừa mới về đến nhà thì trời bắt đầu mưa to.',
+    topicTag: 'Đảo ngữ (Inversion)'
+  },
+  {
+    id: 'hnc-q31',
+    type: 'grammar',
+    questionText: 'Question 31. The new software application is designed to be user-friendly, _____ allows beginners to master it easily.',
+    options: [
+      { id: 'A', text: 'which', translation: 'đại từ quan hệ thay cho toàn bộ mệnh đề phía trước' },
+      { id: 'B', text: 'that', translation: 'không đứng sau dấu phẩy' },
+      { id: 'C', text: 'where', translation: 'nơi chốn' },
+      { id: 'D', text: 'whom', translation: 'chỉ người' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Mệnh đề quan hệ không xác định dùng ", which" để bổ nghĩa cho cả mệnh đề đằng trước. Chọn A. which.',
+    translation: 'Phần mềm mới được thiết kế thân thiện với người dùng, điều này giúp người mới học dễ dàng làm chủ.',
+    topicTag: 'Mệnh đề quan hệ'
+  },
+  {
+    id: 'hnc-q32',
+    type: 'vocabulary',
+    questionText: 'Question 32. Heavy traffic in major cities often _____ severe air pollution during peak commuting hours.',
+    options: [
+      { id: 'A', text: 'exacerbates', translation: 'làm trầ trọng thêm / tồi tệ hơn' },
+      { id: 'B', text: 'alleviates', translation: 'làm xoa dịu' },
+      { id: 'C', text: 'rectifies', translation: 'sửa chữa' },
+      { id: 'D', text: 'diminishes', translation: 'giảm bớt' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Động từ "exacerbate air pollution" = làm trầm trọng thêm ô nhiễm không khí. Chọn A. exacerbates.',
+    translation: 'Giao thông đông đúc ở các thành phố lớn thường làm trầm trọng thêm ô nhiễm không khí.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'hnc-q33',
+    type: 'synonym',
+    questionText: 'Question 33. The team made a pivotal discovery that paved the way for breakthrough treatments.',
+    options: [
+      { id: 'A', text: 'crucial', translation: 'quan trọng / then chốt (đồng nghĩa với pivotal)' },
+      { id: 'B', text: 'insignificant', translation: 'không quan trọng' },
+      { id: 'C', text: 'trivial', translation: 'tầm thường' },
+      { id: 'D', text: 'accidental', translation: 'tình cờ' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "pivotal" = quan trọng, then chốt = crucial. Chọn A. crucial.',
+    translation: 'Đội ngũ đã tạo ra một phát hiện quan trọng then chốt mở đường cho các liệu pháp đột phá.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'hnc-q34',
+    type: 'antonym',
+    questionText: 'Question 34. The manager was praised for making transparent decisions during the financial crisis.',
+    options: [
+      { id: 'A', text: 'opaque', translation: 'mờ đục / không minh bạch (trái nghĩa với transparent)' },
+      { id: 'B', text: 'clear', translation: 'rõ ràng' },
+      { id: 'C', text: 'candid', translation: 'thật thà' },
+      { id: 'D', text: 'explicit', translation: 'rõ ràng' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "transparent" = minh bạch, rõ ràng. Trái nghĩa với nó là "opaque" (mờ đục, không minh bạch). Chọn A.',
+    translation: 'Quản lý được khen ngợi vì đưa ra các quyết định minh bạch trong khủng hoảng tài chính.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'hnc-q35',
+    type: 'communication',
+    questionText: 'Question 35. David: "Congratulations on winning the first prize in the English speaking contest!" - Emma: "_____" ',
+    options: [
+      { id: 'A', text: 'Thank you! It means a lot to me.', translation: 'Cảm ơn bạn! Điều đó có ý nghĩa rất lớn với tôi.' },
+      { id: 'B', text: 'Yes, of course.', translation: 'Tất nhiên rồi' },
+      { id: 'C', text: 'Never mind.', translation: 'Đừng bận tâm' },
+      { id: 'D', text: 'You can say that again.', translation: 'Tôi hoàn toàn đồng ý' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đáp lại lời chúc mừng chiến thắng cuộc thi: "Thank you! It means a lot to me." Chọn A.',
+    translation: 'David: Chúc mừng bạn đoạt giải nhất cuộc thi hùng biện! - Emma: Cảm ơn bạn rất nhiều!',
+    topicTag: 'Giao tiếp hàng ngày'
+  },
+  {
+    id: 'hnc-q36',
+    type: 'grammar',
+    questionText: 'Question 36. Not until all the evidence was carefully analyzed _____ a final verdict.',
+    options: [
+      { id: 'A', text: 'did the judge reach', translation: 'đảo ngữ Not until + Clause + Did + S + V' },
+      { id: 'B', text: 'the judge reached', translation: 'không đảo ngữ' },
+      { id: 'C', text: 'has the judge reached', translation: 'thiếu sự hòa hợp thì' },
+      { id: 'D', text: 'was the judge reached', translation: 'bị động sai' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cấu trúc đảo ngữ "Not until + Mệnh đề quá khứ + Aux(did) + S + V-bare". Chọn A.',
+    translation: 'Mãi cho đến khi tất cả bằng chứng được phân tích kỹ lưỡng thì thẩm phán mới đưa ra phán quyết cuối cùng.',
+    topicTag: 'Đảo ngữ Not Until'
+  },
+  {
+    id: 'hnc-q37',
+    type: 'grammar',
+    questionText: 'Question 37. Having finished the comprehensive report, _____ it to the department head for review.',
+    options: [
+      { id: 'A', text: 'the analyst submitted', translation: 'chủ thể thực hiện hành động là người (the analyst)' },
+      { id: 'B', text: 'the report was submitted by the analyst', translation: 'sai chủ thể bị động (báo cáo không thể tự viết xong)' },
+      { id: 'C', text: 'submitting was done', translation: 'sai ngữ pháp' },
+      { id: 'D', text: 'the department head received', translation: 'ngược ngữ cảnh' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Rút gọn phân từ hoàn thành "Having + P2" đòi hỏi chủ ngữ vế sau phải là người thực hiện hành động (the analyst). Chọn A.',
+    translation: 'Hoàn thành bản báo cáo toàn diện xong, nhà phân tích đã nộp nó cho trưởng bộ phận.',
+    topicTag: 'Rút gọn Mệnh đề Hoàn thành'
+  },
+  {
+    id: 'hnc-q38',
+    type: 'grammar',
+    questionText: 'Question 38. The university offers a wide range of scholarships, _____ aim to support talented students from low-income families.',
+    options: [
+      { id: 'A', text: 'all of which', translation: 'tất cả trong số đó (bổ nghĩa cho danh từ scholarships)' },
+      { id: 'B', text: 'all of them', translation: 'thiếu đại từ quan hệ nối mệnh đề' },
+      { id: 'C', text: 'all of whom', translation: 'whom chỉ người (học bổng là vật)' },
+      { id: 'D', text: 'which all', translation: 'sai trật tự' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cụm đại từ chỉ số lượng + đại từ quan hệ: "all of which" bổ nghĩa cho "scholarships". Chọn A.',
+    translation: 'Trường đại học cung cấp nhiều học bổng, tất cả trong số đó nhằm hỗ trợ sinh viên tài năng.',
+    topicTag: 'Mệnh đề quan hệ lượng từ'
+  },
+  {
+    id: 'hnc-q39',
+    type: 'grammar',
+    questionText: 'Question 39. Without your generous guidance and support, we _____ our business expansion project on time.',
+    options: [
+      { id: 'A', text: 'could not have completed', translation: 'cấu trúc Without + N, S + could not have P2' },
+      { id: 'B', text: 'will not complete', translation: 'tương lai đơn' },
+      { id: 'C', text: 'do not complete', translation: 'hiện tại đơn' },
+      { id: 'D', text: 'cannot complete', translation: 'hiện tại' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Giả định quá khứ trái thực tế: "Without + N, S + could/would not have + P2". Chọn A. could not have completed.',
+    translation: 'Nếu không có sự hướng dẫn và hỗ trợ hào phóng của bạn, chúng tôi đã không thể hoàn thành dự án mở rộng đúng hạn.',
+    topicTag: 'Câu điều kiện ẩn (Without)'
+  },
+  {
+    id: 'hnc-q40',
+    type: 'grammar',
+    questionText: 'Question 40. It is imperative that every candidate _____ the examination rules carefully before entering the hall.',
+    options: [
+      { id: 'A', text: 'read', translation: 'thức giả định (subjunctive) dùng V-bare' },
+      { id: 'B', text: 'reads', translation: 'chia hiện tại đơn' },
+      { id: 'C', text: 'reading', translation: 'dạng V-ing' },
+      { id: 'D', text: 'must read', translation: 'thừa modal' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Thức giả định với tính từ bắt buộc: "It is imperative that + S + V-bare". Động từ giữ nguyên mẫu "read". Chọn A.',
+    translation: 'Bắt buộc mỗi thí sinh phải đọc kỹ quy chế thi trước khi vào phòng thi.',
+    topicTag: 'Thức Giả định (Subjunctive)'
   }
 ];
 
@@ -385,7 +670,7 @@ export const HANOI_CUM_2026_EXAM: ExamSet = {
   description: 'Đề thi thử tốt nghiệp THPT 2026 của Cụm Liên trường Hà Nội kèm đáp án chi tiết và giải thích bài đọc Carbon Footprint & Eat That Frog.',
   category: 'thpt_qg',
   durationMinutes: 50,
-  totalQuestions: 30,
+  totalQuestions: 40,
   badge: 'CỤM HÀ NỘI 2026',
   iconName: 'BookMarked',
   questions: HANOI_CUM_2026_QUESTIONS

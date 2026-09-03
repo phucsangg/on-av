@@ -525,6 +525,156 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     explanation: '• Đoạn cuối nêu rõ: "At the beginning the girl is usually innocent, shy... By the end, she has become the toughest and most resourceful person". Chọn A.',
     translation: 'Hình ảnh cô gái cuối cùng: Ban đầu ngây thơ rụt rè, về sau trở nên cứng cỏi mưu trí nhất.',
     topicTag: 'Đọc hiểu - Chi tiết'
+  },
+  {
+    id: 'htl1-q31',
+    type: 'grammar',
+    questionText: 'Question 31. If the weather _____ clear tomorrow, the outdoor graduation ceremony will proceed as scheduled.',
+    options: [
+      { id: 'A', text: 'is', translation: 'thì hiện tại đơn (chủ ngữ số ít weather)' },
+      { id: 'B', text: 'will be', translation: 'thiếu điều kiện loại 1' },
+      { id: 'C', text: 'were', translation: 'quá khứ giả định' },
+      { id: 'D', text: 'had been', translation: 'quá khứ hoàn thành' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Mệnh đề If điều kiện loại 1 dùng thì hiện tại đơn: If + S + V(s/es), S + will + V. Chọn A. is.',
+    translation: 'Nếu thời tiết đẹp vào ngày mai, lễ tốt nghiệp ngoài trời sẽ diễn ra đúng kế hoạch.',
+    topicTag: 'Câu điều kiện loại 1'
+  },
+  {
+    id: 'htl1-q32',
+    type: 'grammar',
+    questionText: 'Question 32. By the time the professor finishes her lecture, the students _____ notes for over two hours.',
+    options: [
+      { id: 'A', text: 'have taken', translation: 'hiện tại hoàn thành' },
+      { id: 'B', text: 'will have been taking', translation: 'tương lai hoàn thành tiếp diễn' },
+      { id: 'C', text: 'were taking', translation: 'quá khứ tiếp diễn' },
+      { id: 'D', text: 'took', translation: 'quá khứ đơn' }
+    ],
+    correctAnswer: 'B',
+    explanation: '• Cấu trúc "By the time + S + V(hiện tại), S + will have been V-ing" diễn tả một hành động kéo dài liên tục đến một thời điểm trong tương lai. Chọn B.',
+    translation: 'Vào lúc giáo sư kết thúc bài giảng, các sinh viên sẽ đã chép ghi chú liên tục hơn 2 giờ.',
+    topicTag: 'Thì Tương lai hoàn thành tiếp diễn'
+  },
+  {
+    id: 'htl1-q33',
+    type: 'vocabulary',
+    questionText: 'Question 33. The new environmental policy aims to _____ carbon emissions across all industrial sectors.',
+    options: [
+      { id: 'A', text: 'mitigate', translation: 'giảm nhẹ / giảm bớt tác hại' },
+      { id: 'B', text: 'aggravate', translation: 'làm trầm trọng thêm' },
+      { id: 'C', text: 'deteriorate', translation: 'làm suy giảm chất lượng' },
+      { id: 'D', text: 'complicate', translation: 'làm phức tạp' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Động từ "mitigate carbon emissions" = giảm nhẹ lượng phát thải carbon. Chọn A. mitigate.',
+    translation: 'Chính sách môi trường mới nhằm mục đích giảm nhẹ khí thải carbon.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'htl1-q34',
+    type: 'synonym',
+    questionText: 'Question 34. The scientist provided a concise summary of the research findings.',
+    options: [
+      { id: 'A', text: 'brief', translation: 'ngắn gọn (đồng nghĩa với concise)' },
+      { id: 'B', text: 'lengthy', translation: 'dài dòng' },
+      { id: 'C', text: 'vague', translation: 'mơ hồ' },
+      { id: 'D', text: 'elaborate', translation: 'phức tạp / chi tiết' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "concise" = ngắn gọn, súc tích = brief. Do đó chọn A. brief.',
+    translation: 'Nhà khoa học đã cung cấp bản tóm tắt ngắn gọn các phát hiện nghiên cứu.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'htl1-q35',
+    type: 'antonym',
+    questionText: 'Question 35. Her benevolent actions towards the local community earned her widespread admiration.',
+    options: [
+      { id: 'A', text: 'kind-hearted', translation: 'tốt bụng (đồng nghĩa)' },
+      { id: 'B', text: 'malevolent', translation: 'ộc hại / hiểm ác (trái nghĩa)' },
+      { id: 'C', text: 'generous', translation: 'hào phóng' },
+      { id: 'D', text: 'sympathetic', translation: 'thông cảm' }
+    ],
+    correctAnswer: 'B',
+    explanation: '• Từ "benevolent" = nhân từ, tốt bụng. Trái nghĩa với nó là "malevolent" (độc hại, hiểm ác). Chọn B.',
+    translation: 'Hành động nhân từ của cô ấy đối với cộng đồng địa phương đã nhận được sự ngưỡng mộ.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'htl1-q36',
+    type: 'communication',
+    questionText: 'Question 36. Mark: "Would you mind closing the window? It’s getting quite chilly." - Anna: "_____" ',
+    options: [
+      { id: 'A', text: 'Not at all. I’ll do it right now.', translation: 'Không sao cả. Tôi sẽ làm ngay.' },
+      { id: 'B', text: 'Yes, I would love to.', translation: 'Vâng, tôi thích lắm (sai ngữ cảnh Would you mind)' },
+      { id: 'C', text: 'No, thanks. I am full.', translation: 'Không, cảm ơn' },
+      { id: 'D', text: 'You’re welcome.', translation: 'Không có gì' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Với câu hỏi lịch sự "Would you mind...?", câu trả lời đồng ý giúp đỡ là "Not at all" (Tôi không phiền đâu). Chọn A.',
+    translation: 'Mark: Bạn có phiền đóng cửa sổ giúp không? - Anna: Không sao cả, tôi đóng ngay.',
+    topicTag: 'Giao tiếp hàng ngày'
+  },
+  {
+    id: 'htl1-q37',
+    type: 'grammar',
+    questionText: 'Question 37. Seldom _____ such an inspiring speech that moved the entire audience to tears.',
+    options: [
+      { id: 'A', text: 'have we heard', translation: 'đảo ngữ với thì hiện tại hoàn thành / quá khứ' },
+      { id: 'B', text: 'we have heard', translation: 'không đảo ngữ' },
+      { id: 'C', text: 'did we hear', translation: 'đảo ngữ thì quá khứ đơn (Seldom + did + S + V)' },
+      { id: 'D', text: 'we heard', translation: 'không đảo ngữ' }
+    ],
+    correctAnswer: 'C',
+    explanation: '• Đảo ngữ với trạng từ phủ định ở đầu câu: "Seldom + aux + S + V". Động từ quá khứ "moved" chỉ thời gian quá khứ -> "Seldom did we hear...". Chọn C.',
+    translation: 'Hiếm khi chúng tôi được nghe một bài phát biểu truyền cảm hứng đến vậy.',
+    topicTag: 'Đảo ngữ (Inversion)'
+  },
+  {
+    id: 'htl1-q38',
+    type: 'grammar',
+    questionText: 'Question 38. The proposal, _____ by the board of directors last week, will take effect next month.',
+    options: [
+      { id: 'A', text: 'approved', translation: 'rút gọn mệnh đề bị động (P2)' },
+      { id: 'B', text: 'approving', translation: 'dạng chủ động' },
+      { id: 'C', text: 'to approve', translation: 'chỉ mục đích' },
+      { id: 'D', text: 'was approved', translation: 'thừa động từ was' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Mệnh đề quan hệ rút gọn dạng bị động: "which was approved" -> "approved". Chọn A.',
+    translation: 'Đề xuất, được ban giám đốc phê duyệt tuần trước, sẽ có hiệu lực vào tháng tới.',
+    topicTag: 'Rút gọn mệnh đề quan hệ'
+  },
+  {
+    id: 'htl1-q39',
+    type: 'grammar',
+    questionText: 'Question 39. She was so engrossed in her novel that she didn’t hear the doorbell _____.',
+    options: [
+      { id: 'A', text: 'ring', translation: 'nguyên mẫu chỉ nghe trọn vẹn hành động' },
+      { id: 'B', text: 'to ring', translation: 'dùng to V (sai)' },
+      { id: 'C', text: 'rung', translation: 'tiếng Việt' },
+      { id: 'D', text: 'rang', translation: 'quá khứ' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cấu trúc động từ giác quan: "hear + obj + V-bare" (nghe thấy toàn bộ hành động xảy ra). Chọn A. ring.',
+    translation: 'Cô ấy mải mê đọc tiểu thuyết đến mức không nghe thấy chuông cửa reo.',
+    topicTag: 'Động từ Giác quan (Perception Verbs)'
+  },
+  {
+    id: 'htl1-q40',
+    type: 'grammar',
+    questionText: 'Question 40. Had I known about the flight delay in advance, I _____ at the airport so early.',
+    options: [
+      { id: 'A', text: 'would not have arrived', translation: 'câu điều kiện loại 3 đảo ngữ' },
+      { id: 'B', text: 'will not arrive', translation: 'tương lai đơn' },
+      { id: 'C', text: 'did not arrive', translation: 'quá khứ đơn' },
+      { id: 'D', text: 'would not arrive', translation: 'điều kiện loại 2' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ điều kiện loại 3: "Had + S + P2, S + would have + P2". Chọn A. would not have arrived.',
+    translation: 'Nếu tôi biết trước về việc chuyến bay bị hoãn, tôi đã không đến sân bay sớm như vậy.',
+    topicTag: 'Đảo ngữ Điều kiện loại 3'
   }
 ];
 
@@ -534,7 +684,7 @@ export const HA_TINH_2026_L1_EXAM: ExamSet = {
   description: 'Đề thi thử chính thức môn Tiếng Anh tốt nghiệp THPT 2026 của Sở GD&ĐT Hà Tĩnh kèm đáp án chi tiết và giải thích bài đọc.',
   category: 'thpt_qg',
   durationMinutes: 50,
-  totalQuestions: 30,
+  totalQuestions: 40,
   badge: 'SỞ HÀ TĨNH LẦN 1',
   iconName: 'BookOpen',
   questions: HA_TINH_2026_L1_QUESTIONS

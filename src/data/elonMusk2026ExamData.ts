@@ -111,6 +111,291 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     topicTag: 'Điền câu kết đoạn'
   },
   {
+    id: 'em-q6',
+    type: 'grammar',
+    questionText: 'Question 6. Had the engineers discovered the battery flaw earlier, the vehicle recall _____ unnecessary.',
+    options: [
+      { id: 'A', text: 'would have been', translation: 'đảo ngữ điều kiện loại 3' },
+      { id: 'B', text: 'will be', translation: 'tương lai đơn' },
+      { id: 'C', text: 'was', translation: 'quá khứ đơn' },
+      { id: 'D', text: 'would be', translation: 'điều kiện loại 2' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ điều kiện loại 3: Had + S + P2, S + would have + P2. Chọn A.',
+    translation: 'Nếu các kỹ sư phát hiện ra lỗi pin sớm hơn, việc thu hồi xe đã trở nên không cần thiết.',
+    topicTag: 'Đảo ngữ Điều kiện loại 3'
+  },
+  {
+    id: 'em-q7',
+    type: 'vocabulary',
+    questionText: 'Question 7. The startup secured major funding after presenting a _____ business model to potential investors.',
+    options: [
+      { id: 'A', text: 'viable', translation: 'khả thi / có thể phát triển được' },
+      { id: 'B', text: 'futile', translation: 'vô ích' },
+      { id: 'C', text: 'obsolete', translation: 'lỗi thời' },
+      { id: 'D', text: 'dormant', translation: 'tiềm ẩn / nằm yên' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• "viable business model" = mô hình kinh doanh khả thi. Chọn A.',
+    translation: 'Công ty khởi nghiệp đã nhận được khoản đầu tư lớn sau khi trình bày mô hình kinh doanh khả thi.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'em-q8',
+    type: 'synonym',
+    questionText: 'Question 8. The innovator’s groundbreaking work revolutionized the renewable energy industry.',
+    options: [
+      { id: 'A', text: 'pioneering', translation: 'tiên phong / đột phá (đồng nghĩa với groundbreaking)' },
+      { id: 'B', text: 'conventional', translation: 'theo thông lệ' },
+      { id: 'C', text: 'insignificant', translation: 'không đáng kể' },
+      { id: 'D', text: 'traditional', translation: 'truyền thống' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "groundbreaking" = mang tính đột phá, tiên phong = pioneering. Chọn A.',
+    translation: 'Công trình mang tính đột phá của nhà tân tiến đã cách mạng hóa ngành năng lượng tái tạo.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'em-q9',
+    type: 'antonym',
+    questionText: 'Question 9. She showed remarkable resilience in overcoming numerous business setbacks.',
+    options: [
+      { id: 'A', text: 'fragility', translation: 'sự yếu ớt / dễ vỡ (trái nghĩa với resilience)' },
+      { id: 'B', text: 'tenacity', translation: 'sự kiên trì' },
+      { id: 'C', text: 'endurance', translation: 'sự chịu đựng' },
+      { id: 'D', text: 'perseverance', translation: 'sự bền bỉ' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "resilience" = khả năng kiên cường, vượt qua khó khăn. Trái nghĩa với nó là "fragility" (sự yếu ớt, mỏng mong). Chọn A.',
+    translation: 'Cô ấy đã thể hiện sự kiên cường đáng kinh ngạc trong việc vượt qua nhiều thất bại kinh doanh.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'em-q10',
+    type: 'communication',
+    questionText: 'Question 10. Alex: "Do you think space tourism will become accessible to ordinary people soon?" - Ben: "_____" ',
+    options: [
+      { id: 'A', text: 'It’s possible, but it will take decades to reduce costs significantly.', translation: 'Có thể, nhưng sẽ mất nhiều thập kỷ để giảm chi phí.' },
+      { id: 'B', text: 'Yes, I hate traveling by plane.', translation: 'Vâng, tôi ghét đi máy bay' },
+      { id: 'C', text: 'No, thank you. I am busy.', translation: 'Không, cảm ơn' },
+      { id: 'D', text: 'You’re welcome.', translation: 'Không có gì' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đáp lại quan điểm về du lịch vũ trụ: "It’s possible, but it will take decades...". Chọn A.',
+    translation: 'Alex: Bạn có nghĩ du lịch vũ trụ sẽ sớm tiếp cận được với người bình thường không? - Ben: Có thể chứ, nhưng cần thời gian.',
+    topicTag: 'Giao tiếp hàng ngày'
+  },
+  {
+    id: 'em-q11',
+    type: 'grammar',
+    questionText: 'Question 11. Not until the rocket reached orbit _____ the mission control team burst into applause.',
+    options: [
+      { id: 'A', text: 'did', translation: 'đảo ngữ Not until + Clause + Did + S + V' },
+      { id: 'B', text: 'was', translation: 'bị động sai' },
+      { id: 'C', text: 'had', translation: 'thừa had' },
+      { id: 'D', text: 'would', translation: 'thiếu ngữ cảnh' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ "Not until + Mệnh đề quá khứ + Did + S + V-bare". Chọn A.',
+    translation: 'Mãi cho đến khi tên lửa bay vào quỹ đạo thì đội điều khiển sứ mệnh mới vỡ òa tiếng pháo tay.',
+    topicTag: 'Đảo ngữ Not Until'
+  },
+  {
+    id: 'em-q12',
+    type: 'grammar',
+    questionText: 'Question 12. Having invested millions in research and development, _____ a revolutionary solar panel.',
+    options: [
+      { id: 'A', text: 'the company unveiled', translation: 'chủ thể là tổ chức/người (the company)' },
+      { id: 'B', text: 'a solar panel was unveiled', translation: 'sai chủ thể bị động' },
+      { id: 'C', text: 'unveiling took place', translation: 'sai ngữ pháp' },
+      { id: 'D', text: 'research was completed', translation: 'ngược ngữ cảnh' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Phân từ hoàn thành "Having invested..." đòi hỏi chủ ngữ vế chính là công ty (the company). Chọn A.',
+    translation: 'Sau khi đầu tư hàng triệu đô vào R&D, công ty đã trình làng tấm pin năng lượng mặt trời cách mạng.',
+    topicTag: 'Rút gọn Mệnh đề Hoàn thành'
+  },
+  {
+    id: 'em-q13',
+    type: 'grammar',
+    questionText: 'Question 13. Neuralink is developing brain-computer interfaces, _____ could transform medical treatments for paralysis.',
+    options: [
+      { id: 'A', text: 'which', translation: 'mệnh đề quan hệ bổ nghĩa cho mệnh đề trước' },
+      { id: 'B', text: 'that', translation: 'không đứng sau dấu phẩy' },
+      { id: 'C', text: 'whom', translation: 'chỉ người' },
+      { id: 'D', text: 'where', translation: 'nơi chốn' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Mệnh đề quan hệ không xác định ", which" bổ nghĩa cho cả mệnh đề đằng trước. Chọn A.',
+    translation: 'Neuralink đang phát triển giao diện não-máy tính, điều này có thể thay đổi các liệu pháp điều trị y khoa.',
+    topicTag: 'Mệnh đề quan hệ'
+  },
+  {
+    id: 'em-q14',
+    type: 'reordering',
+    questionText: 'Question 14. Choose the best arrangement of sentences:\nc. Mark: Have you seen the latest launch test of the Starship rocket?\na. Linda: Yes! The booster separation was incredible to watch live.\nb. Mark: Absolutely. It feels like we are living in the future of space exploration.',
+    options: [
+      { id: 'A', text: 'c – a – b', translation: 'c-a-b' },
+      { id: 'B', text: 'b – a – c', translation: 'b-a-c' },
+      { id: 'C', text: 'a – c – b', translation: 'a-c-b' },
+      { id: 'D', text: 'a – b – c', translation: 'a-b-c' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• c (Mark hỏi xem Starship) -> a (Linda khen màn tách tầng đẩy) -> b (Mark đồng ý như sống trong tương lai). Trật tự: c - a - b. Chọn A.',
+    translation: 'Sắp xếp hội thoại Starship: Hỏi -> Trả lời ấn tượng -> Đồng tình.',
+    topicTag: 'Sắp xếp hội thoại'
+  },
+  {
+    id: 'em-q15',
+    type: 'reordering',
+    questionText: 'Question 15. Choose the best arrangement of sentences:\ne. Modern teenagers often face significant academic stress as they navigate high school.\nd. Pressure from upcoming entrance exams can feel overwhelming at times.\nc. However, maintaining a balanced study routine and getting enough sleep can mitigate anxiety.\nb. Furthermore, engaging in regular physical exercise boosts mental wellbeing.\na. Ultimately, self-care is just as important as high grades for long-term success.',
+    options: [
+      { id: 'A', text: 'e – d – c – b – a', translation: 'e-d-c-b-a' },
+      { id: 'B', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },
+      { id: 'C', text: 'b – a – c – d – e', translation: 'b-a-c-d-e' },
+      { id: 'D', text: 'e – b – d – c – a', translation: 'e-b-d-c-a' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• e mở đoạn áp lực thanh thiếu niên -> d chi tiết kỳ thi -> c giải pháp cân bằng ngủ nghỉ -> b bổ sung tập thể thao -> a kết luận tự chăm sóc bản thân. Trật tự: e - d - c - b - a. Chọn A.',
+    translation: 'Sắp xếp đoạn văn áp lực tuổi học trò: Mở đoạn -> Vấn đề -> Giải pháp -> Bổ sung -> Kết luận.',
+    topicTag: 'Sắp xếp đoạn văn'
+  },
+  {
+    id: 'em-q16',
+    type: 'grammar',
+    questionText: 'Question 16. Without the dedication of early space pioneers, human exploration _____ reaching Mars today.',
+    options: [
+      { id: 'A', text: 'would not be', translation: 'cấu trúc Without + N, S + would not V' },
+      { id: 'B', text: 'will not be', translation: 'tương lai' },
+      { id: 'C', text: 'is not', translation: 'hiện tại' },
+      { id: 'D', text: 'was not', translation: 'quá khứ' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Câu điều kiện ẩn với Without: "Without + N, S + would not + V". Chọn A. would not be.',
+    translation: 'Nếu không có sự cống hiến của những người đi đầu ngành vũ trụ, thám hiểm con người đã không cận kề Sao Hỏa như hôm nay.',
+    topicTag: 'Câu điều kiện ẩn (Without)'
+  },
+  {
+    id: 'em-q17',
+    type: 'vocabulary',
+    questionText: 'Question 17. Electric vehicles are rapidly gaining popularity due to their zero direct emissions and lower operational _____.',
+    options: [
+      { id: 'A', text: 'expenditure', translation: 'chi phí vận hành (operational expenditure/costs)' },
+      { id: 'B', text: 'revenue', translation: 'doanh thu' },
+      { id: 'C', text: 'profit', translation: 'lợi nhuận' },
+      { id: 'D', text: 'dividend', translation: 'cổ tức' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• "operational expenditure/costs" = chi phí vận hành. Chọn A. expenditure.',
+    translation: 'Xe điện đang nhanh chóng phổ biến nhờ không phát thải trực tiếp và chi phí vận hành thấp hơn.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'em-q18',
+    type: 'synonym',
+    questionText: 'Question 18. The tech giant aims to eradicate carbon emissions from its manufacturing plants by 2030.',
+    options: [
+      { id: 'A', text: 'eliminate', translation: 'loại bỏ / triệt phá (đồng nghĩa với eradicate)' },
+      { id: 'B', text: 'generate', translation: 'tạo ra' },
+      { id: 'C', text: 'retain', translation: 'giữ lại' },
+      { id: 'D', text: 'magnify', translation: 'phóng đại' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "eradicate" = triệt phá, loại bỏ hoàn toàn = eliminate. Chọn A.',
+    translation: 'Gã khổng lồ công nghệ nhắm tới loại bỏ hoàn toàn khí thải carbon khỏi các nhà máy trước năm 2030.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'em-q19',
+    type: 'antonym',
+    questionText: 'Question 19. Her optimistic outlook helped her maintain high morale despite repeated project delays.',
+    options: [
+      { id: 'A', text: 'pessimistic', translation: 'bi quan (trái nghĩa với optimistic)' },
+      { id: 'B', text: 'hopeful', translation: 'hy vọng (đồng nghĩa)' },
+      { id: 'C', text: 'positive', translation: 'tích cực' },
+      { id: 'D', text: 'confident', translation: 'tự tin' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "optimistic" = lạc quan. Trái nghĩa với nó là "pessimistic" (bi quan). Chọn A.',
+    translation: 'Góc nhìn lạc quan đã giúp cô ấy duy trì tinh thần cao dù dự án liên tục hoãn.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'em-q20',
+    type: 'communication',
+    questionText: 'Question 20. Student: "Thank you so much for your guidance on my university application essay, Professor!" - Professor: "_____" ',
+    options: [
+      { id: 'A', text: 'You’re very welcome. Best of luck with your application!', translation: 'Không có gì. Chúc em may mắn với hồ sơ!' },
+      { id: 'B', text: 'Don’t worry about it. It’s useless.', translation: 'Đừng bận tâm. Nó vô ích' },
+      { id: 'C', text: 'Yes, I am busy.', translation: 'Vâng tôi bận' },
+      { id: 'D', text: 'No problem, it was expensive.', translation: 'Không đắt' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đáp lại lời cảm ơn chân thành từ sinh viên: "You’re very welcome. Best of luck...!". Chọn A.',
+    translation: 'Sinh viên: Cảm ơn giáo sư đã hướng dẫn bài luận! - Giáo sư: Không có gì, chúc em may mắn!',
+    topicTag: 'Giao tiếp hàng ngày'
+  },
+  {
+    id: 'em-q21',
+    type: 'grammar',
+    questionText: 'Question 21. No sooner had the satellite entered orbit _____ it transmitted its first telemetry signals back to Earth.',
+    options: [
+      { id: 'A', text: 'than', translation: 'cấu trúc No sooner... Than' },
+      { id: 'B', text: 'when', translation: 'dùng khi Hardly... When' },
+      { id: 'C', text: 'then', translation: 'dùng then (sai)' },
+      { id: 'D', text: 'that', translation: 'dùng that (sai)' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Cấu trúc "No sooner + had + S + P2 + THAN + S + V(quá khứ)". Chọn A. than.',
+    translation: 'Vừa mới vào quỹ đạo xong thì vệ tinh đã truyền tín hiệu viễn thông đầu tiên về Trái Đất.',
+    topicTag: 'Đảo ngữ No Sooner... Than'
+  },
+  {
+    id: 'em-q22',
+    type: 'grammar',
+    questionText: 'Question 22. The automated assembly line, _____ last month, has doubled the factory’s production capacity.',
+    options: [
+      { id: 'A', text: 'installed', translation: 'rút gọn mệnh đề bị động (P2)' },
+      { id: 'B', text: 'installing', translation: 'dạng chủ động' },
+      { id: 'C', text: 'to install', translation: 'chỉ mục đích' },
+      { id: 'D', text: 'was installed', translation: 'thừa was' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Rút gọn mệnh đề quan hệ dạng bị động: "which was installed" -> "installed". Chọn A.',
+    translation: 'Dây chuyền lắp ráp tự động, được lắp đặt tháng trước, đã tăng gấp đôi năng suất nhà máy.',
+    topicTag: 'Rút gọn Mệnh đề Quan hệ'
+  },
+  {
+    id: 'em-q23',
+    type: 'grammar',
+    questionText: 'Question 23. It is essential that every engineer _____ safety protocols before operating high-voltage machinery.',
+    options: [
+      { id: 'A', text: 'verify', translation: 'thức giả định (subjunctive) dùng V-bare' },
+      { id: 'B', text: 'verifies', translation: 'chia số ít' },
+      { id: 'C', text: 'verifying', translation: 'dạng V-ing' },
+      { id: 'D', text: 'must verify', translation: 'thừa modal' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Thức giả định: "It is essential that + S + V-bare". Giữ nguyên mẫu "verify". Chọn A.',
+    translation: 'Bắt buộc mỗi kỹ sư phải xác minh quy trình an toàn trước khi vận hành máy cao áp.',
+    topicTag: 'Thức Giả định (Subjunctive)'
+  },
+  {
+    id: 'em-q24',
+    type: 'grammar',
+    questionText: 'Question 24. Had we not embraced digital transformation early, our company _____ behind during the economic shift.',
+    options: [
+      { id: 'A', text: 'would have fallen', translation: 'đảo ngữ điều kiện loại 3' },
+      { id: 'B', text: 'will fall', translation: 'tương lai đơn' },
+      { id: 'C', text: 'falls', translation: 'hiện tại đơn' },
+      { id: 'D', text: 'would fall', translation: 'điều kiện loại 2' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ điều kiện loại 3: "Had + S + not + P2, S + would have + P2". Chọn A.',
+    translation: 'Nếu chúng tôi không sớm chuyển đổi số, công ty đã bị tụt lại phía sau trong đợt chuyển dịch kinh tế.',
+    topicTag: 'Đảo ngữ Điều kiện loại 3'
+  },
+  {
     id: 'em-q25',
     type: 'reading_comprehension',
     readingPassage: PASSAGE_LIFE_16,
@@ -279,6 +564,96 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     explanation: '• A tóm tắt trọn vẹn và đầy đủ nhất tinh thần bài đọc: Trung học có thử thách nhưng là giai đoạn vàng khám phá bản thân và trưởng thành. Chọn A.',
     translation: 'Tóm tắt toàn bài: Dù có thử thách, trung học là giai đoạn quan trọng khám phá bản thân và phát triển.',
     topicTag: 'Đọc hiểu - Tóm tắt toàn bài'
+  },
+  {
+    id: 'em-q35',
+    type: 'reordering',
+    questionText: 'Question 35. Choose the best arrangement of the sentences to form a meaningful paragraph:\ne. Elon Musk’s ambitious visions have constantly pushed the boundaries of human technology.\nd. His achievements with SpaceX proved that reusable rockets could dramatically lower space exploration costs.\nc. Meanwhile, Tesla accelerated the global transition toward electric vehicles and sustainable energy.\nb. Despite facing heavy skepticism from critics early on, he remained steadfast in his pursuit.\na. Today, his pioneering ventures continue to inspire future generations of engineers worldwide.',
+    options: [
+      { id: 'A', text: 'e – d – c – b – a', translation: 'e-d-c-b-a' },
+      { id: 'B', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },
+      { id: 'C', text: 'b – a – c – d – e', translation: 'b-a-c-d-e' },
+      { id: 'D', text: 'e – b – d – c – a', translation: 'e-b-d-c-a' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• e mở đoạn tầm nhìn -> d thành tựu SpaceX -> c bổ sung Tesla -> b đối mặt sự hoài nghi -> a kết luận truyền cảm hứng hôm nay. Trật tự: e - d - c - b - a. Chọn A.',
+    translation: 'Sắp xếp đoạn văn Elon Musk: Tầm nhìn -> Thành tựu 1 -> Thành tựu 2 -> Thách thức -> Kết luận.',
+    topicTag: 'Sắp xếp đoạn văn'
+  },
+  {
+    id: 'em-q36',
+    type: 'grammar',
+    questionText: 'Question 36. Not until SpaceX successfully landed the Falcon 9 booster _____ that reusable rockets were commercially viable.',
+    options: [
+      { id: 'A', text: 'did skeptics admit', translation: 'đảo ngữ Not until + Clause + Did + S + V' },
+      { id: 'B', text: 'skeptics admitted', translation: 'không đảo ngữ' },
+      { id: 'C', text: 'have skeptics admitted', translation: 'thiếu sự hòa hợp thì' },
+      { id: 'D', text: 'was skeptics admitted', translation: 'bị động sai' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ "Not until + Mệnh đề quá khứ + Aux(did) + S + V-bare". Chọn A.',
+    translation: 'Mãi cho đến khi SpaceX hạ cánh thành công tầng đẩy Falcon 9 thì giới hoài nghi mới thừa nhận.',
+    topicTag: 'Đảo ngữ Not Until'
+  },
+  {
+    id: 'em-q37',
+    type: 'vocabulary',
+    questionText: 'Question 37. Artificial intelligence is rapidly advancing, which requires policymakers to establish _____ regulations.',
+    options: [
+      { id: 'A', text: 'stringent', translation: 'nghiêm ngặt / chặt chẽ' },
+      { id: 'B', text: 'lax', translation: 'lỏng lẻo' },
+      { id: 'C', text: 'negligible', translation: 'không đáng kể' },
+      { id: 'D', text: 'superficial', translation: 'hời hợt / nông choẹt' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• "stringent regulations" = các quy định nghiêm ngặt. Chọn A. stringent.',
+    translation: 'Trí tuệ nhân tạo đang phát triển nhanh chóng, đòi hỏi các nhà hoạch định chính sách phải ban hành quy định nghiêm ngặt.',
+    topicTag: 'Từ vựng Nâng cao'
+  },
+  {
+    id: 'em-q38',
+    type: 'synonym',
+    questionText: 'Question 38. High school students should learn to embrace constructive feedback to improve their academic writing.',
+    options: [
+      { id: 'A', text: 'welcome', translation: 'chào đón / đón nhận (đồng nghĩa với embrace)' },
+      { id: 'B', text: 'reject', translation: 'từ chối' },
+      { id: 'C', text: 'dismiss', translation: 'bác bỏ' },
+      { id: 'D', text: 'overlook', translation: 'bỏ qua' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "embrace" = đón nhận = welcome. Chọn A.',
+    translation: 'Học sinh trung học nên học cách đón nhận phản hồi mang tính xây dựng để cải thiện bài viết.',
+    topicTag: 'Từ đồng nghĩa'
+  },
+  {
+    id: 'em-q39',
+    type: 'antonym',
+    questionText: 'Question 39. His meticulous attention to detail prevented potential errors during the product assembly process.',
+    options: [
+      { id: 'A', text: 'careless', translation: 'cẩu thả (trái nghĩa với meticulous)' },
+      { id: 'B', text: 'thorough', translation: 'tỉ mỉ (đồng nghĩa)' },
+      { id: 'C', text: 'precise', translation: 'chính xác' },
+      { id: 'D', text: 'diligent', translation: 'cần cù' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Từ "meticulous" = tỉ mỉ, cẩn thận. Trái nghĩa với nó là "careless" (cẩu thả). Chọn A.',
+    translation: 'Sự chú ý tỉ mỉ của anh ấy đã ngăn chặn các lỗi tiềm ẩn.',
+    topicTag: 'Từ trái nghĩa'
+  },
+  {
+    id: 'em-q40',
+    type: 'grammar',
+    questionText: 'Question 40. Had she taken her guidance counselor’s advice, she _____ a subject more suited to her passion.',
+    options: [
+      { id: 'A', text: 'would have chosen', translation: 'cấu trúc đảo ngữ điều kiện loại 3' },
+      { id: 'B', text: 'will choose', translation: 'tương lai' },
+      { id: 'C', text: 'chooses', translation: 'hiện tại' },
+      { id: 'D', text: 'would choose', translation: 'điều kiện loại 2' }
+    ],
+    correctAnswer: 'A',
+    explanation: '• Đảo ngữ điều kiện loại 3: "Had + S + P2, S + would have + P2". Chọn A. would have chosen.',
+    translation: 'Giá như cô ấy nghe theo lời khuyên của tư vấn viên, cô ấy đã chọn môn học phù hợp với đam mê hơn.',
+    topicTag: 'Đảo ngữ Điều kiện loại 3'
   }
 ];
 
@@ -288,7 +663,7 @@ export const ELON_MUSK_2026_EXAM: ExamSet = {
   description: 'Đề thi chọn lọc đặc sắc với các bài đọc về Tầm nhìn Elon Musk và Hành trình phát triển bản thân tuổi 16 kèm lời giải chi tiết.',
   category: 'thpt_qg',
   durationMinutes: 50,
-  totalQuestions: 20,
+  totalQuestions: 40,
   badge: 'ĐỀ ĐẶC SẮC 2026',
   iconName: 'Rocket',
   questions: ELON_MUSK_2026_QUESTIONS
