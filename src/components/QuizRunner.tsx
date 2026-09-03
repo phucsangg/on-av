@@ -91,8 +91,23 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const currentQuestion = exam.questions[currentIndex];
 
-  // Standard website text selection listener
+  // Pixel-precise text selection listener supporting both forward and backward drag
   useEffect(() => {
+    let mouseDownCaret: { node: Node; offset: number } | null = null;
+
+    const handleMouseDown = (e: MouseEvent) => {
+      const targetElement = e.target as HTMLElement;
+      if (targetElement && !targetElement.closest('.selection-toolbar-popup')) {
+        setSelectionPopup(null);
+      }
+      if (document.caretRangeFromPoint) {
+        const caret = document.caretRangeFromPoint(e.clientX, e.clientY);
+        if (caret) {
+          mouseDownCaret = { node: caret.startContainer, offset: caret.startOffset };
+        }
+      }
+    };
+
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
@@ -117,13 +132,53 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         return;
       }
 
-      // Standard browser native selection string
-      const rawText = selection.toString();
-      const selectedText = rawText.replace(/[\r\n]+/g, ' ').trim();
+      let selectedText = '';
+      let targetRect: DOMRect | null = null;
+
+      // Use mouse down & mouse up caret coordinates for exact pixel boundary
+      if (mouseDownCaret && document.caretRangeFromPoint) {
+        const mouseUpCaret = document.caretRangeFromPoint(e.clientX, e.clientY);
+        if (mouseUpCaret) {
+          try {
+            const startNode = mouseDownCaret.node;
+            const startOffset = mouseDownCaret.offset;
+            const endNode = mouseUpCaret.startContainer;
+            const endOffset = mouseUpCaret.startOffset;
+
+            const exactRange = document.createRange();
+
+            if (startNode === endNode) {
+              const minOff = Math.min(startOffset, endOffset);
+              const maxOff = Math.max(startOffset, endOffset);
+              exactRange.setStart(startNode, minOff);
+              exactRange.setEnd(startNode, maxOff);
+            } else {
+              const pos = startNode.compareDocumentPosition(endNode);
+              if (pos & Node.DOCUMENT_POSITION_FOLLOWING) {
+                exactRange.setStart(startNode, startOffset);
+                exactRange.setEnd(endNode, endOffset);
+              } else {
+                exactRange.setStart(endNode, endOffset);
+                exactRange.setEnd(startNode, startOffset);
+              }
+            }
+
+            selectedText = exactRange.toString().replace(/[\r\n]+/g, ' ').trim();
+            targetRect = exactRange.getBoundingClientRect();
+          } catch (_e) {
+            // Fallback to standard selection
+          }
+        }
+      }
+
+      if (!selectedText) {
+        const range = selection.getRangeAt(0);
+        selectedText = selection.toString().replace(/[\r\n]+/g, ' ').trim();
+        targetRect = range.getBoundingClientRect();
+      }
 
       if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
-        const range = selection.getRangeAt(0);
-        const rect = range.getBoundingClientRect();
+        const rect = targetRect || selection.getRangeAt(0).getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
             text: selectedText,
@@ -136,8 +191,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       setSelectionPopup(null);
     };
 
+    window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     return () => {
+      window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [userHighlights]);
