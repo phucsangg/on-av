@@ -37,7 +37,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [answers, setAnswers] = useState<Record<string, 'A' | 'B' | 'C' | 'D' | null>>({});
   const [flagged, setFlagged] = useState<Record<string, boolean>>({});
-  const [timeLeftSeconds, setTimeLeftSeconds] = useState<number>(exam.durationMinutes * 60);
+  const [timeElapsedSeconds, setTimeElapsedSeconds] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
@@ -324,17 +324,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const activePassage = applyUserHighlights(autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText));
   const activeTranslation = activePassageData?.translation;
 
-  // Timer countdown hook
+  // Timer count-up stopwatch hook (starts at 0 and counts UP)
   useEffect(() => {
-    if (timeLeftSeconds <= 0 || isPaused) {
-      if (timeLeftSeconds <= 0) handleSubmit();
-      return;
-    }
+    if (isPaused) return;
     const timer = setInterval(() => {
-      setTimeLeftSeconds(prev => prev - 1);
+      setTimeElapsedSeconds(prev => prev + 1);
     }, 1000);
     return () => clearInterval(timer);
-  }, [timeLeftSeconds, isPaused]);
+  }, [isPaused]);
 
   // Keyboard navigation shortcuts
   useEffect(() => {
@@ -393,7 +390,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const handleSubmit = () => {
-    const timeSpent = (exam.durationMinutes * 60) - timeLeftSeconds;
+    const timeSpent = timeElapsedSeconds;
     const finalRecords: UserAnswerRecord[] = exam.questions.map(q => {
       const selected = answers[q.id] || null;
       return {
@@ -414,7 +411,6 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const answeredCount = Object.values(answers).filter(v => v !== null).length;
-  const isTimeWarning = timeLeftSeconds < 120;
 
   return (
     <div style={{
@@ -451,7 +447,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           </div>
         </div>
 
-        {/* Center Countdown Timer & Pause Button */}
+        {/* Center Count-up Timer & Pause Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{
             display: 'flex',
@@ -459,21 +455,21 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             gap: '8px',
             padding: '8px 20px',
             borderRadius: 'var(--radius-pill)',
-            background: isTimeWarning ? 'var(--danger-bg)' : 'var(--bg-subtle)',
-            color: isTimeWarning ? 'var(--danger)' : 'var(--brand-primary)',
-            border: `1.5px solid ${isTimeWarning ? 'var(--danger-border)' : 'var(--border-light)'}`,
+            background: 'var(--bg-subtle)',
+            color: 'var(--brand-primary)',
+            border: '1.5px solid var(--border-light)',
             fontWeight: 800,
             fontSize: '1.25rem'
-          }}>
-            <Clock size={22} className={isTimeWarning ? 'animate-pulse' : ''} />
-            <span>{formatTime(timeLeftSeconds)}</span>
+          }} title="Đồng hồ bấm giờ tăng dần theo dõi tốc độ làm bài">
+            <Clock size={22} style={{ color: 'var(--brand-primary)' }} />
+            <span>{formatTime(timeElapsedSeconds)}</span>
           </div>
 
           <button
             onClick={() => setIsPaused(true)}
             className="btn btn-secondary"
             style={{ padding: '8px 14px', fontSize: '0.85rem', fontWeight: 700 }}
-            title="Tạm dừng đếm ngược bài thi"
+            title="Tạm dừng bấm giờ bài thi"
           >
             <Pause size={16} /> Tạm Dừng
           </button>
