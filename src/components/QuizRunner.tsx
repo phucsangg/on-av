@@ -92,49 +92,6 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
     };
 
-    const extractExactSelectedText = (range: Range): string => {
-      const startNode = range.startContainer;
-      const startOffset = range.startOffset;
-      const endNode = range.endContainer;
-      const endOffset = range.endOffset;
-
-      // Single text node selection (most common case: selecting words in same paragraph)
-      if (startNode === endNode && startNode.nodeType === Node.TEXT_NODE) {
-        const fullText = startNode.textContent || '';
-        return fullText.substring(Math.min(startOffset, endOffset), Math.max(startOffset, endOffset));
-      }
-
-      // Multi-node selection across text nodes
-      const textParts: string[] = [];
-
-      if (startNode.nodeType === Node.TEXT_NODE) {
-        textParts.push((startNode.textContent || '').substring(startOffset));
-      }
-
-      try {
-        const walker = document.createTreeWalker(range.commonAncestorContainer, NodeFilter.SHOW_TEXT, {
-          acceptNode: (node) => {
-            if (node === startNode || node === endNode) return NodeFilter.FILTER_REJECT;
-            return range.intersectsNode(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-          }
-        });
-
-        let currentNode = walker.nextNode();
-        while (currentNode) {
-          textParts.push(currentNode.textContent || '');
-          currentNode = walker.nextNode();
-        }
-      } catch (_e) {
-        // TreeWalker fallback
-      }
-
-      if (endNode.nodeType === Node.TEXT_NODE && startNode !== endNode) {
-        textParts.push((endNode.textContent || '').substring(0, endOffset));
-      }
-
-      return textParts.join(' ');
-    };
-
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
@@ -165,7 +122,16 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       try {
         const range = selection.getRangeAt(0);
         targetRect = range.getBoundingClientRect();
-        selectedText = extractExactSelectedText(range).replace(/[\r\n]+/g, ' ').trim();
+        
+        // Native DOM Range cloning extracts ONLY the exact nodes enclosed within selection
+        const clonedFragment = range.cloneContents();
+        const clonedText = clonedFragment.textContent || '';
+        selectedText = clonedText.replace(/[\r\n]+/g, ' ').trim();
+
+        // Fallback to range.toString() if clonedFragment was empty
+        if (!selectedText) {
+          selectedText = range.toString().replace(/[\r\n]+/g, ' ').trim();
+        }
       } catch (_err) {
         const fallbackRange = selection.getRangeAt(0);
         selectedText = fallbackRange.toString().replace(/[\r\n]+/g, ' ').trim();
