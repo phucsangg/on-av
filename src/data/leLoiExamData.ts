@@ -259,7 +259,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ACADEMIC_PRESSURE_TRANS,
     questionText: 'Question 11. Choose the correct option to fill in blank (11):',
     options: [
-      { id: 'A', text: 'To alleviate this problem', translation: 'Để làm dịu vấn đề này (To-V chỉ mục đích)' },
+      { id: 'A', text: 'To alleviate this problem', translation: 'Để làm dịu vấn đề này' },
       { id: 'B', text: 'Alleviated this problem', translation: 'Đã làm dịu vấn đề này' },
       { id: 'C', text: 'Having alleviated this problem', translation: 'Sau khi làm dịu vấn đề này' },
       { id: 'D', text: 'For alleviating this problem', translation: 'Cho việc làm dịu vấn đề này' }
@@ -294,7 +294,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     questionText: 'Question 13. Choose the correct option to fill in blank (13):',
     options: [
       { id: 'A', text: 'unless comprehensive mental health programs are implemented', translation: 'trừ khi các chương trình sức khỏe tâm thần toàn diện được triển khai' },
-      { id: 'B', text: 'if comprehensive mental health programs were implemented', translation: 'nếu các chương trình sức khỏe tâm thần được triển khai (quá khứ)' },
+      { id: 'B', text: 'if comprehensive mental health programs were implemented', translation: 'nếu các chương trình sức khỏe tâm thần được triển khai' },
       { id: 'C', text: 'in spite of comprehensive mental health programs implemented', translation: 'mặc dù các chương trình sức khỏe tâm thần...' },
       { id: 'D', text: 'provided that comprehensive mental health programs will implement', translation: 'với điều kiện các chương trình sẽ tự triển khai...' }
     ],
@@ -315,7 +315,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'of', translation: 'của' },
       { id: 'B', text: 'in', translation: 'trong' },
       { id: 'C', text: 'at', translation: 'tại' },
-      { id: 'D', text: 'to', translation: 'đối với / đến (connect us to our roots)' }
+      { id: 'D', text: 'to', translation: 'đối với / đến' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cụm từ "connect somebody to something" nghĩa là kết nối ai đó với cái gì.',
@@ -331,7 +331,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'so', translation: 'vì vậy' },
       { id: 'B', text: 'or', translation: 'hoặc' },
-      { id: 'C', text: 'and', translation: 'và (nối các động từ đồng cấp)' },
+      { id: 'C', text: 'and', translation: 'và' },
       { id: 'D', text: 'nor', translation: 'cũng không' }
     ],
     correctAnswer: 'C',
@@ -346,10 +346,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HERITAGE_ANNOUNCEMENT_TRANS,
     questionText: 'Question 16. Fill in blank (16):',
     options: [
-      { id: 'A', text: 'to participate', translation: 'tham gia (To-V sau encourage)' },
-      { id: 'B', text: 'participating', translation: 'đang tham gia (V-ing)' },
-      { id: 'C', text: 'participate', translation: 'tham gia (V-bare)' },
-      { id: 'D', text: 'participated', translation: 'đã tham gia (V-ed)' }
+      { id: 'A', text: 'to participate', translation: 'tham gia' },
+      { id: 'B', text: 'participating', translation: 'đang tham gia' },
+      { id: 'C', text: 'participate', translation: 'tham gia' },
+      { id: 'D', text: 'participated', translation: 'đã tham gia' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cấu trúc "encourage somebody to do something" (khuyến khích ai làm gì).',
@@ -363,10 +363,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HERITAGE_ANNOUNCEMENT_TRANS,
     questionText: 'Question 17. Fill in blank (17):',
     options: [
-      { id: 'A', text: 'others', translation: 'những cái/người khác (đại từ)' },
+      { id: 'A', text: 'others', translation: 'những cái/người khác' },
       { id: 'B', text: 'another', translation: 'một cái khác' },
       { id: 'C', text: 'the other', translation: 'cái còn lại' },
-      { id: 'D', text: 'other', translation: 'khác (other + N số nhiều: other workshops)' }
+      { id: 'D', text: 'other', translation: 'khác' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "other + N số nhiều" (other community workshops: các buổi hội thảo cộng đồng khác).',
@@ -382,7 +382,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'wonders', translation: 'kỳ quan' },
       { id: 'B', text: 'legends', translation: 'huyền thoại' },
-      { id: 'C', text: 'values', translation: 'các giá trị (cultural values)' },
+      { id: 'C', text: 'values', translation: 'các giá trị' },
       { id: 'D', text: 'miracles', translation: 'phép màu' }
     ],
     correctAnswer: 'C',
@@ -493,10 +493,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_FAIR_ANNOUNCEMENT_TRANS,
     questionText: 'Question 25. Fill in blank (25):',
     options: [
-      { id: 'A', text: 'whom', translation: 'người mà (làm tân ngữ)' },
-      { id: 'B', text: 'who', translation: 'người mà (làm chủ ngữ quy chiếu đại diện)' },
-      { id: 'C', text: 'which', translation: 'cái mà (dùng cho vật)' },
-      { id: 'D', text: 'whose', translation: 'của ai (sở hữu)' }
+      { id: 'A', text: 'whom', translation: 'người mà' },
+      { id: 'B', text: 'who', translation: 'người mà' },
+      { id: 'C', text: 'which', translation: 'cái mà' },
+      { id: 'D', text: 'whose', translation: 'của ai' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Đại từ quan hệ "who" làm chủ ngữ thay thế cho đại diện các tập đoàn ("representatives... who are actively seeking...").',
@@ -510,10 +510,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_FAIR_ANNOUNCEMENT_TRANS,
     questionText: 'Question 26. Fill in blank (26):',
     options: [
-      { id: 'A', text: 'range', translation: 'phạm vi / sự đa dạng (a wide range of)' },
-      { id: 'B', text: 'deal', translation: 'lượng (a great deal of + N không đếm được)' },
-      { id: 'C', text: 'number', translation: 'số lượng (a number of)' },
-      { id: 'D', text: 'plenty', translation: 'nhiều (plenty of)' }
+      { id: 'A', text: 'range', translation: 'phạm vi / sự đa dạng' },
+      { id: 'B', text: 'deal', translation: 'lượng' },
+      { id: 'C', text: 'number', translation: 'số lượng' },
+      { id: 'D', text: 'plenty', translation: 'nhiều' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ cố định "a wide range of + N" (đa dạng các lĩnh vực nghề nghiệp).',
@@ -527,10 +527,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_FAIR_ANNOUNCEMENT_TRANS,
     questionText: 'Question 27. Fill in blank (27):',
     options: [
-      { id: 'A', text: 'delivering', translation: 'đang trình bày (V-ing)' },
-      { id: 'B', text: 'delivered', translation: 'được trình bày / được thực hiện (V-ed bị động)' },
-      { id: 'C', text: 'deliver', translation: 'trình bày (V-bare)' },
-      { id: 'D', text: 'to deliver', translation: 'để trình bày (To-V)' }
+      { id: 'A', text: 'delivering', translation: 'đang trình bày' },
+      { id: 'B', text: 'delivered', translation: 'được trình bày / được thực hiện' },
+      { id: 'C', text: 'deliver', translation: 'trình bày' },
+      { id: 'D', text: 'to deliver', translation: 'để trình bày' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Rút gọn mệnh đề quan hệ dạng bị động "...workshops which are delivered by industry experts" -> "delivered".',
@@ -544,10 +544,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_FAIR_ANNOUNCEMENT_TRANS,
     questionText: 'Question 28. Fill in blank (28):',
     options: [
-      { id: 'A', text: 'advantage', translation: 'ưu thế / lợi thế (take advantage of)' },
-      { id: 'B', text: 'care', translation: 'sự chăm sóc (take care of)' },
-      { id: 'C', text: 'notice', translation: 'sự chú ý (take notice of)' },
-      { id: 'D', text: 'part', translation: 'phần (take part in)' }
+      { id: 'A', text: 'advantage', translation: 'ưu thế / lợi thế' },
+      { id: 'B', text: 'care', translation: 'sự chăm sóc' },
+      { id: 'C', text: 'notice', translation: 'sự chú ý' },
+      { id: 'D', text: 'part', translation: 'phần' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ thành ngữ "take advantage of something" nghĩa là tận dụng lợi thế của cái gì.',
@@ -562,7 +562,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     questionText: 'Question 29. Fill in blank (29):',
     options: [
       { id: 'A', text: 'make', translation: 'làm / tạo ra' },
-      { id: 'B', text: 'take', translation: 'nắm lấy / đảm nhận (take charge of)' },
+      { id: 'B', text: 'take', translation: 'nắm lấy / đảm nhận' },
       { id: 'C', text: 'gain', translation: 'đạt được' },
       { id: 'D', text: 'do', translation: 'làm' }
     ],
@@ -578,10 +578,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_FAIR_ANNOUNCEMENT_TRANS,
     questionText: 'Question 30. Fill in blank (30):',
     options: [
-      { id: 'A', text: 'taking', translation: 'nắm bắt (V-ing)' },
-      { id: 'B', text: 'take', translation: 'nắm bắt (V-bare)' },
-      { id: 'C', text: 'takes', translation: 'nắm bắt (V-s)' },
-      { id: 'D', text: 'to take', translation: 'để nắm bắt (To-V)' }
+      { id: 'A', text: 'taking', translation: 'nắm bắt' },
+      { id: 'B', text: 'take', translation: 'nắm bắt' },
+      { id: 'C', text: 'takes', translation: 'nắm bắt' },
+      { id: 'D', text: 'to take', translation: 'để nắm bắt' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cấu trúc "opportunity to do something" (cơ hội để làm gì).',
@@ -733,7 +733,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_RENEWABLE_ENERGY_TRUTH_TRANS,
     questionText: 'Question 39. Where in the passage does the following sentence best fit: "This illusion of sustainability can undermine genuine efforts to decarbonize global economies."',
     options: [
-      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1 (sau câu phân tích về cơ chế greenwashing)' },
+      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }

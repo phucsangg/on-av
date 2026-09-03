@@ -66,8 +66,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'deal', translation: 'thỏa thuận' },
       { id: 'B', text: 'sum', translation: 'tổng số / khoản tiền' },
-      { id: 'C', text: 'number', translation: 'số lượng (đi với danh từ đếm được)' },
-      { id: 'D', text: 'amount', translation: 'lượng (đi với danh từ không đếm được)' }
+      { id: 'C', text: 'number', translation: 'số lượng' },
+      { id: 'D', text: 'amount', translation: 'lượng' }
     ],
     correctAnswer: 'D',
     explanation: '• Danh từ "investment" là danh từ không đếm được. Với danh từ không đếm được, ta dùng cấu trúc "a significant amount of + N không đếm được". Do đó chọn D.',
@@ -81,7 +81,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CLOZE_1_TRANS,
     questionText: 'Question 2. These plans are intended to make local tourism highly (2) ...',
     options: [
-      { id: 'A', text: 'profitably', translation: 'một cách có lợi nhuận (trạng từ)' },
+      { id: 'A', text: 'profitably', translation: 'một cách có lợi nhuận' },
       { id: 'B', text: 'profiteering', translation: 'trục lợi' },
       { id: 'C', text: 'profitable', translation: 'có sinh lời / có lợi nhuận' },
       { id: 'D', text: 'profiting', translation: 'đang tạo lợi nhuận' }
@@ -99,7 +99,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 3. Green Nghe An, a campaign (3) ... by the provincial tourism board, ...',
     options: [
       { id: 'A', text: 'launching', translation: 'đang phát động' },
-      { id: 'B', text: 'having launched', translation: 'đã phát động (hoàn thành chủ động)' },
+      { id: 'B', text: 'having launched', translation: 'đã phát động' },
       { id: 'C', text: 'launched', translation: 'được phát động' },
       { id: 'D', text: 'being launched', translation: 'đang được phát động' }
     ],
@@ -132,10 +132,10 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CLOZE_1_TRANS,
     questionText: 'Question 5. The campaign, (5) ... was officially launched last month, has received ...',
     options: [
-      { id: 'A', text: 'that', translation: 'mà (không dùng sau dấu phẩy)' },
+      { id: 'A', text: 'that', translation: 'mà' },
       { id: 'B', text: 'who', translation: 'người mà' },
       { id: 'C', text: 'what', translation: 'cái gì' },
-      { id: 'D', text: 'which', translation: 'mà (thay cho sự vật/chiến dịch)' }
+      { id: 'D', text: 'which', translation: 'mà' }
     ],
     correctAnswer: 'D',
     explanation: '• Đây là mệnh đề quan hệ không xác định có dấu phẩy. Thay thế cho danh từ chỉ vật "The campaign" ta dùng "which". Không dùng "that" sau dấu phẩy. Chọn D.',
@@ -167,7 +167,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 7. In today’s digital world, (7) ..., excessive screen time can gradually foster unhealthy routines...',
     options: [
       { id: 'A', text: 'for example', translation: 'ví dụ như' },
-      { id: 'B', text: 'however', translation: 'tuy nhiên (tương phản)' },
+      { id: 'B', text: 'however', translation: 'tuy nhiên' },
       { id: 'C', text: 'in addition', translation: 'ngoài ra' },
       { id: 'D', text: 'therefore', translation: 'do đó' }
     ],
@@ -200,10 +200,10 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CLOZE_2_TRANS,
     questionText: 'Question 9. sixty minutes of physical activity (9) ... day',
     options: [
-      { id: 'A', text: 'each', translation: 'mỗi (đi với danh từ số ít)' },
+      { id: 'A', text: 'each', translation: 'mỗi' },
       { id: 'B', text: 'another', translation: 'một cái khác' },
       { id: 'C', text: 'all', translation: 'tất cả' },
-      { id: 'D', text: 'whole', translation: 'toàn bộ (cần mạo từ the/a)' }
+      { id: 'D', text: 'whole', translation: 'toàn bộ' }
     ],
     correctAnswer: 'A',
     explanation: '• Cụm chuẩn chỉ tần suất: "each day" = mỗi ngày. Chọn A.',
@@ -235,9 +235,9 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 11. prevent (11) ... dehydration during demanding workouts',
     options: [
       { id: 'A', text: 'extreme', translation: 'cực đoan' },
-      { id: 'B', text: 'severe', translation: 'nghiêm trọng (collocation chuẩn cho dehydration)' },
+      { id: 'B', text: 'severe', translation: 'nghiêm trọng' },
       { id: 'C', text: 'serious', translation: 'nghiêm trọng' },
-      { id: 'D', text: 'acute', translation: 'cấp tính (dùng chuyên môn y khoa)' }
+      { id: 'D', text: 'acute', translation: 'cấp tính' }
     ],
     correctAnswer: 'B',
     explanation: '• Collocation tự nhiên chuẩn nhất trong đời sống: "severe dehydration" (tình trạng mất nước nghiêm trọng). Chọn B.',
@@ -436,9 +436,9 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 24. Which benefit of public transport is NOT mentioned in paragraph 1?',
     options: [
       { id: 'A', text: 'power consumption', translation: 'mức tiêu thụ điện năng' },
-      { id: 'B', text: 'atmospheric conditions of the area', translation: 'điều kiện không khí (air quality)' },
+      { id: 'B', text: 'atmospheric conditions of the area', translation: 'điều kiện không khí' },
       { id: 'C', text: 'the water capacity of reservoirs', translation: 'dung tích nước của các hồ chứa' },
-      { id: 'D', text: 'movement of vehicles', translation: 'chuyển động của xe cộ (traffic flows)' }
+      { id: 'D', text: 'movement of vehicles', translation: 'chuyển động của xe cộ' }
     ],
     correctAnswer: 'C',
     explanation: '• Đoạn 1 nhắc đến giao thông, khí thải ô nhiễm, tiết kiệm thời gian. Thông tin về "dung tích nước hồ chứa" KHÔNG được nhắc đến trong đoạn 1. Chọn C.',

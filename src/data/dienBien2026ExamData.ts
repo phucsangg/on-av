@@ -142,7 +142,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ADVENTURE_TRANS,
     questionText: 'Question 3. allow you (3) _____ every detail of your trip',
     options: [
-      { id: 'A', text: 'to customize', translation: 'tùy chỉnh (allow sb to V)' },
+      { id: 'A', text: 'to customize', translation: 'tùy chỉnh' },
       { id: 'B', text: 'customize', translation: 'nguyên mẫu không to' },
       { id: 'C', text: 'customizing', translation: 'dạng V-ing' },
       { id: 'D', text: 'to customizing', translation: 'sai cấu trúc' }
@@ -162,7 +162,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'mountain breathtaking trails', translation: 'sai trật tự' },
       { id: 'B', text: 'breathtaking trails mountain', translation: 'sai trật tự' },
       { id: 'C', text: 'trails breathtaking mountain', translation: 'sai trật tự' },
-      { id: 'D', text: 'breathtaking mountain trails', translation: 'những cung đường núi ngoạn mục (trật tự chuẩn Adj-Opinion + Adj-Noun + Head Noun)' }
+      { id: 'D', text: 'breathtaking mountain trails', translation: 'những cung đường núi ngoạn mục' }
     ],
     correctAnswer: 'D',
     explanation: '• Trật tự tính từ–danh từ: Opinion (breathtaking) + Noun adjunct (mountain) + Head Noun (trails). Chọn D.',
@@ -178,7 +178,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'Do', translation: 'do a trip' },
       { id: 'B', text: 'Put', translation: 'put a trip' },
-      { id: 'C', text: 'Take', translation: 'thực hiện (take a trip - collocation chuẩn)' },
+      { id: 'C', text: 'Take', translation: 'thực hiện' },
       { id: 'D', text: 'Go', translation: 'dùng go on a trip' }
     ],
     correctAnswer: 'C',
@@ -195,7 +195,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'for', translation: 'cho' },
       { id: 'B', text: 'in', translation: 'trong' },
-      { id: 'C', text: 'to', translation: 'đến (cấu trúc from... To...)' },
+      { id: 'C', text: 'to', translation: 'đến' },
       { id: 'D', text: 'by', translation: 'bởi' }
     ],
     correctAnswer: 'C',
@@ -212,7 +212,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'many', translation: 'nhiều' },
       { id: 'B', text: 'few', translation: 'rất ít' },
-      { id: 'C', text: 'some', translation: 'một số / một vài (some practical tips)' },
+      { id: 'C', text: 'some', translation: 'một số / một vài' },
       { id: 'D', text: 'all', translation: 'tất cả' }
     ],
     correctAnswer: 'C',
@@ -227,7 +227,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_PUBLIC_SPEAKING_TRANS,
     questionText: 'Question 8. Before (8) _____, take time to plan your speech.',
     options: [
-      { id: 'A', text: 'giving a presentation', translation: 'thuyết trình (give a presentation)' },
+      { id: 'A', text: 'giving a presentation', translation: 'thuyết trình' },
       { id: 'B', text: 'making a decision', translation: 'ra quyết định' },
       { id: 'C', text: 'telling the truth', translation: 'nói sự thật' },
       { id: 'D', text: 'having a look', translation: 'xem qua' }
@@ -245,7 +245,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 9. (9) _____ useful tip is to practice in front of a mirror',
     options: [
       { id: 'A', text: 'Other', translation: 'Other + N số nhiều' },
-      { id: 'B', text: 'Another', translation: 'Một mẹo khác (Another + N số ít tip)' },
+      { id: 'B', text: 'Another', translation: 'Một mẹo khác' },
       { id: 'C', text: 'Others', translation: 'đại từ' },
       { id: 'D', text: 'The other', translation: 'cái còn lại trong bộ 2' }
     ],
@@ -264,7 +264,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'At the same time', translation: 'đồng thời' },
       { id: 'B', text: 'with regard to', translation: 'liên quan đến' },
       { id: 'C', text: 'As a result of', translation: 'là kết quả của' },
-      { id: 'D', text: 'On the other hand', translation: 'Mặt khác (nêu ý trái ngược)' }
+      { id: 'D', text: 'On the other hand', translation: 'Mặt khác' }
     ],
     correctAnswer: 'D',
     explanation: '• Liên từ "On the other hand" dùng để chuyển ý đối lập giữa việc dùng cử chỉ ngữ điệu tích cực với việc đọc trực tiếp từ ghi chú. Chọn D.',
@@ -280,7 +280,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'Taking up', translation: 'bắt đầu sở thích' },
       { id: 'B', text: 'fall apart', translation: 'sụp đổ' },
-      { id: 'C', text: 'focus on', translation: 'tập trung vào (focus on your message)' },
+      { id: 'C', text: 'focus on', translation: 'tập trung vào' },
       { id: 'D', text: 'get over', translation: 'vượt qua' }
     ],
     correctAnswer: 'C',
@@ -298,7 +298,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'lend', translation: 'cho mượn' },
       { id: 'B', text: 'hire', translation: 'thuê người/dịch vụ' },
       { id: 'C', text: 'rent', translation: 'thuê đồ/nhà' },
-      { id: 'D', text: 'borrow', translation: 'học hỏi / mượn ý tưởng kỹ thuật (borrow techniques)' }
+      { id: 'D', text: 'borrow', translation: 'học hỏi / mượn ý tưởng kỹ thuật' }
     ],
     correctAnswer: 'D',
     explanation: '• Động từ "borrow techniques" = học hỏi/mượn kỹ thuật từ những diễn giả kinh nghiệm. Chọn D. borrow.',
@@ -574,7 +574,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_TEEN_INDEPENDENCE_TRANS,
     questionText: 'Question 29. In which paragraph does the writer mention the need to be independent?',
     options: [
-      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1 (Independence for young people... Achieving independence...)' },
+      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }
@@ -593,7 +593,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
-      { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3 (accept responsibility for their choices and learn from their mistakes)' },
+      { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }
     ],
     correctAnswer: 'C',
@@ -627,7 +627,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'nomadic groups', translation: 'các bộ tộc du mục' },
       { id: 'B', text: 'dangers', translation: 'mối nguy hiểm' },
-      { id: 'C', text: 'group members', translation: 'thành viên trong nhóm (only a few of them took turns)' },
+      { id: 'C', text: 'group members', translation: 'thành viên trong nhóm' },
       { id: 'D', text: 'cities', translation: 'thành phố' }
     ],
     correctAnswer: 'C',
@@ -660,7 +660,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 34. According to paragraph 2, which of the following is NOT a job that requires night shifts?',
     options: [
       { id: 'A', text: 'factory workers', translation: 'công nhân nhà máy' },
-      { id: 'B', text: 'train mechanics', translation: 'thợ máy/kỹ thuật viên tàu hỏa (bài chỉ nói train drivers)' },
+      { id: 'B', text: 'train mechanics', translation: 'thợ máy/kỹ thuật viên tàu hỏa' },
       { id: 'C', text: 'nurses', translation: 'y tá' },
       { id: 'D', text: 'lorry drivers', translation: 'tài xế xe tải' }
     ],

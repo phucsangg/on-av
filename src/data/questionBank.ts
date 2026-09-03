@@ -84,9 +84,9 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ANNOUNCEMENT_TRANS,
     questionText: 'Question 1. Fill in blank (1):',
     options: [
-      { id: 'A', text: 'who', translation: 'người mà (thay cho người)' },
-      { id: 'B', text: 'which', translation: 'cái mà (thay cho vật)' },
-      { id: 'C', text: 'whose', translation: 'của ai (chỉ sở hữu)' },
+      { id: 'A', text: 'who', translation: 'người mà' },
+      { id: 'B', text: 'which', translation: 'cái mà' },
+      { id: 'C', text: 'whose', translation: 'của ai' },
       { id: 'D', text: 'that', translation: 'người/vật mà' }
     ],
     correctAnswer: 'B',
@@ -102,7 +102,7 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 2. Fill in blank (2):',
     options: [
       { id: 'A', text: 'renowned', translation: 'lừng danh / nổi tiếng' },
-      { id: 'B', text: 'notorious', translation: 'tai tiếng (nổi tiếng vì xấu)' },
+      { id: 'B', text: 'notorious', translation: 'tai tiếng' },
       { id: 'C', text: 'dominant', translation: 'chiếm ưu thế' },
       { id: 'D', text: 'technical', translation: 'thuộc về kỹ thuật' }
     ],
@@ -137,7 +137,7 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'organizing', translation: 'đang tổ chức' },
       { id: 'B', text: 'organized', translation: 'được tổ chức' },
-      { id: 'C', text: 'organize', translation: 'tổ chức (nguyên thể)' },
+      { id: 'C', text: 'organize', translation: 'tổ chức' },
       { id: 'D', text: 'to organise', translation: 'để tổ chức' }
     ],
     correctAnswer: 'B',
@@ -188,9 +188,9 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_LEAFLET_TRANS,
     questionText: 'Question 7. Fill in blank (7):',
     options: [
-      { id: 'A', text: 'many', translation: 'nhiều (đi với danh từ số nhiều)' },
-      { id: 'B', text: 'every', translation: 'mỗi / mọi (đi với danh từ số ít)' },
-      { id: 'C', text: 'all', translation: 'tất cả (đi với số nhiều/không đếm được)' },
+      { id: 'A', text: 'many', translation: 'nhiều' },
+      { id: 'B', text: 'every', translation: 'mỗi / mọi' },
+      { id: 'C', text: 'all', translation: 'tất cả' },
       { id: 'D', text: 'another', translation: 'một cái khác' }
     ],
     correctAnswer: 'B',
@@ -399,7 +399,7 @@ e. For this reason, while exams continue to play an important role, they should 
     passageTranslation: PASSAGE_CULTURAL_DIVERSITY_TRANS,
     questionText: 'Question 18. Fill in blank (18):',
     options: [
-      { id: 'A', text: 'leading to innovative solutions and better decision-making', translation: 'dẫn đến các giải pháp sáng tạo và việc ra quyết định tốt hơn (V-ing)' },
+      { id: 'A', text: 'leading to innovative solutions and better decision-making', translation: 'dẫn đến các giải pháp sáng tạo và việc ra quyết định tốt hơn' },
       { id: 'B', text: 'that can result in better decision-making and innovative solutions', translation: 'cái mà có thể dẫn đến việc ra quyết định tốt hơn...' },
       { id: 'C', text: 'to which causes better solutions and innovative decision-making', translation: 'cái mà gây ra các giải pháp tốt hơn...' },
       { id: 'D', text: 'led to better decision-making and innovative solutions', translation: 'đã dẫn đến các giải pháp tốt hơn...' }
@@ -505,7 +505,7 @@ e. For this reason, while exams continue to play an important role, they should 
     options: [
       { id: 'A', text: 'tides', translation: 'các đợt thủy triều' },
       { id: 'B', text: 'waves', translation: 'những con sóng' },
-      { id: 'C', text: 'fathoms', translation: 'các sải nước (đơn vị đo)' },
+      { id: 'C', text: 'fathoms', translation: 'các sải nước' },
       { id: 'D', text: 'currents', translation: 'các dòng hải lưu' }
     ],
     correctAnswer: 'D',

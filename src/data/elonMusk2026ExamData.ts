@@ -47,7 +47,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     questionText: 'Question 1. As the CEO of Tesla, Inc., he has significantly accelerated the world\'s transition to sustainable energy (1) ...',
     options: [
       { id: 'A', text: 'produced mass-market electric vehicles', translation: 'động từ chia quá khứ' },
-      { id: 'B', text: 'by producing mass-market electric vehicles', translation: 'bằng cách sản xuất xe điện đại chúng (cách thức)' },
+      { id: 'B', text: 'by producing mass-market electric vehicles', translation: 'bằng cách sản xuất xe điện đại chúng' },
       { id: 'C', text: 'who produces mass-market electric vehicles', translation: 'người sản xuất xe điện' },
       { id: 'D', text: 'to produce mass-market electric vehicles', translation: 'để sản xuất xe điện' }
     ],
@@ -63,7 +63,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ELON_MUSK_TRANS,
     questionText: 'Question 2. SpaceX successfully developed the Falcon 1, (2) ...',
     options: [
-      { id: 'A', text: 'the first privately funded liquid-fueled rocket to reach orbit', translation: 'danh từ đồng cách (appositive)' },
+      { id: 'A', text: 'the first privately funded liquid-fueled rocket to reach orbit', translation: 'danh từ đồng cách' },
       { id: 'B', text: 'that was the first privately funded rocket', translation: 'dùng that sau dấu phẩy' },
       { id: 'C', text: 'which it was the first rocket', translation: 'vốn là tên lửa đầu tiên' },
       { id: 'D', text: 'was the first rocket', translation: 'thiếu đại từ quan hệ' }
@@ -98,7 +98,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     questionText: 'Question 4. Fill in blank (4):',
     options: [
       { id: 'A', text: 'Despite these concerns, there remains an undeniable impact', translation: 'câu vô nhân xưng' },
-      { id: 'B', text: 'Despite these concerns, but his impact is undeniable', translation: 'lỗi lặp liên từ (despite & but)' },
+      { id: 'B', text: 'Despite these concerns, but his impact is undeniable', translation: 'lỗi lặp liên từ' },
       { id: 'C', text: 'Despite these concerns, his impact on modern industry remains undeniable', translation: 'Mặc cho những lo ngại đó, tác động của ông đối với ngành công nghiệp vẫn là điều không thể phủ nhận' },
       { id: 'D', text: 'Despite these concerns, it is the undeniable impact', translation: 'thiếu câu chẻ' }
     ],
@@ -294,7 +294,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 17. Electric vehicles are rapidly gaining popularity due to their zero direct emissions and lower operational _____.',
     options: [
-      { id: 'A', text: 'expenditure', translation: 'chi phí vận hành (operational expenditure/costs)' },
+      { id: 'A', text: 'expenditure', translation: 'chi phí vận hành' },
       { id: 'B', text: 'revenue', translation: 'doanh thu' },
       { id: 'C', text: 'profit', translation: 'lợi nhuận' },
       { id: 'D', text: 'dividend', translation: 'cổ tức' }
@@ -369,7 +369,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 22. The automated assembly line, _____ last month, has doubled the factory’s production capacity.',
     options: [
-      { id: 'A', text: 'installed', translation: 'rút gọn mệnh đề bị động (P2)' },
+      { id: 'A', text: 'installed', translation: 'rút gọn mệnh đề bị động' },
       { id: 'B', text: 'installing', translation: 'dạng chủ động' },
       { id: 'C', text: 'to install', translation: 'chỉ mục đích' },
       { id: 'D', text: 'was installed', translation: 'thừa was' }

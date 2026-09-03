@@ -82,7 +82,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     questionText: 'Question 2. Living in another country (2) ... you improve your language skills',
     options: [
       { id: 'A', text: 'has helped', translation: 'hiện tại hoàn thành' },
-      { id: 'B', text: 'helps', translation: 'giúp đỡ (hiện tại đơn số ít)' },
+      { id: 'B', text: 'helps', translation: 'giúp đỡ' },
       { id: 'C', text: 'is helping', translation: 'hiện tại tiếp diễn' },
       { id: 'D', text: 'is helped', translation: 'bị động' }
     ],
@@ -100,7 +100,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'for', translation: 'cho' },
       { id: 'B', text: 'of', translation: 'của' },
-      { id: 'C', text: 'on', translation: 'trên (based on)' },
+      { id: 'C', text: 'on', translation: 'trên' },
       { id: 'D', text: 'to', translation: 'đến' }
     ],
     correctAnswer: 'C',
@@ -118,7 +118,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
       { id: 'A', text: 'habits', translation: 'thói quen cá nhân' },
       { id: 'B', text: 'values', translation: 'giá trị' },
       { id: 'C', text: 'routines', translation: 'lịch trình sinh hoạt' },
-      { id: 'D', text: 'customs', translation: 'phong tục tập quán (social customs)' }
+      { id: 'D', text: 'customs', translation: 'phong tục tập quán' }
     ],
     correctAnswer: 'D',
     explanation: '• Cụm từ cố định: "social customs" (phong tục tập quán xã hội) phù hợp nhất với việc tìm hiểu văn hóa quốc gia. Chọn D. customs.',
@@ -132,8 +132,8 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_BRITISH_COUNCIL_TRANS,
     questionText: 'Question 5. Try (5) ... in touch with family and friends',
     options: [
-      { id: 'A', text: 'to keep', translation: 'cố gắng giữ (try to V)' },
-      { id: 'B', text: 'keeping', translation: 'thử giữ (try V-ing)' },
+      { id: 'A', text: 'to keep', translation: 'cố gắng giữ' },
+      { id: 'B', text: 'keeping', translation: 'thử giữ' },
       { id: 'C', text: 'keep', translation: 'nguyên mẫu' },
       { id: 'D', text: 'kept', translation: 'quá quá' }
     ],
@@ -185,8 +185,8 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'whose', translation: 'của ai' },
       { id: 'B', text: 'which', translation: 'cái mà' },
-      { id: 'C', text: 'whom', translation: 'người mà (tân ngữ)' },
-      { id: 'D', text: 'who', translation: 'người mà (chủ ngữ)' }
+      { id: 'C', text: 'whom', translation: 'người mà' },
+      { id: 'D', text: 'who', translation: 'người mà' }
     ],
     correctAnswer: 'D',
     explanation: '• Thay thế cho danh từ chỉ người số nhiều "designers" làm chủ ngữ cho động từ "are dedicated", ta dùng đại từ quan hệ "who". Chọn D.',
@@ -234,7 +234,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ELITE_ARCH_TRANS,
     questionText: 'Question 11. An innovative architect must work under tight deadlines. (11) ..., those who demonstrate exceptional attention to detail will be considered...',
     options: [
-      { id: 'A', text: 'Consequently', translation: 'Vì vậy / Do đó (chỉ kết quả)' },
+      { id: 'A', text: 'Consequently', translation: 'Vì vậy / Do đó' },
       { id: 'B', text: 'Otherwise', translation: 'nếu không thì' },
       { id: 'C', text: 'Nevertheless', translation: 'tuy nhiên' },
       { id: 'D', text: 'Whereas', translation: 'trong khi' }
@@ -556,7 +556,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 31. If the weather _____ clear tomorrow, the outdoor graduation ceremony will proceed as scheduled.',
     options: [
-      { id: 'A', text: 'is', translation: 'thì hiện tại đơn (chủ ngữ số ít weather)' },
+      { id: 'A', text: 'is', translation: 'thì hiện tại đơn' },
       { id: 'B', text: 'will be', translation: 'thiếu điều kiện loại 1' },
       { id: 'C', text: 'were', translation: 'quá khứ giả định' },
       { id: 'D', text: 'had been', translation: 'quá khứ hoàn thành' }
@@ -648,7 +648,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'have we heard', translation: 'đảo ngữ với thì hiện tại hoàn thành / quá khứ' },
       { id: 'B', text: 'we have heard', translation: 'không đảo ngữ' },
-      { id: 'C', text: 'did we hear', translation: 'đảo ngữ thì quá khứ đơn (Seldom + did + S + V)' },
+      { id: 'C', text: 'did we hear', translation: 'đảo ngữ thì quá khứ đơn' },
       { id: 'D', text: 'we heard', translation: 'không đảo ngữ' }
     ],
     correctAnswer: 'C',
@@ -661,7 +661,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 38. The proposal, _____ by the board of directors last week, will take effect next month.',
     options: [
-      { id: 'A', text: 'approved', translation: 'rút gọn mệnh đề bị động (P2)' },
+      { id: 'A', text: 'approved', translation: 'rút gọn mệnh đề bị động' },
       { id: 'B', text: 'approving', translation: 'dạng chủ động' },
       { id: 'C', text: 'to approve', translation: 'chỉ mục đích' },
       { id: 'D', text: 'was approved', translation: 'thừa động từ was' }

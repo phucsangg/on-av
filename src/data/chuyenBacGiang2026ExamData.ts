@@ -64,7 +64,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUMEC_TRANS,
     questionText: 'Question 1. an (1) _____ leader in medical tourism!',
     options: [
-      { id: 'A', text: 'unrivaled', translation: 'vô song / không có đối thủ (chuẩn quảng cáo)' },
+      { id: 'A', text: 'unrivaled', translation: 'vô song / không có đối thủ' },
       { id: 'B', text: 'unbothered', translation: 'không bận tâm' },
       { id: 'C', text: 'underscored', translation: 'được nhấn mạnh' },
       { id: 'D', text: 'underlined', translation: 'được gạch chân' }
@@ -82,9 +82,9 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 2. Our JCI-accredited facilities offer (2) _____ cutting-edge treatments',
     options: [
       { id: 'A', text: 'much', translation: 'dùng với N không đếm được' },
-      { id: 'B', text: 'few', translation: 'phủ định (rất ít)' },
-      { id: 'C', text: 'many', translation: 'nhiều (đi với N đếm được số nhiều treatments)' },
-      { id: 'D', text: 'a little', translation: 'một ít (không đếm được)' }
+      { id: 'B', text: 'few', translation: 'phủ định' },
+      { id: 'C', text: 'many', translation: 'nhiều' },
+      { id: 'D', text: 'a little', translation: 'một ít' }
     ],
     correctAnswer: 'C',
     explanation: '• "Treatments" là danh từ đếm được số nhiều -> dùng từ định lượng "many". Chọn C. many.',
@@ -100,7 +100,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'founders', translation: 'người sáng lập' },
       { id: 'B', text: 'initiators', translation: 'người khởi xướng' },
-      { id: 'C', text: 'giants', translation: 'những gã khổng lồ / ông lớn toàn cầu (collocation)' },
+      { id: 'C', text: 'giants', translation: 'những gã khổng lồ / ông lớn toàn cầu' },
       { id: 'D', text: 'bosses', translation: 'ông chủ' }
     ],
     correctAnswer: 'C',
@@ -116,7 +116,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 4. (4) _____ our commitment to excellence, we provide seamless support',
     options: [
       { id: 'A', text: 'In comparison with', translation: 'so sánh với' },
-      { id: 'B', text: 'In line with', translation: 'phù hợp với / tuân theo (cấu trúc chuẩn)' },
+      { id: 'B', text: 'In line with', translation: 'phù hợp với / tuân theo' },
       { id: 'C', text: 'In place of', translation: 'thay vì' },
       { id: 'D', text: 'In search of', translation: 'tìm kiếm' }
     ],
@@ -135,7 +135,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'the other', translation: 'cái còn lại' },
       { id: 'B', text: 'the others', translation: 'đại từ độc lập' },
       { id: 'C', text: 'another', translation: 'danh từ số ít' },
-      { id: 'D', text: 'other', translation: 'other + danh từ số nhiều (other high-end services)' }
+      { id: 'D', text: 'other', translation: 'other + danh từ số nhiều' }
     ],
     correctAnswer: 'D',
     explanation: '• "other + danh từ số nhiều" -> "other high-end services" (các dịch vụ cao cấp khác). Chọn D. other.',
@@ -149,7 +149,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUMEC_TRANS,
     questionText: 'Question 6. Let\'s (6) _____ your strength and start your transformative medical journey',
     options: [
-      { id: 'A', text: 'build up', translation: 'tăng cường / xây dựng (build up your strength)' },
+      { id: 'A', text: 'build up', translation: 'tăng cường / xây dựng' },
       { id: 'B', text: 'turn up', translation: 'xuất hiện' },
       { id: 'C', text: 'buckle up', translation: 'thắt dây an toàn' },
       { id: 'D', text: 'glow up', translation: 'lột xác' }
@@ -168,7 +168,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'chase', translation: 'sự rượt đuổi' },
       { id: 'B', text: 'hunt', translation: 'cuộc đi săn' },
-      { id: 'C', text: 'pursuit', translation: 'sự theo đuổi (the pursuit of something)' },
+      { id: 'C', text: 'pursuit', translation: 'sự theo đuổi' },
       { id: 'D', text: 'purchase', translation: 'sự mua bán' }
     ],
     correctAnswer: 'C',
@@ -200,7 +200,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_SOLO_TRAVEL_TRANS,
     questionText: 'Question 9. being mindful (9) _____ local customs, including dress codes',
     options: [
-      { id: 'A', text: 'of', translation: 'of (be mindful of something)' },
+      { id: 'A', text: 'of', translation: 'of' },
       { id: 'B', text: 'with', translation: 'với' },
       { id: 'C', text: 'for', translation: 'cho' },
       { id: 'D', text: 'in', translation: 'trong' }
@@ -220,7 +220,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'safety advice practical', translation: 'sai trật tự' },
       { id: 'B', text: 'advice safety practical', translation: 'sai trật tự' },
       { id: 'C', text: 'practical advice safety', translation: 'sai trật tự' },
-      { id: 'D', text: 'practical safety advice', translation: 'lời khuyên an toàn mang tính thực tiễn (trật tự chuẩn)' }
+      { id: 'D', text: 'practical safety advice', translation: 'lời khuyên an toàn mang tính thực tiễn' }
     ],
     correctAnswer: 'D',
     explanation: '• Trật tự cụm danh từ: Tính từ bổ nghĩa "practical" + Danh từ ghép "safety advice" -> "practical safety advice". Chọn D.',
@@ -235,7 +235,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 11. travelers should consider (11) _____ local events or small group activities',
     options: [
       { id: 'A', text: 'join', translation: 'nguyên mẫu' },
-      { id: 'B', text: 'joining', translation: 'dạng V-ing (consider + V-ing)' },
+      { id: 'B', text: 'joining', translation: 'dạng V-ing' },
       { id: 'C', text: 'to join', translation: 'dạng to V' },
       { id: 'D', text: 'to joining', translation: 'sai cấu trúc' }
     ],
@@ -252,7 +252,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 12. enables them to engage (12) _____ with other people',
     options: [
       { id: 'A', text: 'mean', translation: 'động từ' },
-      { id: 'B', text: 'meaningfully', translation: 'một cách có ý nghĩa (trạng từ bổ nghĩa cho engage)' },
+      { id: 'B', text: 'meaningfully', translation: 'một cách có ý nghĩa' },
       { id: 'C', text: 'meaning', translation: 'danh từ' },
       { id: 'D', text: 'meaningful', translation: 'tính từ' }
     ],
@@ -514,7 +514,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 28. The word "They" in paragraph 3 refers to:',
     options: [
       { id: 'A', text: 'familiar challenges', translation: 'khó khăn quen thuộc' },
-      { id: 'B', text: 'individuals', translation: 'những cá nhân / người lao động (individuals)' },
+      { id: 'B', text: 'individuals', translation: 'những cá nhân / người lao động' },
       { id: 'C', text: 'career decisions', translation: 'quyết định nghề nghiệp' },
       { id: 'D', text: 'career paths', translation: 'con đường sự nghiệp' }
     ],
@@ -533,7 +533,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'Paragraph 4', translation: 'Đoạn 4' },
       { id: 'B', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
-      { id: 'D', text: 'Paragraph 2', translation: 'Đoạn 2 (39.6 million Americans resigned, 11% drop)' }
+      { id: 'D', text: 'Paragraph 2', translation: 'Đoạn 2' }
     ],
     correctAnswer: 'D',
     explanation: '• Đoạn 2 chứa thông tin số liệu cụ thể: "Data from 2024 shows that 39.6 million Americans resigned... An 11% drop". Chọn D (Paragraph 2).',
@@ -547,7 +547,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JOB_HUGGING_TRANS,
     questionText: 'Question 30. Which paragraph mentions the definition of "job hugging"?',
     options: [
-      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1 (termed \'job hugging\', describes a situation where...)' },
+      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }

@@ -74,10 +74,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JAPAN_MOBILITY_TRANS,
     questionText: 'Question 1. Fill in blank (1):',
     options: [
-      { id: 'A', text: 'when', translation: 'khi mà (trạng từ quan hệ chỉ thời gian)' },
-      { id: 'B', text: 'that', translation: 'rằng / cái mà (không đứng sau dấu phẩy)' },
-      { id: 'C', text: 'what', translation: 'cái mà (không làm đại từ quan hệ)' },
-      { id: 'D', text: 'which', translation: 'cái mà (đại từ quan hệ đứng sau dấu phẩy chỉ vật)' }
+      { id: 'A', text: 'when', translation: 'khi mà' },
+      { id: 'B', text: 'that', translation: 'rằng / cái mà' },
+      { id: 'C', text: 'what', translation: 'cái mà' },
+      { id: 'D', text: 'which', translation: 'cái mà' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "which" thay thế cho danh từ chỉ vật "The Japan Mobility Show 2025" đứng sau dấu phẩy trong mệnh đề quan hệ không xác định.',
@@ -110,7 +110,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'rejecting', translation: 'bác bỏ / từ chối' },
       { id: 'B', text: 'detecting', translation: 'phát hiện' },
-      { id: 'C', text: 'reflecting', translation: 'phản ánh (reflecting the shift)' },
+      { id: 'C', text: 'reflecting', translation: 'phản ánh' },
       { id: 'D', text: 'dictating', translation: 'ra lệnh / bắt buộc' }
     ],
     correctAnswer: 'C',
@@ -144,7 +144,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'at', translation: 'tại' },
       { id: 'B', text: 'in', translation: 'trong' },
-      { id: 'C', text: 'on', translation: 'trên / vào (depend on: phụ thuộc vào)' },
+      { id: 'C', text: 'on', translation: 'trên / vào' },
       { id: 'D', text: 'to', translation: 'đến' }
     ],
     correctAnswer: 'C',
@@ -159,9 +159,9 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JAPAN_MOBILITY_TRANS,
     questionText: 'Question 6. Fill in blank (6):',
     options: [
-      { id: 'A', text: 'developed', translation: 'được phát triển (have something done: bị động)' },
-      { id: 'B', text: 'develop', translation: 'phát triển (V-bare)' },
-      { id: 'C', text: 'developing', translation: 'đang phát triển (V-ing)' },
+      { id: 'A', text: 'developed', translation: 'được phát triển' },
+      { id: 'B', text: 'develop', translation: 'phát triển' },
+      { id: 'C', text: 'developing', translation: 'đang phát triển' },
       { id: 'D', text: 'to developed', translation: 'để phát triển' }
     ],
     correctAnswer: 'A',
@@ -179,9 +179,9 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 7. Fill in blank (7):',
     options: [
       { id: 'A', text: 'involved', translation: 'liên quan' },
-      { id: 'B', text: 'located', translation: 'nằm ở / vị trí (located in Sichuan)' },
+      { id: 'B', text: 'located', translation: 'nằm ở / vị trí' },
       { id: 'C', text: 'displaced', translation: 'bị di dời' },
-      { id: 'D', text: 'resided', translation: 'cư trú (dùng cho người)' }
+      { id: 'D', text: 'resided', translation: 'cư trú' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: "located in" chỉ vị trí địa lý của địa điểm (nằm ở tỉnh Tứ Xuyên).',
@@ -196,8 +196,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 8. Fill in blank (8):',
     options: [
       { id: 'A', text: 'owns', translation: 'sở hữu' },
-      { id: 'B', text: 'possesses', translation: 'chiếm hữu (không đi với to)' },
-      { id: 'C', text: 'belongs to', translation: 'thuộc về (belongs to the Centre)' },
+      { id: 'B', text: 'possesses', translation: 'chiếm hữu' },
+      { id: 'C', text: 'belongs to', translation: 'thuộc về' },
       { id: 'D', text: 'includes', translation: 'bao gồm' }
     ],
     correctAnswer: 'C',
@@ -212,10 +212,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_PANDA_BASE_TRANS,
     questionText: 'Question 9. Fill in blank (9):',
     options: [
-      { id: 'A', text: 'became', translation: 'đã trở thành (Quá khứ đơn)' },
-      { id: 'B', text: 'is becoming', translation: 'đang trở thành (Hiện tại tiếp diễn)' },
-      { id: 'C', text: 'becomes', translation: 'trở thành (Hiện tại đơn)' },
-      { id: 'D', text: 'has become', translation: 'đã trở thành (Hiện tại hoàn thành chỉ kết quả kéo dài)' }
+      { id: 'A', text: 'became', translation: 'đã trở thành' },
+      { id: 'B', text: 'is becoming', translation: 'đang trở thành' },
+      { id: 'C', text: 'becomes', translation: 'trở thành' },
+      { id: 'D', text: 'has become', translation: 'đã trở thành' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Thì Hiện tại hoàn thành (has become) diễn tả sự việc đã diễn ra và kết quả còn duy trì ở hiện tại.',
@@ -229,9 +229,9 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_PANDA_BASE_TRANS,
     questionText: 'Question 10. Fill in blank (10):',
     options: [
-      { id: 'A', text: 'Although', translation: 'Mặc dù (Although + S + V)' },
+      { id: 'A', text: 'Although', translation: 'Mặc dù' },
       { id: 'B', text: 'Because', translation: 'Bởi vì' },
-      { id: 'C', text: 'Despite', translation: 'Mặc dù (đi với N / V-ing)' },
+      { id: 'C', text: 'Despite', translation: 'Mặc dù' },
       { id: 'D', text: 'Unless', translation: 'Trừ khi' }
     ],
     correctAnswer: 'A',
@@ -378,8 +378,8 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_INTERNET_SLANG_TRANS,
     questionText: 'Question 19. Which of the following is NOT mentioned as an expression reflecting social or work changes?',
     options: [
-      { id: 'A', text: 'delulu', translation: 'từ lóng delulu (phản ánh niềm tin cá nhân)' },
-      { id: 'B', text: 'soothing lullaby', translation: 'bài hát ru êm dịu (chỉ là ẩn dụ)' },
+      { id: 'A', text: 'delulu', translation: 'từ lóng delulu' },
+      { id: 'B', text: 'soothing lullaby', translation: 'bài hát ru êm dịu' },
       { id: 'C', text: 'broligarchy', translation: 'thuật ngữ chỉ nhóm lãnh đạo công nghệ' },
       { id: 'D', text: 'mouse jiggler', translation: 'thiết bị giả vờ làm việc' }
     ],
@@ -414,7 +414,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'very expensive and modern', translation: 'rất đắt và hiện đại' },
       { id: 'B', text: 'difficult to see or understand', translation: 'khó nhìn hoặc khó hiểu' },
-      { id: 'C', text: 'shiny and high-quality', translation: 'bóng bẩy và chất lượng cao (nghĩa đen)' },
+      { id: 'C', text: 'shiny and high-quality', translation: 'bóng bẩy và chất lượng cao' },
       { id: 'D', text: 'attractive but not showing the whole truth', translation: 'hào nhoáng hấp dẫn nhưng không cho thấy toàn bộ sự thật' }
     ],
     correctAnswer: 'D',
@@ -618,7 +618,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_BODY_CLOCK_TRANS,
     questionText: 'Question 33. Which paragraph highlights the need for biological awareness in public and personal spheres?',
     options: [
-      { id: 'A', text: 'Paragraph 4', translation: 'Đoạn 4 (đô thị/trường học & thói quen cá nhân)' },
+      { id: 'A', text: 'Paragraph 4', translation: 'Đoạn 4' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 1', translation: 'Đoạn 1' }
@@ -673,7 +673,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'at', translation: 'tại' },
       { id: 'B', text: 'to', translation: 'đến' },
-      { id: 'C', text: 'on', translation: 'trên / về (decide on something)' },
+      { id: 'C', text: 'on', translation: 'trên / về' },
       { id: 'D', text: 'in', translation: 'trong' }
     ],
     correctAnswer: 'C',
@@ -688,9 +688,9 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_FUEL_PRICE_TRANS,
     questionText: 'Question 37. Fill in blank (37):',
     options: [
-      { id: 'A', text: 'little', translation: 'rất ít (mang nghĩa phủ định: with little delay)' },
-      { id: 'B', text: 'few', translation: 'ít (dùng cho N đếm được)' },
-      { id: 'C', text: 'a little', translation: 'một chút (khẳng định)' },
+      { id: 'A', text: 'little', translation: 'rất ít' },
+      { id: 'B', text: 'few', translation: 'ít' },
+      { id: 'C', text: 'a little', translation: 'một chút' },
       { id: 'D', text: 'a few', translation: 'một vài' }
     ],
     correctAnswer: 'A',
@@ -706,7 +706,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 38. Fill in blank (38):',
     options: [
       { id: 'A', text: 'regulate', translation: 'điều tiết / hạn chế' },
-      { id: 'B', text: 'encourage', translation: 'khuyến khích (encourage the use of)' },
+      { id: 'B', text: 'encourage', translation: 'khuyến khích' },
       { id: 'C', text: 'manage', translation: 'quản lý' },
       { id: 'D', text: 'produce', translation: 'sản xuất' }
     ],
@@ -723,7 +723,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 39. Fill in blank (39):',
     options: [
       { id: 'A', text: 'complete', translation: 'hoàn chỉnh' },
-      { id: 'B', text: 'total', translation: 'tổng cộng (a total of 11 adjustments)' },
+      { id: 'B', text: 'total', translation: 'tổng cộng' },
       { id: 'C', text: 'full', translation: 'đầy đủ' },
       { id: 'D', text: 'whole', translation: 'toàn bộ' }
     ],
@@ -742,7 +742,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'however', translation: 'tuy nhiên' },
       { id: 'B', text: 'although', translation: 'mặc dù' },
       { id: 'C', text: 'so', translation: 'vì vậy' },
-      { id: 'D', text: 'while', translation: 'trong khi (đối chiếu hai số liệu song song)' }
+      { id: 'D', text: 'while', translation: 'trong khi' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Liên từ dùng để đối chiếu hai sự việc diễn ra song song.',

@@ -153,7 +153,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'total of', translation: 'tổng số' },
       { id: 'B', text: 'deal with', translation: 'giải quyết' },
       { id: 'C', text: 'number of', translation: 'một số lượng' },
-      { id: 'D', text: 'range of', translation: 'một loạt / nhiều loại hoạt động (collocation)' }
+      { id: 'D', text: 'range of', translation: 'một loạt / nhiều loại hoạt động' }
     ],
     correctAnswer: 'D',
     explanation: '• Cụm từ cố định: "a range of activities" (một loạt/nhiều loại hoạt động phong phú). Chọn D. range of.',
@@ -169,7 +169,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'have', translation: 'có' },
       { id: 'B', text: 'take', translation: 'lấy' },
-      { id: 'C', text: 'make', translation: 'tạo ra (make an impact)' },
+      { id: 'C', text: 'make', translation: 'tạo ra' },
       { id: 'D', text: 'bring', translation: 'mang lại' }
     ],
     correctAnswer: 'C',
@@ -237,7 +237,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'technology', translation: 'công nghệ' },
       { id: 'B', text: 'data privacy', translation: 'quyền riêng tư dữ liệu' },
-      { id: 'C', text: 'information', translation: 'thông tin (huge amounts of user information)' },
+      { id: 'C', text: 'information', translation: 'thông tin' },
       { id: 'D', text: 'blockchain', translation: 'chuỗi khối' }
     ],
     correctAnswer: 'C',
@@ -463,7 +463,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_DIGITAL_NOMADS_TRANS,
     questionText: 'Question 24. The word "they" in paragraph 4 refers to:',
     options: [
-      { id: 'A', text: 'experts', translation: 'các chuyên gia (experts caution... True freedom, they argue)' },
+      { id: 'A', text: 'experts', translation: 'các chuyên gia' },
       { id: 'B', text: 'workers', translation: 'người lao động' },
       { id: 'C', text: 'economists', translation: 'nhà kinh tế' },
       { id: 'D', text: 'communities', translation: 'cộng đồng' }
@@ -651,7 +651,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 35. it’s often a matter (35) _____ choosing the right habits.',
     options: [
       { id: 'A', text: 'to', translation: 'sai giới từ' },
-      { id: 'B', text: 'of', translation: 'a matter of doing something (cấu trúc chuẩn)' },
+      { id: 'B', text: 'of', translation: 'a matter of doing something' },
       { id: 'C', text: 'in', translation: 'sai giới từ' },
       { id: 'D', text: 'for', translation: 'sai giới từ' }
     ],
@@ -667,7 +667,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_STAYING_HEALTHY_TRANS,
     questionText: 'Question 36. using a smartwatch (36) _____ simply a notebook.',
     options: [
-      { id: 'A', text: 'or', translation: 'hoặc (đưa ra 2 lựa chọn tương đương)' },
+      { id: 'A', text: 'or', translation: 'hoặc' },
       { id: 'B', text: 'nor', translation: 'dùng với neither' },
       { id: 'C', text: 'but', translation: 'nhưng' },
       { id: 'D', text: 'so', translation: 'vì vậy' }
@@ -687,7 +687,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'office light supplies', translation: 'trật tự danh từ bị đảo' },
       { id: 'B', text: 'supplies office light', translation: 'sai trật tự' },
       { id: 'C', text: 'light supplies office', translation: 'sai trật tự' },
-      { id: 'D', text: 'light office supplies', translation: 'đồ dùng văn phòng nhẹ (trật tự chuẩn Adj + N)' }
+      { id: 'D', text: 'light office supplies', translation: 'đồ dùng văn phòng nhẹ' }
     ],
     correctAnswer: 'D',
     explanation: '• Trật tự cụm danh từ: Tính từ "light" đứng trước cụm danh từ "office supplies" -> "light office supplies" (đồ dùng văn phòng nhẹ). Chọn D.',
@@ -720,7 +720,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'comparing', translation: 'so sánh' },
       { id: 'B', text: 'replacing', translation: 'thay thế' },
-      { id: 'C', text: 'boosting', translation: 'thúc đẩy / nâng cao (boost motivation)' },
+      { id: 'C', text: 'boosting', translation: 'thúc đẩy / nâng cao' },
       { id: 'D', text: 'turning', translation: 'xoay chuyển' }
     ],
     correctAnswer: 'C',
@@ -735,9 +735,9 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_STAYING_HEALTHY_TRANS,
     questionText: 'Question 40. if your plan brings (40) _____ results to keep your motivation high.',
     options: [
-      { id: 'A', text: 'satisfying', translation: 'hài lòng (chủ quan)' },
+      { id: 'A', text: 'satisfying', translation: 'hài lòng' },
       { id: 'B', text: 'effective', translation: 'hiệu quả' },
-      { id: 'C', text: 'positive', translation: 'tích cực (positive results - collocation chuẩn)' },
+      { id: 'C', text: 'positive', translation: 'tích cực' },
       { id: 'D', text: 'successful', translation: 'thành công' }
     ],
     correctAnswer: 'C',

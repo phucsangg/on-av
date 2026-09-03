@@ -92,7 +92,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 1. In which paragraph does the writer mention examples of green urban space?',
     options: [
       { id: 'A', text: 'Paragraph 3', translation: 'Đoạn 3' },
-      { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2 (community gardens, rooftop gardens, public parks)' },
+      { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }
     ],
@@ -210,7 +210,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_URBAN_GREEN_TRANS,
     questionText: 'Question 8. The word "they" in paragraph 3 refers to:',
     options: [
-      { id: 'A', text: 'trees', translation: 'cây cối và thực vật (Trees and plants)' },
+      { id: 'A', text: 'trees', translation: 'cây cối và thực vật' },
       { id: 'B', text: 'people', translation: 'con người' },
       { id: 'C', text: 'cities', translation: 'thành phố' },
       { id: 'D', text: 'parks', translation: 'công viên' }
@@ -321,7 +321,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'new journey learning', translation: 'sai trật tự' },
       { id: 'B', text: 'learning journey new', translation: 'sai trật tự' },
-      { id: 'C', text: 'new learning journey', translation: 'hành trình học tập mới (trật tự chuẩn)' },
+      { id: 'C', text: 'new learning journey', translation: 'hành trình học tập mới' },
       { id: 'D', text: 'learning new journey', translation: 'sai trật tự' }
     ],
     correctAnswer: 'C',
@@ -356,7 +356,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'come', translation: 'đến' },
       { id: 'B', text: 'make', translation: 'tạo' },
       { id: 'C', text: 'do', translation: 'làm' },
-      { id: 'D', text: 'have', translation: 'có (have the opportunity to do sth)' }
+      { id: 'D', text: 'have', translation: 'có' }
     ],
     correctAnswer: 'D',
     explanation: '• Collocation chuẩn: "have the opportunity to do something" (có cơ hội làm gì). Chọn D. have.',
@@ -371,7 +371,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 18. Want (18) _____ your writing or solve complex problems?',
     options: [
       { id: 'A', text: 'improving', translation: 'V-ing' },
-      { id: 'B', text: 'to improve', translation: 'to V (want to V)' },
+      { id: 'B', text: 'to improve', translation: 'to V' },
       { id: 'C', text: 'to improving', translation: 'sai cấu trúc' },
       { id: 'D', text: 'improve', translation: 'nguyên mẫu không to' }
     ],
@@ -390,7 +390,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'for', translation: 'cho' },
       { id: 'B', text: 'to', translation: 'đến' },
       { id: 'C', text: 'by', translation: 'bởi' },
-      { id: 'D', text: 'in', translation: 'trong (engage in discussions)' }
+      { id: 'D', text: 'in', translation: 'trong' }
     ],
     correctAnswer: 'D',
     explanation: '• Cụm động từ cố định: "engage in discussions" = tham gia vào các cuộc thảo luận. Chọn D. in.',
@@ -489,10 +489,10 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_SOCIAL_MEDIA_TRANS,
     questionText: 'Question 25. Where in paragraph 1 does the sentence "Young people are particularly affected due to their high engagement with these platforms." best fit?',
     options: [
-      { id: 'A', text: '(III)', translation: 'Vị trí (III)' },
-      { id: 'B', text: '(IV)', translation: 'Vị trí (IV)' },
-      { id: 'C', text: '(I)', translation: 'Vị trí (I)' },
-      { id: 'D', text: '(II)', translation: 'Vị trí (II)' }
+      { id: 'A', text: '(III)', translation: 'Vị trí' },
+      { id: 'B', text: '(IV)', translation: 'Vị trí' },
+      { id: 'C', text: '(I)', translation: 'Vị trí' },
+      { id: 'D', text: '(II)', translation: 'Vị trí' }
     ],
     correctAnswer: 'B',
     explanation: '• Vị trí (IV) nằm ở cuối đoạn 1, chốt lại sau khi đã nêu các tác hại lo âu, trầm cảm chung, nhấn mạnh người trẻ chịu tác động nặng nhất. Chọn B ((IV)).',
@@ -560,7 +560,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'longing to interact', translation: 'khao khát tương tác' },
       { id: 'B', text: 'aim of satisfaction', translation: 'mục tiêu thỏa mãn' },
       { id: 'C', text: 'desire to know', translation: 'mong muốn biết' },
-      { id: 'D', text: 'worry of exclusion', translation: 'nỗi lo bị bỏ lỡ / bị loại khỏi các hoạt động (bản chất của FOMO)' }
+      { id: 'D', text: 'worry of exclusion', translation: 'nỗi lo bị bỏ lỡ / bị loại khỏi các hoạt động' }
     ],
     correctAnswer: 'D',
     explanation: '• "fear of missing out" (FOMO) chính là nỗi lo lắng bị bỏ lỡ hoặc loại ra khỏi các trải nghiệm = worry of exclusion. Chọn D.',
@@ -594,7 +594,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'that prides itself on preserving its core cultural ideals', translation: 'thừa that' },
       { id: 'B', text: 'with pride in preserving its core cultural ideals', translation: 'thiếu động từ chính' },
       { id: 'C', text: 'of which the pride is in preserving its core cultural ideals', translation: 'gượng gạo' },
-      { id: 'D', text: 'prides itself on preserving its core cultural ideals', translation: 'tự hào về việc gìn giữ các lý tưởng văn hóa cốt lõi (chủ ngữ Viet Nam + V-main prides)' }
+      { id: 'D', text: 'prides itself on preserving its core cultural ideals', translation: 'tự hào về việc gìn giữ các lý tưởng văn hóa cốt lõi' }
     ],
     correctAnswer: 'D',
     explanation: '• Chủ ngữ "Viet Nam, as a nation," cần động từ chính "prides itself on...". Chọn D.',
@@ -659,10 +659,10 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_VOLUNTEER_LEAFLET_TRANS,
     questionText: 'Question 35. helping you connect with (35) _____ while making a real impact.',
     options: [
-      { id: 'A', text: 'other', translation: 'tính từ (cần danh từ đi sau)' },
+      { id: 'A', text: 'other', translation: 'tính từ' },
       { id: 'B', text: 'the others', translation: 'nhóm xác định' },
       { id: 'C', text: 'another', translation: 'số ít' },
-      { id: 'D', text: 'others', translation: 'những người khác nói chung (đại từ tân ngữ)' }
+      { id: 'D', text: 'others', translation: 'những người khác nói chung' }
     ],
     correctAnswer: 'D',
     explanation: '• Đứng sau động từ/giới từ "connect with" cần đại từ tân ngữ "others" (những người khác nói chung). Chọn D. others.',
@@ -679,7 +679,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'make out', translation: 'hiểu / nhận ra' },
       { id: 'B', text: 'turn out', translation: 'hóa ra' },
       { id: 'C', text: 'keep out', translation: 'ngăn cản' },
-      { id: 'D', text: 'reach out', translation: 'tiếp cận & hỗ trợ (reach out to people)' }
+      { id: 'D', text: 'reach out', translation: 'tiếp cận & hỗ trợ' }
     ],
     correctAnswer: 'D',
     explanation: '• Phrasal verb: "reach out to people in need" = chủ động tiếp cận và giúp đỡ những người khó khăn. Chọn D. reach out.',
@@ -694,7 +694,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 37. Be part of our (37) _____ to restore beauty to local parks and streets.',
     options: [
       { id: 'A', text: 'purpose', translation: 'lý do chung' },
-      { id: 'B', text: 'mission', translation: 'sứ mệnh / chiến dịch (be part of our mission)' },
+      { id: 'B', text: 'mission', translation: 'sứ mệnh / chiến dịch' },
       { id: 'C', text: 'excuse', translation: 'cái cớ' },
       { id: 'D', text: 'reason', translation: 'lý do' }
     ],
@@ -729,7 +729,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'Regardless of', translation: 'bất chấp' },
       { id: 'B', text: 'Instead of', translation: 'thay vì' },
-      { id: 'C', text: 'Owing to', translation: 'nhờ vào / do (owing to + N)' },
+      { id: 'C', text: 'Owing to', translation: 'nhờ vào / do' },
       { id: 'D', text: 'Except for', translation: 'ngoại trừ' }
     ],
     correctAnswer: 'C',
@@ -745,7 +745,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 40. Your presence can (40) _____ their spirits and bring them comfort',
     options: [
       { id: 'A', text: 'evaluate', translation: 'đánh giá' },
-      { id: 'B', text: 'elevate', translation: 'nâng cao / làm phấn chấn (elevate spirits)' },
+      { id: 'B', text: 'elevate', translation: 'nâng cao / làm phấn chấn' },
       { id: 'C', text: 'imitate', translation: 'bắt chước' },
       { id: 'D', text: 'regulate', translation: 'điều hòa' }
     ],

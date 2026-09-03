@@ -85,10 +85,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ENVIRONMENT_PROTECTION_TRANS,
     questionText: 'Question 1. Fill in blank (1):',
     options: [
-      { id: 'A', text: 'another', translation: 'một cái/người khác (dùng với N số ít)' },
-      { id: 'B', text: 'many', translation: 'nhiều (dùng với N số nhiều)' },
-      { id: 'C', text: 'every', translation: 'mỗi/mọi (dùng với N số ít nhấn mạnh cá nhân)' },
-      { id: 'D', text: 'all', translation: 'tất cả (dùng với N số nhiều/không đếm được)' }
+      { id: 'A', text: 'another', translation: 'một cái/người khác' },
+      { id: 'B', text: 'many', translation: 'nhiều' },
+      { id: 'C', text: 'every', translation: 'mỗi/mọi' },
+      { id: 'D', text: 'all', translation: 'tất cả' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: "every individual" nghĩa là mỗi cá nhân (every + danh từ số ít).\n• A. SAI: "another" mang nghĩa một cái khác, không hợp ngữ cảnh.\n• B, D. SAI: "many" và "all" đi với danh từ số nhiều.',
@@ -137,7 +137,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 4. Fill in blank (4):',
     options: [
       { id: 'A', text: 'on', translation: 'trên' },
-      { id: 'B', text: 'in', translation: 'trong (in use: đang được sử dụng)' },
+      { id: 'B', text: 'in', translation: 'trong' },
       { id: 'C', text: 'of', translation: 'của' },
       { id: 'D', text: 'at', translation: 'tại' }
     ],
@@ -172,8 +172,8 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'therefore', translation: 'do đó / vì vậy' },
       { id: 'B', text: 'however', translation: 'tuy nhiên' },
-      { id: 'C', text: 'because', translation: 'bởi vì (chỉ nguyên nhân)' },
-      { id: 'D', text: 'although', translation: 'mặc dù (chỉ nhượng bộ)' }
+      { id: 'C', text: 'because', translation: 'bởi vì' },
+      { id: 'D', text: 'although', translation: 'mặc dù' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: Liên từ "because" giải thích lý do nên tham gia các hoạt động này.',
@@ -206,8 +206,8 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUTH_VOLUNTEER_TRANS,
     questionText: 'Question 8. Fill in blank (8):',
     options: [
-      { id: 'A', text: 'number', translation: 'số lượng (dùng cho N đếm được)' },
-      { id: 'B', text: 'amount', translation: 'lượng (dùng cho N không đếm được)' },
+      { id: 'A', text: 'number', translation: 'số lượng' },
+      { id: 'B', text: 'amount', translation: 'lượng' },
       { id: 'C', text: 'majority', translation: 'đa số' },
       { id: 'D', text: 'handful', translation: 'một nắm / một ít' }
     ],
@@ -223,10 +223,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUTH_VOLUNTEER_TRANS,
     questionText: 'Question 9. Fill in blank (9):',
     options: [
-      { id: 'A', text: 'organizing', translation: 'tổ chức (V-ing)' },
-      { id: 'B', text: 'to organize', translation: 'để tổ chức (To-V)' },
-      { id: 'C', text: 'organized', translation: 'được tổ chức (V-ed)' },
-      { id: 'D', text: 'organize', translation: 'tổ chức (V-bare)' }
+      { id: 'A', text: 'organizing', translation: 'tổ chức' },
+      { id: 'B', text: 'to organize', translation: 'để tổ chức' },
+      { id: 'C', text: 'organized', translation: 'được tổ chức' },
+      { id: 'D', text: 'organize', translation: 'tổ chức' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Sau giới từ "such as" ta dùng danh động từ V-ing (organizing).',
@@ -240,10 +240,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUTH_VOLUNTEER_TRANS,
     questionText: 'Question 10. Fill in blank (10):',
     options: [
-      { id: 'A', text: 'other', translation: 'khác (đi với N số nhiều)' },
-      { id: 'B', text: 'the others', translation: 'những cái/người còn lại (đại từ)' },
+      { id: 'A', text: 'other', translation: 'khác' },
+      { id: 'B', text: 'the others', translation: 'những cái/người còn lại' },
       { id: 'C', text: 'the other', translation: 'cái/người còn lại xác định' },
-      { id: 'D', text: 'others', translation: 'những người/cái khác (đại từ)' }
+      { id: 'D', text: 'others', translation: 'những người/cái khác' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "other + N số nhiều" (other parks: các công viên khác).',
@@ -257,7 +257,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUTH_VOLUNTEER_TRANS,
     questionText: 'Question 11. Fill in blank (11):',
     options: [
-      { id: 'A', text: 'Whether', translation: 'Liệu rằng / Dù cho (chỉ sự lựa chọn)' },
+      { id: 'A', text: 'Whether', translation: 'Liệu rằng / Dù cho' },
       { id: 'B', text: 'Unless', translation: 'Trừ khi' },
       { id: 'C', text: 'Although', translation: 'Mặc dù' },
       { id: 'D', text: 'Because', translation: 'Bởi vì' }
@@ -276,7 +276,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'valuable', translation: 'quý giá / có giá trị' },
       { id: 'B', text: 'value', translation: 'giá trị' },
-      { id: 'C', text: 'valuably', translation: 'một cách có giá trị (Trạng từ)' },
+      { id: 'C', text: 'valuably', translation: 'một cách có giá trị' },
       { id: 'D', text: 'evaluate', translation: 'đánh giá' }
     ],
     correctAnswer: 'A',
@@ -439,7 +439,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 22. Fill in blank (22):',
     options: [
       { id: 'A', text: 'Unless strict security protocols are established to protect personal information', translation: 'Trừ khi các giao thức bảo mật nghiêm ngặt được thiết lập để bảo vệ thông tin' },
-      { id: 'B', text: 'If strict security protocols were established to protect personal information', translation: 'Nếu giao thức bảo mật được thiết lập (quá khứ)' },
+      { id: 'B', text: 'If strict security protocols were established to protect personal information', translation: 'Nếu giao thức bảo mật được thiết lập' },
       { id: 'C', text: 'In spite of strict security protocols established to protect personal information', translation: 'Mặc dù giao thức bảo mật được thiết lập' },
       { id: 'D', text: 'Providing that strict security protocols will be established', translation: 'Với điều kiện giao thức bảo mật sẽ được thiết lập' }
     ],

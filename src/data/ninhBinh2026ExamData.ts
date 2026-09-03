@@ -106,7 +106,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 1. Harvard University (1) _____ introduced the Theory of Multiple Intelligences.',
     options: [
       { id: 'A', text: 'which', translation: 'đại từ quan hệ chỉ vật' },
-      { id: 'B', text: 'who', translation: 'đại từ quan hệ chỉ người (Howard E. Gardner)' },
+      { id: 'B', text: 'who', translation: 'đại từ quan hệ chỉ người' },
       { id: 'C', text: 'whom', translation: 'tân ngữ chỉ người' },
       { id: 'D', text: 'whose', translation: 'sở hữu' }
     ],
@@ -122,7 +122,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_MULTIPLE_INTEL_TRANS,
     questionText: 'Question 2. proposed that human intelligence consists of a (2) _____ of distinct strengths',
     options: [
-      { id: 'A', text: 'variety', translation: 'sự đa dạng / nhiều loại khác nhau (a variety of)' },
+      { id: 'A', text: 'variety', translation: 'sự đa dạng / nhiều loại khác nhau' },
       { id: 'B', text: 'collection', translation: 'bộ sưu tập' },
       { id: 'C', text: 'mixture', translation: 'hỗn hợp' },
       { id: 'D', text: 'selection', translation: 'sự lựa chọn' }
@@ -141,7 +141,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'lasting', translation: 'kéo dài' },
       { id: 'B', text: 'endless', translation: 'vô tận' },
-      { id: 'C', text: 'lifelong', translation: 'suốt đời (lifelong learners)' },
+      { id: 'C', text: 'lifelong', translation: 'suốt đời' },
       { id: 'D', text: 'eternal', translation: 'vĩnh cửu' }
     ],
     correctAnswer: 'C',
@@ -173,7 +173,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_MULTIPLE_INTEL_TRANS,
     questionText: 'Question 5. including language, logic, music, visual skills, (5) _____ coordination',
     options: [
-      { id: 'A', text: 'physical', translation: 'thể chất / vận động (physical coordination)' },
+      { id: 'A', text: 'physical', translation: 'thể chất / vận động' },
       { id: 'B', text: 'physically', translation: 'trạng từ' },
       { id: 'C', text: 'physics', translation: 'môn vật lý' },
       { id: 'D', text: 'physician', translation: 'bác sĩ' }
@@ -190,7 +190,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_MULTIPLE_INTEL_TRANS,
     questionText: 'Question 6. please contact the organizing team (6) _____ miexhibition@gmail.com',
     options: [
-      { id: 'A', text: 'at', translation: 'tại (contact at email address)' },
+      { id: 'A', text: 'at', translation: 'tại' },
       { id: 'B', text: 'on', translation: 'trên' },
       { id: 'C', text: 'by', translation: 'bởi' },
       { id: 'D', text: 'in', translation: 'trong' }
@@ -210,7 +210,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'cultural character unique', translation: 'sai trật tự' },
       { id: 'B', text: 'unique character cultural', translation: 'sai trật tự' },
       { id: 'C', text: 'cultural unique character', translation: 'sai trật tự' },
-      { id: 'D', text: 'unique cultural character', translation: 'bản sắc văn hóa độc đáo (trật tự chuẩn Opinion + Origin + Noun)' }
+      { id: 'D', text: 'unique cultural character', translation: 'bản sắc văn hóa độc đáo' }
     ],
     correctAnswer: 'D',
     explanation: '• Trật tự tính từ–danh từ chuẩn: Opinion (unique) + Type/Origin (cultural) + Noun (character). Chọn D.',
@@ -224,7 +224,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_LOGO_CONTEST_TRANS,
     questionText: 'Question 8. All Vietnamese citizens, both within the country and abroad, are (8) _____ to participate',
     options: [
-      { id: 'A', text: 'eligible', translation: 'đủ điều kiện / đủ tư cách (eligible to V)' },
+      { id: 'A', text: 'eligible', translation: 'đủ điều kiện / đủ tư cách' },
       { id: 'B', text: 'edible', translation: 'có thể ăn được' },
       { id: 'C', text: 'legible', translation: 'dễ đọc' },
       { id: 'D', text: 'audible', translation: 'có thể nghe thấy' }
@@ -242,7 +242,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 9. natural scenery, or (9) _____ defining features of Ninh Binh.',
     options: [
       { id: 'A', text: 'another', translation: 'danh từ số ít' },
-      { id: 'B', text: 'other', translation: 'những đặc điểm khác (other + N số nhiều defining features)' },
+      { id: 'B', text: 'other', translation: 'những đặc điểm khác' },
       { id: 'C', text: 'the other', translation: 'cái còn lại trong 2' },
       { id: 'D', text: 'others', translation: 'đại từ' }
     ],
@@ -260,7 +260,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'make', translation: 'tạo' },
       { id: 'B', text: 'bring', translation: 'mang lại' },
-      { id: 'C', text: 'draw', translation: 'lấy / rút ra (draw inspiration from)' },
+      { id: 'C', text: 'draw', translation: 'lấy / rút ra' },
       { id: 'D', text: 'have', translation: 'có' }
     ],
     correctAnswer: 'C',
@@ -275,7 +275,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_LOGO_CONTEST_TRANS,
     questionText: 'Question 11. (11) _____, please note that all entries must remain authentic',
     options: [
-      { id: 'A', text: 'In addition', translation: 'Ngoài ra (bổ sung thông tin lưu ý)' },
+      { id: 'A', text: 'In addition', translation: 'Ngoài ra' },
       { id: 'B', text: 'Meanwhile', translation: 'trong khi đó' },
       { id: 'C', text: 'Otherwise', translation: 'nếu không thì' },
       { id: 'D', text: 'Nevertheless', translation: 'tuy nhiên' }
@@ -503,7 +503,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CULTURAL_CONTEXT_TRANS,
     questionText: 'Question 25. The word "They" in paragraph 3 refers to:',
     options: [
-      { id: 'A', text: 'low-context cultures', translation: 'các nền văn hóa ngữ cảnh thấp (low-context cultures)' },
+      { id: 'A', text: 'low-context cultures', translation: 'các nền văn hóa ngữ cảnh thấp' },
       { id: 'B', text: 'consistent speaking styles', translation: 'phong cách nói' },
       { id: 'C', text: 'outside factors', translation: 'yếu tố bên ngoài' },
       { id: 'D', text: 'detailed messages', translation: 'thông điệp chi tiết' }
@@ -571,7 +571,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CULTURAL_CONTEXT_TRANS,
     questionText: 'Question 29. In which paragraph does the writer mention the significance of context?',
     options: [
-      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1 (knowing how people rely on context is vital...)' },
+      { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }
@@ -589,7 +589,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 30. In which paragraph does the writer classify cultures into two main categories?',
     options: [
       { id: 'A', text: 'Paragraph 1', translation: 'Đoạn 1' },
-      { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2 (There are generally two types of cultures: high-context... And low-context...)' },
+      { id: 'B', text: 'Paragraph 2', translation: 'Đoạn 2' },
       { id: 'C', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'D', text: 'Paragraph 4', translation: 'Đoạn 4' }
     ],
@@ -691,9 +691,9 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 36. Which of the following is NOT a transferable skill, according to paragraph 3?',
     options: [
       { id: 'A', text: 'digital literacy', translation: 'năng lực số' },
-      { id: 'B', text: 'effective interaction', translation: 'giao tiếp hiệu quả (strong communication)' },
-      { id: 'C', text: 'critical thinking', translation: 'tư duy phân tích (analytical thinking)' },
-      { id: 'D', text: 'technical specialization', translation: 'chuyên môn kỹ thuật hẹp (không phải transferable skill)' }
+      { id: 'B', text: 'effective interaction', translation: 'giao tiếp hiệu quả' },
+      { id: 'C', text: 'critical thinking', translation: 'tư duy phân tích' },
+      { id: 'D', text: 'technical specialization', translation: 'chuyên môn kỹ thuật hẹp' }
     ],
     correctAnswer: 'D',
     explanation: '• Đoạn 3 nêu rõ những người dựa chủ yếu vào "technical specialization" sẽ khó thích nghi với vai trò mới, nên đây KHÔNG phải là transferable skill. Chọn D.',

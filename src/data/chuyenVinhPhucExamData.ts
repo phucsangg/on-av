@@ -164,7 +164,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     questionText: 'Question 7. Fill in blank (7):',
     options: [
       { id: 'A', text: 'at', translation: 'tại' },
-      { id: 'B', text: 'on', translation: 'trên / về (decide on something: quyết định chọn)' },
+      { id: 'B', text: 'on', translation: 'trên / về' },
       { id: 'C', text: 'of', translation: 'của' },
       { id: 'D', text: 'in', translation: 'trong' }
     ],
@@ -180,10 +180,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 8. Fill in blank (8):',
     options: [
-      { id: 'A', text: 'every', translation: 'mỗi (dùng cho N số ít)' },
-      { id: 'B', text: 'much', translation: 'nhiều (chậm trễ nhiều - ngược ý bài)' },
-      { id: 'C', text: 'many', translation: 'nhiều (dùng cho N đếm được)' },
-      { id: 'D', text: 'little', translation: 'ít / hầu như không (with little delay: với độ trễ rất ít)' }
+      { id: 'A', text: 'every', translation: 'mỗi' },
+      { id: 'B', text: 'much', translation: 'nhiều' },
+      { id: 'C', text: 'many', translation: 'nhiều' },
+      { id: 'D', text: 'little', translation: 'ít / hầu như không' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "little + N không đếm được" (delay) nghĩa là với rất ít sự chậm trễ.',
@@ -197,7 +197,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: `ĐIỀU CHỈNH GIÁ XĂNG DẦU TRONG NƯỚC\nGiá xăng dầu trong nước vừa được điều hành theo diễn biến thị trường thế giới. Trong kỳ điều hành này, giữa những biến động giá nhiên liệu toàn cầu, Liên Bộ Công Thương - Tài chính đã quyết định phương án quản lý giá nhằm đảm bảo giá bán lẻ bám sát thị trường quốc tế với độ trễ rất ít. Quyết định cũng duy trì mức chênh lệch giá nhằm khuyến khích sử dụng nhiên liệu sinh học. Tính đến nay, giá xăng dầu trong nước đã qua tổng cộng 11 lần điều chỉnh.`,
     questionText: 'Question 9. Fill in blank (9):',
     options: [
-      { id: 'A', text: 'encourage', translation: 'khuyến khích (encourage the use of)' },
+      { id: 'A', text: 'encourage', translation: 'khuyến khích' },
       { id: 'B', text: 'delay', translation: 'trì hoãn' },
       { id: 'C', text: 'prevent', translation: 'ngăn chặn' },
       { id: 'D', text: 'produce', translation: 'sản xuất' }
@@ -215,7 +215,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     questionText: 'Question 10. Fill in blank (10):',
     options: [
       { id: 'A', text: 'complete', translation: 'hoàn chỉnh' },
-      { id: 'B', text: 'total', translation: 'tổng số (a total of 11 adjustments)' },
+      { id: 'B', text: 'total', translation: 'tổng số' },
       { id: 'C', text: 'full', translation: 'đầy đủ' },
       { id: 'D', text: 'whole', translation: 'toàn bộ' }
     ],
@@ -232,7 +232,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     questionText: 'Question 11. Fill in blank (11):',
     options: [
       { id: 'A', text: 'however', translation: 'tuy nhiên' },
-      { id: 'B', text: 'while', translation: 'trong khi (đối chiếu 2 vế diễn ra song song)' },
+      { id: 'B', text: 'while', translation: 'trong khi' },
       { id: 'C', text: 'so', translation: 'vì vậy' },
       { id: 'D', text: 'although', translation: 'mặc dù' }
     ],
@@ -647,10 +647,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HEINEKEN_TET_TRANS,
     questionText: 'Question 35. Fill in blank (35):',
     options: [
-      { id: 'A', text: 'Held', translation: 'Được tổ chức (V-ed rút gọn bị động)' },
-      { id: 'B', text: 'hold', translation: 'tổ chức (V-bare)' },
-      { id: 'C', text: 'to hold', translation: 'để tổ chức (To-V)' },
-      { id: 'D', text: 'holding', translation: 'tổ chức (V-ing)' }
+      { id: 'A', text: 'Held', translation: 'Được tổ chức' },
+      { id: 'B', text: 'hold', translation: 'tổ chức' },
+      { id: 'C', text: 'to hold', translation: 'để tổ chức' },
+      { id: 'D', text: 'holding', translation: 'tổ chức' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Rút gọn mệnh đề quan hệ ở dạng bị động đứng đầu câu: "Held on January 30th...".',
@@ -681,7 +681,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HEINEKEN_TET_TRANS,
     questionText: 'Question 37. Fill in blank (37):',
     options: [
-      { id: 'A', text: 'thousands', translation: 'hàng nghìn (thousands of people)' },
+      { id: 'A', text: 'thousands', translation: 'hàng nghìn' },
       { id: 'B', text: 'variety', translation: 'sự đa dạng' },
       { id: 'C', text: 'limit', translation: 'giới hạn' },
       { id: 'D', text: 'level', translation: 'mức độ' }
@@ -715,7 +715,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HEINEKEN_TET_TRANS,
     questionText: 'Question 39. Fill in blank (39):',
     options: [
-      { id: 'A', text: 'carried out', translation: 'được thực hiện / tiến hành (carried out by)' },
+      { id: 'A', text: 'carried out', translation: 'được thực hiện / tiến hành' },
       { id: 'B', text: 'brought out', translation: 'được đưa ra' },
       { id: 'C', text: 'taken out', translation: 'được mang ra' },
       { id: 'D', text: 'worked out', translation: 'được giải quyết' }
@@ -734,8 +734,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'that contribute', translation: 'cái mà đóng góp' },
       { id: 'B', text: 'contributed', translation: 'đã đóng góp' },
-      { id: 'C', text: 'contribute', translation: 'đóng góp (V-bare)' },
-      { id: 'D', text: 'contributing', translation: 'đóng góp (V-ing rút gọn chủ động)' }
+      { id: 'C', text: 'contribute', translation: 'đóng góp' },
+      { id: 'D', text: 'contributing', translation: 'đóng góp' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Rút gọn mệnh đề quan hệ chủ động dạng V-ing đứng sau dấu phẩy: "..., contributing their time and effort".',

@@ -149,7 +149,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'Therefore', translation: 'Do đó' },
       { id: 'B', text: 'Otherwise', translation: 'Nếu không thì' },
       { id: 'C', text: 'Moreover', translation: 'Hơn nữa' },
-      { id: 'D', text: 'However', translation: 'Tuy nhiên (chỉ sự đối lập)' }
+      { id: 'D', text: 'However', translation: 'Tuy nhiên' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "However" tạo sự đối lập giữa ý "chăm sóc sức khỏe tinh thần là thiết yếu" nhưng "nhiều người lại bỏ qua".',
@@ -164,7 +164,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 7. Fill in blank (7):',
     options: [
       { id: 'A', text: 'intensity', translation: 'cường độ' },
-      { id: 'B', text: 'stability', translation: 'sự ổn định (emotional stability)' },
+      { id: 'B', text: 'stability', translation: 'sự ổn định' },
       { id: 'C', text: 'consistency', translation: 'sự nhất quán' },
       { id: 'D', text: 'regulation', translation: 'sự điều tiết' }
     ],
@@ -182,7 +182,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'sentiment', translation: 'tình cảm / quan điểm cảm tính' },
       { id: 'B', text: 'reaction', translation: 'phản ứng' },
-      { id: 'C', text: 'outlook', translation: 'cái nhìn / quan điểm (a positive outlook on life)' },
+      { id: 'C', text: 'outlook', translation: 'cái nhìn / quan điểm' },
       { id: 'D', text: 'insight', translation: 'sự thấu hiểu sâu sắc' }
     ],
     correctAnswer: 'C',
@@ -198,7 +198,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 9. Fill in blank (9):',
     options: [
       { id: 'A', text: 'restrictions', translation: 'sự hạn chế ép buộc' },
-      { id: 'B', text: 'boundaries', translation: 'ranh giới (set boundaries with social media)' },
+      { id: 'B', text: 'boundaries', translation: 'ranh giới' },
       { id: 'C', text: 'borders', translation: 'biên giới địa lý' },
       { id: 'D', text: 'edges', translation: 'mép / cạnh vật lý' }
     ],
@@ -231,7 +231,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_MENTAL_HEALTH_DN_TRANS,
     questionText: 'Question 11. Fill in blank (11):',
     options: [
-      { id: 'A', text: 'for', translation: 'for (take something for granted)' },
+      { id: 'A', text: 'for', translation: 'for' },
       { id: 'B', text: 'on', translation: 'on' },
       { id: 'C', text: 'to', translation: 'to' },
       { id: 'D', text: 'into', translation: 'into' }
@@ -372,7 +372,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 19. Which of the following is NOT mentioned as an expression reflecting social or work changes?',
     options: [
       { id: 'A', text: 'delulu', translation: 'delulu' },
-      { id: 'B', text: 'soothing lullaby', translation: 'bài hát ru êm dịu (chỉ là ẩn dụ)' },
+      { id: 'B', text: 'soothing lullaby', translation: 'bài hát ru êm dịu' },
       { id: 'C', text: 'broligarchy', translation: 'broligarchy' },
       { id: 'D', text: 'mouse jiggler', translation: 'mouse jiggler' }
     ],
@@ -666,7 +666,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'at', translation: 'at' },
       { id: 'B', text: 'to', translation: 'to' },
-      { id: 'C', text: 'on', translation: 'on (decide on something)' },
+      { id: 'C', text: 'on', translation: 'on' },
       { id: 'D', text: 'in', translation: 'in' }
     ],
     correctAnswer: 'C',
@@ -681,7 +681,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_FUEL_PRICE_DN_TRANS,
     questionText: 'Question 37. Fill in blank (37):',
     options: [
-      { id: 'A', text: 'little', translation: 'rất ít (with little delay)' },
+      { id: 'A', text: 'little', translation: 'rất ít' },
       { id: 'B', text: 'few', translation: 'ít' },
       { id: 'C', text: 'a little', translation: 'một chút' },
       { id: 'D', text: 'a few', translation: 'một vài' }
@@ -716,7 +716,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 39. Fill in blank (39):',
     options: [
       { id: 'A', text: 'complete', translation: 'hoàn chỉnh' },
-      { id: 'B', text: 'total', translation: 'tổng cộng (a total of 11 adjustments)' },
+      { id: 'B', text: 'total', translation: 'tổng cộng' },
       { id: 'C', text: 'full', translation: 'đầy đủ' },
       { id: 'D', text: 'whole', translation: 'toàn bộ' }
     ],
@@ -735,7 +735,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'however', translation: 'tuy nhiên' },
       { id: 'B', text: 'although', translation: 'mặc dù' },
       { id: 'C', text: 'so', translation: 'vì vậy' },
-      { id: 'D', text: 'while', translation: 'trong khi đó (đối chiếu song song)' }
+      { id: 'D', text: 'while', translation: 'trong khi đó' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Liên từ "while" dùng để đối chiếu hai nhóm số liệu diễn ra song song.',

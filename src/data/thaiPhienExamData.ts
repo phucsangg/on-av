@@ -550,10 +550,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_AIR_CLEANING_TRANS,
     questionText: 'Question 29. Fill in blank (29):',
     options: [
-      { id: 'A', text: 'dedicate', translation: 'dành riêng (V-bare)' },
-      { id: 'B', text: 'dedicated', translation: 'được dành riêng (V-ed rút gọn bị động)' },
-      { id: 'C', text: 'to dedicate', translation: 'để dành riêng (To-V)' },
-      { id: 'D', text: 'dedicating', translation: 'dành riêng (V-ing)' }
+      { id: 'A', text: 'dedicate', translation: 'dành riêng' },
+      { id: 'B', text: 'dedicated', translation: 'được dành riêng' },
+      { id: 'C', text: 'to dedicate', translation: 'để dành riêng' },
+      { id: 'D', text: 'dedicating', translation: 'dành riêng' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Rút gọn mệnh đề quan hệ dạng bị động: "innovations (which are) dedicated to air cleaning...".',
@@ -569,8 +569,8 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'expanding', translation: 'mở rộng diện tích' },
       { id: 'B', text: 'exceeding', translation: 'vượt quá số lượng' },
-      { id: 'C', text: 'extending', translation: 'kéo dài (extending lifespan: kéo dài tuổi thọ)' },
-      { id: 'D', text: 'exserting', translation: 'nhô ra (không hợp ngữ cảnh)' }
+      { id: 'C', text: 'extending', translation: 'kéo dài' },
+      { id: 'D', text: 'exserting', translation: 'nhô ra' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: Collocation "extending the lifespan" nghĩa là kéo dài tuổi thọ thiết bị.',
@@ -587,7 +587,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'naturalist', translation: 'nhà tự nhiên học' },
       { id: 'B', text: 'nature', translation: 'thiên nhiên' },
       { id: 'C', text: 'natural', translation: 'tính từ' },
-      { id: 'D', text: 'naturally', translation: 'một cách tự nhiên (Trạng từ bổ nghĩa cho V-ing cleaning)' }
+      { id: 'D', text: 'naturally', translation: 'một cách tự nhiên' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Trạng từ "naturally" bổ nghĩa cho danh động từ "cleaning".',
@@ -601,9 +601,9 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_AIR_CLEANING_TRANS,
     questionText: 'Question 32. Fill in blank (32):',
     options: [
-      { id: 'A', text: 'multiple', translation: 'nhiều (multiple devices: nhiều thiết bị)' },
-      { id: 'B', text: 'considerable', translation: 'đáng kể (dùng cho lượng không đếm được)' },
-      { id: 'C', text: 'plentiful', translation: 'dồi dào (dùng cho tài nguyên)' },
+      { id: 'A', text: 'multiple', translation: 'nhiều' },
+      { id: 'B', text: 'considerable', translation: 'đáng kể' },
+      { id: 'C', text: 'plentiful', translation: 'dồi dào' },
       { id: 'D', text: 'abundant', translation: 'phong phú / dư dả' }
     ],
     correctAnswer: 'A',
@@ -635,10 +635,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_AIR_CLEANING_TRANS,
     questionText: 'Question 34. Fill in blank (34):',
     options: [
-      { id: 'A', text: 'giving off', translation: 'tỏa ra (mùi/nhiệt)' },
+      { id: 'A', text: 'giving off', translation: 'tỏa ra' },
       { id: 'B', text: 'breaking down', translation: 'hỏng hóc / phân hủy' },
       { id: 'C', text: 'locking in', translation: 'khóa lại bên trong' },
-      { id: 'D', text: 'drawing out', translation: 'rút ra / hút ra (hơi ẩm)' }
+      { id: 'D', text: 'drawing out', translation: 'rút ra / hút ra' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "drawing out moisture" nghĩa là rút/hút hơi ẩm ra khỏi không khí.',
@@ -656,8 +656,8 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'quantity', translation: 'số lượng đo lường' },
       { id: 'B', text: 'level', translation: 'cấp độ' },
-      { id: 'C', text: 'amount', translation: 'lượng (dùng cho N không đếm được)' },
-      { id: 'D', text: 'variety', translation: 'sự đa dạng (a wide variety of)' }
+      { id: 'C', text: 'amount', translation: 'lượng' },
+      { id: 'D', text: 'variety', translation: 'sự đa dạng' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cụm từ cố định "a wide variety of" nhấn mạnh sự đa dạng về khóa học và giáo viên.',
@@ -671,10 +671,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_OUTSCHOOL_TRANS,
     questionText: 'Question 36. Fill in blank (36):',
     options: [
-      { id: 'A', text: 'are teaching', translation: 'đang dạy (Hiện tại tiếp diễn)' },
-      { id: 'B', text: 'have taught', translation: 'đã dạy (Hiện tại hoàn thành đi với Since 2015)' },
-      { id: 'C', text: 'taught', translation: 'đã dạy (Quá khứ đơn)' },
-      { id: 'D', text: 'teach', translation: 'dạy (Hiện tại đơn)' }
+      { id: 'A', text: 'are teaching', translation: 'đang dạy' },
+      { id: 'B', text: 'have taught', translation: 'đã dạy' },
+      { id: 'C', text: 'taught', translation: 'đã dạy' },
+      { id: 'D', text: 'teach', translation: 'dạy' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Với mốc thời gian "Since 2015", ta dùng thì Hiện tại hoàn thành (have taught).',
@@ -691,7 +691,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'moreover', translation: 'hơn nữa' },
       { id: 'B', text: 'therefore', translation: 'do đó' },
       { id: 'C', text: 'likewise', translation: 'tương tự như vậy' },
-      { id: 'D', text: 'however', translation: 'tuy nhiên (chỉ sự đối lập)' }
+      { id: 'D', text: 'however', translation: 'tuy nhiên' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "however" thể hiện sự đối lập: không yêu cầu bằng cấp NHƯNG vẫn có các điều kiện cần đáp ứng.',
@@ -705,7 +705,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_OUTSCHOOL_TRANS,
     questionText: 'Question 38. Fill in blank (38):',
     options: [
-      { id: 'A', text: 'fulfill', translation: 'đáp ứng / hoàn thành (fulfill requirements)' },
+      { id: 'A', text: 'fulfill', translation: 'đáp ứng / hoàn thành' },
       { id: 'B', text: 'carry', translation: 'mang / vác' },
       { id: 'C', text: 'follow', translation: 'làm theo' },
       { id: 'D', text: 'apply', translation: 'nộp đơn / áp dụng' }
@@ -725,7 +725,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'on', translation: 'trên' },
       { id: 'B', text: 'of', translation: 'của' },
       { id: 'C', text: 'in', translation: 'trong' },
-      { id: 'D', text: 'to', translation: 'với (link A to B: kết nối A với B)' }
+      { id: 'D', text: 'to', translation: 'với' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cấu trúc "link A to B" nghĩa là kết nối đối tượng A với đối tượng B.',
@@ -739,7 +739,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_OUTSCHOOL_TRANS,
     questionText: 'Question 40. Fill in blank (40):',
     options: [
-      { id: 'A', text: 'autonomy', translation: 'quyền tự chủ (autonomy to pick paths)' },
+      { id: 'A', text: 'autonomy', translation: 'quyền tự chủ' },
       { id: 'B', text: 'democracy', translation: 'nền dân chủ' },
       { id: 'C', text: 'ability', translation: 'khả năng' },
       { id: 'D', text: 'identity', translation: 'danh tính / bản sắc' }

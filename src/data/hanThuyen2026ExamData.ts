@@ -73,7 +73,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 1. Tired of waiting (1) _____ your photos to develop?',
     options: [
       { id: 'A', text: 'by', translation: 'bên cạnh' },
-      { id: 'B', text: 'for', translation: 'cho / chờ đợi ai/cái gì (wait for)' },
+      { id: 'B', text: 'for', translation: 'cho / chờ đợi ai/cái gì' },
       { id: 'C', text: 'on', translation: 'trên / phục vụ' },
       { id: 'D', text: 'at', translation: 'tại địa điểm' }
     ],
@@ -106,7 +106,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_INSTASNAP_TRANS,
     questionText: 'Question 3. revolutionary new camera that lets you (3) _____ your memories in an instant!',
     options: [
-      { id: 'A', text: 'capture and print', translation: 'ghi lại khoảnh khắc và in (capture and print)' },
+      { id: 'A', text: 'capture and print', translation: 'ghi lại khoảnh khắc và in' },
       { id: 'B', text: 'grab and draw', translation: 'chộp lấy và vẽ' },
       { id: 'C', text: 'take and write', translation: 'chụp và viết' },
       { id: 'D', text: 'seize and print', translation: 'chiếm đoạt và in' }
@@ -125,7 +125,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'enthusiasts of photography all levels', translation: 'sai trật tự' },
       { id: 'B', text: 'all levels of enthusiasts photography', translation: 'sai trật tự' },
-      { id: 'C', text: 'photography enthusiasts of all levels', translation: 'những người đam mê nhiếp ảnh ở mọi trình độ (trật tự chuẩn)' },
+      { id: 'C', text: 'photography enthusiasts of all levels', translation: 'những người đam mê nhiếp ảnh ở mọi trình độ' },
       { id: 'D', text: 'photography levels of all enthusiasts', translation: 'sai trật tự' }
     ],
     correctAnswer: 'C',
@@ -140,7 +140,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_INSTASNAP_TRANS,
     questionText: 'Question 5. you\'ll love (5) _____ hold your photos in your hand',
     options: [
-      { id: 'A', text: 'being able to', translation: 'cảm giác có thể (love + being able to + V)' },
+      { id: 'A', text: 'being able to', translation: 'cảm giác có thể' },
       { id: 'B', text: 'to be able', translation: 'thiếu to' },
       { id: 'C', text: 'to able', translation: 'thiếu be' },
       { id: 'D', text: 'be able to', translation: 'nguyên mẫu' }
@@ -174,7 +174,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_MUSIC_FESTIVALS_TRANS,
     questionText: 'Question 7. choose the perfect festival for your (7) _____',
     options: [
-      { id: 'A', text: 'taste', translation: 'gu / sở thích cá nhân (for your taste)' },
+      { id: 'A', text: 'taste', translation: 'gu / sở thích cá nhân' },
       { id: 'B', text: 'hearing', translation: 'thính giác' },
       { id: 'C', text: 'sound', translation: 'âm thanh' },
       { id: 'D', text: 'rhythm', translation: 'nhịp điệu' }
@@ -193,7 +193,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'each', translation: 'mỗi cá thể rời rạc' },
       { id: 'B', text: 'all', translation: 'đi với danh từ số nhiều' },
-      { id: 'C', text: 'every', translation: 'mọi (every + danh từ số ít aspect)' },
+      { id: 'C', text: 'every', translation: 'mọi' },
       { id: 'D', text: 'many', translation: 'đi với danh từ số nhiều' }
     ],
     correctAnswer: 'C',
@@ -210,7 +210,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'their', translation: 'của họ' },
       { id: 'B', text: 'our', translation: 'của chúng tôi' },
-      { id: 'C', text: 'your', translation: 'của bạn (ngôi thứ 2 trực tiếp)' },
+      { id: 'C', text: 'your', translation: 'của bạn' },
       { id: 'D', text: 'her', translation: 'của cô ấy' }
     ],
     correctAnswer: 'C',
@@ -227,7 +227,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'carry on', translation: 'tiếp tục' },
       { id: 'B', text: 'stand by', translation: 'ủng hộ / chờ đợi' },
-      { id: 'C', text: 'miss out', translation: 'bỏ lỡ (miss out on)' },
+      { id: 'C', text: 'miss out', translation: 'bỏ lỡ' },
       { id: 'D', text: 'put up', translation: 'dựng lên / chịu đựng' }
     ],
     correctAnswer: 'C',
@@ -245,7 +245,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'prevent', translation: 'ngăn chặn' },
       { id: 'B', text: 'pretend', translation: 'giả vờ' },
       { id: 'C', text: 'produce', translation: 'sản xuất' },
-      { id: 'D', text: 'prepare', translation: 'chuẩn bị (prepare for)' }
+      { id: 'D', text: 'prepare', translation: 'chuẩn bị' }
     ],
     correctAnswer: 'D',
     explanation: '• Cấu trúc "prepare for something" = chuẩn bị cho điều gì. Chọn D. prepare.',
@@ -261,7 +261,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'within the next week', translation: 'trong tuần tới' },
       { id: 'B', text: 'by the other means', translation: 'bởi phương tiện khác' },
-      { id: 'C', text: 'at all major bookstores', translation: 'tại tất cả các nhà sách lớn (cấu trúc quảng cáo chuẩn)' },
+      { id: 'C', text: 'at all major bookstores', translation: 'tại tất cả các nhà sách lớn' },
       { id: 'D', text: 'under the same conditions', translation: 'dưới cùng điều kiện' }
     ],
     correctAnswer: 'C',
@@ -368,7 +368,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_FAMILY_BUSINESS_TRANS,
     questionText: 'Question 19. In which paragraph of the passage does the writer emphasize the importance of adapting to external changes for the survival of family businesses?',
     options: [
-      { id: 'A', text: 'Paragraph 4', translation: 'Đoạn 4 (Successfully adapting to change while honoring their heritage...)' },
+      { id: 'A', text: 'Paragraph 4', translation: 'Đoạn 4' },
       { id: 'B', text: 'Paragraph 3', translation: 'Đoạn 3' },
       { id: 'C', text: 'Paragraph 1', translation: 'Đoạn 1' },
       { id: 'D', text: 'Paragraph 2', translation: 'Đoạn 2' }
@@ -405,7 +405,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'family disagreements', translation: 'bất đồng gia đình' },
       { id: 'B', text: 'a strong work ethic', translation: 'tinh thần làm việc' },
       { id: 'C', text: 'shared family values', translation: 'giá trị gia đình' },
-      { id: 'D', text: 'the overlap of family and business', translation: 'sự giao thoa giữa gia đình và kinh doanh (overlap between family and business)' }
+      { id: 'D', text: 'the overlap of family and business', translation: 'sự giao thoa giữa gia đình và kinh doanh' }
     ],
     correctAnswer: 'D',
     explanation: '• Đoạn 2 ghi: "...the overlap between family and business spheres. This intertwining can be both...". "This" chỉ sự giao thoa này. Chọn D.',
@@ -642,7 +642,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'brought about', translation: 'gây ra / làm nảy sinh' },
       { id: 'B', text: 'initiated', translation: 'khởi xướng chủ động' },
-      { id: 'C', text: 'spawned', translation: 'đẻ ra (sắc thái sinh học)' },
+      { id: 'C', text: 'spawned', translation: 'đẻ ra' },
       { id: 'D', text: 'resulted in', translation: 'dẫn đến kết quả cuối' }
     ],
     correctAnswer: 'A',
@@ -657,10 +657,10 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_LANGUAGE_EVOLUTION_TRANS,
     questionText: 'Question 36. According to paragraph 2, which of the following contributed to the acceleration of language evolution?',
     options: [
-      { id: 'A', text: 'settled agriculture', translation: 'nông nghiệp và cộng đồng định cư (settled agriculture)' },
-      { id: 'B', text: 'symbolic artwork', translation: 'nghệ thuật biểu tượng (bằng chứng)' },
-      { id: 'C', text: 'advanced tools', translation: 'công cụ (bằng chứng)' },
-      { id: 'D', text: 'complex gestures', translation: 'cử chỉ (ngôn ngữ sơ khai)' }
+      { id: 'A', text: 'settled agriculture', translation: 'nông nghiệp và cộng đồng định cư' },
+      { id: 'B', text: 'symbolic artwork', translation: 'nghệ thuật biểu tượng' },
+      { id: 'C', text: 'advanced tools', translation: 'công cụ' },
+      { id: 'D', text: 'complex gestures', translation: 'cử chỉ' }
     ],
     correctAnswer: 'A',
     explanation: '• Đoạn 2 nêu rõ: "The development of agriculture and settled communities further accelerated the evolution of language...". Chọn A.',
@@ -693,7 +693,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'complex interaction', translation: 'tương tác phức tạp' },
       { id: 'B', text: 'abstract representation', translation: 'biểu đạt trừu tượng' },
-      { id: 'C', text: 'rudimentary early language', translation: 'ngôn ngữ sơ khai thô sơ (These early forms of language...)' },
+      { id: 'C', text: 'rudimentary early language', translation: 'ngôn ngữ sơ khai thô sơ' },
       { id: 'D', text: 'symbolic communication', translation: 'giao tiếp biểu tượng' }
     ],
     correctAnswer: 'C',

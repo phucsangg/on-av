@@ -80,7 +80,7 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'practice', translation: 'sự thực hành' },
       { id: 'B', text: 'practical', translation: 'thiết thực / thực tế' },
-      { id: 'C', text: 'practically', translation: 'hầu như / thực tế là (trạng từ)' },
+      { id: 'C', text: 'practically', translation: 'hầu như / thực tế là' },
       { id: 'D', text: 'practicality', translation: 'tính thực tiễn' }
     ],
     correctAnswer: 'B',
@@ -114,7 +114,7 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'preparing', translation: 'đang chuẩn bị' },
       { id: 'B', text: 'prepared', translation: 'được chuẩn bị' },
-      { id: 'C', text: 'prepare', translation: 'chuẩn bị (nguyên thể)' },
+      { id: 'C', text: 'prepare', translation: 'chuẩn bị' },
       { id: 'D', text: 'to prepare', translation: 'để chuẩn bị' }
     ],
     correctAnswer: 'B',
@@ -131,8 +131,8 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'a wide variety of', translation: 'nhiều loại / sự đa dạng của' },
       { id: 'B', text: 'a vast deal of', translation: 'lượng lớn' },
-      { id: 'C', text: 'a huge amount of', translation: 'một lượng khổng lồ (cho không đếm được)' },
-      { id: 'D', text: 'a large number of', translation: 'số lượng lớn (cho danh từ số nhiều)' }
+      { id: 'C', text: 'a huge amount of', translation: 'một lượng khổng lồ' },
+      { id: 'D', text: 'a large number of', translation: 'số lượng lớn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. a wide variety of - ĐÚNG: Đi với danh từ chỉ các loại lời khuyên khác nhau.\n• B. a vast deal of - Sai ngữ pháp (chỉ dùng a great deal of).\n• C. a huge amount of - Dùng cho vật chất không đếm được lượng lớn.\n• D. a large number of - Đi với danh từ đếm được số nhiều.',
@@ -216,8 +216,8 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_SMART_LEARNING_TRANS,
     questionText: 'Question 9. Fill in blank (9):',
     options: [
-      { id: 'A', text: 'few', translation: 'rất ít (dùng cho danh từ đếm được)' },
-      { id: 'B', text: 'little', translation: 'rất ít (dùng cho danh từ không đếm được)' },
+      { id: 'A', text: 'few', translation: 'rất ít' },
+      { id: 'B', text: 'little', translation: 'rất ít' },
       { id: 'C', text: 'another', translation: 'một cái khác' },
       { id: 'D', text: 'other', translation: 'những cái khác' }
     ],
@@ -411,7 +411,7 @@ e. Ultimately, maintaining a balance between embracing foreign cultures and pres
     questionText: 'Question 19. Fill in blank (19):',
     options: [
       { id: 'A', text: 'emits harmful pollutants into the air', translation: 'thải các chất ô nhiễm có hại vào không khí' },
-      { id: 'B', text: 'emitting harmful pollutants', translation: 'đang thải các chất ô nhiễm có hại (V-ing)' },
+      { id: 'B', text: 'emitting harmful pollutants', translation: 'đang thải các chất ô nhiễm có hại' },
       { id: 'C', text: 'with harmful pollutants in the air', translation: 'với các chất ô nhiễm có hại trong không khí' },
       { id: 'D', text: 'that emits air pollutants', translation: 'cái mà thải ra các chất ô nhiễm không khí' }
     ],
@@ -429,7 +429,7 @@ e. Ultimately, maintaining a balance between embracing foreign cultures and pres
     options: [
       { id: 'A', text: 'because the Earth gets hotter', translation: 'bởi vì Trái Đất trở nên nóng hơn' },
       { id: 'B', text: 'so the Earth is getting warmer and warmer', translation: 'vì vậy Trái Đất ngày càng nóng hơn' },
-      { id: 'C', text: 'the warmer the earth gets', translation: 'Trái Đất càng trở nên nóng hơn (cấu trúc The... the...)' },
+      { id: 'C', text: 'the warmer the earth gets', translation: 'Trái Đất càng trở nên nóng hơn' },
       { id: 'D', text: 'although the daily temperature rises', translation: 'mặc dù nhiệt độ hàng ngày tăng lên' }
     ],
     correctAnswer: 'C',

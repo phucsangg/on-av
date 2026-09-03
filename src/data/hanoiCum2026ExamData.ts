@@ -215,7 +215,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 12. Having spent months conducting fieldwork in the mountains, _____ invaluable geological samples.',
     options: [
-      { id: 'A', text: 'the research team collected', translation: 'chủ thể là người (the research team)' },
+      { id: 'A', text: 'the research team collected', translation: 'chủ thể là người' },
       { id: 'B', text: 'invaluable samples were collected', translation: 'sai chủ thể bị động' },
       { id: 'C', text: 'collecting was finished', translation: 'việc thu thập đã hoàn tất' },
       { id: 'D', text: 'the mountains provided', translation: 'ngược ngữ cảnh' }
@@ -266,7 +266,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'high-profile individuals', translation: 'cá nhân nổi tiếng' },
       { id: 'B', text: 'carbon emissions', translation: 'lượng khí thải carbon' },
-      { id: 'C', text: 'environmental initiatives', translation: 'các sáng kiến môi trường (tài trợ trồng rừng/năng lượng)' },
+      { id: 'C', text: 'environmental initiatives', translation: 'các sáng kiến môi trường' },
       { id: 'D', text: 'renewable energy projects', translation: 'dự án năng lượng tái tạo' }
     ],
     correctAnswer: 'C',
@@ -420,7 +420,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'or', translation: 'hoặc' },
       { id: 'B', text: 'as', translation: 'bởi vì' },
       { id: 'C', text: 'so', translation: 'vì vậy' },
-      { id: 'D', text: 'but', translation: 'nhưng (tương phản)' }
+      { id: 'D', text: 'but', translation: 'nhưng' }
     ],
     correctAnswer: 'D',
     explanation: '• Tạo sự tương phản giữa việc mới bắt đầu công việc và cảm giác quá tải -> dùng "but". Chọn D. but.',
@@ -437,7 +437,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'reject', translation: 'từ chối' },
       { id: 'B', text: 'cancel', translation: 'hủy bỏ' },
       { id: 'C', text: 'abandon', translation: 'từ bỏ' },
-      { id: 'D', text: 'postpone', translation: 'trì hoãn (postpone until later)' }
+      { id: 'D', text: 'postpone', translation: 'trì hoãn' }
     ],
     correctAnswer: 'D',
     explanation: '• Cụm "postpone until later" (trì hoãn cho đến sau này) mô tả bản chất nhiệm vụ "con ếch". Chọn D. postpone.',
@@ -452,7 +452,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 26. (26) ... immediate action is essential for long-term success.',
     options: [
       { id: 'A', text: 'Making', translation: 'making action' },
-      { id: 'B', text: 'Taking', translation: 'taking action (hành động - collocation chuẩn)' },
+      { id: 'B', text: 'Taking', translation: 'taking action' },
       { id: 'C', text: 'Doing', translation: 'doing action' },
       { id: 'D', text: 'Getting', translation: 'getting action' }
     ],
@@ -471,7 +471,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'a little', translation: 'một chút' },
       { id: 'B', text: 'few', translation: 'rất ít' },
       { id: 'C', text: 'a few', translation: 'một vài' },
-      { id: 'D', text: 'little', translation: 'rất ít (nghĩa tiêu cực)' }
+      { id: 'D', text: 'little', translation: 'rất ít' }
     ],
     correctAnswer: 'A',
     explanation: '• "time" là danh từ không đếm được. Khuyên dành "một chút thời gian" (nghĩa tích cực) -> dùng "a little time". Chọn A. a little.',
@@ -637,9 +637,9 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 38. The university offers a wide range of scholarships, _____ aim to support talented students from low-income families.',
     options: [
-      { id: 'A', text: 'all of which', translation: 'tất cả trong số đó (bổ nghĩa cho danh từ scholarships)' },
+      { id: 'A', text: 'all of which', translation: 'tất cả trong số đó' },
       { id: 'B', text: 'all of them', translation: 'thiếu đại từ quan hệ nối mệnh đề' },
-      { id: 'C', text: 'all of whom', translation: 'whom chỉ người (học bổng là vật)' },
+      { id: 'C', text: 'all of whom', translation: 'whom chỉ người' },
       { id: 'D', text: 'which all', translation: 'sai trật tự' }
     ],
     correctAnswer: 'A',

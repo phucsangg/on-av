@@ -527,7 +527,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'Delivered', translation: 'dạng bị động' },
       { id: 'B', text: 'To deliver', translation: 'chỉ mục đích' },
       { id: 'C', text: 'Deliver', translation: 'động từ nguyên mẫu' },
-      { id: 'D', text: 'Delivering', translation: 'rút gọn mệnh đề chủ động (V-ing)' }
+      { id: 'D', text: 'Delivering', translation: 'rút gọn mệnh đề chủ động' }
     ],
     correctAnswer: 'D',
     explanation: '• Rút gọn mệnh đề đồng chủ ngữ dạng chủ động ở đầu câu: "Delivering a massive power, it pulls..." (Máy hút bụi mang lại lực hút khổng lồ...). Chọn D.',
@@ -542,7 +542,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'visibly', translation: 'trạng từ' },
       { id: 'B', text: 'invisibility', translation: 'danh từ' },
       { id: 'C', text: 'vision', translation: 'tầm nhìn' },
-      { id: 'D', text: 'invisible', translation: 'tính từ (vô hình)' }
+      { id: 'D', text: 'invisible', translation: 'tính từ' }
     ],
     correctAnswer: 'D',
     explanation: '• Trước danh từ "dust" cần một tính từ bổ nghĩa: "invisible dust" (bụi vô hình). Chọn D.',
@@ -556,7 +556,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'at', translation: 'tại thời điểm' },
       { id: 'B', text: 'for', translation: 'trong khoảng' },
-      { id: 'C', text: 'in', translation: 'trong vòng (in seconds)' },
+      { id: 'C', text: 'in', translation: 'trong vòng' },
       { id: 'D', text: 'out', translation: 'ngoài' }
     ],
     correctAnswer: 'C',
@@ -570,7 +570,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 34. tackle the whole house in one (34) ...',
     options: [
       { id: 'A', text: 'turn', translation: 'lượt' },
-      { id: 'B', text: 'go', translation: 'lần làm (in one go)' },
+      { id: 'B', text: 'go', translation: 'lần làm' },
       { id: 'C', text: 'move', translation: 'bước chuyển' },
       { id: 'D', text: 'run', translation: 'lượt chạy' }
     ],
@@ -584,8 +584,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     type: 'cloze_test',
     questionText: 'Question 35. Transform (35) ... corner of your home today...',
     options: [
-      { id: 'A', text: 'every', translation: 'mọi (đi với danh từ số ít corner)' },
-      { id: 'B', text: 'much', translation: 'nhiều (không đếm được)' },
+      { id: 'A', text: 'every', translation: 'mọi' },
+      { id: 'B', text: 'much', translation: 'nhiều' },
       { id: 'C', text: 'another', translation: 'một cái khác' },
       { id: 'D', text: 'little', translation: 'ít' }
     ],
@@ -659,7 +659,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     type: 'cloze_test',
     questionText: 'Question 40. Playing with friends. (40) ... It eventually won Watson and Crick a Nobel Prize.',
     options: [
-      { id: 'A', text: 'Important as it might turn out to be', translation: 'Dù quan trọng nhưng trông đơn giản (ngược ý)' },
+      { id: 'A', text: 'Important as it might turn out to be', translation: 'Dù quan trọng nhưng trông đơn giản' },
       { id: 'B', text: 'What looked like simple play with wire and cardboard turned out to be anything but unimportant', translation: 'Điều trông giống trò chơi đơn giản với dây thép và bìa cứng hóa ra lại vô cùng quan trọng' },
       { id: 'C', text: 'Wire and cardboard looked simple but were important', translation: 'Dây thép bìa cứng quan trọng' },
       { id: 'D', text: 'The importance of what looked like playing', translation: 'Tầm quan trọng' }
