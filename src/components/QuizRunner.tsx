@@ -63,23 +63,23 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [dictSearchWord, setDictSearchWord] = useState<string>('');
   
   // Floating selection lookup popup state
-  const [selectionPopup, setSelectionPopup] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [selectionPopup, setSelectionPopup] = useState<{ text: string; x: number; y: number; paragraphIndex?: number } | null>(null);
 
   // User Drag & Highlight State
-  const [userHighlights, setUserHighlights] = useState<{ id: string; text: string; color: 'yellow' | 'green' | 'pink' }[]>([]);
+  const [userHighlights, setUserHighlights] = useState<{ id: string; text: string; color: 'yellow' | 'green' | 'pink'; paragraphIndex?: number }[]>([]);
 
-  const addHighlight = (textToHighlight: string, color: 'yellow' | 'green' | 'pink') => {
+  const addHighlight = (textToHighlight: string, color: 'yellow' | 'green' | 'pink', paragraphIndex?: number) => {
     const cleaned = textToHighlight.trim();
     if (!cleaned || cleaned.length < 2) return;
 
     setUserHighlights(prev => {
-      const filtered = prev.filter(h => h.text.toLowerCase() !== cleaned.toLowerCase());
-      return [...filtered, { id: Date.now().toString(), text: cleaned, color }];
+      const filtered = prev.filter(h => !(h.text.toLowerCase() === cleaned.toLowerCase() && h.paragraphIndex === paragraphIndex));
+      return [...filtered, { id: Date.now().toString(), text: cleaned, color, paragraphIndex }];
     });
   };
 
-  const removeHighlight = (textToRemove: string) => {
-    setUserHighlights(prev => prev.filter(h => h.text.toLowerCase() !== textToRemove.toLowerCase()));
+  const removeHighlight = (textToRemove: string, paragraphIndex?: number) => {
+    setUserHighlights(prev => prev.filter(h => !(h.text.toLowerCase() === textToRemove.toLowerCase() && (paragraphIndex === undefined || h.paragraphIndex === paragraphIndex))));
   };
 
   const currentQuestion = exam.questions[currentIndex];
@@ -94,11 +94,16 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         return;
       }
 
+      // Check if user clicked on paragraph card to scope highlight to paragraph
+      const paragraphCard = targetElement ? targetElement.closest('[data-paragraph-index]') : null;
+      const pIdxAttr = paragraphCard ? paragraphCard.getAttribute('data-paragraph-index') : null;
+      const paragraphIndex = pIdxAttr !== null && pIdxAttr !== undefined ? parseInt(pIdxAttr, 10) : undefined;
+
       // If click was on existing highlight mark tag, remove it
       if (targetElement && targetElement.tagName === 'MARK' && targetElement.className.includes('user-hl-')) {
         const textToRemove = targetElement.textContent?.trim();
         if (textToRemove) {
-          removeHighlight(textToRemove);
+          removeHighlight(textToRemove, paragraphIndex);
           setSelectionPopup(null);
           return;
         }
@@ -120,7 +125,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           setSelectionPopup({
             text: selectedText,
             x: rect.left + rect.width / 2,
-            y: rect.top - 48
+            y: rect.top - 48,
+            paragraphIndex
           });
           return;
         }
@@ -205,15 +211,25 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
-  const renderHighlightedText = (rawText?: string) => {
+  const renderHighlightedText = (rawText?: string, pIdx?: number) => {
     if (!rawText) return null;
 
     // First format cloze test blanks
     const formattedText = formatPassageForTaking(rawText);
 
     // Extract auto-highlight target word from reading comprehension questions if any
-    const autoMatch = currentQuestion.questionText.match(/(?:word|pronoun|phrase)\s+["'“]([^"'”]+)["'”]/i);
-    const autoWord = autoMatch ? autoMatch[1].trim() : null;
+    let autoWord: string | null = null;
+    const qText = currentQuestion.questionText || '';
+    const autoMatch = qText.match(/(?:word|pronoun|phrase|Từ|cụm từ|từ)\s+["'“‘]([^"'”’]+)["'”’]/i) ||
+                      qText.match(/["'“‘]([^"'”’]+)["'”’]\s+(?:in paragraph|in line|is closest in meaning|refers to|gần nghĩa)/i) ||
+                      qText.match(/["'“‘]([^"'”’]+)["'”’]/i);
+
+    if (autoMatch && autoMatch[1] && autoMatch[1].trim().length >= 2) {
+      const candidate = autoMatch[1].trim();
+      if (candidate.split(/\s+/).length <= 6) {
+        autoWord = candidate;
+      }
+    }
 
     // Collect all terms to highlight
     const terms: { phrase: string; color?: string; isAuto?: boolean }[] = [];
@@ -223,7 +239,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     userHighlights.forEach(hl => {
       const phrase = hl.text.trim();
       if (phrase.length >= 2) {
-        terms.push({ phrase, color: hl.color });
+        // If highlight has paragraphIndex, match ONLY for that paragraph!
+        if (hl.paragraphIndex === undefined || pIdx === undefined || hl.paragraphIndex === pIdx) {
+          terms.push({ phrase, color: hl.color });
+        }
       }
     });
 
@@ -277,7 +296,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 title="Nhấp để xóa bôi đen"
                 onClick={(e) => {
                   e.stopPropagation();
-                  removeHighlight(part);
+                  removeHighlight(part, pIdx);
                 }}
               >
                 {part}
@@ -577,6 +596,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     {passageParagraphs.map((paraText, pIdx) => (
                       <div 
                         key={pIdx} 
+                        data-paragraph-index={pIdx}
                         className="passage-paragraph-card"
                         style={{
                           position: 'relative',
@@ -610,7 +630,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                           <BookOpen size={11} /> Đoạn {pIdx + 1}
                         </div>
                         <div style={{ whiteSpace: 'normal', fontSize: '1.08rem', lineHeight: 1.85, color: 'var(--text-main)' }}>
-                          {renderHighlightedText(paraText)}
+                          {renderHighlightedText(paraText, pIdx)}
                         </div>
                       </div>
                     ))}
@@ -930,14 +950,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'yellow');
+              addHighlight(selectionPopup.text, 'yellow', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'yellow');
+              addHighlight(selectionPopup.text, 'yellow', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
@@ -965,14 +985,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'green');
+              addHighlight(selectionPopup.text, 'green', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'green');
+              addHighlight(selectionPopup.text, 'green', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
@@ -1000,14 +1020,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             onMouseDown={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'pink');
+              addHighlight(selectionPopup.text, 'pink', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              addHighlight(selectionPopup.text, 'pink');
+              addHighlight(selectionPopup.text, 'pink', selectionPopup.paragraphIndex);
               setSelectionPopup(null);
               window.getSelection()?.removeAllRanges();
             }}
