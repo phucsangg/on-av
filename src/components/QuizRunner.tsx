@@ -69,15 +69,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [userHighlights, setUserHighlights] = useState<{ id: string; text: string; color: 'yellow' | 'green' | 'pink' }[]>([]);
 
   const addHighlight = (textToHighlight: string, color: 'yellow' | 'green' | 'pink') => {
-    if (!textToHighlight || textToHighlight.length < 2) return;
-
-    let cleaned = textToHighlight.trim();
-
-    // Protect against paragraph-length selections: limit max words to 12
-    const wordList = cleaned.split(/\s+/);
-    if (wordList.length > 12) {
-      cleaned = wordList.slice(0, 8).join(' ');
-    }
+    const cleaned = textToHighlight.trim();
+    if (!cleaned || cleaned.length < 2) return;
 
     setUserHighlights(prev => {
       const filtered = prev.filter(h => h.text.toLowerCase() !== cleaned.toLowerCase());
@@ -91,32 +84,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const currentQuestion = exam.questions[currentIndex];
 
-  // Pixel-precise text selection listener supporting both forward and backward drag
+  // Clean Native Web Selection Listener (0 side effects, 0 mousedown overrides)
   useEffect(() => {
-    let mouseDownCaret: { node: Node; offset: number } | null = null;
-
-    const handleMouseDown = (e: MouseEvent) => {
-      const targetElement = e.target as HTMLElement;
-      if (targetElement && !targetElement.closest('.selection-toolbar-popup')) {
-        setSelectionPopup(null);
-      }
-      if (document.caretRangeFromPoint) {
-        const caret = document.caretRangeFromPoint(e.clientX, e.clientY);
-        if (caret) {
-          mouseDownCaret = { node: caret.startContainer, offset: caret.startOffset };
-        }
-      }
-    };
-
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
-      // If user clicked inside the selection popup toolbar itself, ignore mouseup
+      // If click was inside toolbar, keep toolbar open
       if (targetElement && targetElement.closest('.selection-toolbar-popup')) {
         return;
       }
 
-      // Check if user clicked directly on an existing user highlight mark tag to remove it
+      // If click was on existing highlight mark tag, remove it
       if (targetElement && targetElement.tagName === 'MARK' && targetElement.className.includes('user-hl-')) {
         const textToRemove = targetElement.textContent?.trim();
         if (textToRemove) {
@@ -132,53 +110,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         return;
       }
 
-      let selectedText = '';
-      let targetRect: DOMRect | null = null;
+      const raw = selection.toString();
+      const selectedText = raw.replace(/[\r\n]+/g, ' ').trim();
 
-      // Use mouse down & mouse up caret coordinates for exact pixel boundary
-      if (mouseDownCaret && document.caretRangeFromPoint) {
-        const mouseUpCaret = document.caretRangeFromPoint(e.clientX, e.clientY);
-        if (mouseUpCaret) {
-          try {
-            const startNode = mouseDownCaret.node;
-            const startOffset = mouseDownCaret.offset;
-            const endNode = mouseUpCaret.startContainer;
-            const endOffset = mouseUpCaret.startOffset;
-
-            const exactRange = document.createRange();
-
-            if (startNode === endNode) {
-              const minOff = Math.min(startOffset, endOffset);
-              const maxOff = Math.max(startOffset, endOffset);
-              exactRange.setStart(startNode, minOff);
-              exactRange.setEnd(startNode, maxOff);
-            } else {
-              const pos = startNode.compareDocumentPosition(endNode);
-              if (pos & Node.DOCUMENT_POSITION_FOLLOWING) {
-                exactRange.setStart(startNode, startOffset);
-                exactRange.setEnd(endNode, endOffset);
-              } else {
-                exactRange.setStart(endNode, endOffset);
-                exactRange.setEnd(startNode, startOffset);
-              }
-            }
-
-            selectedText = exactRange.toString().replace(/[\r\n]+/g, ' ').trim();
-            targetRect = exactRange.getBoundingClientRect();
-          } catch (_e) {
-            // Fallback to standard selection
-          }
-        }
-      }
-
-      if (!selectedText) {
+      if (selectedText && selectedText.length >= 2 && selectedText.length <= 150) {
         const range = selection.getRangeAt(0);
-        selectedText = selection.toString().replace(/[\r\n]+/g, ' ').trim();
-        targetRect = range.getBoundingClientRect();
-      }
-
-      if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
-        const rect = targetRect || selection.getRangeAt(0).getBoundingClientRect();
+        const rect = range.getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
             text: selectedText,
@@ -188,13 +125,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           return;
         }
       }
+
       setSelectionPopup(null);
     };
 
-    window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     return () => {
-      window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [userHighlights]);
