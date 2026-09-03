@@ -125,21 +125,64 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         return;
       }
 
+      const getTrueTextPosition = (node: Node | null, offset: number): { textNode: Text; offset: number } | null => {
+        if (!node) return null;
+        if (node.nodeType === Node.TEXT_NODE) {
+          return { textNode: node as Text, offset };
+        }
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          const children = Array.from(node.childNodes);
+          if (children.length > 0) {
+            const childIdx = Math.min(Math.max(0, offset), children.length - 1);
+            const child = children[childIdx];
+            if (child) {
+              if (child.nodeType === Node.TEXT_NODE) {
+                return { textNode: child as Text, offset: 0 };
+              }
+              const walker = document.createTreeWalker(child, NodeFilter.SHOW_TEXT);
+              const firstText = walker.nextNode();
+              if (firstText) {
+                return { textNode: firstText as Text, offset: 0 };
+              }
+            }
+          }
+        }
+        return null;
+      };
+
       let selectedText = '';
       let targetRect: DOMRect | null = null;
 
       try {
         const range = selection.getRangeAt(0);
         targetRect = range.getBoundingClientRect();
-        
-        // Native DOM Range cloning extracts ONLY the exact nodes enclosed within selection
-        const clonedFragment = range.cloneContents();
-        const clonedText = clonedFragment.textContent || '';
-        selectedText = clonedText.replace(/[\r\n]+/g, ' ').trim();
 
-        // Fallback to range.toString() if clonedFragment was empty
+        const startPos = selection.anchorNode ? getTrueTextPosition(selection.anchorNode, selection.anchorOffset) : null;
+        const endPos = selection.focusNode ? getTrueTextPosition(selection.focusNode, selection.focusOffset) : null;
+
+        if (startPos && endPos) {
+          const cleanRange = document.createRange();
+          if (startPos.textNode === endPos.textNode) {
+            const minOff = Math.min(startPos.offset, endPos.offset);
+            const maxOff = Math.max(startPos.offset, endPos.offset);
+            cleanRange.setStart(startPos.textNode, minOff);
+            cleanRange.setEnd(startPos.textNode, maxOff);
+          } else {
+            const position = startPos.textNode.compareDocumentPosition(endPos.textNode);
+            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+              cleanRange.setStart(startPos.textNode, startPos.offset);
+              cleanRange.setEnd(endPos.textNode, endPos.offset);
+            } else {
+              cleanRange.setStart(endPos.textNode, endPos.offset);
+              cleanRange.setEnd(startPos.textNode, startPos.offset);
+            }
+          }
+          selectedText = cleanRange.toString().replace(/[\r\n]+/g, ' ').trim();
+        }
+
         if (!selectedText) {
-          selectedText = range.toString().replace(/[\r\n]+/g, ' ').trim();
+          const clonedFragment = range.cloneContents();
+          selectedText = (clonedFragment.textContent || '').replace(/[\r\n]+/g, ' ').trim();
         }
       } catch (_err) {
         const fallbackRange = selection.getRangeAt(0);
