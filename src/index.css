@@ -127,7 +127,7 @@ mark:not([class*="user-hl-"]) {
   box-decoration-break: clone !important;
   -webkit-box-decoration-break: clone !important;
   line-height: 1.75 !important;
-  transition: all 0.25s ease !important;
+  transition: background 0.15s ease !important;
 }
 
 [data-theme='dark'] mark:not([class*="user-hl-"]) {

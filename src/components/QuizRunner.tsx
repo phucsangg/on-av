@@ -84,6 +84,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   // Listen for text selection across the exam workspace
   useEffect(() => {
+    const handleMouseDown = (e: MouseEvent) => {
+      const targetElement = e.target as HTMLElement;
+      // If user clicks outside the selection toolbar, close popup so new drag starts fresh
+      if (targetElement && !targetElement.closest('.selection-toolbar-popup')) {
+        setSelectionPopup(null);
+      }
+    };
+
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
@@ -103,12 +111,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
 
       const selection = window.getSelection();
-      const rawText = selection ? selection.toString() : '';
+      if (!selection || selection.rangeCount === 0) {
+        setSelectionPopup(null);
+        return;
+      }
+
+      const range = selection.getRangeAt(0);
+      const rawText = range ? range.toString() : selection.toString();
       const selectedText = rawText.replace(/[\r\n]+/g, ' ').trim();
 
       if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
-        const range = selection?.getRangeAt(0);
-        const rect = range?.getBoundingClientRect();
+        const rect = range.getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
             text: selectedText,
@@ -121,8 +134,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       setSelectionPopup(null);
     };
 
+    document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('mouseup', handleMouseUp);
-    return () => document.removeEventListener('mouseup', handleMouseUp);
+    return () => {
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
   }, []);
 
   // Resolve shared reading passage for current section
