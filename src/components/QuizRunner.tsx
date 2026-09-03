@@ -92,6 +92,49 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
     };
 
+    const extractExactSelectedText = (range: Range): string => {
+      const startNode = range.startContainer;
+      const startOffset = range.startOffset;
+      const endNode = range.endContainer;
+      const endOffset = range.endOffset;
+
+      // Single text node selection (most common case: selecting words in same paragraph)
+      if (startNode === endNode && startNode.nodeType === Node.TEXT_NODE) {
+        const fullText = startNode.textContent || '';
+        return fullText.substring(Math.min(startOffset, endOffset), Math.max(startOffset, endOffset));
+      }
+
+      // Multi-node selection across text nodes
+      const textParts: string[] = [];
+
+      if (startNode.nodeType === Node.TEXT_NODE) {
+        textParts.push((startNode.textContent || '').substring(startOffset));
+      }
+
+      try {
+        const walker = document.createTreeWalker(range.commonAncestorContainer, NodeFilter.SHOW_TEXT, {
+          acceptNode: (node) => {
+            if (node === startNode || node === endNode) return NodeFilter.FILTER_REJECT;
+            return range.intersectsNode(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+          }
+        });
+
+        let currentNode = walker.nextNode();
+        while (currentNode) {
+          textParts.push(currentNode.textContent || '');
+          currentNode = walker.nextNode();
+        }
+      } catch (_e) {
+        // TreeWalker fallback
+      }
+
+      if (endNode.nodeType === Node.TEXT_NODE && startNode !== endNode) {
+        textParts.push((endNode.textContent || '').substring(0, endOffset));
+      }
+
+      return textParts.join(' ');
+    };
+
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
@@ -120,39 +163,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       let targetRect: DOMRect | null = null;
 
       try {
-        // Construct exact range from user's anchorNode/anchorOffset to focusNode/focusOffset
-        if (selection.anchorNode && selection.focusNode) {
-          const exactRange = document.createRange();
-          
-          if (selection.anchorNode === selection.focusNode) {
-            const start = Math.min(selection.anchorOffset, selection.focusOffset);
-            const end = Math.max(selection.anchorOffset, selection.focusOffset);
-            exactRange.setStart(selection.anchorNode, start);
-            exactRange.setEnd(selection.anchorNode, end);
-          } else {
-            const position = selection.anchorNode.compareDocumentPosition(selection.focusNode);
-            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
-              exactRange.setStart(selection.anchorNode, selection.anchorOffset);
-              exactRange.setEnd(selection.focusNode, selection.focusOffset);
-            } else {
-              exactRange.setStart(selection.focusNode, selection.focusOffset);
-              exactRange.setEnd(selection.anchorNode, selection.anchorOffset);
-            }
-          }
-
-          selectedText = exactRange.toString().replace(/[\r\n]+/g, ' ').trim();
-          targetRect = exactRange.getBoundingClientRect();
-        }
+        const range = selection.getRangeAt(0);
+        targetRect = range.getBoundingClientRect();
+        selectedText = extractExactSelectedText(range).replace(/[\r\n]+/g, ' ').trim();
       } catch (_err) {
-        // Fallback to standard selection range
         const fallbackRange = selection.getRangeAt(0);
         selectedText = fallbackRange.toString().replace(/[\r\n]+/g, ' ').trim();
         targetRect = fallbackRange.getBoundingClientRect();
       }
 
       if (!selectedText) {
-        const raw = selection.toString();
-        selectedText = raw.replace(/[\r\n]+/g, ' ').trim();
+        selectedText = selection.toString().replace(/[\r\n]+/g, ' ').trim();
       }
 
       if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
