@@ -111,17 +111,52 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
 
       const selection = window.getSelection();
-      if (!selection || selection.rangeCount === 0) {
+      if (!selection || selection.rangeCount === 0 || selection.isCollapsed) {
         setSelectionPopup(null);
         return;
       }
 
-      const range = selection.getRangeAt(0);
-      const rawText = range ? range.toString() : selection.toString();
-      const selectedText = rawText.replace(/[\r\n]+/g, ' ').trim();
+      let selectedText = '';
+      let targetRect: DOMRect | null = null;
+
+      try {
+        // Construct exact range from user's anchorNode/anchorOffset to focusNode/focusOffset
+        if (selection.anchorNode && selection.focusNode) {
+          const exactRange = document.createRange();
+          
+          if (selection.anchorNode === selection.focusNode) {
+            const start = Math.min(selection.anchorOffset, selection.focusOffset);
+            const end = Math.max(selection.anchorOffset, selection.focusOffset);
+            exactRange.setStart(selection.anchorNode, start);
+            exactRange.setEnd(selection.anchorNode, end);
+          } else {
+            const position = selection.anchorNode.compareDocumentPosition(selection.focusNode);
+            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
+              exactRange.setStart(selection.anchorNode, selection.anchorOffset);
+              exactRange.setEnd(selection.focusNode, selection.focusOffset);
+            } else {
+              exactRange.setStart(selection.focusNode, selection.focusOffset);
+              exactRange.setEnd(selection.anchorNode, selection.anchorOffset);
+            }
+          }
+
+          selectedText = exactRange.toString().replace(/[\r\n]+/g, ' ').trim();
+          targetRect = exactRange.getBoundingClientRect();
+        }
+      } catch (_err) {
+        // Fallback to standard selection range
+        const fallbackRange = selection.getRangeAt(0);
+        selectedText = fallbackRange.toString().replace(/[\r\n]+/g, ' ').trim();
+        targetRect = fallbackRange.getBoundingClientRect();
+      }
+
+      if (!selectedText) {
+        const raw = selection.toString();
+        selectedText = raw.replace(/[\r\n]+/g, ' ').trim();
+      }
 
       if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
-        const rect = range.getBoundingClientRect();
+        const rect = targetRect || selection.getRangeAt(0).getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
             text: selectedText,
