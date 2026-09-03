@@ -249,7 +249,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       if (!textToMatch || textToMatch.length < 2) return;
 
       const escaped = textToMatch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const pattern = `(${escaped})`;
+      const pattern = textToMatch.includes(' ') ? `(${escaped})` : `\\b(${escaped})\\b`;
 
       // Split HTML into tags and text tokens so we ONLY replace inside plain text content
       const parts = result.split(/(<[^>]+>)/g);
