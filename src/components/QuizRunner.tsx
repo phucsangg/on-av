@@ -91,16 +91,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const currentQuestion = exam.questions[currentIndex];
 
-  // Listen for text selection across the exam workspace
+  // Standard website text selection listener
   useEffect(() => {
-    const handleMouseDown = (e: MouseEvent) => {
-      const targetElement = e.target as HTMLElement;
-      // If user clicks outside the selection toolbar, close popup so new drag starts fresh
-      if (targetElement && !targetElement.closest('.selection-toolbar-popup')) {
-        setSelectionPopup(null);
-      }
-    };
-
     const handleMouseUp = (e: MouseEvent) => {
       const targetElement = e.target as HTMLElement;
 
@@ -125,86 +117,16 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         return;
       }
 
-      const getTrueTextPosition = (node: Node | null, offset: number): { textNode: Text; offset: number } | null => {
-        if (!node) return null;
-        if (node.nodeType === Node.TEXT_NODE) {
-          return { textNode: node as Text, offset };
-        }
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          const children = Array.from(node.childNodes);
-          if (children.length > 0) {
-            const childIdx = Math.min(Math.max(0, offset), children.length - 1);
-            const child = children[childIdx];
-            if (child) {
-              if (child.nodeType === Node.TEXT_NODE) {
-                return { textNode: child as Text, offset: 0 };
-              }
-              const walker = document.createTreeWalker(child, NodeFilter.SHOW_TEXT);
-              const firstText = walker.nextNode();
-              if (firstText) {
-                return { textNode: firstText as Text, offset: 0 };
-              }
-            }
-          }
-        }
-        return null;
-      };
+      // Standard browser native selection string
+      const rawText = selection.toString();
+      const selectedText = rawText.replace(/[\r\n]+/g, ' ').trim();
 
-      let selectedText = '';
-      let targetRect: DOMRect | null = null;
-
-      try {
+      if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
         const range = selection.getRangeAt(0);
-        targetRect = range.getBoundingClientRect();
-
-        const startPos = selection.anchorNode ? getTrueTextPosition(selection.anchorNode, selection.anchorOffset) : null;
-        const endPos = selection.focusNode ? getTrueTextPosition(selection.focusNode, selection.focusOffset) : null;
-
-        if (startPos && endPos) {
-          const cleanRange = document.createRange();
-          if (startPos.textNode === endPos.textNode) {
-            const minOff = Math.min(startPos.offset, endPos.offset);
-            const maxOff = Math.max(startPos.offset, endPos.offset);
-            cleanRange.setStart(startPos.textNode, minOff);
-            cleanRange.setEnd(startPos.textNode, maxOff);
-          } else {
-            const position = startPos.textNode.compareDocumentPosition(endPos.textNode);
-            if (position & Node.DOCUMENT_POSITION_FOLLOWING) {
-              cleanRange.setStart(startPos.textNode, startPos.offset);
-              cleanRange.setEnd(endPos.textNode, endPos.offset);
-            } else {
-              cleanRange.setStart(endPos.textNode, endPos.offset);
-              cleanRange.setEnd(startPos.textNode, startPos.offset);
-            }
-          }
-          selectedText = cleanRange.toString().replace(/[\r\n]+/g, ' ').trim();
-        }
-
-        if (!selectedText) {
-          const clonedFragment = range.cloneContents();
-          selectedText = (clonedFragment.textContent || '').replace(/[\r\n]+/g, ' ').trim();
-        }
-      } catch (_err) {
-        const fallbackRange = selection.getRangeAt(0);
-        selectedText = fallbackRange.toString().replace(/[\r\n]+/g, ' ').trim();
-        targetRect = fallbackRange.getBoundingClientRect();
-      }
-
-      if (!selectedText) {
-        selectedText = selection.toString().replace(/[\r\n]+/g, ' ').trim();
-      }
-
-      if (selectedText && selectedText.length >= 2) {
-        let cleanedText = selectedText;
-        const wordList = cleanedText.split(/\s+/);
-        if (wordList.length > 12 || cleanedText.length > 120) {
-          cleanedText = wordList.slice(0, 8).join(' ');
-        }
-
-        const rect = targetRect || selection.getRangeAt(0).getBoundingClientRect();
+        const rect = range.getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
-            text: cleanedText,
+            text: selectedText,
             x: rect.left + rect.width / 2,
             y: rect.top - 48
           });
@@ -214,10 +136,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       setSelectionPopup(null);
     };
 
-    window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
     return () => {
-      window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [userHighlights]);
