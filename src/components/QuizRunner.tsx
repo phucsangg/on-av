@@ -247,9 +247,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     // First format cloze test blanks
     const formattedText = formatPassageForTaking(rawText);
 
-    // Extract auto-highlight target word from reading comprehension questions if any
+    // Extract auto-highlight target word and target paragraph number from question text
     let autoWord: string | null = null;
+    let targetParagraphIndex: number | null = null;
+
     const qText = currentQuestion.questionText || '';
+
+    // Extract target paragraph number (e.g. "in paragraph 1", "ở đoạn 2", "paragraph 3")
+    const pMatch = qText.match(/(?:in paragraph|in Đoạn|Đoạn|đoạn|paragraph)\s*(\d+)/i);
+    if (pMatch && pMatch[1]) {
+      targetParagraphIndex = parseInt(pMatch[1], 10) - 1; // Convert 1-indexed to 0-indexed
+    }
+
     const autoMatch = qText.match(/(?:word|pronoun|phrase|Từ|cụm từ|từ)\s+["'“‘]([^"'”’]+)["'”’]/i) ||
                       qText.match(/["'“‘]([^"'”’]+)["'”’]\s+(?:in paragraph|in line|is closest in meaning|refers to|gần nghĩa)/i) ||
                       qText.match(/["'“‘]([^"'”’]+)["'”’]/i);
@@ -261,10 +270,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }
     }
 
-    // Collect all terms to highlight
+    // Collect all terms to highlight for paragraph pIdx
     const terms: { phrase: string; color?: string; isAuto?: boolean }[] = [];
+
+    // Auto-highlight target word ONLY in the matching target paragraph (if paragraph specified)
     if (autoWord && autoWord.length >= 2) {
-      terms.push({ phrase: autoWord, isAuto: true });
+      if (targetParagraphIndex === null || pIdx === undefined || pIdx === targetParagraphIndex) {
+        terms.push({ phrase: autoWord, isAuto: true });
+      }
     }
     userHighlights.forEach(hl => {
       const phrase = hl.text.trim();
