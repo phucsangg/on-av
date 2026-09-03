@@ -294,7 +294,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const passageParagraphs = React.useMemo(() => {
     if (!activePassage) return [];
     return activePassage
-      .split(/(?:\r?\n){2,}/)
+      .split(/\r?\n/)
       .map(p => p.trim())
       .filter(p => p.length > 0);
   }, [activePassage]);
@@ -302,7 +302,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const translationParagraphs = React.useMemo(() => {
     if (!activeTranslation) return [];
     return activeTranslation
-      .split(/(?:\r?\n){2,}/)
+      .split(/\r?\n/)
       .map(p => p.trim())
       .filter(p => p.length > 0);
   }, [activeTranslation]);
@@ -609,7 +609,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         }}>
                           <BookOpen size={11} /> Đoạn {pIdx + 1}
                         </div>
-                        <div style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: paraHtml }} />
+                        <div style={{ whiteSpace: 'normal' }} dangerouslySetInnerHTML={{ __html: paraHtml }} />
                       </div>
                     ))}
                   </div>
@@ -849,7 +849,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              paddingTop: '20px',
+              paddingTop: '24px',
               borderTop: '1px solid var(--border-light)'
             }}>
               <button
@@ -900,6 +900,21 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             gap: '8px'
           }}
         >
+          {/* Selection Text Preview Badge */}
+          <div style={{
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            color: 'var(--brand-primary)',
+            background: 'rgba(79, 70, 229, 0.1)',
+            padding: '3px 8px',
+            borderRadius: '12px',
+            maxWidth: '140px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
+          }} title={selectionPopup.text}>
+            "{selectionPopup.text}"
+          </div>
           {/* Yellow Highlight Button */}
           <button
             onMouseDown={(e) => {
