@@ -643,7 +643,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
             {/* Question Text & Reordering Layout */}
             {(() => {
-              let rawText = currentQuestion.questionText.replace(/\s*(?:A[\.\)]\s*.+?\s*B[\.\)]\s*.+?\s*C[\.\)]\s*.+?\s*D[\.\)]\s*.*)$/i, '').trim();
+              let rawText = currentQuestion.questionText.trim();
 
               if (currentQuestion.type === 'reordering' || (rawText.includes('\na.') || rawText.includes('\na)'))) {
                 const lines = rawText.split('\n');
@@ -672,7 +672,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         border: '1px solid var(--border-light)'
                       }}>
                         {sentenceItems.map((item, idx) => {
-                          const itemMatch = item.match(/^([a-e])[\.\)]\s*(.*)$/i);
+                          const itemMatch = item.match(/^([a-e1-5])[\.\)]\s*(.*)$/i);
                           const label = itemMatch ? itemMatch[1].toLowerCase() : String.fromCharCode(97 + idx);
                           const textContent = itemMatch ? itemMatch[2] : item;
 
