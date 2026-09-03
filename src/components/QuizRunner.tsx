@@ -204,71 +204,103 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     });
   };
 
-  // Auto-highlight target vocabulary/pronoun/phrase mentioned in reading comprehension questions
-  const autoHighlightTargetWord = (passageText?: string, questionText?: string): string => {
-    if (!passageText) return '';
-    if (!questionText) return passageText;
+  // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
+  const renderHighlightedText = (rawText?: string) => {
+    if (!rawText) return null;
 
-    const match = questionText.match(/(?:word|pronoun|phrase)\s+["'“]([^"'”]+)["'”]/i);
-    if (!match) return passageText;
+    // First format cloze test blanks
+    const formattedText = formatPassageForTaking(rawText);
 
-    const targetWord = match[1].trim();
-    if (!targetWord || targetWord.length < 2) return passageText;
+    // Extract auto-highlight target word from reading comprehension questions if any
+    const autoMatch = currentQuestion.questionText.match(/(?:word|pronoun|phrase)\s+["'“]([^"'”]+)["'”]/i);
+    const autoWord = autoMatch ? autoMatch[1].trim() : null;
 
-    const alreadyMarkedRegex = new RegExp(`<mark>\\s*${targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*<\\/mark>`, 'i');
-    if (alreadyMarkedRegex.test(passageText)) {
-      return passageText;
+    // Collect all terms to highlight
+    const terms: { phrase: string; color?: string; isAuto?: boolean }[] = [];
+    if (autoWord && autoWord.length >= 2) {
+      terms.push({ phrase: autoWord, isAuto: true });
     }
-
-    const escaped = targetWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const parts = passageText.split(/(<[^>]+>)/g);
-    for (let i = 0; i < parts.length; i++) {
-      if (parts[i] && !parts[i].startsWith('<')) {
-        const replaceRegex = new RegExp(`\\b(${escaped})\\b`, 'gi');
-        parts[i] = parts[i].replace(replaceRegex, '<mark>$1</mark>');
-      }
-    }
-    return parts.join('');
-  };
-
-  // Apply user-selected highlights to rendered passage HTML safely without breaking HTML
-  const applyUserHighlights = (htmlContent?: string): string => {
-    if (!htmlContent) return '';
-    if (userHighlights.length === 0) return htmlContent;
-    let result = htmlContent;
-
     userHighlights.forEach(hl => {
-      const textToMatch = hl.text.trim();
-      if (!textToMatch || textToMatch.length < 2) return;
-
-      const escaped = textToMatch.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const pattern = textToMatch.includes(' ') ? `(${escaped})` : `\\b(${escaped})\\b`;
-
-      // Split HTML into tags and text tokens so we ONLY replace inside plain text content
-      const parts = result.split(/(<[^>]+>)/g);
-      for (let i = 0; i < parts.length; i++) {
-        if (parts[i] && !parts[i].startsWith('<')) {
-          const regex = new RegExp(pattern, 'gi');
-          parts[i] = parts[i].replace(regex, `<mark class="user-hl-${hl.color}" title="Nhấp để xóa bôi đen">$1</mark>`);
-        }
+      const phrase = hl.text.trim();
+      if (phrase.length >= 2) {
+        terms.push({ phrase, color: hl.color });
       }
-      result = parts.join('');
     });
 
-    return result;
+    if (terms.length === 0) {
+      // If text contains cloze blanks <mark>(1) ____________</mark>, render cleanly as React elements
+      const parts = formattedText.split(/(<mark>.*?<\/mark>)/gi);
+      return (
+        <>
+          {parts.map((part, idx) => {
+            if (part.startsWith('<mark>') && part.endsWith('</mark>')) {
+              const content = part.slice(6, -7);
+              return <mark key={idx}>{content}</mark>;
+            }
+            return part;
+          })}
+        </>
+      );
+    }
+
+    // Sort terms by length descending
+    terms.sort((a, b) => b.phrase.length - a.phrase.length);
+
+    // Build regex pattern
+    const patterns = terms.map(t => {
+      const escaped = t.phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return t.phrase.includes(' ') ? escaped : `\\b${escaped}\\b`;
+    });
+
+    const regex = new RegExp(`(<mark>.*?<\/mark>|${patterns.join('|')})`, 'gi');
+    const parts = formattedText.split(regex);
+
+    return (
+      <>
+        {parts.map((part, idx) => {
+          if (!part) return null;
+
+          if (part.startsWith('<mark>') && part.endsWith('</mark>')) {
+            const content = part.slice(6, -7);
+            return <mark key={idx}>{content}</mark>;
+          }
+
+          const matchedTerm = terms.find(t => t.phrase.toLowerCase() === part.toLowerCase());
+          if (matchedTerm) {
+            if (matchedTerm.isAuto) {
+              return <mark key={idx}>{part}</mark>;
+            }
+            return (
+              <mark 
+                key={idx} 
+                className={`user-hl-${matchedTerm.color}`} 
+                title="Nhấp để xóa bôi đen"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  removeHighlight(part);
+                }}
+              >
+                {part}
+              </mark>
+            );
+          }
+
+          return part;
+        })}
+      </>
+    );
   };
 
-  const activePassage = applyUserHighlights(autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText));
   const activeTranslation = activePassageData?.translation;
 
-  // Split passage HTML into individual paragraphs for clean modern SAT/IELTS layout & isolated text selection
+  // Split passage text into individual paragraphs for clean modern SAT/IELTS layout & isolated text selection
   const passageParagraphs = React.useMemo(() => {
-    if (!activePassage) return [];
-    return activePassage
+    if (!activePassageData?.passage) return [];
+    return activePassageData.passage
       .split(/\r?\n/)
       .map(p => p.trim())
       .filter(p => p.length > 0);
-  }, [activePassage]);
+  }, [activePassageData]);
 
   const translationParagraphs = React.useMemo(() => {
     if (!activeTranslation) return [];
@@ -471,19 +503,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: activePassage ? '50% 50%' : '1fr',
+          gridTemplateColumns: activePassageData ? '50% 50%' : '1fr',
           gap: '28px',
           alignItems: 'start'
         }}>
           
           {/* Shared Passage Pane (Left 50%) */}
-          {activePassage && (
+          {activePassageData && (
             <div className="glass-card animate-fade-in" style={{
               padding: '32px',
-              maxHeight: 'calc(100vh - 210px)',
-              overflowY: 'auto',
-              position: 'sticky',
-              top: '80px',
               boxSizing: 'border-box'
             }}>
               <div style={{
@@ -546,7 +574,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   </div>
                 ) : (
                   <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {passageParagraphs.map((paraHtml, pIdx) => (
+                    {passageParagraphs.map((paraText, pIdx) => (
                       <div 
                         key={pIdx} 
                         className="passage-paragraph-card"
@@ -576,11 +604,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                           borderRadius: '6px',
                           marginBottom: '10px',
                           textTransform: 'uppercase',
-                          letterSpacing: '0.5px'
+                          letterSpacing: '0.5px',
+                          userSelect: 'none'
                         }}>
                           <BookOpen size={11} /> Đoạn {pIdx + 1}
                         </div>
-                        <div style={{ whiteSpace: 'normal' }} dangerouslySetInnerHTML={{ __html: paraHtml }} />
+                        <div style={{ whiteSpace: 'normal', fontSize: '1.08rem', lineHeight: 1.85, color: 'var(--text-main)' }}>
+                          {renderHighlightedText(paraText)}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -592,8 +623,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           {/* Question & Options Pane (Right 50% or Full Width) */}
           <div className="glass-card animate-fade-in" style={{
             padding: '36px',
-            maxWidth: activePassage ? '100%' : '980px',
-            margin: activePassage ? '0' : '0 auto',
+            maxWidth: activePassageData ? '100%' : '980px',
+            margin: activePassageData ? '0' : '0 auto',
             width: '100%',
             boxSizing: 'border-box'
           }}>
@@ -678,7 +709,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         lineHeight: 1.65,
                         color: 'var(--text-main)',
                         marginBottom: '16px'
-                      }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(headerPrompt) }} />
+                      }}>
+                        {renderHighlightedText(headerPrompt)}
+                      </div>
 
                       <div style={{
                         display: 'flex',
@@ -721,7 +754,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                               }}>
                                 {label}
                               </span>
-                              <span style={{ fontWeight: 500 }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(textContent) }} />
+                              <span style={{ fontWeight: 500 }}>
+                                {renderHighlightedText(textContent)}
+                              </span>
                             </div>
                           );
                         })}
@@ -739,7 +774,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '28px',
                   color: 'var(--text-main)',
                   whiteSpace: 'pre-line'
-                }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(rawText) }} />
+                }}>
+                  {renderHighlightedText(rawText)}
+                </div>
               );
             })()}
 
@@ -803,7 +840,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       {opt.id}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.08rem', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(opt.text) }} />
+                      <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.08rem', lineHeight: 1.5 }}>
+                        {renderHighlightedText(opt.text)}
+                      </div>
                       {showQuestionTranslation && opt.translation && (
                         <div style={{ fontSize: '0.9rem', color: 'var(--success)', marginTop: '4px', fontWeight: 500 }}>
                           {opt.translation}
