@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Clock, Play } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Dashboard } from './components/Dashboard';
 import { QuizRunner } from './components/QuizRunner';
@@ -71,6 +72,31 @@ export const App: React.FC = () => {
   const [activeExam, setActiveExam] = useState<ExamSet | null>(null);
   const [lastAttemptAnswers, setLastAttemptAnswers] = useState<UserAnswerRecord[]>([]);
   const [lastAttemptTime, setLastAttemptTime] = useState<number>(0);
+
+  // Active In-Progress Session State
+  const [activeSession, setActiveSession] = useState<{
+    examSetId: string;
+    examTitle: string;
+    currentIndex: number;
+    answers: Record<string, string>;
+    timeElapsedSeconds: number;
+    lastUpdated: string;
+  } | null>(() => {
+    try {
+      const saved = localStorage.getItem('on_av_active_session');
+      return saved ? JSON.parse(saved) : null;
+    } catch (_e) {
+      return null;
+    }
+  });
+
+  // Sync activeSession whenever currentView changes
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('on_av_active_session');
+      setActiveSession(saved ? JSON.parse(saved) : null);
+    } catch (_e) {}
+  }, [currentView]);
 
   // Storage States
   const [examSets, setExamSets] = useState<ExamSet[]>(() => {
@@ -201,6 +227,19 @@ export const App: React.FC = () => {
 
   // Start Exam Handler
   const handleSelectExam = (exam: ExamSet) => {
+    try {
+      const saved = localStorage.getItem('on_av_active_session');
+      const session = saved ? JSON.parse(saved) : null;
+      if (session && session.examSetId !== exam.id) {
+        const confirmNew = window.confirm(`Bạn đang làm dở bài thi "${session.examTitle}". Bạn có muốn hủy bài cũ đó để bắt đầu bài thi mới này không?`);
+        if (!confirmNew) {
+          return;
+        }
+        localStorage.removeItem('on_av_active_session');
+        setActiveSession(null);
+      }
+    } catch (_e) {}
+
     setActiveExam(exam);
     navigateToView('runner');
   };
@@ -341,6 +380,98 @@ export const App: React.FC = () => {
           mistakesCount={mistakes.length}
           savedWordsCount={savedWords.length}
         />
+      )}
+
+      {/* Active In-Progress Quiz Resume Banner */}
+      {currentView !== 'runner' && activeSession && (
+        <div style={{
+          background: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+          color: '#ffffff',
+          padding: '12px 24px',
+          boxShadow: '0 8px 24px rgba(79, 70, 229, 0.35)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          position: 'sticky',
+          top: '72px',
+          zIndex: 90
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              background: 'rgba(255, 255, 255, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <Clock size={18} />
+            </div>
+            <div>
+              <div style={{ fontWeight: 800, fontSize: '0.95rem', letterSpacing: '0.01em' }}>
+                ⚡ BÀI THI ĐANG LÀM DỞ: {activeSession.examTitle}
+              </div>
+              <div style={{ fontSize: '0.82rem', opacity: 0.9, marginTop: '2px' }}>
+                Đã trả lời {Object.values(activeSession.answers || {}).filter(v => v !== null).length} câu • Thời gian làm bài: {Math.floor((activeSession.timeElapsedSeconds || 0) / 60).toString().padStart(2, '0')}:{((activeSession.timeElapsedSeconds || 0) % 60).toString().padStart(2, '0')}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button
+              onClick={() => {
+                const found = examSets.find(e => e.id === activeSession.examSetId);
+                if (found) {
+                  setActiveExam(found);
+                  navigateToView('runner');
+                }
+              }}
+              style={{
+                background: '#ffffff',
+                color: '#4f46e5',
+                fontWeight: 800,
+                border: 'none',
+                padding: '8px 18px',
+                borderRadius: '999px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontSize: '0.88rem',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <Play size={15} fill="#4f46e5" /> Tiếp Tục Làm Bài
+            </button>
+
+            <button
+              onClick={() => {
+                if (window.confirm('Bạn có chắc chắn muốn hủy bài thi đang làm dở này không?')) {
+                  localStorage.removeItem('on_av_active_session');
+                  setActiveSession(null);
+                }
+              }}
+              style={{
+                background: 'rgba(255, 255, 255, 0.15)',
+                color: '#ffffff',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                padding: '8px 14px',
+                borderRadius: '999px',
+                cursor: 'pointer',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Hủy bài
+            </button>
+          </div>
+        </div>
       )}
 
       {/* Main View Router For Individual Pages */}

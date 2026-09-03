@@ -34,15 +34,45 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   onFinishExam,
   onExit
 }) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [answers, setAnswers] = useState<Record<string, 'A' | 'B' | 'C' | 'D' | null>>({});
-  const [flagged, setFlagged] = useState<Record<string, boolean>>({});
-  const [timeElapsedSeconds, setTimeElapsedSeconds] = useState<number>(0);
+  // Load saved session if available for this exam
+  const savedSession = React.useMemo(() => {
+    try {
+      const raw = localStorage.getItem('on_av_active_session');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.examSetId === exam.id) {
+          return parsed;
+        }
+      }
+    } catch (_e) {}
+    return null;
+  }, [exam.id]);
+
+  const [currentIndex, setCurrentIndex] = useState<number>(savedSession?.currentIndex ?? 0);
+  const [answers, setAnswers] = useState<Record<string, 'A' | 'B' | 'C' | 'D' | null>>(savedSession?.answers ?? {});
+  const [flagged, setFlagged] = useState<Record<string, boolean>>(savedSession?.flagged ?? {});
+  const [timeElapsedSeconds, setTimeElapsedSeconds] = useState<number>(savedSession?.timeElapsedSeconds ?? 0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState<boolean>(true);
   const [isGridModalOpen, setIsGridModalOpen] = useState<boolean>(false);
+
+  // Auto-save active progress to localStorage
+  useEffect(() => {
+    try {
+      const sessionData = {
+        examSetId: exam.id,
+        examTitle: exam.title,
+        currentIndex,
+        answers,
+        flagged,
+        timeElapsedSeconds,
+        lastUpdated: new Date().toISOString()
+      };
+      localStorage.setItem('on_av_active_session', JSON.stringify(sessionData));
+    } catch (_e) {}
+  }, [exam.id, exam.title, currentIndex, answers, flagged, timeElapsedSeconds]);
 
   const navPillsContainerRef = React.useRef<HTMLDivElement>(null);
 
@@ -445,6 +475,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const handleSubmit = () => {
+    try {
+      localStorage.removeItem('on_av_active_session');
+    } catch (_e) {}
     const timeSpent = timeElapsedSeconds;
     const finalRecords: UserAnswerRecord[] = exam.questions.map(q => {
       const selected = answers[q.id] || null;
