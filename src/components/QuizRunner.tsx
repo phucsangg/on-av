@@ -70,9 +70,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const addHighlight = (textToHighlight: string, color: 'yellow' | 'green' | 'pink') => {
     if (!textToHighlight || textToHighlight.length < 2) return;
+
+    let cleaned = textToHighlight.trim();
+
+    // Protect against paragraph-length selections: limit max words to 12
+    const wordList = cleaned.split(/\s+/);
+    if (wordList.length > 12) {
+      cleaned = wordList.slice(0, 8).join(' ');
+    }
+
     setUserHighlights(prev => {
-      const filtered = prev.filter(h => h.text.toLowerCase() !== textToHighlight.toLowerCase());
-      return [...filtered, { id: Date.now().toString(), text: textToHighlight, color }];
+      const filtered = prev.filter(h => h.text.toLowerCase() !== cleaned.toLowerCase());
+      return [...filtered, { id: Date.now().toString(), text: cleaned, color }];
     });
   };
 
@@ -142,11 +151,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         selectedText = selection.toString().replace(/[\r\n]+/g, ' ').trim();
       }
 
-      if (selectedText && selectedText.length >= 2 && selectedText.length <= 300) {
+      if (selectedText && selectedText.length >= 2) {
+        let cleanedText = selectedText;
+        const wordList = cleanedText.split(/\s+/);
+        if (wordList.length > 12 || cleanedText.length > 120) {
+          cleanedText = wordList.slice(0, 8).join(' ');
+        }
+
         const rect = targetRect || selection.getRangeAt(0).getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
           setSelectionPopup({
-            text: selectedText,
+            text: cleanedText,
             x: rect.left + rect.width / 2,
             y: rect.top - 48
           });
@@ -156,13 +171,13 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       setSelectionPopup(null);
     };
 
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
     return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, []);
+  }, [userHighlights]);
 
   // Resolve shared reading passage for current section
   const activePassageData = (() => {
