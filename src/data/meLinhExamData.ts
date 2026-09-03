@@ -119,9 +119,9 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ENVIRONMENT_PROTECTION_TRANS,
     questionText: 'Question 3. Fill in blank (3):',
     options: [
-      { id: 'A', text: 'products environmentally friendly', translation: 'sản phẩm thân thiện môi trường (sai trật tự)' },
-      { id: 'B', text: 'friendly environmentally products', translation: 'thân thiện môi trường sản phẩm (sai trật tự)' },
-      { id: 'C', text: 'environmentally products friendly', translation: 'môi trường sản phẩm thân thiện (sai trật tự)' },
+      { id: 'A', text: 'products environmentally friendly', translation: 'sản phẩm thân thiện môi trường' },
+      { id: 'B', text: 'friendly environmentally products', translation: 'thân thiện môi trường sản phẩm' },
+      { id: 'C', text: 'environmentally products friendly', translation: 'môi trường sản phẩm thân thiện' },
       { id: 'D', text: 'environmentally friendly products', translation: 'các sản phẩm thân thiện với môi trường' }
     ],
     correctAnswer: 'D',
@@ -274,10 +274,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_YOUTH_VOLUNTEER_TRANS,
     questionText: 'Question 12. Fill in blank (12):',
     options: [
-      { id: 'A', text: 'valuable', translation: 'quý giá / có giá trị (Tính từ)' },
-      { id: 'B', text: 'value', translation: 'giá trị (Danh từ)' },
+      { id: 'A', text: 'valuable', translation: 'quý giá / có giá trị' },
+      { id: 'B', text: 'value', translation: 'giá trị' },
       { id: 'C', text: 'valuably', translation: 'một cách có giá trị (Trạng từ)' },
-      { id: 'D', text: 'evaluate', translation: 'đánh giá (Động từ)' }
+      { id: 'D', text: 'evaluate', translation: 'đánh giá' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Đứng trước danh từ "experience" ta cần một tính từ "valuable" (kinh nghiệm quý giá).',
@@ -291,10 +291,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 13. Choose the correct order of sentences to make a meaningful paragraph:\na. Urbanization is accelerating globally as more people move from rural areas to cities in search of better economic opportunities.\nb. Consequently, massive urban infrastructure projects must be expanded to accommodate the rising population density.\nc. However, rapid growth often leads to severe traffic congestion, housing shortages, and environmental degradation.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'C', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'D', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - a - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG (a - c - b): Mở đầu nêu xu hướng đô thị hóa (a), tiếp theo đưa ra thách thức/hậu quả tiêu cực (c), và kết luận bằng hệ quả cơ sở hạ tầng (b).',
@@ -306,10 +306,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 14. Choose the correct order of sentences to make a meaningful paragraph:\na. Firstly, participating in extracurricular activities helps students develop crucial soft skills such as leadership and communication.\nb. In conclusion, balancing academics with extracurricular involvement is essential for a well-rounded education.\nc. Furthermore, these activities provide opportunities to build strong friendships and network with peers.\nd. School life is not only about academic achievement but also about personal growth through various experiences.',
     options: [
-      { id: 'A', text: 'd - a - c - b', translation: 'Trật tự: d -> a -> c -> b' },
-      { id: 'B', text: 'a - c - d - b', translation: 'Trật tự: a -> c -> d -> b' },
-      { id: 'C', text: 'd - c - a - b', translation: 'Trật tự: d -> c -> a -> b' },
-      { id: 'D', text: 'a - d - c - b', translation: 'Trật tự: a -> d -> c -> b' }
+      { id: 'A', text: 'd - a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - c - d - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'd - c - a - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - d - c - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (d - a - c - b): Câu d mở chủ đề đời sống học đường -> a ý 1 (Firstly) -> c ý 2 (Furthermore) -> b kết luận (In conclusion).',
@@ -321,10 +321,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 15. Choose the correct order of sentences to make a meaningful paragraph:\na. Dear Sir/Madam, I am writing to express my interest in the volunteer position advertised on your community website.\nb. I have two years of experience organizing local charity events and tutoring primary school students.\nc. Thank you for considering my application, and I look forward to hearing from you soon.\nd. I believe my communication skills and dedication would make me a valuable addition to your team.',
     options: [
-      { id: 'A', text: 'a - b - d - c', translation: 'Trật tự: a -> b -> d -> c' },
-      { id: 'B', text: 'a - d - b - c', translation: 'Trật tự: a -> d -> b -> c' },
-      { id: 'C', text: 'b - a - d - c', translation: 'Trật tự: b -> a -> d -> c' },
-      { id: 'D', text: 'a - c - b - d', translation: 'Trật tự: a -> c -> b -> d' }
+      { id: 'A', text: 'a - b - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - d - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - a - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - c - b - d', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - d - c): Trật tự thư ứng tuyển chuẩn: Mở đầu nêu vị trí (a) -> Nêu kinh nghiệm (b) -> Khẳng định sự phù hợp (d) -> Cảm ơn và kết thư (c).',
@@ -336,10 +336,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 16. Choose the correct order of sentences to form a coherent letter segment:\na. Additionally, renewable energy sources like solar and wind power are becoming more affordable and accessible.\nb. Climate change is one of the most pressing global challenges that requires immediate collective action.\nc. By transitioning away from fossil fuels, nations can significantly reduce greenhouse gas emissions and protect ecosystems.',
     options: [
-      { id: 'A', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'B', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'C', text: 'b - c - a', translation: 'Trật tự: b -> c -> a' },
-      { id: 'D', text: 'c - b - a', translation: 'Trật tự: c -> b -> a' }
+      { id: 'A', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - c - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - b - a', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (b - a - c): Câu b đặt vấn đề biến đổi khí hậu -> Câu a bổ sung giải pháp năng lượng tái tạo (Additionally) -> Câu c nêu kết quả bảo vệ môi trường.',
@@ -351,10 +351,10 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 17. Choose the correct order of sentences to form a coherent paragraph:\na. Artificial intelligence has made remarkable strides in recent years, transforming fields from education to finance.\nb. However, ethical concerns regarding algorithmic bias and job displacement must be addressed proactively.\nc. Consequently, governments and tech companies must collaborate to establish clear regulatory frameworks.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'C', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'D', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - a - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c): Mở đầu bằng sự phát triển của AI (a) -> Nêu thách thức đạo đức (b) -> Đưa ra kết luận/giải pháp quản lý (c).',

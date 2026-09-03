@@ -135,8 +135,8 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ANNOUNCEMENT_TRANS,
     questionText: 'Question 4. Fill in blank (4):',
     options: [
-      { id: 'A', text: 'organizing', translation: 'đang tổ chức (chủ động)' },
-      { id: 'B', text: 'organized', translation: 'được tổ chức (bị động)' },
+      { id: 'A', text: 'organizing', translation: 'đang tổ chức' },
+      { id: 'B', text: 'organized', translation: 'được tổ chức' },
       { id: 'C', text: 'organize', translation: 'tổ chức (nguyên thể)' },
       { id: 'D', text: 'to organise', translation: 'để tổ chức' }
     ],
@@ -152,10 +152,10 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ANNOUNCEMENT_TRANS,
     questionText: 'Question 5. Fill in blank (5):',
     options: [
-      { id: 'A', text: 'conservation', translation: 'sự bảo tồn (danh từ)' },
-      { id: 'B', text: 'conserve', translation: 'bảo tồn (động từ)' },
-      { id: 'C', text: 'conservative', translation: 'bảo thủ / bảo tồn (tính từ)' },
-      { id: 'D', text: 'conservationist', translation: 'nhà bảo tồn (danh từ người)' }
+      { id: 'A', text: 'conservation', translation: 'sự bảo tồn' },
+      { id: 'B', text: 'conserve', translation: 'bảo tồn' },
+      { id: 'C', text: 'conservative', translation: 'bảo thủ / bảo tồn' },
+      { id: 'D', text: 'conservationist', translation: 'nhà bảo tồn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. conservation – ĐÚNG: Danh từ "sự bảo tồn", đứng sau "the" và bổ nghĩa cho "of nature".\n• B. conserve – Động từ.\n• C. conservative – Tính từ.\n• D. conservationist – Danh từ chỉ người.',
@@ -223,9 +223,9 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 9. Fill in blank (9):',
     options: [
       { id: 'A', text: 'environmentally friendly products', translation: 'các sản phẩm thân thiện với môi trường' },
-      { id: 'B', text: 'friendly environmentally products', translation: 'sản phẩm thân thiện môi trường (sai trật tự)' },
-      { id: 'C', text: 'products environmentally friendly', translation: 'sản phẩm thân thiện môi trường (sai trật tự)' },
-      { id: 'D', text: 'environmentally products friendly', translation: 'sản phẩm thân thiện môi trường (sai trật tự)' }
+      { id: 'B', text: 'friendly environmentally products', translation: 'sản phẩm thân thiện môi trường' },
+      { id: 'C', text: 'products environmentally friendly', translation: 'sản phẩm thân thiện môi trường' },
+      { id: 'D', text: 'environmentally products friendly', translation: 'sản phẩm thân thiện môi trường' }
     ],
     correctAnswer: 'A',
     explanation: '• A. environmentally friendly products - ĐÚNG: Trật tự cụm danh từ "Trạng từ + Tính từ + Danh từ" (Trạng từ bổ nghĩa tính từ, tính từ bổ nghĩa danh từ).',
@@ -280,7 +280,7 @@ export const TUYEN_QUANG_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• A. although - Mặc dù (đối lập).\n• B. because - ĐÚNG: Bởi vì (chỉ nguyên nhân giải thích lý do nên tham gia).\n• C. however - Tuy nhiên.\n• D. therefore - Do đó.',
-    translation: 'Tham gia các hội thảo môi trường, bởi vì (because) những hoạt động này giúp nâng cao nhận thức.',
+    translation: 'Tham gia các hội thảo môi trường _____ những hoạt động này giúp nâng cao nhận thức.',
     topicTag: 'Liên từ (Conjunctions)'
   },
 
@@ -294,10 +294,10 @@ a. Patient: Thank you, doctor. I’ll follow your instructions.
 b. Doctor: You have a mild flu. Take these tablets twice a day and drink plenty of water.
 c. Patient: Good morning doctor, I’ve been having a headache and fever since yesterday.`,
     options: [
-      { id: 'A', text: 'c – b – a' },
-      { id: 'B', text: 'c – a – b' },
-      { id: 'C', text: 'b – c – a' },
-      { id: 'D', text: 'a – b – c' }
+      { id: 'A', text: 'c – b – a', translation: 'c – b – a' },
+      { id: 'B', text: 'c – a – b', translation: 'c – a – b' },
+      { id: 'C', text: 'b – c – a', translation: 'b – c – a' },
+      { id: 'D', text: 'a – b – c', translation: 'a – b – c' }
     ],
     correctAnswer: 'A',
     explanation: 'Thứ tự hội thoại chuẩn:\n1. (c) Bệnh nhân chào và nêu triệu chứng bệnh.\n2. (b) Bác sĩ chẩn đoán và dặn dò uống thuốc.\n3. (a) Bệnh nhân cảm ơn và lắng nghe theo hướng dẫn.',
@@ -315,10 +315,10 @@ c. Bob: I’m going to Da Lat. I want to enjoy the cool air and visit the flower
 d. Bob: Hi Alice. Have you decided on your destination for the summer holiday yet?
 e. Bob: Yes, it is. It’s the best place to escape the summer heat.`,
     options: [
-      { id: 'A', text: 'd – c – a – b – e' },
-      { id: 'B', text: 'd – a – c – b – e' },
-      { id: 'C', text: 'a – c – b – e – d' },
-      { id: 'D', text: 'a – d – c – b – e' }
+      { id: 'A', text: 'd – c – a – b – e', translation: 'd – c – a – b – e' },
+      { id: 'B', text: 'd – a – c – b – e', translation: 'd – a – c – b – e' },
+      { id: 'C', text: 'a – c – b – e – d', translation: 'a – c – b – e – d' },
+      { id: 'D', text: 'a – d – c – b – e', translation: 'a – d – c – b – e' }
     ],
     correctAnswer: 'B',
     explanation: 'Thứ tự đoạn hội thoại:\n- (d) Bob hỏi về điểm đến nghỉ hè.\n- (a) Alice trả lời (Đà Nẵng) và hỏi lại Bob.\n- (c) Bob trả lời đi Đà Lạt.\n- (b) Alice nhận xét thời tiết Đà Lạt tuyệt vời.\n- (e) Bob đồng tình.',
@@ -338,10 +338,10 @@ d. We look forward to your favourable consideration and support for this initiat
 e. The primary aim of this initiative is to raise environmental awareness and reduce carbon emissions.
 Yours faithfully, Nguyen Van An - Project Manager`,
     options: [
-      { id: 'A', text: 'c – e – a – b – d' },
-      { id: 'B', text: 'c – b – e – a – d' },
-      { id: 'C', text: 'e – c – b – a – d' },
-      { id: 'D', text: 'e – a – c – b – d' }
+      { id: 'A', text: 'c – e – a – b – d', translation: 'c – e – a – b – d' },
+      { id: 'B', text: 'c – b – e – a – d', translation: 'c – b – e – a – d' },
+      { id: 'C', text: 'e – c – b – a – d', translation: 'e – c – b – a – d' },
+      { id: 'D', text: 'e – a – c – b – d', translation: 'e – a – c – b – d' }
     ],
     correctAnswer: 'A',
     explanation: 'Cấu trúc lá thư đề xuất:\n- (c) Mở đầu nêu mục đích viết thư.\n- (e) Nêu mục tiêu chính của dự án.\n- (a) Bổ sung mục tiêu mở rộng ("Additionally").\n- (b) Nêu cách thức tổ chức thực hiện.\n- (d) Câu kết mong đợi sự cân nhắc ủng hộ.',
@@ -359,10 +359,10 @@ c. Overall, smart homes represent a transformative advancement in how we experie
 d. Smart thermostats and lighting systems contribute to energy savings, while smart locks and cameras enhance security.
 e. Utilising devices connected to the Internet of Things (IoT), homeowners can control various aspects of their homes remotely.`,
     options: [
-      { id: 'A', text: 'c – b – a – e – d' },
-      { id: 'B', text: 'b – e – d – a – c' },
-      { id: 'C', text: 'b – d – e – c – a' },
-      { id: 'D', text: 'c – b – a – d – e' }
+      { id: 'A', text: 'c – b – a – e – d', translation: 'c – b – a – e – d' },
+      { id: 'B', text: 'b – e – d – a – c', translation: 'b – e – d – a – c' },
+      { id: 'C', text: 'b – d – e – c – a', translation: 'b – d – e – c – a' },
+      { id: 'D', text: 'c – b – a – d – e', translation: 'c – b – a – d – e' }
     ],
     correctAnswer: 'B',
     explanation: 'Thứ tự đoạn văn về Smart Homes:\n- (b) Câu chủ đề giới thiệu nhà thông minh.\n- (e) Giải thích cách thức vận hành qua IoT.\n- (d) Nêu ví dụ cụ thể về thiết bị (bộ điều nhiệt, khóa thông minh).\n- (a) Nêu thêm lợi ích khác ("Additionally").\n- (c) Câu kết luận tổng hợp ("Overall").',
@@ -380,10 +380,10 @@ c. In response to these concerns, some institutions have introduced alternative 
 d. Despite their practicality and perceived fairness, exams may encourage superficial learning, as some candidates focus mainly on tested content rather than deep understanding.
 e. For this reason, while exams continue to play an important role, they should be carefully designed and supplemented with other assessment methods to ensure greater validity.`,
     options: [
-      { id: 'A', text: 'b – d – a – c – e' },
-      { id: 'B', text: 'b – a – d – c – e' },
-      { id: 'C', text: 'd – b – a – c – e' },
-      { id: 'D', text: 'd – b – c – a – e' }
+      { id: 'A', text: 'b – d – a – c – e', translation: 'b – d – a – c – e' },
+      { id: 'B', text: 'b – a – d – c – e', translation: 'b – a – d – c – e' },
+      { id: 'C', text: 'd – b – a – c – e', translation: 'd – b – a – c – e' },
+      { id: 'D', text: 'd – b – c – a – e', translation: 'd – b – c – a – e' }
     ],
     correctAnswer: 'A',
     explanation: 'Thứ tự đoạn văn luận về Kỳ thi:\n- (b) Giới thiệu vai trò kỳ thi.\n- (d) Đưa ra mặt hạn chế ("Despite...").\n- (a) Nêu hệ quả ("These limitations...").\n- (c) Nêu giải pháp ("In response...").\n- (e) Đưa ra kết luận ("For this reason...").',
@@ -801,8 +801,20 @@ import { BAC_NINH_2026_EXAM } from './bacNinh2026ExamData';
 import { HA_TINH_2026_L1_EXAM } from './haTinh2026L1ExamData';
 import { HANOI_CUM_2026_EXAM } from './hanoiCum2026ExamData';
 import { ELON_MUSK_2026_EXAM } from './elonMusk2026ExamData';
+import { TRAN_PHU_HA_TINH_2026_EXAM } from './tranPhuHaTinh2026ExamData';
+import { BAC_NINH_CUM_2026_EXAM } from './bacNinhCum2026ExamData';
+import { CHUYEN_BAC_GIANG_2026_EXAM } from './chuyenBacGiang2026ExamData';
+import { DIEN_BIEN_2026_EXAM } from './dienBien2026ExamData';
+import { HAN_THUYEN_2026_EXAM } from './hanThuyen2026ExamData';
+import { NINH_BINH_2026_EXAM } from './ninhBinh2026ExamData';
 
 export const SAMPLE_EXAM_SETS: ExamSet[] = [
+  HAN_THUYEN_2026_EXAM,
+  NINH_BINH_2026_EXAM,
+  BAC_NINH_CUM_2026_EXAM,
+  CHUYEN_BAC_GIANG_2026_EXAM,
+  DIEN_BIEN_2026_EXAM,
+  TRAN_PHU_HA_TINH_2026_EXAM,
   BAC_NINH_2026_EXAM,
   HA_TINH_2026_L1_EXAM,
   HANOI_CUM_2026_EXAM,

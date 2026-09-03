@@ -91,10 +91,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_JAPAN_MOBILITY_TRANS,
     questionText: 'Question 2. Fill in blank (2):',
     options: [
-      { id: 'A', text: 'participation', translation: 'sự tham gia (Danh từ không đếm được)' },
-      { id: 'B', text: 'participants', translation: 'người / đơn vị tham gia (Danh từ số nhiều đếm được)' },
-      { id: 'C', text: 'participates', translation: 'tham gia (Động từ chia số ít)' },
-      { id: 'D', text: 'participatory', translation: 'mang tính tham gia (Tính từ)' }
+      { id: 'A', text: 'participation', translation: 'sự tham gia' },
+      { id: 'B', text: 'participants', translation: 'người / đơn vị tham gia' },
+      { id: 'C', text: 'participates', translation: 'tham gia' },
+      { id: 'D', text: 'participatory', translation: 'mang tính tham gia' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Sau con số "42 international...", ta cần danh từ số nhiều chỉ người/đơn vị tham gia (participants).',
@@ -126,7 +126,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     questionText: 'Question 4. Fill in blank (4):',
     options: [
       { id: 'A', text: 'a system operating intelligent', translation: 'sai trật tự từ' },
-      { id: 'B', text: 'an intelligent system operating', translation: 'nghĩa không phù hợp' },
+      { id: 'B', text: 'an intelligent system operating', translation: 'một hệ thống thông minh vận hành' },
       { id: 'C', text: 'an operating system intelligent', translation: 'tính từ đứng sai vị trí' },
       { id: 'D', text: 'an intelligent operating system', translation: 'một hệ điều hành thông minh' }
     ],
@@ -162,7 +162,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'developed', translation: 'được phát triển (have something done: bị động)' },
       { id: 'B', text: 'develop', translation: 'phát triển (V-bare)' },
       { id: 'C', text: 'developing', translation: 'đang phát triển (V-ing)' },
-      { id: 'D', text: 'to developed', translation: 'sai ngữ pháp' }
+      { id: 'D', text: 'to developed', translation: 'để phát triển' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cấu trúc bị động "have + something + V3/ed" (có cái gì đó được thực hiện).',
@@ -195,7 +195,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_PANDA_BASE_TRANS,
     questionText: 'Question 8. Fill in blank (8):',
     options: [
-      { id: 'A', text: 'owns', translation: 'sở hữu (sai cấu trúc to)' },
+      { id: 'A', text: 'owns', translation: 'sở hữu' },
       { id: 'B', text: 'possesses', translation: 'chiếm hữu (không đi với to)' },
       { id: 'C', text: 'belongs to', translation: 'thuộc về (belongs to the Centre)' },
       { id: 'D', text: 'includes', translation: 'bao gồm' }
@@ -249,7 +249,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'take', translation: 'lấy' },
       { id: 'B', text: 'set', translation: 'đặt' },
       { id: 'C', text: 'do', translation: 'làm' },
-      { id: 'D', text: 'made', translation: 'đạt được (make progress -> progress has been made)' }
+      { id: 'D', text: 'made', translation: 'đạt được (make progress' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Collocation "make progress" ở dạng bị động "progress has been made" (tiến bộ đã đạt được).',
@@ -280,10 +280,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 13. Choose the correct order of dialogue sentences:\na. Rachel: It’ll kick off at 7 PM at my place. Hope to see you there!\nb. Rachel: Hey Mark, I’m hosting a farewell party this Saturday, and I’d love for you to join!\nc. Mark: That sounds fun! What time does it start?',
     options: [
-      { id: 'A', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' },
-      { id: 'B', text: 'c - b - a', translation: 'Trật tự: c -> b -> a' },
-      { id: 'C', text: 'b - c - a', translation: 'Trật tự: b -> c -> a' },
-      { id: 'D', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' }
+      { id: 'A', text: 'c - a - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'c - b - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - c - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - c - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG (b - c - a): Rachel mời tham gia tiệc chia tay (b) -> Mark tỏ ra hứng thú và hỏi giờ (c) -> Rachel thông báo 7h tối tại nhà (a).',
@@ -295,14 +295,14 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 14. Choose the correct order of dialogue sentences:\na. Lan: OK, Mum. I\'ll be home before 10 p.m. then.\nb. Lan\'s mother: Certainly. Whose birthday is it?\nc. Lan: Mum, can I go to my friend\'s birthday party this Saturday evening?\nd. Lan\'s mother: Oh, I’m afraid not. You must come back home before 10 p.m. We\'re going to visit your grandparents early on Sunday morning.\ne. Lan: It\'s Mai\'s birthday, Mum. Is it OK if I stay the night at her house after the party?',
     options: [
-      { id: 'A', text: 'c - b - e - d - a', translation: 'Trật tự: c -> b -> e -> d -> a' },
-      { id: 'B', text: 'c - e - a - d - b', translation: 'Trật tự: c -> e -> a -> d -> b' },
-      { id: 'C', text: 'c - b - a - e - d', translation: 'Trật tự: c -> b -> a -> e -> d' },
-      { id: 'D', text: 'c - e - d - b - a', translation: 'Trật tự: c -> e -> d -> b -> a' }
+      { id: 'A', text: 'c - b - e - d - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'c - e - a - d - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - b - a - e - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - e - d - b - a', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (c - b - e - d - a): Lan xin phép đi dự sinh nhật (c) -> Mẹ hỏi sinh nhật ai (b) -> Lan trả lời và xin ngủ lại (e) -> Mẹ từ chối ngủ lại và yêu cầu về trước 10h (d) -> Lan vâng lời (a).',
-    translation: 'Sắp xếp hội thoại xin phép mẹ đi dự tiệc sinh nhật:\na. Lan: Vâng thưa mẹ. Con sẽ về nhà trước 10 giờ tối ạ.\nb. Mẹ của Lan: Tất nhiên rồi. Sinh nhật của ai thế con?\nc. Lan: Mẹ ơi, Thứ Bảy tuần này con có thể đi dự tiệc sinh nhật bạn được không ạ?\nd. Mẹ của Lan: Ồ, mẹ e là không được. Con phải về nhà trước 10 giờ tối. Sáng sớm Chủ Nhật chúng ta sẽ đi thăm ông bà.\ne. Lan: Dạ là sinh nhật bạn Mai ạ. Con có thể ngủ lại nhà bạn sau buổi tiệc được không ạ?',
+    translation: 'Sắp xếp hội thoại xin phép mẹ đi dự tiệc sinh nhật.',
     topicTag: 'Sắp xếp hội thoại gia đình'
   },
   {
@@ -310,10 +310,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 15. Choose the correct order of letter sentences:\na. It overheats when I play games and it keeps crashing when I do my homework. It also sometimes slows down when I watch movies.\nb. Finally, I spoke to your colleague, Andy. He said he would speak to his manager and call back in ten minutes. That was three hours ago.\nc. On Friday, November 27th, I bought a Link76 laptop from your website and it is not working. The laptop has two main problems.\nd. I called RocketTech\'s customer hotline and waited 30 minutes to speak to someone.\ne. I would like RocketTech to repair my laptop or provide a new one as soon as possible. I look forward to your reply.',
     options: [
-      { id: 'A', text: 'c - a - d - b - e', translation: 'Trật tự: c -> a -> d -> b -> e' },
-      { id: 'B', text: 'c - d - b - a - e', translation: 'Trật tự: c -> d -> b -> a -> e' },
-      { id: 'C', text: 'c - d - a - e - b', translation: 'Trật tự: c -> d -> a -> e -> b' },
-      { id: 'D', text: 'c - a - d - e - b', translation: 'Trật tự: c -> a -> d -> e -> b' }
+      { id: 'A', text: 'c - a - d - b - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'c - d - b - a - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - d - a - e - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - a - d - e - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (c - a - d - b - e): Mua laptop bị lỗi (c) -> Liệt kê 2 lỗi máy nóng và giật (a) -> Gọi tổng đài chờ 30p (d) -> Nói chuyện nhân viên Andy nhưng chờ 3h (b) -> Đưa ra yêu cầu sửa hoặc đổi máy (e).',
@@ -325,10 +325,10 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 16. Choose the correct order of sentences to make an essay paragraph:\na. Moreover, the physicality of the paper, the ink, and even the handwriting itself adds a personal touch that cannot be replicated electronically.\nb. Handwritten letters possess a timeless charm that digital messages often lack.\nc. Although modern technology offers unparalleled speed and convenience, many people still treasure the rare occasions when they receive a handwritten note.\nd. Unlike emails or texts, a carefully crafted letter conveys a deeper sense of thoughtfulness and sincerity.\ne. In an increasingly fast-paced world, such gestures serve as poignant reminders of the value of patience and human connection.',
     options: [
-      { id: 'A', text: 'b - c - a - e - d', translation: 'Trật tự: b -> c -> a -> e -> d' },
-      { id: 'B', text: 'b - e - c - d - a', translation: 'Trật tự: b -> e -> c -> d -> a' },
-      { id: 'C', text: 'b - a - e - d - c', translation: 'Trật tự: b -> a -> e -> d -> c' },
-      { id: 'D', text: 'b - d - a - c - e', translation: 'Trật tự: b -> d -> a -> c -> e' }
+      { id: 'A', text: 'b - c - a - e - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - e - c - d - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - a - e - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b - d - a - c - e', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG (b - d - a - c - e): Giới thiệu vẻ đẹp thư tay (b) -> So sánh sự chân thành với email (d) -> Bổ sung yếu tố giấy mực nét chữ (a) -> Đối chiếu tốc độ công nghệ (c) -> Kết luận ý nghĩa kết nối con người (e).',
@@ -656,7 +656,7 @@ export const CUM_HAI_PHONG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'price fuel fluctuations', translation: 'sai trật tự danh từ' },
       { id: 'B', text: 'fluctuations fuel price', translation: 'sai trật tự danh từ' },
-      { id: 'C', text: 'fuel price fluctuations', translation: 'biến động giá nhiên liệu (đúng trật tự danh từ ghép)' },
+      { id: 'C', text: 'fuel price fluctuations', translation: 'biến động giá nhiên liệu' },
       { id: 'D', text: 'price fluctuations fuel', translation: 'sai trật tự danh từ' }
     ],
     correctAnswer: 'C',

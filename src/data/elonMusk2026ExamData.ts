@@ -7,8 +7,12 @@ In 2002, Musk founded SpaceX with the ultimate goal of making life multi-planeta
 
 Beyond electric cars and rockets, Musk has introduced other futuristic concepts such as the Hyperloop and Neuralink. The latter, for instance, <mark>(3) ____________</mark>. While these innovations demonstrate Musk’s willingness to take significant risks, they have also generated controversy and public debate. <mark>(4) ____________</mark>. Many experts argue that such bold experimentation is essential for long-term technological progress. <mark>(5) ____________</mark>.`;
 
-const PASSAGE_ELON_MUSK_TRANS = `TẦM NHÌN CỦA ELON MUSK
-Thường được so sánh với “Iron Man” ngoài đời thực, Elon Musk là một ông trùm kinh doanh và kỹ sư nổi tiếng...`;
+const PASSAGE_ELON_MUSK_TRANS = `[ĐOẠN 1] TẦM NHÌN CỦA ELON MUSK
+Thường được so sánh với “Iron Man” ngoài đời thực, Elon Musk là một ông trùm kinh doanh và kỹ sư nổi tiếng với những mục tiêu đầy tham vọng nhằm cách mạng hóa ngành giao thông vận tải và khám phá vũ trụ. Với tư cách là CEO của Tesla, Inc., ông đã thúc đẩy đáng kể sự chuyển dịch của thế giới sang năng lượng bền vững bằng cách sản xuất các dòng xe điện đại chúng. Tuy nhiên, tầm nhìn của ông vượt xa phạm vi Trái Đất.
+
+[ĐOẠN 2] Năm 2002, Musk thành lập SpaceX với mục tiêu tối thượng là biến cuộc sống con người thành đa hành tinh. Mặc dù gặp nhiều thất bại ban đầu và sự hoài nghi từ công chúng, SpaceX đã phát triển thành công tên lửa Falcon 1, trở thành tên lửa nhiên liệu lỏng thương mại đầu tiên đạt tới quỹ đạo Trái Đất. Thành tựu này mở đường cho công nghệ tên lửa tái sử dụng, giúp giảm đáng kể chi phí tiếp cận quỹ đạo.
+
+[ĐOẠN 3] Bên cạnh xe điện và tên lửa, Musk còn giới thiệu các khái niệm mang tính tương lai khác như Hyperloop và Neuralink. Neuralink hướng tới việc phát triển các giao diện não - máy tính để điều trị các bệnh thần kinh. Mặc dù những đổi mới này thể hiện sự sẵn sàng chấp nhận rủi ro lớn của Musk, chúng cũng tạo ra nhiều tranh cãi và thảo luận trong công chúng. Tuy nhiên, nhiều chuyên gia cho rằng sự thử nghiệm táo bạo như vậy là thiết yếu cho sự tiến bộ công nghệ lâu dài.`;
 
 const PASSAGE_LIFE_16 = `It is completely normal not to have your life figured out at the age of sixteen. You are not expected to know exactly what your future will look like when you start high school, even if others think you should. In fact, feeling uncertain can be a privilege, as it allows you to keep many possibilities open. You have plenty of time ahead to explore life and discover who you truly are.
 
@@ -22,7 +26,17 @@ This period of life is also a perfect time to meet new people and build meaningf
 
 You have the freedom to become whoever you want to be. With effort and perseverance, you can achieve your goals. Remember, you are not just studying for exams; you are preparing for your future. While grades may seem important, <mark>they</mark> do not define who you are. Many successful people have failed before succeeding. As long as you believe in yourself, you can turn your dreams into reality.`;
 
-const PASSAGE_LIFE_16_TRANS = `Việc chưa định hình rõ ràng cuộc đời mình ở tuổi mười sáu là điều hoàn toàn bình thường...`;
+const PASSAGE_LIFE_16_TRANS = `[ĐOẠN 1] Việc chưa định hình rõ ràng cuộc đời mình ở tuổi mười sáu là điều hoàn toàn bình thường. Không ai kỳ vọng bạn phải biết chính xác tương lai của mình sẽ như thế nào khi mới bước vào cấp ba, ngay cả khi người khác nghĩ bạn nên như vậy. Thực tế, cảm giác chưa chắc chắn có thể là một đặc quyền, vì nó cho phép bạn giữ mở nhiều khả năng. Bạn còn rất nhiều thời gian phía trước để khám phá cuộc sống và tìm ra bản thân thực sự là ai.
+
+[ĐOẠN 2] Cuộc sống không kết thúc chỉ vì bạn trượt một bài kiểm tra hóa học hay ngủ quên và có một ngày tồi tệ. Ai cũng trải qua những lúc cảm thấy từ bỏ dễ dàng hơn là tiếp tục. Chính trong những thời điểm khó khăn này, sức mạnh và sự quyết tâm của bạn mới thực sự được thử thách.
+
+[ĐOẠN 3] Khả năng buông bỏ những điều cản bước bạn là điều thiết yếu để vượt qua các thử thách trong cuộc sống. Trường cấp ba khác xa so với trường tiểu học hay trung học cơ sở. Bạn có thể thấy mình phải thức khuya để học bài, dành cả cuối tuần để làm bài tập. Sẽ có những tháng ngập tràn bài kiểm tra và thi cử, điều này có thể dẫn đến căng thẳng và lo âu đáng kể.
+
+[ĐOẠN 4] Tuy nhiên, những năm tháng này cũng có thể là một trong những khoảng thời gian tuyệt vời nhất trong đời bạn. Hãy nhớ vui vẻ và trân trọng những khoảnh khắc giữa các giờ học và bài tập. Bạn sẽ không bao giờ ở tuổi mười sáu hay mười bảy một lần nữa, cười đùa với bạn bè trong một buổi tiệc hay đi bơi vào buổi sáng sớm một ngày se lạnh. Thời gian luôn trôi về phía trước, vì vậy đừng ngần ngại bước ra khỏi vùng an toàn của mình. Thà hối tiếc vì điều mình đã làm còn hơn ước gì mình đã thử. Nỗi sợ không nên cản trở bạn sống một cuộc đời trọn vẹn.
+
+[ĐOẠN 5] Giai đoạn này cũng là thời điểm hoàn hảo để gặp gỡ những người bạn mới và xây dựng các tình bạn ý nghĩa. Bạn sẽ gặp gỡ những cá nhân từ các nền tảng khác nhau và tham gia vào những cuộc trò chuyện gợi mở tư duy, thách thức cách suy nghĩ của bạn. Thông qua những trải nghiệm này, bạn sẽ học được giá trị thực sự của tình bạn và sự kết nối.
+
+[ĐOẠN 6] Bạn có sự tự do để trở thành bất kỳ ai bạn muốn. Với nỗ lực và sự kiên trì, bạn có thể đạt được các mục tiêu của mình. Hãy nhớ rằng, bạn không chỉ đang học cho các kỳ thi; bạn đang chuẩn bị cho tương lai của chính mình. Dù điểm số có vẻ quan trọng, chúng không định nghĩa bạn là ai. Nhiều người thành công từng thất bại trước khi đạt được thành tựu. Chỉ cần bạn tin vào chính mình, bạn có thể biến giấc mơ thành hiện thực.`;
 
 export const ELON_MUSK_2026_QUESTIONS: Question[] = [
   {
@@ -32,7 +46,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_ELON_MUSK_TRANS,
     questionText: 'Question 1. As the CEO of Tesla, Inc., he has significantly accelerated the world\'s transition to sustainable energy (1) ...',
     options: [
-      { id: 'A', text: 'produced mass-market electric vehicles', translation: 'động từ chia quá khứ (lỗi gãy câu)' },
+      { id: 'A', text: 'produced mass-market electric vehicles', translation: 'động từ chia quá khứ' },
       { id: 'B', text: 'by producing mass-market electric vehicles', translation: 'bằng cách sản xuất xe điện đại chúng (cách thức)' },
       { id: 'C', text: 'who produces mass-market electric vehicles', translation: 'người sản xuất xe điện' },
       { id: 'D', text: 'to produce mass-market electric vehicles', translation: 'để sản xuất xe điện' }
@@ -50,9 +64,9 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     questionText: 'Question 2. SpaceX successfully developed the Falcon 1, (2) ...',
     options: [
       { id: 'A', text: 'the first privately funded liquid-fueled rocket to reach orbit', translation: 'danh từ đồng cách (appositive)' },
-      { id: 'B', text: 'that was the first privately funded rocket', translation: 'dùng that sau dấu phẩy (sai)' },
-      { id: 'C', text: 'which it was the first rocket', translation: 'thừa chủ ngữ it (sai)' },
-      { id: 'D', text: 'was the first rocket', translation: 'thiếu đại từ quan hệ (sai)' }
+      { id: 'B', text: 'that was the first privately funded rocket', translation: 'dùng that sau dấu phẩy' },
+      { id: 'C', text: 'which it was the first rocket', translation: 'vốn là tên lửa đầu tiên' },
+      { id: 'D', text: 'was the first rocket', translation: 'thiếu đại từ quan hệ' }
     ],
     correctAnswer: 'A',
     explanation: '• Đây là cấu trúc danh từ đồng cách (appositive) giải thích rõ cho "Falcon 1" đứng trước nó. Chọn A.',
@@ -69,7 +83,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'which aims to develop brain-computer interfaces', translation: 'thiếu động từ chính' },
       { id: 'B', text: 'aims to develop brain-computer interfaces to assist people with paralysis', translation: 'nhắm tới phát triển giao diện não-máy tính hỗ trợ người liệt' },
       { id: 'C', text: 'aiming to develop brain-computer interfaces', translation: 'dạng V-ing' },
-      { id: 'D', text: 'is aimed to develop', translation: 'sai ngữ pháp' }
+      { id: 'D', text: 'is aimed to develop', translation: 'nhằm mục đích phát triển' }
     ],
     correctAnswer: 'B',
     explanation: '• Động từ chính chia thì hiện tại đơn "aims to develop..." đóng vai trò V-main cho chủ ngữ "The latter" (Neuralink). Chọn B.',
@@ -145,7 +159,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 8. The innovator’s groundbreaking work revolutionized the renewable energy industry.',
     options: [
-      { id: 'A', text: 'pioneering', translation: 'tiên phong / đột phá (đồng nghĩa với groundbreaking)' },
+      { id: 'A', text: 'pioneering', translation: 'tiên phong / đột phá' },
       { id: 'B', text: 'conventional', translation: 'theo thông lệ' },
       { id: 'C', text: 'insignificant', translation: 'không đáng kể' },
       { id: 'D', text: 'traditional', translation: 'truyền thống' }
@@ -160,7 +174,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 9. She showed remarkable resilience in overcoming numerous business setbacks.',
     options: [
-      { id: 'A', text: 'fragility', translation: 'sự yếu ớt / dễ vỡ (trái nghĩa với resilience)' },
+      { id: 'A', text: 'fragility', translation: 'sự yếu ớt / dễ vỡ' },
       { id: 'B', text: 'tenacity', translation: 'sự kiên trì' },
       { id: 'C', text: 'endurance', translation: 'sự chịu đựng' },
       { id: 'D', text: 'perseverance', translation: 'sự bền bỉ' }
@@ -205,10 +219,10 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 12. Having invested millions in research and development, _____ a revolutionary solar panel.',
     options: [
-      { id: 'A', text: 'the company unveiled', translation: 'chủ thể là tổ chức/người (the company)' },
-      { id: 'B', text: 'a solar panel was unveiled', translation: 'sai chủ thể bị động' },
-      { id: 'C', text: 'unveiling took place', translation: 'sai ngữ pháp' },
-      { id: 'D', text: 'research was completed', translation: 'ngược ngữ cảnh' }
+      { id: 'A', text: 'the company unveiled', translation: 'công ty đã công bố' },
+      { id: 'B', text: 'a solar panel was unveiled', translation: 'tấm pin mặt trời đã được công bố' },
+      { id: 'C', text: 'unveiling took place', translation: 'buổi ra mắt đã diễn ra' },
+      { id: 'D', text: 'research was completed', translation: 'nghiên cứu đã hoàn thành' }
     ],
     correctAnswer: 'A',
     explanation: '• Phân từ hoàn thành "Having invested..." đòi hỏi chủ ngữ vế chính là công ty (the company). Chọn A.',
@@ -242,7 +256,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• c (Mark hỏi xem Starship) -> a (Linda khen màn tách tầng đẩy) -> b (Mark đồng ý như sống trong tương lai). Trật tự: c - a - b. Chọn A.',
-    translation: 'Sắp xếp hội thoại Starship: Hỏi -> Trả lời ấn tượng -> Đồng tình.',
+    translation: 'Sắp xếp hội thoại Starship.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -257,7 +271,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• e mở đoạn áp lực thanh thiếu niên -> d chi tiết kỳ thi -> c giải pháp cân bằng ngủ nghỉ -> b bổ sung tập thể thao -> a kết luận tự chăm sóc bản thân. Trật tự: e - d - c - b - a. Chọn A.',
-    translation: 'Sắp xếp đoạn văn áp lực tuổi học trò: Mở đoạn -> Vấn đề -> Giải pháp -> Bổ sung -> Kết luận.',
+    translation: 'Sắp xếp đoạn văn áp lực tuổi học trò.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -295,7 +309,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 18. The tech giant aims to eradicate carbon emissions from its manufacturing plants by 2030.',
     options: [
-      { id: 'A', text: 'eliminate', translation: 'loại bỏ / triệt phá (đồng nghĩa với eradicate)' },
+      { id: 'A', text: 'eliminate', translation: 'loại bỏ / triệt phá' },
       { id: 'B', text: 'generate', translation: 'tạo ra' },
       { id: 'C', text: 'retain', translation: 'giữ lại' },
       { id: 'D', text: 'magnify', translation: 'phóng đại' }
@@ -310,8 +324,8 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 19. Her optimistic outlook helped her maintain high morale despite repeated project delays.',
     options: [
-      { id: 'A', text: 'pessimistic', translation: 'bi quan (trái nghĩa với optimistic)' },
-      { id: 'B', text: 'hopeful', translation: 'hy vọng (đồng nghĩa)' },
+      { id: 'A', text: 'pessimistic', translation: 'bi quan' },
+      { id: 'B', text: 'hopeful', translation: 'hy vọng' },
       { id: 'C', text: 'positive', translation: 'tích cực' },
       { id: 'D', text: 'confident', translation: 'tự tin' }
     ],
@@ -342,8 +356,8 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'than', translation: 'cấu trúc No sooner... Than' },
       { id: 'B', text: 'when', translation: 'dùng khi Hardly... When' },
-      { id: 'C', text: 'then', translation: 'dùng then (sai)' },
-      { id: 'D', text: 'that', translation: 'dùng that (sai)' }
+      { id: 'C', text: 'then', translation: 'dùng then' },
+      { id: 'D', text: 'that', translation: 'dùng that' }
     ],
     correctAnswer: 'A',
     explanation: '• Cấu trúc "No sooner + had + S + P2 + THAN + S + V(quá khứ)". Chọn A. than.',
@@ -477,7 +491,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• A diễn đạt lại sát nghĩa nhất câu "It is better to regret something you did than to wish you had tried" (Hành động thà hối tiếc còn hơn hối tiếc vì chưa từng thử). Chọn A.',
-    translation: 'Diễn đạt lại chuẩn nhất: Hành động và chấp nhận hậu quả tốt hơn là hối tiếc vì bỏ lỡ cơ hội.',
+    translation: 'Câu nào sau đây diễn đạt lại đúng nhất câu được gạch chân trong đoạn văn?',
     topicTag: 'Đọc hiểu - Paraphrasing'
   },
   {
@@ -489,12 +503,12 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'engaging', translation: 'cuốn hút' },
       { id: 'B', text: 'challenging', translation: 'thách thức' },
-      { id: 'C', text: 'uninspiring', translation: 'không gợi cảm hứng / nhạt nhẽo (trái nghĩa)' },
+      { id: 'C', text: 'uninspiring', translation: 'không gợi cảm hứng / nhạt nhẽo' },
       { id: 'D', text: 'stimulating', translation: 'kích thích tư duy' }
     ],
     correctAnswer: 'C',
     explanation: '• "thought-provoking" = gợi suy nghĩ / kích thích tư duy. Trái nghĩa với nó là "uninspiring" (không gợi cảm hứng / nhạt nhẽo). Chọn C.',
-    translation: 'Từ "thought-provoking" trái nghĩa với: uninspiring.',
+    translation: 'Từ "thought-provoking" có nghĩa trái ngược với:',
     topicTag: 'Đọc hiểu - Từ trái nghĩa'
   },
   {
@@ -577,7 +591,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• e mở đoạn tầm nhìn -> d thành tựu SpaceX -> c bổ sung Tesla -> b đối mặt sự hoài nghi -> a kết luận truyền cảm hứng hôm nay. Trật tự: e - d - c - b - a. Chọn A.',
-    translation: 'Sắp xếp đoạn văn Elon Musk: Tầm nhìn -> Thành tựu 1 -> Thành tựu 2 -> Thách thức -> Kết luận.',
+    translation: 'Sắp xếp đoạn văn Elon Musk.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -615,7 +629,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 38. High school students should learn to embrace constructive feedback to improve their academic writing.',
     options: [
-      { id: 'A', text: 'welcome', translation: 'chào đón / đón nhận (đồng nghĩa với embrace)' },
+      { id: 'A', text: 'welcome', translation: 'chào đón / đón nhận' },
       { id: 'B', text: 'reject', translation: 'từ chối' },
       { id: 'C', text: 'dismiss', translation: 'bác bỏ' },
       { id: 'D', text: 'overlook', translation: 'bỏ qua' }
@@ -630,8 +644,8 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 39. His meticulous attention to detail prevented potential errors during the product assembly process.',
     options: [
-      { id: 'A', text: 'careless', translation: 'cẩu thả (trái nghĩa với meticulous)' },
-      { id: 'B', text: 'thorough', translation: 'tỉ mỉ (đồng nghĩa)' },
+      { id: 'A', text: 'careless', translation: 'cẩu thả' },
+      { id: 'B', text: 'thorough', translation: 'tỉ mỉ' },
       { id: 'C', text: 'precise', translation: 'chính xác' },
       { id: 'D', text: 'diligent', translation: 'cần cù' }
     ],

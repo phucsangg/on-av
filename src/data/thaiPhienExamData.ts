@@ -112,8 +112,8 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'Having been exposed to sweetened foods early in your childhood development', translation: 'Đã bị tiếp xúc với đồ ngọt từ giai đoạn phát triển ban đầu của bạn' },
       { id: 'B', text: 'Once consuming a variety of foods, including sugary ones, at an early age', translation: 'Một khi tiêu thụ nhiều loại thực phẩm ở độ tuổi sớm' },
-      { id: 'C', text: 'If you are exposed to sweet foods early in life and developed a liking for them', translation: 'Nếu bạn tiếp xúc đồ ngọt sớm và phát triển sở thích (sai thì)' },
-      { id: 'D', text: 'In early life you indulged in eating sugary foods as part of your normal diet', translation: 'Khi còn nhỏ bạn nuông chiều ăn đồ ngọt (lỗi run-on)' }
+      { id: 'C', text: 'If you are exposed to sweet foods early in life and developed a liking for them', translation: 'Nếu bạn tiếp xúc đồ ngọt sớm và phát triển sở thích' },
+      { id: 'D', text: 'In early life you indulged in eating sugary foods as part of your normal diet', translation: 'Khi còn nhỏ bạn nuông chiều ăn đồ ngọt' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Sử dụng phân từ hoàn thành bị động "Having been exposed to" chỉ hành động xảy ra trước làm nguyên nhân dẫn đến thói quen sở thích.',
@@ -471,10 +471,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 24. Choose the correct order of sentences to make a meaningful paragraph:\na. On a personal level, the search for belonging takes people not only to internet chat rooms, clubs, and coffee shops but also to work, which seems to offer a ready-made community.\nb. In a world of increased individualism and globalisation, many of us are seeking a sense of belonging somewhere or to someone.\nc. Psychologically speaking, work satisfies our basic instinct to relate to other individuals, and to society.\nd. Gossip sessions, lazy conversations and shared moments remind employees that they belong to something bigger than themselves — thus the workplace fulfils a fundamental human need.\ne. Work is a gateway to a social network, to friends, and to a community.',
     options: [
-      { id: 'A', text: 'e - b - a - c - d', translation: 'Trật tự: e -> b -> a -> c -> d' },
-      { id: 'B', text: 'e - d - a - c - b', translation: 'Trật tự: e -> d -> a -> c -> b' },
-      { id: 'C', text: 'e - a - b - d - c', translation: 'Trật tự: e -> a -> b -> d -> c' },
-      { id: 'D', text: 'e - c - a - b - d', translation: 'Trật tự: e -> c -> a -> b -> d' }
+      { id: 'A', text: 'e - b - a - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'e - d - a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'e - a - b - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'e - c - a - b - d', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (e - b - a - c - d): Mở đầu bằng vai trò tổng quan của công việc (e) -> Đặt bối cảnh xã hội (b) -> Cụ thể hóa nhu cầu thuộc về nơi làm việc (a) -> Giải thích tâm lý (c) -> Kết luận bằng ví dụ đời sống công sở (d).',
@@ -486,10 +486,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 25. Choose the correct order of dialogue sentences:\na. Colin: Well, in that case we have to do something! How about organising a weekend away for everyone? Maybe we could go camping.\nb. Amanda: Mmm, good question. He says he doesn\'t like birthdays and doesn\'t want to do anything special, but it is his 21st …\nc. Colin: Amanda, I\'ve been meaning to ask you, are we going to do anything for Ken\'s birthday?\nd. Amanda: We could … but I was thinking of something a little less complicated, only because Ken won\'t want us to make a big deal of his birthday.\ne. Colin: Got it, yes. Then what about throwing a surprise party at my house?',
     options: [
-      { id: 'A', text: 'c - b - e - d - a', translation: 'Trật tự: c -> b -> e -> d -> a' },
-      { id: 'B', text: 'a - b - e - d - c', translation: 'Trật tự: a -> b -> e -> d -> c' },
-      { id: 'C', text: 'c - b - a - d - e', translation: 'Trật tự: c -> b -> a -> d -> e' },
-      { id: 'D', text: 'a - d - c - b - e', translation: 'Trật tự: a -> d -> c -> b -> e' }
+      { id: 'A', text: 'c - b - e - d - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - b - e - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - b - a - d - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - d - c - b - e', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG (c - b - a - d - e): Colin hỏi về sinh nhật Ken (c) -> Amanda trả lời Ken không thích rầm rộ (b) -> Colin đề xuất đi cắm trại (a) -> Amanda muốn đơn giản hơn (d) -> Colin chốt tiệc bất ngờ tại nhà (e).',
@@ -501,10 +501,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 26. Choose the correct order of letter sentences:\na. Starting work now could be a great option, as it would give you the chance to gain real-world experience, develop useful skills, earn money, and become more independent.\nb. Ultimately, trust your instincts - there\'s no one-size-fits-all answer, and the important thing is finding what makes you happy and fulfilled.\nc. Given your friendly and outgoing personality, I think customer service roles, such as working in a café, as a sales assistant, or even in event planning, could be a great start.\nd. I was so glad to get your letter, and I totally understand the dilemma you\'re facing about whether to go to college or start working.\ne. Honestly, I have a feeling that college may not be the best fit for you, as you\'ve always been more of a hands-on, practical learner.',
     options: [
-      { id: 'A', text: 'd - e - a - c - b', translation: 'Trật tự: d -> e -> a -> c -> b' },
-      { id: 'B', text: 'd - a - c - e - b', translation: 'Trật tự: d -> a -> c -> e -> b' },
-      { id: 'C', text: 'e - c - a - d - b', translation: 'Trật tự: e -> c -> a -> d -> b' },
-      { id: 'D', text: 'c - d - e - a - b', translation: 'Trật tự: c -> d -> e -> a -> b' }
+      { id: 'A', text: 'd - e - a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'd - a - c - e - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'e - c - a - d - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - d - e - a - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (d - e - a - c - b): Mở thư thấu hiểu nỗi lo (d) -> Đưa nhận xét cá nhân (e) -> Đề xuất phương án đi làm (a) -> Cụ thể hóa công việc phù hợp tính cách (c) -> Lời khuyên kết thư (b).',
@@ -516,14 +516,14 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 27. Choose the correct order of dialogue sentences:\na. Noel: Goodness, no. I\'m just here for some meetings today. I can\'t stand London!\nb. Becky: Hi, Noel, what a surprise, how lovely to see you. Do you live here in London?\nc. Noel: Rebecca? I thought it was you! Gosh, I haven\'t seen you since university. You look great.',
     options: [
-      { id: 'A', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' },
-      { id: 'B', text: 'c - b - a', translation: 'Trật tự: c -> b -> a' },
-      { id: 'C', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'D', text: 'a - b - c', translation: 'Trật tự: a - b -> c' }
+      { id: 'A', text: 'c - a - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'c - b - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - b - c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG (c - b - a): Noel nhận ra bạn cũ thời đại học (c) -> Becky chào lại và hỏi xem Noel có sống ở London không (b) -> Noel giải thích chỉ tới họp (a).',
-    translation: 'Sắp xếp hội thoại gặp lại bạn cũ:\na. Noel: Trời ơi, không đâu. Tớ chỉ ở đây để dự vài cuộc họp hôm nay thôi. Tớ không chịu nổi London!\nb. Becky: Chào Noel, bất ngờ quá, thật vui được gặp lại cậu. Cậu có sống ở London không?\nc. Noel: Rebecca? Tớ nghĩ đúng là cậu rồi! Trời ơi, tớ chưa gặp lại cậu từ thời đại học. Cậu trông tuyệt lắm.',
+    translation: 'Sắp xếp hội thoại gặp lại bạn cũ.',
     topicTag: 'Sắp xếp hội thoại ngắn'
   },
   {
@@ -531,10 +531,10 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 28. Choose the correct order of sentences to make a meaningful paragraph:\na. Mass wasting, simply put, is the movement of surface rock and debris down a slope as a result of gravity.\nb. Many people think hurricanes and tornadoes are the most destructive forces on Earth.\nc. Overseas, catastrophes triggered by mass wasting have killed tens to hundreds of thousands of people in seconds.\nd. It is responsible for approximately $2 billion worth of damage and dozens of deaths annually in the United States.\ne. However, an equally destructive force is at work every day: mass wasting.',
     options: [
-      { id: 'A', text: 'b - a - e - d - c', translation: 'Trật tự: b -> a -> e -> d -> c' },
-      { id: 'B', text: 'b - d - a - e - c', translation: 'Trật tự: b -> d -> a -> e -> c' },
-      { id: 'C', text: 'b - e - a - d - c', translation: 'Trật tự: b -> e -> a -> d -> c' },
-      { id: 'D', text: 'd - b - e - a - c', translation: 'Trật tự: d -> b -> e -> a -> c' }
+      { id: 'A', text: 'b - a - e - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - d - a - e - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - e - a - d - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd - b - e - a - c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG (b - e - a - d - c): Nêu quan niệm phổ biến về bão lốc (b) -> Bác bỏ và giới thiệu "mass wasting" (e) -> Định nghĩa khái niệm (a) -> Đưa số liệu thiệt hại ở Mỹ (d) -> Mở rộng thiệt hại toàn cầu (c).',
@@ -584,8 +584,8 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_AIR_CLEANING_TRANS,
     questionText: 'Question 31. Fill in blank (31):',
     options: [
-      { id: 'A', text: 'naturalist', translation: 'nhà tự nhiên học (Danh từ)' },
-      { id: 'B', text: 'nature', translation: 'thiên nhiên (Danh từ)' },
+      { id: 'A', text: 'naturalist', translation: 'nhà tự nhiên học' },
+      { id: 'B', text: 'nature', translation: 'thiên nhiên' },
       { id: 'C', text: 'natural', translation: 'tính từ' },
       { id: 'D', text: 'naturally', translation: 'một cách tự nhiên (Trạng từ bổ nghĩa cho V-ing cleaning)' }
     ],
@@ -746,7 +746,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "autonomy" nghĩa là quyền tự chủ, giúp trẻ tự do lựa chọn con đường riêng.',
-    translation: 'Trao cho các em (40) ____________ để tự chọn con đường riêng.',
+    translation: 'Trao cho các em (40) _____ để tự chọn con đường riêng.',
     topicTag: 'Từ vựng chủ đề Giáo dục'
   }
 ];

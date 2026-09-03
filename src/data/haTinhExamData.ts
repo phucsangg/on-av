@@ -78,10 +78,10 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_WORKSHOP_TRANS,
     questionText: 'Question 1. Fill in blank (1):',
     options: [
-      { id: 'A', text: 'practice', translation: 'sự thực hành (danh từ)' },
-      { id: 'B', text: 'practical', translation: 'thiết thực / thực tế (tính từ)' },
+      { id: 'A', text: 'practice', translation: 'sự thực hành' },
+      { id: 'B', text: 'practical', translation: 'thiết thực / thực tế' },
       { id: 'C', text: 'practically', translation: 'hầu như / thực tế là (trạng từ)' },
-      { id: 'D', text: 'practicality', translation: 'tính thực tiễn (danh từ)' }
+      { id: 'D', text: 'practicality', translation: 'tính thực tiễn' }
     ],
     correctAnswer: 'B',
     explanation: '• A. practice - SAI: Danh từ, không đứng trước danh từ "solution" để bổ nghĩa.\n• B. practical - ĐÚNG: Tính từ (thiết thực), vị trí trước danh từ cần một tính từ bổ nghĩa.\n• C. practically - SAI: Trạng từ.\n• D. practicality - SAI: Danh từ.',
@@ -112,8 +112,8 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_WORKSHOP_TRANS,
     questionText: 'Question 3. Fill in blank (3):',
     options: [
-      { id: 'A', text: 'preparing', translation: 'đang chuẩn bị (chủ động)' },
-      { id: 'B', text: 'prepared', translation: 'được chuẩn bị (bị động)' },
+      { id: 'A', text: 'preparing', translation: 'đang chuẩn bị' },
+      { id: 'B', text: 'prepared', translation: 'được chuẩn bị' },
       { id: 'C', text: 'prepare', translation: 'chuẩn bị (nguyên thể)' },
       { id: 'D', text: 'to prepare', translation: 'để chuẩn bị' }
     ],
@@ -130,7 +130,7 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 4. Fill in blank (4):',
     options: [
       { id: 'A', text: 'a wide variety of', translation: 'nhiều loại / sự đa dạng của' },
-      { id: 'B', text: 'a vast deal of', translation: 'lượng lớn (sai cấu trúc ngữ pháp)' },
+      { id: 'B', text: 'a vast deal of', translation: 'lượng lớn' },
       { id: 'C', text: 'a huge amount of', translation: 'một lượng khổng lồ (cho không đếm được)' },
       { id: 'D', text: 'a large number of', translation: 'số lượng lớn (cho danh từ số nhiều)' }
     ],
@@ -163,7 +163,7 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_WORKSHOP_TRANS,
     questionText: 'Question 6. Fill in blank (6):',
     options: [
-      { id: 'A', text: 'more safe', translation: 'an toàn hơn (sai cấu trúc ngắn)' },
+      { id: 'A', text: 'more safe', translation: 'an toàn hơn' },
       { id: 'B', text: 'safe', translation: 'an toàn' },
       { id: 'C', text: 'safest', translation: 'an toàn nhất' },
       { id: 'D', text: 'safer', translation: 'an toàn hơn' }
@@ -200,9 +200,9 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     questionText: 'Question 8. Fill in blank (8):',
     options: [
       { id: 'A', text: 'e-learning support system', translation: 'hệ thống hỗ trợ học trực tuyến' },
-      { id: 'B', text: 'support e-learning system', translation: 'hệ thống hỗ trợ học trực tuyến (sai trật tự)' },
-      { id: 'C', text: 'e-learning system support', translation: 'hệ thống hỗ trợ học trực tuyến (sai trật tự)' },
-      { id: 'D', text: 'system e-learning support', translation: 'hệ thống hỗ trợ học trực tuyến (sai trật tự)' }
+      { id: 'B', text: 'support e-learning system', translation: 'hệ thống hỗ trợ học trực tuyến' },
+      { id: 'C', text: 'e-learning system support', translation: 'hệ thống hỗ trợ học trực tuyến' },
+      { id: 'D', text: 'system e-learning support', translation: 'hệ thống hỗ trợ học trực tuyến' }
     ],
     correctAnswer: 'A',
     explanation: '• A. e-learning support system - ĐÚNG: Cụm danh từ ghép đúng thứ tự: hệ thống (system) + hỗ trợ (support) + học trực tuyến (e-learning).',
@@ -250,10 +250,10 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_SMART_LEARNING_TRANS,
     questionText: 'Question 11. Fill in blank (11):',
     options: [
-      { id: 'A', text: 'guiding', translation: 'sự hướng dẫn (dạng V-ing)' },
-      { id: 'B', text: 'guideline', translation: 'hướng dẫn / quy tắc (danh từ)' },
-      { id: 'C', text: 'guidance', translation: 'sự hướng dẫn (danh từ)' },
-      { id: 'D', text: 'guide', translation: 'người hướng dẫn / hướng dẫn (động từ)' }
+      { id: 'A', text: 'guiding', translation: 'sự hướng dẫn' },
+      { id: 'B', text: 'guideline', translation: 'hướng dẫn / quy tắc' },
+      { id: 'C', text: 'guidance', translation: 'sự hướng dẫn' },
+      { id: 'D', text: 'guide', translation: 'người hướng dẫn / hướng dẫn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. guidance - ĐÚNG: Danh từ "guidance" (sự hướng dẫn), phù hợp đứng sau tính từ "professional".',
@@ -288,10 +288,10 @@ a. Ethan: Hi, Mia! Yes, I went there last weekend. The coffee was fantastic!
 b. Mia: That’s great to hear! I’ll have to check it out soon.
 c. Mia: Hey, Ethan! Have you tried that new café on Maple Street?`,
     options: [
-      { id: 'A', text: 'a – b – c' },
-      { id: 'B', text: 'c – a – b' },
-      { id: 'C', text: 'a – c – b' },
-      { id: 'D', text: 'c – b – a' }
+      { id: 'A', text: 'a – b – c', translation: 'a – b – c' },
+      { id: 'B', text: 'c – a – b', translation: 'c – a – b' },
+      { id: 'C', text: 'a – c – b', translation: 'a – c – b' },
+      { id: 'D', text: 'c – b – a', translation: 'c – b – a' }
     ],
     correctAnswer: 'B',
     explanation: 'Thứ tự hội thoại:\n1. (c) Mia mở đầu hỏi Ethan về quán cà phê mới.\n2. (a) Ethan trả lời đã đến và khen cà phê ngon.\n3. (b) Mia đáp lại sẽ ghé thử.',
@@ -309,10 +309,10 @@ c. Robert: Good idea! I’ll look for a teacher in my area.
 d. Robert: I’m thinking about learning to play the piano.
 e. Sarah: That sounds like a fun challenge! Have you ever played before?`,
     options: [
-      { id: 'A', text: 'a – b – c – d – e' },
-      { id: 'B', text: 'd – e – c – a – b' },
-      { id: 'C', text: 'd – e – a – b – c' },
-      { id: 'D', text: 'a – b – e – d – c' }
+      { id: 'A', text: 'a – b – c – d – e', translation: 'a – b – c – d – e' },
+      { id: 'B', text: 'd – e – c – a – b', translation: 'd – e – c – a – b' },
+      { id: 'C', text: 'd – e – a – b – c', translation: 'd – e – a – b – c' },
+      { id: 'D', text: 'a – b – e – d – c', translation: 'a – b – e – d – c' }
     ],
     correctAnswer: 'C',
     explanation: 'Thứ tự hội thoại:\n- (d) Robert nêu ý định học piano.\n- (e) Sarah nhận xét và hỏi câu hỏi tiếp theo.\n- (a) Robert trả lời chưa từng chơi.\n- (b) Sarah khuyên nên học với giáo viên.\n- (c) Robert đồng ý tìm giáo viên.',
@@ -332,10 +332,10 @@ d. I know this might be an adjustment for some of you, but it’s important to p
 e. Please ensure you have access to your online resources, and let me know if you have any questions or concerns.
 Best wishes, Mrs. Linda`,
     options: [
-      { id: 'A', text: 'd – b – a – c – e' },
-      { id: 'B', text: 'b – a – d – c – e' },
-      { id: 'C', text: 'a – e – c – b – d' },
-      { id: 'D', text: 'c – b – e – a – d' }
+      { id: 'A', text: 'd – b – a – c – e', translation: 'd – b – a – c – e' },
+      { id: 'B', text: 'b – a – d – c – e', translation: 'b – a – d – c – e' },
+      { id: 'C', text: 'a – e – c – b – d', translation: 'a – e – c – b – d' },
+      { id: 'D', text: 'c – b – e – a – d', translation: 'c – b – e – a – d' }
     ],
     correctAnswer: 'B',
     explanation: 'Cấu trúc Email:\n- (b) Lời hỏi thăm sức khỏe mở đầu.\n- (a) Thông báo chuyển sang học online do bão.\n- (d) Giải thích việc ưu tiên an toàn.\n- (c) Cảm ơn sự thông cảm.\n- (e) Hướng dẫn chuẩn bị tài nguyên học tập.',
@@ -353,10 +353,10 @@ c. Simple actions like reducing plastic use, recycling, and conserving water can
 d. It’s important for individuals, businesses, and governments to work together to preserve natural resources, reduce pollution, and combat climate change for future generations.
 e. Protecting the environment is crucial for ensuring a healthy and sustainable future.`,
     options: [
-      { id: 'A', text: 'e – c – b – a – d' },
-      { id: 'B', text: 'e – a – c – d – b' },
-      { id: 'C', text: 'c – e – a – b – d' },
-      { id: 'D', text: 'd – e – a – c – b' }
+      { id: 'A', text: 'e – c – b – a – d', translation: 'e – c – b – a – d' },
+      { id: 'B', text: 'e – a – c – d – b', translation: 'e – a – c – d – b' },
+      { id: 'C', text: 'c – e – a – b – d', translation: 'c – e – a – b – d' },
+      { id: 'D', text: 'd – e – a – c – b', translation: 'd – e – a – c – b' }
     ],
     correctAnswer: 'A',
     explanation: 'Thứ tự đoạn văn về Môi trường:\n- (e) Câu chủ đề nêu tầm quan trọng của việc bảo vệ môi trường.\n- (c) Các hành động đơn giản mở đầu.\n- (b) Nêu ví dụ trồng cây xanh.\n- (a) Thêm các biện pháp bổ sung (Additionally).\n- (d) Câu kết luận về sự hợp tác toàn xã hội.',
@@ -374,10 +374,10 @@ c. However, there is a risk of losing cultural identity if local traditions are 
 d. Exposure to different cultures through global festivals also helps young people gain a broader understanding of the world.
 e. Ultimately, maintaining a balance between embracing foreign cultures and preserving local traditions is crucial for positive growth.`,
     options: [
-      { id: 'A', text: 'a – c – b – e – d' },
-      { id: 'B', text: 'd – c – b – a – e' },
-      { id: 'C', text: 'b – a – d – c – e' },
-      { id: 'D', text: 'c – b – d – a – e' }
+      { id: 'A', text: 'a – c – b – e – d', translation: 'a – c – b – e – d' },
+      { id: 'B', text: 'd – c – b – a – e', translation: 'd – c – b – a – e' },
+      { id: 'C', text: 'b – a – d – c – e', translation: 'b – a – d – c – e' },
+      { id: 'D', text: 'c – b – d – a – e', translation: 'c – b – d – a – e' }
     ],
     correctAnswer: 'C',
     explanation: 'Thứ tự đoạn văn Lễ hội Quốc tế:\n- (b) Câu chủ đề nêu hiện tượng giới trẻ đón nhận lễ hội quốc tế.\n- (a) Đưa ra mặt tích cực đầu tiên ("On the positive side").\n- (d) Bổ sung mặt tích cực thứ hai.\n- (c) Chuyển hướng sang mặt tiêu cực ("However").\n- (e) Đưa ra kết luận cân bằng ("Ultimately").',
@@ -410,7 +410,7 @@ e. Ultimately, maintaining a balance between embracing foreign cultures and pres
     passageTranslation: PASSAGE_EV_TRANSITION_TRANS,
     questionText: 'Question 19. Fill in blank (19):',
     options: [
-      { id: 'A', text: 'emits harmful pollutants into the air', translation: 'thải các chất ô nhiễm có hại vào không khí (động từ số ít)' },
+      { id: 'A', text: 'emits harmful pollutants into the air', translation: 'thải các chất ô nhiễm có hại vào không khí' },
       { id: 'B', text: 'emitting harmful pollutants', translation: 'đang thải các chất ô nhiễm có hại (V-ing)' },
       { id: 'C', text: 'with harmful pollutants in the air', translation: 'với các chất ô nhiễm có hại trong không khí' },
       { id: 'D', text: 'that emits air pollutants', translation: 'cái mà thải ra các chất ô nhiễm không khí' }

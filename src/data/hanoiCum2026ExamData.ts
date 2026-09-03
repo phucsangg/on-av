@@ -10,7 +10,15 @@ Celebrity air travel remains under constant scrutiny, regardless of public senti
 
 While carbon offsetting provides limited mitigation opportunities, meaningful progress depends on systemic reforms that reduce overall emissions and confront the underlying causes of climate impact.`;
 
-const PASSAGE_CARBON_FOOTPRINT_TRANS = `Trong bài viết “Just Plane Wrong: Celebs with the Worst Private Jet CO2 Emissions”, YARD đã xếp Taylor Swift là người nổi tiếng có dấu chân carbon lớn nhất...`;
+const PASSAGE_CARBON_FOOTPRINT_TRANS = `[ĐOẠN 1] Trong bài viết “Just Plane Wrong: Celebs with the Worst Private Jet CO2 Emissions”, YARD đã xếp Taylor Swift là người nổi tiếng có dấu chân carbon lớn nhất, khi chuyên cơ riêng của cô tạo ra 138 tấn khí thải. Jay-Z và Floyd Mayweather bám sát ngay phía sau. Việc Swift tham dự các trận đấu của Kansas City Chiefs gần đây để ủng hộ bạn đời Travis Kelce càng làm tăng sự săm soi của truyền thông. Việc các ngôi sao nhận sự chỉ trích từ công chúng vì di chuyển bằng đường hàng không không phải là một hiện tượng mới. Việc chỉ trích một cá nhân đơn lẻ có nguy cơ làm đơn giản hóa một vấn đề rộng lớn hơn vốn đã tồn tại trước bất kỳ dòng tiêu đề báo chí nào.
+
+[ĐOẠN 2] Khí thải carbon ở một mức độ nào đó là không thể tránh khỏi đối với các nhân vật công chúng nổi tiếng di chuyển thường xuyên. Trong bài viết "Rich Enough to Offset", Laura Kiesel khám phá lượng khí thải carbon ngày càng tăng của các ngôi sao như Arnold Schwarzenegger và Leonardo DiCaprio, và cách họ cố gắng bù đắp cho chúng. Một phương pháp phổ biến là bù đắp carbon (carbon offsetting), một thực hành cho phép các cá nhân bù đắp lượng khí thải bằng cách tài trợ cho các sáng kiến môi trường, bao gồm trồng rừng hoặc các dự án năng lượng tái tạo. Mặc dù những nỗ lực như vậy có thể thể hiện tinh thần trách nhiệm, các nhà phê bình cho rằng chúng hiếm khi trung hòa được lượng khí thải theo bất kỳ ý nghĩa thực sự nào.
+
+[ĐOẠN 3] Giáo sư Jon Erickson từ Đại học Vermont nhấn mạnh những lo ngại về hậu quả ngoài ý muốn của một số dự án bù đắp, đặc biệt là ở các vùng đang phát triển. Một số sáng kiến, chẳng hạn như các đề án năng lượng mặt trời quy mô nhỏ được thiết lập để đối trọng với lượng khí thải xa xỉ, có thể vô tình làm hạn chế tài nguyên dành cho các dịch vụ thiết yếu như y tế và giáo dục. Hơn nữa, những nỗ lực này không giải quyết được nguyên nhân gốc rễ của lượng khí thải carbon dư thừa.
+
+[ĐOẠN 4] Việc di chuyển bằng đường hàng không của các ngôi sao vẫn chịu sự giám sát liên tục. Mặc dù các chương trình bù đắp tự nguyện có thể giúp khôi phục danh tiếng của các ngôi sao, chúng cũng có thể hợp thức hóa việc tiêu dùng quá độ tiếp diễn. Trong "Don't Bet on Offsets", A.C. Thompson và Duane Moles đặt câu hỏi liệu các cơ chế như vậy có thể bù đắp khí thải một cách thực tế hay không. các công ty như TerraPass mang đến cho người tiêu dùng giàu có cơ hội tính toán và bù đắp dấu chân carbon của họ, tuy nhiên các giao dịch này thường diễn ra trong các thị trường lỏng lẻo thiếu các tiêu chuẩn nhất quán.
+
+[ĐOẠN 5] Mặc dù việc bù đắp carbon cung cấp những cơ hội giảm thiểu hạn chế, sự tiến bộ có ý nghĩa phụ thuộc vào các cải cách mang tính hệ thống nhằm giảm tổng lượng khí thải và đối mặt với các nguyên nhân cốt lõi gây ra tác động khí hậu.`;
 
 const PASSAGE_EAT_FROG = `EAT THAT FROG!
 Imagine this scenario: You've taken up a new job or started a new course, <mark>(24) ____________</mark> you're already feeling overworked. You've got so many things to do. In his book Eat That Frog!, Brian Tracy explains how simple habits can help you reach your full potential and avoid burnout.
@@ -27,7 +35,14 @@ Observing successful people can improve your career prospects. When positive beh
 Ultimately, consistent effort enhances long-term sustainability and personal <mark>(29) ____________</mark>.`;
 
 const PASSAGE_EAT_FROG_TRANS = `EAT THAT FROG! – ĂN CON ẾCH ĐÓ!
-Hãy tưởng tượng tình huống này: Bạn vừa bắt đầu một công việc mới hoặc tham gia một khóa học mới, nhưng (24) bạn đã cảm thấy quá tải với công việc...`;
+
+[ĐOẠN 1] Hãy tưởng tượng tình huống này: Bạn vừa bắt đầu một công việc mới hoặc tham gia một khóa học mới, nhưng bạn đã cảm thấy quá tải với công việc. Bạn có quá nhiều việc phải làm. Trong cuốn sách Eat That Frog!, Brian Tracy giải thích cách các thói quen đơn giản có thể giúp bạn đạt được tiềm năng tối đa và tránh bị kiệt sức.
+
+[ĐOẠN 2] Dưới đây là bốn chiến lược chính để cải thiện năng suất:
+• Giải quyết nhiệm vụ khó khăn nhất của bạn trước tiên. "Con ếch" của bạn đại diện cho nhiệm vụ mà bạn có nhiều khả năng trì hoãn nhất cho đến sau này. Hoàn thành nó sớm mang lại cho bạn cảm giác thành tựu mạnh mẽ và xây dựng động lực cho phần còn lại trong ngày.
+• Viết ra các mục tiêu rõ ràng. Xác định những gì bạn muốn đạt được trong mười hai tháng tới và tập trung vào mục tiêu sẽ có tác động tích cực lớn nhất đến cuộc sống của bạn. Việc hành động ngay lập tức là thiết yếu cho thành công lâu dài.
+• Lên kế hoạch cẩn thận cho ngày làm việc của bạn. Dành ra thời gian cho việc lên kế hoạch cẩn thận có thể tạo ra sự khác biệt. Việc tạo danh sách việc cần làm cho phép bạn tổ chức các nhiệm vụ một cách hiệu quả.
+• Phát triển các thói quen nhất quán. Quan sát những người thành công có thể cải thiện triển vọng nghề nghiệp của bạn. Khi các hành vi tích cực trở thành bản năng thứ hai, chúng đòi hỏi ít nỗ lực hơn và tạo ra kết quả lâu dài tốt hơn. Cuối cùng, nỗ lực nhất quán sẽ nâng cao tính bền vững lâu dài.`;
 
 export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
@@ -42,7 +57,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• Mẫu thư khiếu nại mua hàng chuẩn: d (nêu lý do viết thư mua máy giặt) -> a (kể việc mang về nhà bị lỗi) -> c (mô tả lỗi lồng giặt kêu to không quay) -> e (yêu cầu đổi máy mới do bảo hành) -> b (hướng dẫn trả lại). Trật tự: d - a - c - e - b. Chọn B.',
-    translation: 'Sắp xếp thư khiếu nại: Lý do -> Tình huống -> Chi tiết lỗi -> Yêu cầu đổi -> Lời kết.',
+    translation: 'Sắp xếp thư khiếu nại.',
     topicTag: 'Sắp xếp thư khiếu nại'
   },
   {
@@ -57,7 +72,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Mô tả biểu đồ chuẩn IELTS Writing Task 1: b (giới thiệu biểu đồ) -> d (nhận xét tổng quan Overview) -> e (mô tả dân số nông thôn) -> c (By contrast, so sánh dân số thành thị) -> a (xu hướng tăng tiếp tục). Trật tự: b - d - e - c - a. Chọn C.',
-    translation: 'Sắp xếp bài mô tả biểu đồ: Giới thiệu -> Tổng quan -> Chi tiết nông thôn -> So sánh thành thị -> Kết quả.',
+    translation: 'Sắp xếp bài mô tả biểu đồ: Giới thiệu',
     topicTag: 'Sắp xếp mô tả biểu đồ'
   },
   {
@@ -72,7 +87,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• c (Lucy hỏi thi Pragmatics) -> a (Mike bảo ổn & hỏi thuyết trình) -> e (Lucy cảm ơn Mike) -> d (Mike rủ học Anh văn mai) -> b (Lucy đồng ý hẹn 10h). Trật tự: c - a - e - d - b. Chọn A.',
-    translation: 'Sắp xếp hội thoại thi cử: Hỏi thi -> Trả lời & hỏi lại -> Cảm ơn -> Rủ học -> Đồng ý.',
+    translation: 'Sắp xếp hội thoại thi cử.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -87,7 +102,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• e mở đoạn nêu chủ đề -> a lợi ích đầu tiên (Firstly) -> c lợi ích bổ sung (also) -> b kết quả (As a result) -> d mở rộng giáo dục nhà trường (On a larger scale). Trật tự: e - a - c - b - d. Chọn B.',
-    translation: 'Sắp xếp đoạn văn hiểu biết truyền thông: Mở đoạn -> Lợi ích 1 -> Lợi ích 2 -> Kết quả -> Mở rộng.',
+    translation: 'Sắp xếp đoạn văn hiểu biết truyền thông.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -102,7 +117,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• b (Jane rủ dự tiệc Sam) -> a (Katy phân vân bảo ít quen) -> c (Jane an ủi Sam thân thiện). Trật tự: b - a - c. Chọn B.',
-    translation: 'Sắp xếp hội thoại dự tiệc: Rủ rê -> Ngập ngừng -> Trấn an.',
+    translation: 'Sắp xếp hội thoại dự tiệc.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -140,7 +155,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 8. The environmentalist gave an eloquent speech advocating for rainforest preservation.',
     options: [
-      { id: 'A', text: 'persuasive', translation: 'thuyết phục / hùng hồn (đồng nghĩa với eloquent)' },
+      { id: 'A', text: 'persuasive', translation: 'thuyết phục / hùng hồn' },
       { id: 'B', text: 'unclear', translation: 'không rõ ràng' },
       { id: 'C', text: 'boring', translation: 'tẻ nhạt' },
       { id: 'D', text: 'hesitant', translation: 'ngập ngừng' }
@@ -155,7 +170,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 9. She was reluctant to express her opinion during the heated debate.',
     options: [
-      { id: 'A', text: 'eager', translation: 'háo hức / sẵn lòng (trái nghĩa với reluctant)' },
+      { id: 'A', text: 'eager', translation: 'háo hức / sẵn lòng' },
       { id: 'B', text: 'hesitant', translation: 'ngập ngừng' },
       { id: 'C', text: 'unwilling', translation: 'không sẵn lòng' },
       { id: 'D', text: 'cautious', translation: 'thận trọng' }
@@ -186,9 +201,9 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     questionText: 'Question 11. It was not until she moved to Hanoi _____ she realized the rich historical heritage of the city.',
     options: [
       { id: 'A', text: 'that', translation: 'cấu trúc It was not until... That + Clause' },
-      { id: 'B', text: 'when', translation: 'dùng when (sai)' },
-      { id: 'C', text: 'which', translation: 'dùng which (sai)' },
-      { id: 'D', text: 'where', translation: 'dùng where (sai)' }
+      { id: 'B', text: 'when', translation: 'dùng when' },
+      { id: 'C', text: 'which', translation: 'dùng which' },
+      { id: 'D', text: 'where', translation: 'dùng where' }
     ],
     correctAnswer: 'A',
     explanation: '• Cấu trúc nhấn mạnh thời gian: "It was not until + Time/Clause + THAT + Clause". Chọn A. that.',
@@ -202,7 +217,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'the research team collected', translation: 'chủ thể là người (the research team)' },
       { id: 'B', text: 'invaluable samples were collected', translation: 'sai chủ thể bị động' },
-      { id: 'C', text: 'collecting was finished', translation: 'sai ngữ pháp' },
+      { id: 'C', text: 'collecting was finished', translation: 'việc thu thập đã hoàn tất' },
       { id: 'D', text: 'the mountains provided', translation: 'ngược ngữ cảnh' }
     ],
     correctAnswer: 'A',
@@ -256,7 +271,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• "such efforts" thay thế cho "funding environmental initiatives" (tài trợ các sáng kiến môi trường) ở câu trước. Chọn C.',
-    translation: 'Cụm "such efforts" ám chỉ: các sáng kiến môi trường.',
+    translation: 'Cụm từ "such efforts" trong đoạn 2 quy chiếu đến điều gì?',
     topicTag: 'Đọc hiểu - Từ thay thế'
   },
   {
@@ -341,7 +356,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• Từ "legitimise" = hợp thức hóa / biện minh = justify. Chọn B. justify.',
-    translation: 'Từ "legitimise" gần nghĩa nhất với: justify.',
+    translation: 'Từ "legitimise" có nghĩa gần nhất với:',
     topicTag: 'Đọc hiểu - Từ vựng'
   },
   {
@@ -436,10 +451,10 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_EAT_FROG_TRANS,
     questionText: 'Question 26. (26) ... immediate action is essential for long-term success.',
     options: [
-      { id: 'A', text: 'Making', translation: 'making action (sai)' },
+      { id: 'A', text: 'Making', translation: 'making action' },
       { id: 'B', text: 'Taking', translation: 'taking action (hành động - collocation chuẩn)' },
-      { id: 'C', text: 'Doing', translation: 'doing action (sai)' },
-      { id: 'D', text: 'Getting', translation: 'getting action (sai)' }
+      { id: 'C', text: 'Doing', translation: 'doing action' },
+      { id: 'D', text: 'Getting', translation: 'getting action' }
     ],
     correctAnswer: 'B',
     explanation: '• Collocation chuẩn: "take action" (thực hiện hành động). Dạng V-ing làm chủ ngữ: "Taking immediate action...". Chọn B. Taking.',
@@ -453,9 +468,9 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_EAT_FROG_TRANS,
     questionText: 'Question 27. Setting aside (27) ... time for careful planning can also make a difference.',
     options: [
-      { id: 'A', text: 'a little', translation: 'một chút (danh từ không đếm được - nghĩa tích cực)' },
-      { id: 'B', text: 'few', translation: 'rất ít (danh từ đếm được)' },
-      { id: 'C', text: 'a few', translation: 'một vài (danh từ đếm được)' },
+      { id: 'A', text: 'a little', translation: 'một chút' },
+      { id: 'B', text: 'few', translation: 'rất ít' },
+      { id: 'C', text: 'a few', translation: 'một vài' },
       { id: 'D', text: 'little', translation: 'rất ít (nghĩa tiêu cực)' }
     ],
     correctAnswer: 'A',
@@ -487,7 +502,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_EAT_FROG_TRANS,
     questionText: 'Question 29. Ultimately, consistent effort enhances long-term sustainability and personal (29) ...',
     options: [
-      { id: 'A', text: 'effectiveness', translation: 'hiệu quả (danh từ)' },
+      { id: 'A', text: 'effectiveness', translation: 'hiệu quả' },
       { id: 'B', text: 'effective', translation: 'tính từ' },
       { id: 'C', text: 'effectively', translation: 'trạng từ' },
       { id: 'D', text: 'effect', translation: 'tác động' }
@@ -547,7 +562,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 33. The team made a pivotal discovery that paved the way for breakthrough treatments.',
     options: [
-      { id: 'A', text: 'crucial', translation: 'quan trọng / then chốt (đồng nghĩa với pivotal)' },
+      { id: 'A', text: 'crucial', translation: 'quan trọng / then chốt' },
       { id: 'B', text: 'insignificant', translation: 'không quan trọng' },
       { id: 'C', text: 'trivial', translation: 'tầm thường' },
       { id: 'D', text: 'accidental', translation: 'tình cờ' }
@@ -562,7 +577,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 34. The manager was praised for making transparent decisions during the financial crisis.',
     options: [
-      { id: 'A', text: 'opaque', translation: 'mờ đục / không minh bạch (trái nghĩa với transparent)' },
+      { id: 'A', text: 'opaque', translation: 'mờ đục / không minh bạch' },
       { id: 'B', text: 'clear', translation: 'rõ ràng' },
       { id: 'C', text: 'candid', translation: 'thật thà' },
       { id: 'D', text: 'explicit', translation: 'rõ ràng' }
@@ -607,10 +622,10 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 37. Having finished the comprehensive report, _____ it to the department head for review.',
     options: [
-      { id: 'A', text: 'the analyst submitted', translation: 'chủ thể thực hiện hành động là người (the analyst)' },
-      { id: 'B', text: 'the report was submitted by the analyst', translation: 'sai chủ thể bị động (báo cáo không thể tự viết xong)' },
-      { id: 'C', text: 'submitting was done', translation: 'sai ngữ pháp' },
-      { id: 'D', text: 'the department head received', translation: 'ngược ngữ cảnh' }
+      { id: 'A', text: 'the analyst submitted', translation: 'nhà phân tích đã nộp' },
+      { id: 'B', text: 'the report was submitted by the analyst', translation: 'báo cáo đã được nộp bởi nhà phân tích' },
+      { id: 'C', text: 'submitting was done', translation: 'việc nộp bài đã hoàn tất' },
+      { id: 'D', text: 'the department head received', translation: 'trưởng phòng đã nhận' }
     ],
     correctAnswer: 'A',
     explanation: '• Rút gọn phân từ hoàn thành "Having + P2" đòi hỏi chủ ngữ vế sau phải là người thực hiện hành động (the analyst). Chọn A.',

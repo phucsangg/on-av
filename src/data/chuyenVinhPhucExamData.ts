@@ -67,10 +67,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 1. Choose the correct order of letter sentences:\na. As the new season begins, I would like to know more about the upcoming green activities that you are planning.\nb. This information will help me and other volunteers prepare our time and resources to participate effectively.\nc. Thank you for your continued efforts in protecting the environment and encouraging sustainable living.\nd. Your organisation has always inspired citizens with meaningful environmental projects across the city.\ne. Could you please share details about community events, workshops, or campaigns that will take place in the next few months?',
     options: [
-      { id: 'A', text: 'c – e – a – b – d', translation: 'Trật tự: c -> e -> a -> b -> d' },
-      { id: 'B', text: 'e – a – b – c – d', translation: 'Trật tự: e -> a -> b -> c -> d' },
-      { id: 'C', text: 'd – a – e – b – c', translation: 'Trật tự: d -> a -> e -> b -> c' },
-      { id: 'D', text: 'a – d – e – c – b', translation: 'Trật tự: a -> d -> e -> c -> b' }
+      { id: 'A', text: 'c – e – a – b – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'e – a – b – c – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'd – a – e – b – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a – d – e – c – b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG (d – a – e – b – c): Khen ngợi tổ chức (d) -> Nêu mục đích hỏi (a) -> Hỏi chi tiết sự kiện (e) -> Giải thích lý do hỏi (b) -> Cảm ơn kết thư (c).',
@@ -82,10 +82,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 2. Choose the correct order of dialogue sentences:\na. Lan: I agree, the diary gives us real insights into her life and her time.\nb. Lan: Have you read the diary of Dang Thuy Tram?\nc. Minh: Yes, it’s moving because it shows her courage and emotions so clearly.',
     options: [
-      { id: 'A', text: 'b – c – a', translation: 'Trật tự: b -> c -> a' },
-      { id: 'B', text: 'a – b – c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'C', text: 'a – c – b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'D', text: 'b – a – c', translation: 'Trật tự: b -> a -> c' }
+      { id: 'A', text: 'b – c – a', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a – b – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a – c – b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b – a – c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (b – c – a): Lan hỏi về nhật ký Đặng Thùy Trâm (b) -> Minh trả lời xúc động (c) -> Lan tán thành và mở rộng ý nghĩa (a).',
@@ -97,10 +97,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 3. Choose the correct order of sentences to make a story:\na. However, I explained the benefits clearly, showing how small actions such as reusing bottles and planting trees could make a visible difference.\nb. During a school meeting, I shared my idea of joining a green campaign that encouraged students to reduce plastic waste.\nc. The campaign became a collective effort, and it strengthened not only our environmental awareness but also our sense of community.\nd. At first, a few classmates hesitated, since they thought it would take too much time and effort.\ne. Their attitudes began to change, and several students even suggested other creative activities to support the cause.',
     options: [
-      { id: 'A', text: 'c – a – b – d – e', translation: 'Trật tự: c -> a -> b -> d -> e' },
-      { id: 'B', text: 'b – e – d – c – a', translation: 'Trật tự: b -> e -> d -> c -> a' },
-      { id: 'C', text: 'c – d – a – e – b', translation: 'Trật tự: c -> d -> a -> e -> b' },
-      { id: 'D', text: 'b – d – a – e – c', translation: 'Trật tự: b -> d -> a -> e -> c' }
+      { id: 'A', text: 'c – a – b – d – e', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b – e – d – c – a', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c – d – a – e – b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b – d – a – e – c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG (b – d – a – e – c): Nêu ý tưởng trong cuộc họp (b) -> Bạn học do dự ban đầu (d) -> Giải thích lợi ích (a) -> Thái độ thay đổi tích cực (e) -> Kết luận kết quả chiến dịch (c).',
@@ -112,10 +112,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 4. Choose the correct order of dialogue sentences:\na. David: That’s fair, though online meetings help us stay connected.\nb. Emma: Do you enjoy working from home, David?\nc. Emma: True, but sometimes I miss talking to colleagues face-to-face.\nd. David: Yes, it saves me a lot of time that I used to waste commuting.\ne. Emma: From my viewpoint, working from home is great, but it needs more balance.',
     options: [
-      { id: 'A', text: 'b – a – e – d – c', translation: 'Trật tự: b -> a -> e -> d -> c' },
-      { id: 'B', text: 'e – a – b – d – c', translation: 'Trật tự: e -> a -> b -> d -> c' },
-      { id: 'C', text: 'e – d – c – a – b', translation: 'Trật tự: e -> d -> c -> a -> b' },
-      { id: 'D', text: 'b – d – c – a – e', translation: 'Trật tự: b -> d -> c -> a -> e' }
+      { id: 'A', text: 'b – a – e – d – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'e – a – b – d – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'e – d – c – a – b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b – d – c – a – e', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG (b – d – c – a – e): Emma hỏi về làm việc tại nhà (b) -> David nêu lợi ích tiết kiệm thời gian (d) -> Emma nhớ tương tác trực tiếp (c) -> David đáp họp online hỗ trợ (a) -> Emma kết luận về sự cân bằng (e).',
@@ -127,10 +127,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 5. Choose the correct order of sentences to make an essay paragraph:\na. Nevertheless, the loss of unique languages, rituals, and customs represents a serious challenge to humanity’s collective heritage.\nb. Therefore, cultural homogeneity must be understood not only as a sign of global integration but also as a reminder of what might be lost in pursuit of sameness.\nc. In many cases, the spread of global media and consumer brands has accelerated this process, leading to fewer distinctions between local identities.\nd. Although such uniformity can promote social harmony and reduce misunderstandings, it also limits the richness that comes from cultural diversity.\ne. Cultural homogeneity refers to a situation in which societies share similar traditions, values, and practices.',
     options: [
-      { id: 'A', text: 'e – d – b – a – c', translation: 'Trật tự: e -> d -> b -> a -> c' },
-      { id: 'B', text: 'e – d – c – a – b', translation: 'Trật tự: e -> d -> c -> a -> b' },
-      { id: 'C', text: 'e – c – a – b – d', translation: 'Trật tự: e -> c -> a -> b -> d' },
-      { id: 'D', text: 'e – c – d – b – a', translation: 'Trật tự: e -> c -> d -> b -> a' }
+      { id: 'A', text: 'e – d – b – a – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'e – d – c – a – b', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'e – c – a – b – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'e – c – d – b – a', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG (e – d – c – a – b): Định nghĩa sự đồng nhất văn hóa (e) -> Hai mặt hòa hợp vs hạn chế (d) -> Nguyên nhân do truyền thông toàn cầu (c) -> Hậu quả mất ngôn ngữ/phong tục (a) -> Kết luận sâu sắc (b).',
@@ -149,7 +149,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'price fuel fluctuations', translation: 'sai trật tự cụm danh từ' },
       { id: 'B', text: 'fluctuations fuel price', translation: 'sai trật tự danh từ' },
       { id: 'C', text: 'price fluctuations fuel', translation: 'sai trật tự bổ ngữ' },
-      { id: 'D', text: 'fuel price fluctuations', translation: 'sự biến động giá nhiên liệu (đúng trật tự danh từ ghép)' }
+      { id: 'D', text: 'fuel price fluctuations', translation: 'sự biến động giá nhiên liệu' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Trật tự cụm danh từ ghép: Modifier (fuel price) + Head noun (fluctuations).',
@@ -560,8 +560,8 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HANOI_BEAUTIFUL_TRANS,
     questionText: 'Question 30. Fill in blank (30):',
     options: [
-      { id: 'A', text: 'has recently achieved this prestigious ranking due to its exceptional urban environment', translation: 'gần đây đã đạt thứ hạng này (lỗi 2V)' },
-      { id: 'B', text: 'be a recognition that highlights its unique charm and historical significance among world cities', translation: 'là sự công nhận (sai dạng)' },
+      { id: 'A', text: 'has recently achieved this prestigious ranking due to its exceptional urban environment', translation: 'gần đây đã đạt thứ hạng này' },
+      { id: 'B', text: 'be a recognition that highlights its unique charm and historical significance among world cities', translation: 'là sự công nhận' },
       { id: 'C', text: 'to solidifying its reputation as a premier global travel destination and cultural symbol', translation: 'để củng cố uy tín' },
       { id: 'D', text: 'which contributes to its growing appeal for international visitors worldwide', translation: 'điều này góp phần gia tăng sức hấp dẫn của thành phố đối với du khách quốc tế' }
     ],
@@ -664,10 +664,10 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HEINEKEN_TET_TRANS,
     questionText: 'Question 36. Fill in blank (36):',
     options: [
-      { id: 'A', text: 'collaborated', translation: 'đã hợp tác (Động từ quá khứ)' },
-      { id: 'B', text: 'collaborate', translation: 'hợp tác (Động từ nguyên mẫu)' },
-      { id: 'C', text: 'collaborator', translation: 'người cộng tác (Danh từ chỉ người)' },
-      { id: 'D', text: 'collaboration', translation: 'sự hợp tác (Danh từ: in collaboration with)' }
+      { id: 'A', text: 'collaborated', translation: 'đã hợp tác' },
+      { id: 'B', text: 'collaborate', translation: 'hợp tác' },
+      { id: 'C', text: 'collaborator', translation: 'người cộng tác' },
+      { id: 'D', text: 'collaboration', translation: 'sự hợp tác' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cụm từ thành ngữ "in collaboration with somebody" nghĩa là trong sự hợp tác với ai.',
@@ -733,7 +733,7 @@ export const CHUYEN_VINH_PHUC_2026_QUESTIONS: Question[] = [
     questionText: 'Question 40. Fill in blank (40):',
     options: [
       { id: 'A', text: 'that contribute', translation: 'cái mà đóng góp' },
-      { id: 'B', text: 'contributed', translation: 'đã đóng góp (bị động)' },
+      { id: 'B', text: 'contributed', translation: 'đã đóng góp' },
       { id: 'C', text: 'contribute', translation: 'đóng góp (V-bare)' },
       { id: 'D', text: 'contributing', translation: 'đóng góp (V-ing rút gọn chủ động)' }
     ],

@@ -67,10 +67,10 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 1. Choose the correct order of dialogue sentences:\na. Minh: I get your point. I think we should use it as a tool, not just copy everything from it.\nb. Minh: Yeah, I\'ve tried Bard a few times. It really helps me brainstorm ideas for essays.\nc. Lan: That\'s true, but I feel like if I rely on it too much, I might stop thinking for myself.\nd. Lan: Have you ever used any AI tools to help with your homework?\ne. Lan: Exactly. It\'s all about finding the right balance so we can still learn effectively.',
     options: [
-      { id: 'A', text: 'd – b – a – e – c', translation: 'Trật tự: d -> b -> a -> e -> c' },
-      { id: 'B', text: 'd – b – c – a – e', translation: 'Trật tự: d -> b -> c -> a -> e' },
-      { id: 'C', text: 'b – a – c – d – e', translation: 'Trật tự: b -> a -> c -> d -> e' },
-      { id: 'D', text: 'b – c – a – d – e', translation: 'Trật tự: b -> c -> a -> d -> e' }
+      { id: 'A', text: 'd – b – a – e – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'd – b – c – a – e', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b – a – c – d – e', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b – c – a – d – e', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG (d – b – c – a – e): Lan hỏi có dùng AI làm bài tập không (d) -> Minh nói dùng Bard động não (b) -> Lan lo ngại phụ thuộc ngưng tự suy nghĩ (c) -> Minh đồng tình xem AI như công cụ (a) -> Lan kết luận cần cân bằng (e).',
@@ -82,10 +82,10 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 2. Choose the correct order of dialogue sentences:\na. David: It\'s a serious problem. The job opportunities are here, but they barely cover the cost of rent and transport.\nb. Maria: Exactly. And the financial pressure just makes it impossible to save money or even enjoy the city life we moved here for.\nc. Maria: Do you ever wonder if living in this city is still worth it, given how high the cost of living has become?\nd. Maria: I suppose it\'s a major trade-off. We gain career growth but sacrifice our short-term financial well-being.\ne. David: That\'s the core issue. Even a small pay rise seems to disappear instantly on necessities.',
     options: [
-      { id: 'A', text: 'c – a – b – e – d', translation: 'Trật tự: c -> a -> b -> e -> d' },
-      { id: 'B', text: 'd – e – b – a – c', translation: 'Trật tự: d -> e -> b -> a -> c' },
-      { id: 'C', text: 'c – e – d – a – b', translation: 'Trật tự: c -> e -> d -> a -> b' },
-      { id: 'D', text: 'd – a – c – e – b', translation: 'Trật tự: d -> a -> c -> e -> b' }
+      { id: 'A', text: 'c – a – b – e – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'd – e – b – a – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c – e – d – a – b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd – a – c – e – b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (c – a – b – e – d): Maria hỏi chi phí sống thành phố có đáng không (c) -> David nêu thu nhập không đủ trả tiền nhà (a) -> Maria bổ sung áp lực không tiết kiệm được (b) -> David nhấn mạnh cốt lõi lương tăng biến mất (e) -> Maria kết luận đây là sự đánh đổi (d).',
@@ -97,14 +97,14 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 3. Choose the correct order of dialogue sentences:\na. Huy: That sounds like a plan! I\'ll bring some snacks and drinks then.\nb. Huy: The weather is so nice today. Why don\'t we go for a picnic in the park?\nc. An: I\'d love to, but I need to finish my English assignment first. How about 3 p.m.?\nd. An: That should work. See you later!',
     options: [
-      { id: 'A', text: 'a – b – c – d', translation: 'Trật tự: a -> b -> c -> d' },
-      { id: 'B', text: 'b – d – a – c', translation: 'Trật tự: b -> d -> a -> c' },
-      { id: 'C', text: 'b – c – a – d', translation: 'Trật tự: b -> c -> a -> d' },
-      { id: 'D', text: 'c – b – d – a', translation: 'Trật tự: c -> b -> d -> a' }
+      { id: 'A', text: 'a – b – c – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b – d – a – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b – c – a – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c – b – d – a', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG (b – c – a – d): Huy rủ đi dã ngoại công viên (b) -> An nhận lời nhưng hẹn 3h chiều sau khi làm bài (c) -> Huy đồng ý mang đồ ăn thức uống (a) -> An chốt hẹn gặp lại (d).',
-    translation: 'Sắp xếp hội thoại rủ rê đi dã ngoại:\na. Huy: Nghe có vẻ hợp lý đấy! Tớ sẽ mang theo một ít đồ ăn nhẹ và nước uống.\nb. Huy: Thời tiết hôm nay đẹp quá. Hẹn nhau đi dã ngoại ở công viên thì sao?\nc. An: Tớ rất muốn, nhưng tớ cần hoàn thành bài tập Tiếng Anh trước. 3 giờ chiều được không?\nd. An: Như vậy là ổn rồi. Gặp lại cậu sau nhé!',
+    translation: 'Sắp xếp hội thoại rủ rê đi dã ngoại.',
     topicTag: 'Sắp xếp hội thoại ngắn'
   },
   {
@@ -112,14 +112,14 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 4. Choose the correct order of letter sentences:\na. After the verification, your new account will be activated, and a physical debit card will be mailed to your registered address within three working days.\nb. It is our pleasure to inform you that your initial request for a premium savings account has been successfully reviewed by our system.\nc. Please visit the nearest branch with your ID to complete the face-to-face verification.\nd. For any activation inquiries, please contact our 24/7 customer service at 1800-XXXX.\ne. To proceed, please upload your residency documents to our online portal.',
     options: [
-      { id: 'A', text: 'b – c – a – e – d', translation: 'Trật tự: b -> c -> a -> e -> d' },
-      { id: 'B', text: 'b – e – a – d – c', translation: 'Trật tự: b -> e -> a -> d -> c' },
-      { id: 'C', text: 'b – a – e – c – d', translation: 'Trật tự: b -> a -> e -> c -> d' },
-      { id: 'D', text: 'b – e – c – a – d', translation: 'Trật tự: b -> e -> c -> a -> d' }
+      { id: 'A', text: 'b – c – a – e – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b – e – a – d – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b – a – e – c – d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b – e – c – a – d', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG (b – e – c – a – d): Thông báo hồ sơ đã được duyệt (b) -> Yêu cầu tải giấy tờ online (e) -> Yêu cầu đến chi nhánh xác minh trực tiếp (c) -> Kích hoạt tài khoản và gửi thẻ (a) -> Cung cấp số hotline hỗ trợ (d).',
-    translation: 'Sắp xếp thư hướng dẫn kích hoạt tài khoản ngân hàng:\na. Sau khi xác minh, tài khoản mới của quý khách sẽ được kích hoạt, và thẻ ghi nợ vật lý sẽ được gửi qua thư đến địa chỉ đã đăng ký trong vòng ba ngày làm việc.\nb. Rất hân hạnh được thông báo rằng yêu cầu ban đầu cho tài khoản tiết kiệm cao cấp của quý khách đã được hệ thống kiểm duyệt thành công.\nc. Vui lòng đến chi nhánh gần nhất cùng Giấy chứng minh/CCCD để hoàn thành việc xác minh trực tiếp.\nd. Mọi thắc mắc về kích hoạt, vui lòng liên hệ bộ phận chăm sóc khách hàng 24/7 qua số 1800-XXXX.\ne. Để tiếp tục, vui lòng tải các giấy tờ cư trú lên cổng thông tin trực tuyến của chúng tôi.',
+    translation: 'Sắp xếp thư hướng dẫn kích hoạt tài khoản ngân hàng.',
     topicTag: 'Sắp xếp thư giao dịch'
   },
   {
@@ -127,10 +127,10 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 5. Choose the correct order of sentences to make a paragraph:\na. These changes have turned the quiet district into a bustling commercial hub, boosting local economic growth.\nb. Also, a shopping complex replaced the former warehouses to serve the growing population.\nc. Meanwhile, surrounding green spaces were reduced to make room for new arterial roads.\nd. Over the last decade, the riverside area has undergone a major urban renewal project.\ne. It involved replacing old factories with new apartment blocks overlooking the waterfront.',
     options: [
-      { id: 'A', text: 'd – e – b – c – a', translation: 'Trật tự: d -> e -> b -> c -> a' },
-      { id: 'B', text: 'd – b – e – a – c', translation: 'Trật tự: d -> b -> e -> a -> c' },
-      { id: 'C', text: 'd – b – e – c – a', translation: 'Trật tự: d -> b -> e -> c -> a' },
-      { id: 'D', text: 'd – e – a – b – c', translation: 'Trật tự: d -> e -> a -> b -> c' }
+      { id: 'A', text: 'd – e – b – c – a', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'd – b – e – a – c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'd – b – e – c – a', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd – e – a – b – c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (d – e – b – c – a): Nêu dự án cải tạo ven sông (d) -> Thay nhà máy bằng chung cư (e) -> Xây trung tâm mua sắm (b - Also) -> Giảm cây xanh mở đường (c - Meanwhile) -> Đánh giá tổng thể tăng trưởng kinh tế (a - These changes).',
@@ -250,9 +250,9 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HEART_ATTACKS_DN_TRANS,
     questionText: 'Question 12. Fill in blank (12):',
     options: [
-      { id: 'A', text: 'is getting a blockage completely', translation: 'sai ngữ pháp văn phong y khoa' },
+      { id: 'A', text: 'is getting a blockage completely', translation: 'bị tắc nghẽn hoàn toàn' },
       { id: 'B', text: 'that is partially or completely blocking', translation: 'dùng chủ động sai bị động' },
-      { id: 'C', text: 'is partially or completely blocked', translation: 'bị tắc nghẽn một phần hoặc hoàn toàn (bị động)' },
+      { id: 'C', text: 'is partially or completely blocked', translation: 'bị tắc nghẽn một phần hoặc hoàn toàn' },
       { id: 'D', text: 'has been incompletely blocked', translation: 'dùng thì hoàn thành không tự nhiên' }
     ],
     correctAnswer: 'C',
@@ -649,7 +649,7 @@ export const DA_NANG_2026_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'price fuel fluctuations', translation: 'sai trật tự danh từ' },
       { id: 'B', text: 'fluctuations fuel price', translation: 'sai trật tự danh từ' },
-      { id: 'C', text: 'fuel price fluctuations', translation: 'biến động giá nhiên liệu (đúng trật tự danh từ ghép)' },
+      { id: 'C', text: 'fuel price fluctuations', translation: 'biến động giá nhiên liệu' },
       { id: 'D', text: 'price fluctuations fuel', translation: 'sai trật tự danh từ' }
     ],
     correctAnswer: 'C',

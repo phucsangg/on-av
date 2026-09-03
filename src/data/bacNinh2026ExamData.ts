@@ -8,7 +8,13 @@ Pushing the strategy of being effortless too far brings us to the concept of aur
 
 Gen Alpha loves this trend because they like to lean into absurdity, ambiguity, and randomness. It is difficult to say whether aura farming is a compliment or a dig because the impression is that it can go both ways. This trend requires a very delicate touch; do it right and you will go viral and become a really big deal, but do it wrong and you are just the butt of a joke. It is like a social stock market where anyone who goes public must be ready to take some risks and face the irony of their highly calculated yet seemingly random content.`;
 
-const PASSAGE_AURA_TRANS = `Trong cách nói của Gen Alpha, từ aura không gắn với bất kỳ màu sắc nào và chắc chắn cũng không mang ý nghĩa tâm linh. Thực chất, từ này chỉ được dùng như một cách để đo lường “độ ngầu” của một người...`;
+const PASSAGE_AURA_TRANS = `[ĐOẠN 1] Trong cách nói của Gen Alpha, từ "aura" không gắn với bất kỳ màu sắc nào và chắc chắn cũng không mang ý nghĩa tâm linh. Thực chất, từ này chỉ được dùng như một cách để đo lường “độ ngầu” của một người trong tình huống xã hội. Nếu ai đó có rất nhiều "aura", họ tỏ ra ngầu một cách tự nhiên và toát ra một vị thế xã hội đáng mơ ước mà không cần cố gắng. Ngược lại, nếu một cậu bạn trầm tính vốn ít ai chú ý vô tình làm đổ nước trái cây lên một học sinh nổi tiếng ở căng tin, "điểm aura" của cậu ấy sẽ bị sụt giảm nghiêm trọng. Về bản chất, đây là thước đo mức độ tôn trọng hoặc độ "cool" mà bạn sở hữu tại một thời điểm nhất định.
+
+[ĐOẠN 2] Đẩy chiến lược "tự nhiên ngầu" đi quá xa sẽ dẫn chúng ta đến khái niệm "aura farming" (cày điểm aura). Nếu bạn cố tình săn tìm điểm aura, phô trương quá đà và vô tình biến mình thành trò cười vì cố tỏ ra ngầu, bạn đang thực hiện "aura farming". Thuật ngữ này xuất phát từ thế giới trò chơi điện tử, nơi "farming" chỉ việc thực hiện một nhiệm vụ lặp đi lặp lại để tích lũy điểm hoặc phần thưởng. Khái niệm này áp dụng vào đời sống xã hội tượng trưng cho nghệ thuật tinh vi và mệt mỏi trong việc tạo dựng một phong cách được sắp đặt kỹ lưỡng.
+
+[ĐOẠN 3] Thực tế, "aura farming" có thể mang lại điểm aura thực sự nếu bạn thực hiện thành công trên mạng xã hội và thu hút được lượng người theo dõi. Khái niệm này bắt nguồn từ một cậu bé nhảy múa ở đầu một con thuyền tại Indonesia và trở thành đại sứ du lịch của quốc gia này. Các ví dụ khác bao gồm Michael Jackson hay Timothée Chalamet. Cuối cùng, khái niệm này đầy tính mỉa mai, liên quan đến một người cố tỏ ra ngầu trong khi vẫn duy trì sự ngẫu nhiên cho nội dung của mình.
+
+[ĐOẠN 4] Gen Alpha yêu thích xu hướng này vì họ thích sự vô lý, mơ hồ và ngẫu nhiên. Thật khó để nói "aura farming" là một lời khen hay một sự chế giễu vì nó có thể diễn ra theo cả hai hướng. Xu hướng này đòi hỏi sự tinh tế; làm đúng bạn sẽ trở nên nổi tiếng trên mạng, nhưng làm sai bạn sẽ chỉ là tâm điểm của trò đùa.`;
 
 const PASSAGE_GENETICS = `Genetics has a much larger role in how long a person lives than previously thought, challenging decades of scientific consensus. About 55% of the human lifespan is heritable, meaning that more than half of the variation in longevity across a population is attributable to genetics. This is a much greater proportion than previous estimates of 10–25%, suggesting that genetics is a primary factor in the ageing process.
 
@@ -18,7 +24,13 @@ Excluding deaths caused by extrinsic factors made the similarity in lifespans be
 
 Not all intrinsic causes of death are equally heritable; while cardiovascular disease showed high genetic influence, cancer showed much lower heritability, likely driven by environmental triggers. These results do not indicate a genetically encoded “destiny,” because healthy living is still heavily influenced by lifestyle choices. You cannot change the genes you are born with, but you can change your lifestyle to ensure you live a longer, healthier life.`;
 
-const PASSAGE_GENETICS_TRANS = `Di truyền học có vai trò đối với tuổi thọ của con người lớn hơn nhiều so với những gì trước đây người ta từng nghĩ, qua đó thách thức sự đồng thuận khoa học đã tồn tại suốt nhiều thập kỷ...`;
+const PASSAGE_GENETICS_TRANS = `[ĐOẠN 1] Di truyền học có vai trò đối với tuổi thọ của con người lớn hơn nhiều so với những gì trước đây người ta từng nghĩ, qua đó thách thức sự đồng thuận khoa học đã tồn tại suốt nhiều thập kỷ. Khoảng 55% tuổi thọ con người có tính di truyền, có nghĩa là hơn một nửa sự biến thiên về tuổi thọ trong một quần thể là do di truyền. Đây là tỷ lệ lớn hơn nhiều so với ước tính trước đây là 10–25%, cho thấy di truyền là yếu tố chính trong quá trình lão hóa.
+
+[ĐOẠN 2] Các ước tính trước đây quá thấp vì chúng không tách biệt hiệu quả tử vong do các yếu tố bên ngoài (như tai nạn) với các yếu tố bên trong cơ thể. Để làm rõ điều này, các nhà nghiên cứu đã phân tích lại dữ liệu từ các nghiên cứu sinh đôi ở Đan Mạch và Thụy Điển. Bằng cách so sánh các cặp sinh đôi cùng trứng (chia sẻ 100% DNA) với các cặp sinh đôi khác trứng, nhóm nghiên cứu đã mô hình hóa chính xác phần tuổi thọ do gen quyết định.
+
+[ĐOẠN 3] Việc loại trừ tử vong do các yếu tố bên ngoài khiến sự tương đồng về tuổi thọ giữa các cá thể có quan hệ di truyền trở nên rõ ràng hơn nhiều. Mối liên hệ này càng hiện rõ theo thời gian nhờ các biện pháp y tế công cộng được cải thiện. Trong dữ liệu từ cuối những năm 1800, khi con người thường chết trẻ vì nhiễm trùng, tín hiệu di truyền gần như không thể nhìn thấy. Tuy nhiên, tính di truyền được tính toán đã tăng lên tự nhiên trong thế kỷ 20 khi những tiến bộ y tế làm giảm rủi ro bên ngoài.
+
+[ĐOẠN 4] Không phải tất cả các nguyên nhân tử vong bên trong đều có tính di truyền như nhau; trong khi bệnh tim mạch thể hiện ảnh hưởng di truyền cao, bệnh ung thư lại có tính di truyền thấp hơn nhiều, có thể do các tác nhân môi trường thúc đẩy. Những kết quả này không chỉ ra một "số phận" được mã hóa bằng di truyền, bởi vì lối sống lành mạnh vẫn có ảnh hưởng lớn. Bạn không thể thay đổi các gen mình sinh ra, nhưng bạn có thể thay đổi lối sống để đảm bảo sống lâu hơn và khỏe mạnh hơn.`;
 
 export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
@@ -52,7 +64,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• Đoạn 1 nêu rõ: "aura... is essentially a measure of how much respect or coolness you possess... effortlessly cool". Chọn B.',
-    translation: 'Theo đoạn 1, Gen Alpha định nghĩa "aura" là: Mức độ tôn trọng/độ ngầu đạt được tự nhiên.',
+    translation: 'Theo đoạn 1, Gen Alpha định nghĩa "aura" như thế nào?',
     topicTag: 'Đọc hiểu - Chi tiết'
   },
   {
@@ -222,7 +234,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Từ "consensus" có nghĩa là sự đồng thuận, nhất trí của giới khoa học = agreement. Chọn C.',
-    translation: 'Từ "consensus" gần nghĩa nhất với: agreement (sự đồng thuận).',
+    translation: 'Từ "consensus" có nghĩa gần nhất với:',
     topicTag: 'Đọc hiểu - Từ vựng'
   },
   {
@@ -239,7 +251,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• "To tease out these factors..." -> "these factors" thay thế cho "extrinsic factors... intrinsic ones" ở câu ngay trước đó. Chọn B.',
-    translation: 'Cụm "these factors" ám chỉ: nguyên nhân tử vong nội sinh và ngoại sinh.',
+    translation: 'Cụm từ "these factors" trong đoạn 2 quy chiếu đến yếu tố nào?',
     topicTag: 'Đọc hiểu - Từ thay thế'
   },
   {
@@ -249,14 +261,14 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_GENETICS_TRANS,
     questionText: 'Question 14. The word "apparent" in paragraph 3 is OPPOSITE in meaning to:',
     options: [
-      { id: 'A', text: 'evident', translation: 'rõ ràng (đồng nghĩa)' },
-      { id: 'B', text: 'unclear', translation: 'không rõ ràng (trái nghĩa)' },
-      { id: 'C', text: 'noticeable', translation: 'dễ nhận thấy (đồng nghĩa)' },
+      { id: 'A', text: 'evident', translation: 'rõ ràng' },
+      { id: 'B', text: 'unclear', translation: 'không rõ ràng' },
+      { id: 'C', text: 'noticeable', translation: 'dễ nhận thấy' },
       { id: 'D', text: 'unsuitable', translation: 'không phù hợp' }
     ],
     correctAnswer: 'B',
     explanation: '• Từ "apparent" có nghĩa là rõ ràng, dễ nhận thấy. Trái nghĩa với nó là "unclear" (không rõ ràng). Chọn B.',
-    translation: 'Từ "apparent" trái nghĩa với: unclear.',
+    translation: 'Từ "apparent" có nghĩa trái ngược với:',
     topicTag: 'Đọc hiểu - Từ trái nghĩa'
   },
   {
@@ -307,7 +319,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Đoạn 3 đề cập đến việc người ở thế kỷ 19 thường qua đời sớm do nhiễm trùng (infections). Chọn C (Paragraph 3).',
-    translation: 'Đoạn nào đề cập nguyên nhân tử vong sớm? -> Đoạn 3.',
+    translation: 'Đoạn nào đề cập nguyên nhân tử vong sớm?',
     topicTag: 'Đọc hiểu - Vị trí thông tin'
   },
   {
@@ -324,7 +336,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• Đoạn 2 đề cập đến mối quan hệ giữa các đối tượng nghiên cứu: so sánh sinh đôi cùng trứng (identical twins) và sinh đôi khác trứng (fraternal twins). Chọn A (Paragraph 2).',
-    translation: 'Đoạn nào đề cập mối quan hệ giữa các đối tượng nghiên cứu? -> Đoạn 2.',
+    translation: 'Đoạn nào đề cập mối quan hệ giữa các đối tượng nghiên cứu?',
     topicTag: 'Đọc hiểu - Vị trí thông tin'
   },
   {
@@ -339,7 +351,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Mẫu email nhắc gia hạn chuẩn: e (nêu mục đích nhắc gia hạn) -> d (thời điểm hết hạn) -> c (hướng dẫn đăng nhập thanh toán) -> b (lợi ích gia hạn sớm) -> a (hỗ trợ kỹ thuật). Trật tự: e - d - c - b - a. Chọn C.',
-    translation: 'Sắp xếp email: Mục đích -> Thời hạn -> Hướng dẫn -> Lợi ích -> Hỗ trợ.',
+    translation: 'Sắp xếp email: Mục đích',
     topicTag: 'Sắp xếp email'
   },
   {
@@ -354,7 +366,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• d mở đoạn nguồn gốc sự nghiệp -> c bổ sung làm việc tại startup -> b môi trường làm việc tại nhà -> a chi tiết công việc và cuộc họp -> e kết luận hài lòng (In conclusion). Trật tự: d - c - b - a - e. Chọn B.',
-    translation: 'Sắp xếp đoạn văn: Nguồn gốc -> Kinh nghiệm -> Môi trường -> Chi tiết -> Kết luận.',
+    translation: 'Sắp xếp đoạn văn.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -369,7 +381,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• Trình tự hội thoại kỳ nghỉ hè: d (Sarah hỏi) -> a (Tom trả lời & hỏi lại) -> e (Sarah trả lời đi Nhật) -> b (Tom khen Nhật) -> c (Sarah đồng ý kết luận). Trật tự: d - a - e - b - c. Chọn A.',
-    translation: 'Sắp xếp hội thoại: Hỏi kế hoạch -> Phản hồi -> Kể điểm đến -> Khen ngợi -> Đồng tình.',
+    translation: 'Sắp xếp hội thoại.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -384,7 +396,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• b (Tom rủ đi gym) -> c (Mary từ chối bảo giặt đồ xong đến sau) -> a (Tom dặn nhắn tin khi tập xong). Trật tự: b - c - a. Chọn C.',
-    translation: 'Sắp xếp hội thoại đi gym: Rủ rê -> Từ chối khéo -> Phản hồi hẹn lại.',
+    translation: 'Sắp xếp hội thoại đi gym.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -399,7 +411,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• e mở đoạn chuyển đổi làm việc từ xa -> d bộc lộ khoảng trống hạ tầng -> c đầu tư công cụ đám mây -> b bổ sung an ninh mạng -> a kết luận hoạt động hiệu quả hôm nay. Trật tự: e - d - c - b - a. Chọn A.',
-    translation: 'Sắp xếp đoạn văn công ty: Chuyển đổi -> Vấn đề -> Giải pháp -> Khía cạnh mới -> Kết quả.',
+    translation: 'Sắp xếp đoạn văn công ty.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -620,7 +632,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
       { id: 'A', text: 'We are uncertain about the world', translation: 'Chúng tôi không chắc chắn' },
       { id: 'B', text: 'Children born with uncertainty', translation: 'Thiếu động từ chính' },
       { id: 'C', text: 'Children are thrown into a world of uncertainty when they are born', translation: 'Trẻ em khi sinh ra bị ném vào một thế giới đầy bất định' },
-      { id: 'D', text: 'When children are born and thrown into the world', translation: 'Thiếu mệnh đề chính' }
+      { id: 'D', text: 'When children are born and thrown into the world', translation: 'Khi trẻ em được sinh ra và bước vào đời' }
     ],
     correctAnswer: 'C',
     explanation: '• Cung cấp một câu hoàn chỉnh về trạng thái trẻ em khi mới sinh ra: "Children are thrown into a world of uncertainty when they are born". Chọn C.',

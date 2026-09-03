@@ -36,7 +36,13 @@ However, public transport systems face challenges. Overcrowding during peak hour
 
 Researchers have found that investing in public transport brings long-term benefits. Cities with reliable transit attract more residents, reduce reliance on cars, and encourage sustainable urban growth. Innovative approaches, such as bike-sharing programs and integrated ticketing systems, further enhance convenience and accessibility. Public transport is not just a way to move people, it shapes how cities develop, how residents live, and how communities interact.`;
 
-const PASSAGE_SMART_CITIES_TRANS = `Giao thông công cộng là một bộ phận thiết yếu của các đô thị hiện đại, cho phép hàng triệu người di chuyển hiệu quả mà không cần phụ thuộc vào xe cá nhân. Xe buýt, tàu hỏa và tàu điện không chỉ góp phần giảm ùn tắc giao thông, hạ thấp mức độ ô nhiễm mà còn giúp người đi làm tiết kiệm thời gian...`;
+const PASSAGE_SMART_CITIES_TRANS = `[ĐOẠN 1] Giao thông công cộng là một bộ phận thiết yếu của các đô thị hiện đại, cho phép hàng triệu người di chuyển hiệu quả mà không cần phụ thuộc vào xe cá nhân. Xe buýt, tàu hỏa và tàu điện không chỉ góp phần giảm ùn tắc giao thông, hạ thấp mức độ ô nhiễm mà còn giúp người đi làm tiết kiệm thời gian. Tại các thành phố như Tokyo, London và Singapore, hệ thống giao thông công cộng được tổ chức tốt giúp cư dân di chuyển nhanh chóng qua các khu vực đô thị rộng lớn trong khi giảm thiểu tác động đến môi trường.
+
+[ĐOẠN 2] Bên cạnh những lợi ích thực tế, giao thông công cộng còn có thể thúc đẩy sự kết nối xã hội. Mọi người từ các nền tảng khác nhau gặp gỡ và tương tác hằng ngày khi đi lại, điều này có thể nuôi dưỡng sự thấu hiểu và sự bao dung. Hơn nữa, các đầu mối giao thông thường trở thành trung tâm thương mại và hoạt động cộng đồng. Quán cà phê, cửa hàng và thị trường nhỏ gần các nhà ga cung cấp không gian cho sự tương tác xã hội và sự phát triển kinh doanh địa phương.
+
+[ĐOẠN 3] Tuy nhiên, hệ thống giao thông công cộng phải đối mặt với nhiều thách thức. Tình trạng quá tải trong giờ cao điểm, sự chậm trễ và các vấn đề bảo trì có thể gây thất vọng cho người đi làm. An toàn là một mối quan tâm khác, đặc biệt là vào ban đêm muộn hoặc ở những khu vực chiếu sáng kém. Các nhà chức trách thành phố thường phản ứng bằng các biện pháp như tăng cường an ninh, nâng cấp công nghệ và lập lịch trình tốt hơn để cải thiện trải nghiệm của người đi làm.
+
+[ĐOẠN 4] Các nhà nghiên cứu phát hiện ra rằng việc đầu tư vào giao thông công cộng mang lại lợi ích lâu dài. Các thành phố có giao thông tin cậy thu hút nhiều cư dân hơn, giảm sự phụ thuộc vào ô tô và khuyến khích sự phát triển đô thị bền vững. Các cách tiếp cận đổi mới, chẳng hạn như chương trình chia sẻ xe đạp và hệ thống vé tích hợp, càng nâng cao sự tiện lợi và khả năng tiếp cận. Giao thông công cộng không chỉ là một cách di chuyển con người, nó định hình cách các thành phố phát triển, cách cư dân sống và cách các cộng đồng tương tác.`;
 
 const PASSAGE_DEEPFAKE = `The advent of open-source software and highly intuitive, user-friendly applications has recently democratised access to synthetic media generation. Consequently, what was once the exclusive domain of Hollywood special effects studios can now be executed by an amateur with a standard laptop. [I] Two algorithms are pitted against each other in generative adversarial networks (GANs): one generates fake media, while the other attempts to detect the deception, forcing the generator to continuously improve.
 
@@ -44,7 +50,11 @@ Financial scams using cloned AI voices, fake videos affecting election campaigns
 
 As deepfake technology evolves, so too do its evasive capabilities, creating a perpetual arms race between detectors and generators. Cultivating robust media literacy among the general public remains our most formidable defence against algorithmic deception.`;
 
-const PASSAGE_DEEPFAKE_TRANS = `Sự ra đời của phần mềm nguồn mở và các ứng dụng thân thiện với người dùng gần đây đã phổ cập hóa việc tạo ra truyền thông tổng hợp. Kết quả là, những gì trước đây chỉ thuộc về các studio hiệu ứng đặc biệt của Hollywood thì nay có thể được thực hiện bởi một người nghiệp dư với một chiếc máy tính xách tay tiêu chuẩn...`;
+const PASSAGE_DEEPFAKE_TRANS = `[ĐOẠN 1] Sự ra đời của phần mềm nguồn mở và các ứng dụng vô cùng trực quan, thân thiện với người dùng gần đây đã phổ cập hóa việc tạo ra truyền thông tổng hợp. Kết quả là, những gì trước đây chỉ thuộc về các studio hiệu ứng đặc biệt của Hollywood thì nay có thể được thực hiện bởi một người nghiệp dư với một chiếc máy tính xách tay tiêu chuẩn. Hai thuật toán đối đầu với nhau trong mạng đối kháng tạo sinh (GAN): một thuật toán tạo ra truyền thông giả mạo, trong khi thuật toán kia cố gắng phát hiện sự lừa gạt, buộc bộ tạo phải liên tục cải thiện.
+
+[ĐOẠN 2] Các vụ lừa đảo tài chính sử dụng giọng nói AI nhân bản, các video giả mạo ảnh hưởng đến các chiến dịch bầu cử và các trang trại tài khoản giả làm xói mòn niềm tin truyền thông đã cho thấy deepfake đại diện cho mối đe dọa nghiêm trọng đối với xã hội. Ranh giới tài phán phức tạp thường cản trở việc thực thi toàn cầu, khiến việc truy tố pháp lý xuyên biên giới trở nên cực kỳ khó khăn.
+
+[ĐOẠN 3] Khi công nghệ deepfake phát triển, khả năng lẩn tránh của nó cũng phát triển theo, tạo ra một cuộc đua vũ trang liên tục giữa các bộ phát hiện và bộ tạo. Việc nuôi dưỡng năng lực truyền thông vững chắc trong công chúng vẫn là lá chắn vững chắc nhất của chúng ta chống lại sự lừa gạt bằng thuật toán.`;
 
 export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
@@ -72,9 +82,9 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     questionText: 'Question 2. These plans are intended to make local tourism highly (2) ...',
     options: [
       { id: 'A', text: 'profitably', translation: 'một cách có lợi nhuận (trạng từ)' },
-      { id: 'B', text: 'profiteering', translation: 'trục lợi (danh từ/tính từ xấu)' },
-      { id: 'C', text: 'profitable', translation: 'có sinh lời / có lợi nhuận (tính từ)' },
-      { id: 'D', text: 'profiting', translation: 'đang tạo lợi nhuận (dạng V-ing)' }
+      { id: 'B', text: 'profiteering', translation: 'trục lợi' },
+      { id: 'C', text: 'profitable', translation: 'có sinh lời / có lợi nhuận' },
+      { id: 'D', text: 'profiting', translation: 'đang tạo lợi nhuận' }
     ],
     correctAnswer: 'C',
     explanation: '• Cấu trúc: make + Object + Adjective (làm cho cái gì như thế nào). Sau "make local tourism highly..." cần một tính từ bổ nghĩa. Chọn C. profitable.',
@@ -88,9 +98,9 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_CLOZE_1_TRANS,
     questionText: 'Question 3. Green Nghe An, a campaign (3) ... by the provincial tourism board, ...',
     options: [
-      { id: 'A', text: 'launching', translation: 'đang phát động (chủ động)' },
+      { id: 'A', text: 'launching', translation: 'đang phát động' },
       { id: 'B', text: 'having launched', translation: 'đã phát động (hoàn thành chủ động)' },
-      { id: 'C', text: 'launched', translation: 'được phát động (rút gọn mệnh đề bị động)' },
+      { id: 'C', text: 'launched', translation: 'được phát động' },
       { id: 'D', text: 'being launched', translation: 'đang được phát động' }
     ],
     correctAnswer: 'C',
@@ -256,14 +266,14 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 13. Choose the best arrangement of the following sentences to make a meaningful conversation:\nc. John asks about dietary supplements.\nb. Mary replies, suggesting Omega-3 and Vitamin D3.\na. John thanks Mary for the recommendation.',
     options: [
-      { id: 'A', text: 'a – b – c', translation: 'Cảm ơn -> Trả lời -> Hỏi' },
-      { id: 'B', text: 'b – c – a', translation: 'Trả lời -> Hỏi -> Cảm ơn' },
-      { id: 'C', text: 'c – a – b', translation: 'Hỏi -> Cảm ơn -> Trả lời' },
-      { id: 'D', text: 'c – b – a', translation: 'Hỏi -> Trả lời -> Cảm ơn' }
+      { id: 'A', text: 'a – b – c', translation: 'Cảm ơn' },
+      { id: 'B', text: 'b – c – a', translation: 'Trả lời' },
+      { id: 'C', text: 'c – a – b', translation: 'Hỏi' },
+      { id: 'D', text: 'c – b – a', translation: 'Hỏi' }
     ],
     correctAnswer: 'D',
     explanation: '• Trình tự giao tiếp logic: 1. John hỏi (c) -> 2. Mary trả lời gợi ý (b) -> 3. John cảm ơn (a). Trật tự chuẩn: c - b - a. Chọn D.',
-    translation: 'Sắp xếp hội thoại theo thứ tự: Hỏi -> Trả lời -> Cảm ơn.',
+    translation: 'Sắp xếp hội thoại theo thứ tự.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -278,7 +288,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• d mở đoạn giới thiệu nghề truyền thống -> b làm rõ kỹ thuật truyền thống -> e chuyển ý sang công nghệ hiện đại -> a đưa ví dụ cụ thể công nghệ -> c kết luận dù hiện đại cốt lõi vẫn là truyền thống. Trật tự đúng: d - b - e - a - c. Chọn B.',
-    translation: 'Sắp xếp đoạn văn theo mạch logic: Giới thiệu -> Chi tiết truyền thống -> Chuyển ý công nghệ -> Ví dụ -> Kết luận.',
+    translation: 'Sắp xếp đoạn văn theo mạch logic.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -293,7 +303,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Mẫu thư đề xuất chuẩn: c (nêu mục đích thư) -> e (nêu mục tiêu cụ thể) -> a (gửi đính kèm tài liệu) -> d (kết luận lợi ích từ tài liệu) -> b (lời cảm ơn kết thư). Chọn C.',
-    translation: 'Sắp xếp thư đề xuất: Mục đích -> Mục tiêu -> Đính kèm -> Nhận định -> Lời cảm ơn.',
+    translation: 'Sắp xếp thư đề xuất.',
     topicTag: 'Sắp xếp thư trang trọng'
   },
   {
@@ -308,7 +318,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• d giới thiệu trải nghiệm chung -> b nói suy nghĩ ban đầu -> c kể khối lượng công việc cụ thể -> e nêu hệ quả công việc (thức khuya) -> a kết luận bài học rút ra (As a result). Chọn C.',
-    translation: 'Sắp xếp đoạn văn trải nghiệm cá nhân: Giới thiệu -> Suy nghĩ -> Chi tiết công việc -> Hệ quả -> Bài học.',
+    translation: 'Sắp xếp đoạn văn trải nghiệm cá nhân.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -323,7 +333,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• e nêu chủ đề chung -> c nói khó khăn ban đầu -> a giải pháp khắc phục -> d kết quả cải thiện (Consequently) -> b hiện tại tự tin. Trật tự: e - c - a - d - b. Chọn C.',
-    translation: 'Sắp xếp đoạn văn học ngôn ngữ: Chủ đề -> Khó khăn -> Giải pháp -> Kết quả -> Hiện tại.',
+    translation: 'Sắp xếp đoạn văn học ngôn ngữ.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -415,7 +425,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• Từ "forge" trong câu "forge better infrastructure plans" có nghĩa là tạo ra / xây dựng = create / develop. Chọn A.',
-    translation: 'Từ "forge" gần nghĩa nhất với: create (tạo ra).',
+    translation: 'Từ "forge" có nghĩa gần nhất với:',
     topicTag: 'Đọc hiểu - Từ vựng (Vocabulary)'
   },
   {
@@ -432,7 +442,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Đoạn 1 nhắc đến giao thông, khí thải ô nhiễm, tiết kiệm thời gian. Thông tin về "dung tích nước hồ chứa" KHÔNG được nhắc đến trong đoạn 1. Chọn C.',
-    translation: 'Thông tin nào không được nhắc đến trong đoạn 1? -> Dung tích nước của các hồ chứa.',
+    translation: 'Thông tin nào không được nhắc đến trong đoạn 1?',
     topicTag: 'Đọc hiểu - Chi tiết NOT mentioned'
   },
   {
@@ -476,14 +486,14 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_SMART_CITIES_TRANS,
     questionText: 'Question 27. The word "curbing" is OPPOSITE in meaning to:',
     options: [
-      { id: 'A', text: 'restraining', translation: 'kìm hãm (đồng nghĩa)' },
-      { id: 'B', text: 'intensifying', translation: 'gia tăng / làm mạnh thêm (trái nghĩa)' },
-      { id: 'C', text: 'controlling', translation: 'kiểm soát (đồng nghĩa)' },
-      { id: 'D', text: 'reducing', translation: 'cắt giảm (đồng nghĩa)' }
+      { id: 'A', text: 'restraining', translation: 'kìm hãm' },
+      { id: 'B', text: 'intensifying', translation: 'gia tăng / làm mạnh thêm' },
+      { id: 'C', text: 'controlling', translation: 'kiểm soát' },
+      { id: 'D', text: 'reducing', translation: 'cắt giảm' }
     ],
     correctAnswer: 'B',
     explanation: '• Từ "curbing" nghĩa là cắt giảm / kiểm soát. Trái nghĩa với nó là "intensifying" (gia tăng / đẩy mạnh). Chọn B.',
-    translation: 'Từ "curbing" trái nghĩa với: intensifying (gia tăng).',
+    translation: 'Từ "curbing" có nghĩa trái ngược với:',
     topicTag: 'Đọc hiểu - Từ trái nghĩa (Antonym)'
   },
   {
@@ -534,7 +544,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• Đoạn 2 nhắc đến pin mặt trời tự chỉnh góc và cửa sổ thông minh tự điều chỉnh theo ánh sáng. Chọn B (Paragraph 2).',
-    translation: 'Đoạn nào đề cập thiết bị năng lượng tự điều chỉnh? -> Đoạn 2.',
+    translation: 'Đoạn nào đề cập thiết bị năng lượng tự điều chỉnh?',
     topicTag: 'Đọc hiểu - Vị trí thông tin'
   },
   {
@@ -568,7 +578,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'C',
     explanation: '• Cụm "pitted against each other" có nghĩa là được đưa vào thế đối đầu/cạnh tranh với nhau = set in competition. Chọn C.',
-    translation: 'Cụm "pitted against each other" gần nghĩa nhất với: set in competition.',
+    translation: 'Cụm từ "pitted against each other" trong đoạn 1 có nghĩa gần nhất với:',
     topicTag: 'Đọc hiểu - Idioms & Cụm từ'
   },
   {
@@ -687,7 +697,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• Đoạn 2 nhắc lừa đảo tài chính, video bầu cử, tin giả. Việc "gây thiệt hại vật lý cho trụ sở công ty" KHÔNG hề được nhắc đến. Chọn A.',
-    translation: 'Hậu quả nào của deepfake KHÔNG được nhắc đến trong đoạn 2? -> Thiệt hại vật lý cho trụ sở.',
+    translation: 'Hậu quả nào của deepfake KHÔNG được nhắc đến trong đoạn 2?',
     topicTag: 'Đọc hiểu - Chi tiết NOT mentioned'
   },
   {

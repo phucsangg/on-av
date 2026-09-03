@@ -7,15 +7,30 @@ Based <mark>(3) ____________</mark> our experience working with international st
 While studying overseas, you may feel homesick at times. Try <mark>(5) ____________</mark> in touch with family and friends and talk to others about how you feel.
 Let the British Council be your <mark>(6) ____________</mark> in helping you make the most of your study-abroad experience.`;
 
-const PASSAGE_BRITISH_COUNCIL_TRANS = `Bạn đang nghĩ đến việc du học? Hãy bắt đầu hành trình của bạn cùng Hội đồng Anh...`;
+const PASSAGE_BRITISH_COUNCIL_TRANS = `[ĐOẠN 1] Bạn đang nghĩ đến việc du học? Hãy bắt đầu hành trình của bạn cùng Hội đồng Anh (British Council)!
+
+Du học có thể là một trải nghiệm rất bổ ích, mang lại những cơ hội học thuật mới và sự phát triển cá nhân. Nó cũng có thể đầy thách thức lúc ban đầu, đặc biệt là khi thích nghi với môi trường mới.
+
+Sống ở một quốc gia khác giúp bạn cải thiện kỹ năng ngôn ngữ và hiểu được các lối sống khác nhau. Bạn sẽ tích lũy được kinh nghiệm quốc tế và phát triển các kỹ năng có giá trị cho sự nghiệp tương lai của mình.
+
+Dựa trên kinh nghiệm làm việc của chúng tôi với các sinh viên quốc tế, việc chuẩn bị cẩn thận là rất quan trọng. Trước khi lên đường, hãy tìm hiểu về văn hóa và các quy chuẩn xã hội của quốc gia sở tại. Điều này sẽ giúp bạn cảm thấy tự tin và thoải mái hơn khi đặt chân đến.
+
+Trong khi du học, đôi khi bạn có thể cảm thấy nhớ nhà. Hãy cố gắng giữ liên lạc với gia đình, bạn bè và chia sẻ với người khác về cảm xúc của bạn.
+
+Hãy để Hội đồng Anh trở thành người đồng hành giúp bạn tận dụng tối đa trải nghiệm du học của mình.`;
 
 const PASSAGE_ELITE_ARCH = `ELITE ARCHITECTURAL SOLUTIONS
 Are you a creative professional who aims to reshape the modern skyline? Elite Architectural Solutions is <mark>(7) ____________</mark> prestigious studio for designers <mark>(8) ____________</mark> are dedicated to blending aesthetic beauty with functional sustainability. We provide an inspiring workspace where unconventional ideas are turned into reality.
 We encourage our associates to <mark>(9) ____________</mark> more complex design challenges to broaden their technical expertise. Our firm places a high value on professional <mark>(10) ____________</mark>, as the ability to recover from design setbacks is crucial in this fast-paced industry.
 However, the creative process is often demanding. An innovative architect must be able to work under tight deadlines without compromising quality. <mark>(11) ____________</mark>, those who demonstrate exceptional attention to detail will be considered for senior partnership. We seek individuals with the artistic <mark>(12) ____________</mark> to transform urban landscapes.`;
 
-const PASSAGE_ELITE_ARCH_TRANS = `GIẢI PHÁP KIẾN TRÚC TINH HOA
-Bạn có phải là một chuyên gia sáng tạo với khát vọng tái định hình đường chân trời đô thị hiện đại không?...`;
+const PASSAGE_ELITE_ARCH_TRANS = `[ĐOẠN 1] GIẢI PHÁP KIẾN TRÚC TINH HOA (ELITE ARCHITECTURAL SOLUTIONS)
+
+Bạn có phải là một chuyên gia sáng tạo với khát vọng tái định hình đường chân trời đô thị hiện đại không? Elite Architectural Solutions là một studio uy tín dành cho các nhà thiết kế tận tâm kết hợp vẻ đẹp thẩm mỹ với sự phát triển bền vững mang tính chức năng. Chúng tôi cung cấp một không gian làm việc truyền cảm hứng, nơi những ý tưởng độc đáo được biến thành hiện thực.
+
+Chúng tôi khuyến khích các cộng sự đảm nhận những thách thức thiết kế phức tạp hơn để mở rộng chuyên môn kỹ thuật của họ. Công ty chúng tôi đánh giá cao sự kiên cường trong nghề nghiệp, vì khả năng đứng dậy từ những thất bại thiết kế là điều cốt yếu trong ngành công nghiệp tốc độ nhanh này.
+
+Tuy nhiên, quá trình sáng tạo thường rất đòi hỏi khắt khe. Một kiến trúc sư đổi mới phải có khả năng làm việc dưới áp lực thời gian nghiêm ngặt mà không làm giảm chất lượng. Do đó, những ai thể hiện sự chú ý đặc biệt đến chi tiết sẽ được cân nhắc cho vị trí đối tác cấp cao. Chúng tôi tìm kiếm những cá nhân có tầm nhìn nghệ thuật để thay đổi cảnh quan đô thị.`;
 
 const PASSAGE_HORROR_FILMS = `Since almost the beginning of cinema, we have had scary films. Of all the genres that exist, horror is perhaps one of the most conventional. Many horror films rely on specific plot devices, also called tropes, to make their audience frightened. When a trope is used too much, it can become a cliché. But when used well, it can really make us <mark>jump out of our skin</mark>. Here are some of the most used, and perhaps abused, clichés in horror films.
 
@@ -29,7 +44,17 @@ The hero has been driving for hours. It's night-time and it's beginning to rain.
 
 This horror film cliché was especially popular with horror films of the late 20th century. It starts with a group of teenagers all enjoying themselves, and it ends with everyone dead except one girl. At the beginning the girl is usually innocent, shy and not particularly strong. By the end, she has become the toughest and most resourceful person in the world. The last girl almost always wins in the end.`;
 
-const PASSAGE_HORROR_FILMS_TRANS = `Ngay từ những ngày đầu của điện ảnh, phim kinh dị đã xuất hiện. Trong số tất cả các thể loại hiện có, kinh dị có lẽ là một trong những thể loại mang tính khuôn mẫu rõ rệt nhất...`;
+const PASSAGE_HORROR_FILMS_TRANS = `[ĐOẠN 1] Ngay từ những ngày đầu của điện ảnh, phim kinh dị đã xuất hiện. Trong số tất cả các thể loại hiện có, kinh dị có lẽ là một trong những thể loại mang tính khuôn mẫu rõ rệt nhất. Nhiều bộ phim kinh dị dựa vào các thủ pháp cốt truyện cụ thể, còn gọi là các mô-típ (tropes), để làm khán giả hoảng sợ. Khi một mô-típ bị sử dụng quá nhiều, nó có thể trở thành một sự sáo rỗng. Nhưng khi được sử dụng hiệu quả, nó thực sự có thể khiến chúng ta "giật nẩy mình" (jump out of our skin). Dưới đây là một số khuôn mẫu được sử dụng phổ biến nhất, và có lẽ cũng bị lạm dụng nhất, trong phim kinh dị.
+
+[ĐOẠN 2] Dù đó là loại nhà nào, tầng hầm luôn là một nơi đáng sợ trong phim kinh dị. Đó thường là nơi có thứ gì đó đang ẩn nấp hoặc nơi kẻ tâm thần tàn ác đã cất giấu các công cụ của hắn. Tầng hầm luôn tối tăm và thường ẩm thấp. Bạn chỉ có thể tiếp cận chúng qua một cầu thang hẹp. Và tầng hầm luôn rùng rợn, ngay cả khi không có gì ở dưới đó.
+
+[ĐOẠN 3] Trong các bộ phim kinh dị cũ, khi các nhân vật chính rơi vào tình thế tuyệt vọng, họ rất khó hoặc không thể gọi trợ giúp hay gọi cảnh sát. Điện thoại di động đã khiến tình huống đó có phần bớt hợp lý hơn hiện nay. Vậy giải pháp để duy trì sự kịch tính là gì? Không có sóng điện thoại! Nếu bạn là nhân vật chính trong một bộ phim kinh dị, gần như chắc chắn rằng vào một thời điểm mấu chốt, ngay khi bạn tuyệt đối cần gọi trợ giúp, bạn sẽ không có chút sóng nào. Hoặc pin điện thoại của bạn sẽ sập nguồn ngay khi bạn thực hiện cuộc gọi. Hoặc cả hai.
+
+[ĐOẠN 4] Phim kinh dị rất thích những nơi không có người ở. Đó có thể là một bệnh viện bỏ hoang, một ngôi nhà trống rùng rợn hoặc một thị trấn ma. Có một điều gì đó về những nơi cô độc, vắng vẻ. Nơi đó như thế nào khi con người còn sinh sống? Tại sao họ lại rời đi? Có lẽ cũng vì chúng quá yên tĩnh, điều này cũng có thể rất đáng sợ. Tất nhiên, những nơi bỏ hoang cũng rất tiện lợi cho các đạo diễn phim kinh dị ở chỗ nó khiến việc bạn không có sóng điện thoại ở đó trở nên hợp lý hơn.
+
+[ĐOẠN 5] Nhân vật chính đã lái xe hàng giờ liền. Lúc đó là ban đêm và trời bắt đầu mưa. Đột nhiên anh ta nhìn thấy một người ở bên đường. Có lẽ có người đi cùng sẽ giúp anh ta tỉnh táo? Trong phim kinh dị, cho ai đó đi nhờ xe là tự rước lấy rắc rối. Nhân vật chính luôn làm vậy, và mọi chuyện luôn kết thúc tồi tệ.
+
+[ĐOẠN 6] Khuôn mẫu phim kinh dị này đặc biệt phổ biến với các bộ phim kinh dị cuối thế kỷ 20. Nó bắt đầu với một nhóm thanh thiếu niên cùng nhau vui vẻ, và kết thúc với việc mọi người đều chết ngoại trừ một cô gái. Ban đầu cô gái thường ngây thơ, nhút nhát và không đặc biệt mạnh mẽ. Đến cuối cùng, cô đã trở thành người kiên cường và tháo vát nhất thế giới. Cô gái cuối cùng (the final girl) hầu như luôn chiến thắng ở phút cuối.`;
 
 export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
@@ -41,7 +66,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     options: [
       { id: 'A', text: 'reward', translation: 'danh từ / động từ' },
       { id: 'B', text: 'rewarded', translation: 'tính từ bị động' },
-      { id: 'C', text: 'rewarding', translation: 'bổ ích / đáng làm (tính từ)' },
+      { id: 'C', text: 'rewarding', translation: 'bổ ích / đáng làm' },
       { id: 'D', text: 'rewarder', translation: 'người thưởng' }
     ],
     correctAnswer: 'C',
@@ -248,7 +273,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• c (Won-gyu hỏi lớp Pháp) -> a (Kelly trả lời phát âm khó) -> b (Won-gyu thông cảm bảo cần thời gian). Trật tự: c - a - b. Chọn A.',
-    translation: 'Sắp xếp hội thoại học Tiếng Pháp: Hỏi -> Trả lời khó khăn -> Thấu hiểu.',
+    translation: 'Sắp xếp hội thoại học Tiếng Pháp.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -263,7 +288,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'D',
     explanation: '• b (Sophie hỏi đi du lịch tự túc) -> d (Jake bảo chắc chắn tự lập) -> e (Sophie lo căng thẳng) -> c (Jake bảo tự quyết định mới vui) -> a (Sophie chốt lại hào hứng). Trật tự: b - d - e - c - a. Chọn D.',
-    translation: 'Sắp xếp hội thoại du lịch: Hỏi ý kiến -> Ủng hộ -> Lo lắng -> Giải thích -> Đồng tình.',
+    translation: 'Sắp xếp hội thoại du lịch.',
     topicTag: 'Sắp xếp hội thoại'
   },
   {
@@ -278,7 +303,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'B',
     explanation: '• d (nêu dự án Lịch sử) -> c (nêu gợi ý đến thư viện) -> a (sách văn minh cổ đại ở thư viện) -> b (gợi ý đi cuối tuần) -> e (hẹn lịch đi cùng nhau). Trật tự: d - c - a - b - e. Chọn B.',
-    translation: 'Sắp xếp thư bạn bè: Thông báo dự án -> Đề xuất thư viện -> Chi tiết sách -> Thời gian -> Hẹn gặp.',
+    translation: 'Sắp xếp thư bạn bè.',
     topicTag: 'Sắp xếp thư cá nhân'
   },
   {
@@ -293,7 +318,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'D',
     explanation: '• e mở đoạn kết quả nghiên cứu -> d thái độ tích cực thanh niên -> b số liệu cụ thể khảo sát -> a so sánh nam nữ -> c tuy nhiên (However) kết bằng quan điểm đối lập. Trật tự: e - d - b - a - c. Chọn D.',
-    translation: 'Sắp xếp đoạn văn nghiên cứu: Tổng quan -> Thái độ -> Số liệu -> So sánh -> Ý đối lập.',
+    translation: 'Sắp xếp đoạn văn nghiên cứu.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -308,7 +333,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'D',
     explanation: '• a mở đoạn bối cảnh dịch Covid -> d kể công việc ngân hàng thực phẩm -> c trải nghiệm hằng ngày -> e khó khăn nhưng có mục đích -> b nhìn lại biết ơn. Trật tự: a - d - c - e - b. Chọn D.',
-    translation: 'Sắp xếp đoạn văn tình nguyện: Bối cảnh -> Hoạt động -> Trải nghiệm -> Cảm xúc -> Kết luận.',
+    translation: 'Sắp xếp đoạn văn tình nguyện.',
     topicTag: 'Sắp xếp đoạn văn'
   },
   {
@@ -386,14 +411,14 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HORROR_FILMS_TRANS,
     questionText: 'Question 22. The phrase "jump out of our skin" in paragraph 1 is OPPOSITE in meaning to:',
     options: [
-      { id: 'A', text: 'remain completely calm', translation: 'giữ hoàn toàn bình tĩnh (trái nghĩa)' },
+      { id: 'A', text: 'remain completely calm', translation: 'giữ hoàn toàn bình tĩnh' },
       { id: 'B', text: 'be scared to death', translation: 'sợ đến chết khiếp' },
       { id: 'C', text: 'jump for joy', translation: 'nhảy cẫng lên vì vui' },
       { id: 'D', text: 'become thick-skinned', translation: 'trở nên chai lì' }
     ],
     correctAnswer: 'A',
     explanation: '• Thành ngữ "jump out of our skin" = vô cùng hoảng sợ / giật bắn người. Trái nghĩa là "remain completely calm" (giữ hoàn toàn bình tĩnh). Chọn A.',
-    translation: 'Cụm "jump out of our skin" trái nghĩa với: remain completely calm.',
+    translation: 'Cụm từ "jump out of our skin" trong đoạn 1 có nghĩa trái ngược với:',
     topicTag: 'Đọc hiểu - Từ trái nghĩa'
   },
   {
@@ -427,7 +452,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• A diễn đạt lại hoàn hảo: "giving anybody a ride is asking for trouble" (cho đi nhờ xe là tự chuốc lấy rắc rối/thảm họa). Chọn A.',
-    translation: 'Diễn đạt lại đúng nhất: Cho đi nhờ xe được khắc họa như đảm bảo cho thảm họa sắp xảy ra.',
+    translation: 'Câu nào sau đây diễn đạt lại đúng nhất câu được gạch chân trong đoạn văn?',
     topicTag: 'Đọc hiểu - Paraphrasing'
   },
   {
@@ -493,7 +518,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     ],
     correctAnswer: 'A',
     explanation: '• "call for help" = ask for help (gọi / yêu cầu sự trợ giúp). Chọn A.',
-    translation: 'Từ "call for" đồng nghĩa với: ask for.',
+    translation: 'Cụm từ "call for" có nghĩa gần nhất với:',
     topicTag: 'Phrasal Verbs'
   },
   {
@@ -576,7 +601,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     type: 'synonym',
     questionText: 'Question 34. The scientist provided a concise summary of the research findings.',
     options: [
-      { id: 'A', text: 'brief', translation: 'ngắn gọn (đồng nghĩa với concise)' },
+      { id: 'A', text: 'brief', translation: 'ngắn gọn' },
       { id: 'B', text: 'lengthy', translation: 'dài dòng' },
       { id: 'C', text: 'vague', translation: 'mơ hồ' },
       { id: 'D', text: 'elaborate', translation: 'phức tạp / chi tiết' }
@@ -591,8 +616,8 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 35. Her benevolent actions towards the local community earned her widespread admiration.',
     options: [
-      { id: 'A', text: 'kind-hearted', translation: 'tốt bụng (đồng nghĩa)' },
-      { id: 'B', text: 'malevolent', translation: 'ộc hại / hiểm ác (trái nghĩa)' },
+      { id: 'A', text: 'kind-hearted', translation: 'tốt bụng' },
+      { id: 'B', text: 'malevolent', translation: 'ộc hại / hiểm ác' },
       { id: 'C', text: 'generous', translation: 'hào phóng' },
       { id: 'D', text: 'sympathetic', translation: 'thông cảm' }
     ],
@@ -607,7 +632,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     questionText: 'Question 36. Mark: "Would you mind closing the window? It’s getting quite chilly." - Anna: "_____" ',
     options: [
       { id: 'A', text: 'Not at all. I’ll do it right now.', translation: 'Không sao cả. Tôi sẽ làm ngay.' },
-      { id: 'B', text: 'Yes, I would love to.', translation: 'Vâng, tôi thích lắm (sai ngữ cảnh Would you mind)' },
+      { id: 'B', text: 'Yes, I would love to.', translation: 'Vâng, tôi thích lắm' },
       { id: 'C', text: 'No, thanks. I am full.', translation: 'Không, cảm ơn' },
       { id: 'D', text: 'You’re welcome.', translation: 'Không có gì' }
     ],
@@ -652,7 +677,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
     questionText: 'Question 39. She was so engrossed in her novel that she didn’t hear the doorbell _____.',
     options: [
       { id: 'A', text: 'ring', translation: 'nguyên mẫu chỉ nghe trọn vẹn hành động' },
-      { id: 'B', text: 'to ring', translation: 'dùng to V (sai)' },
+      { id: 'B', text: 'to ring', translation: 'dùng to V' },
       { id: 'C', text: 'rung', translation: 'tiếng Việt' },
       { id: 'D', text: 'rang', translation: 'quá khứ' }
     ],

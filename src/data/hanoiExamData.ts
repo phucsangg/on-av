@@ -23,10 +23,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 1. Choose the correct order of letter sentences to make a meaningful letter:\na. Dear Ms. Linh, I am writing to inquire about the upcoming English debating contest organized by your school.\nb. Could you please provide details regarding the registration deadline and candidate requirements?\nc. Thank you very much for your time and assistance, and I look forward to your reply.\nd. Participating in this competition would be a wonderful opportunity for our students to enhance their public speaking skills.\ne. Our school debate team is extremely eager to join and prepare thoroughly for the event.',
     options: [
-      { id: 'A', text: 'a - d - e - b - c', translation: 'Trật tự: a -> d -> e -> b -> c' },
-      { id: 'B', text: 'b - a - d - e - c', translation: 'Trật tự: b -> a -> d -> e -> c' },
-      { id: 'C', text: 'a - b - d - e - c', translation: 'Trật tự: a -> b -> d -> e -> c' },
-      { id: 'D', text: 'd - a - b - e - c', translation: 'Trật tự: d -> a -> b -> e -> c' }
+      { id: 'A', text: 'a - d - e - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - d - e - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - b - d - e - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd - a - b - e - c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - d - e - b - c): Nêu lý do viết thư (a) -> Đánh giá ý nghĩa cuộc thi (d) -> Thể hiện sự hào hứng của đội nhà (e) -> Hỏi chi tiết thông tin (b) -> Cảm ơn và kết thư (c).',
@@ -38,10 +38,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 2. Choose the correct order of dialogue sentences:\na. Mai: Have you checked out the new digital library platform?\nb. Phong: Yes, it’s amazing! We can borrow e-books and listen to audiobooks anytime.\nc. Mai: That’s so convenient, especially when preparing for our final exams.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'C', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' },
-      { id: 'D', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - a - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - c - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c): Mai hỏi về thư viện số (a) -> Phong xác nhận trải nghiệm tuyệt vời (b) -> Mai nhận xét sự tiện lợi (c).',
@@ -53,10 +53,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 3. Choose the correct order of sentences to make a story:\na. Recognizing the problem, our youth club decided to launch a local green campaign.\nb. At first, many residents were reluctant because they thought sorting waste would be time-consuming.\nc. Plastic waste pollution in our neighborhood had reached an alarming level last year.\nd. Eventually, the neighborhood became noticeably cleaner, and everyone felt proud of our shared accomplishment.\ne. However, we organized weekly workshops demonstrating simple ways to recycle and compost organic materials.',
     options: [
-      { id: 'A', text: 'c - a - b - e - d', translation: 'Trật tự: c -> a -> b -> e -> d' },
-      { id: 'B', text: 'a - c - b - e - d', translation: 'Trật tự: a -> c -> b -> e -> d' },
-      { id: 'C', text: 'c - b - a - e - d', translation: 'Trật tự: c -> b -> a -> e -> d' },
-      { id: 'D', text: 'b - c - a - e - d', translation: 'Trật tự: b -> c -> a -> e -> d' }
+      { id: 'A', text: 'c - a - b - e - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - c - b - e - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - b - a - e - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'b - c - a - e - d', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (c - a - b - e - d): Nêu thực trạng ô nhiễm rác nhựa (c) -> Thành lập câu lạc bộ xanh (a) -> Khó khăn ban đầu (b) -> Giải pháp hội thảo (e) -> Kết quả tích cực (d).',
@@ -68,10 +68,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 4. Choose the correct order of dialogue sentences:\na. Minh: Should we choose artificial intelligence or renewable energy for our group presentation?\nb. Hoa: I think renewable energy is more relevant to our environmental unit.\nc. Minh: Good point! Let’s gather data on solar and wind power projects in Vietnam.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'C', text: 'c - b - a', translation: 'Trật tự: c -> b -> a' },
-      { id: 'D', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'c - b - a', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - c - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c): Minh đưa ra hai sự lựa chọn (a) -> Hoa đề xuất chọn năng lượng tái tạo (b) -> Minh tán thành và phân công tìm dữ liệu (c).',
@@ -83,10 +83,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 5. Choose the correct order of sentences to make a paragraph:\na. Artificial intelligence is transforming traditional healthcare systems by improving diagnostic accuracy.\nb. Furthermore, AI-powered algorithms can analyze medical images faster than human experts.\nc. Nevertheless, ethical concerns regarding patient data privacy must be addressed rigorously.\nd. Consequently, hospitals are investing heavily in smart medical software.\ne. In conclusion, AI holds immense potential to enhance patient care if deployed responsibly.',
     options: [
-      { id: 'A', text: 'a - b - d - c - e', translation: 'Trật tự: a -> b -> d -> c -> e' },
-      { id: 'B', text: 'a - d - b - c - e', translation: 'Trật tự: a -> d -> b -> c -> e' },
-      { id: 'C', text: 'b - a - d - c - e', translation: 'Trật tự: b -> a -> d -> c -> e' },
-      { id: 'D', text: 'a - c - b - d - e', translation: 'Trật tự: a -> c -> b -> d -> e' }
+      { id: 'A', text: 'a - b - d - c - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - d - b - c - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'b - a - d - c - e', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'a - c - b - d - e', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - d - c - e): Giới thiệu AI trong y tế (a) -> Bổ sung lợi ích (b) -> Hệ quả bệnh viện đầu tư (d) -> Thách thức bảo mật (c) -> Kết luận (e).',
@@ -217,10 +217,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 13. High school students are advised to develop ______ learning habits to prepare effectively for university education.',
     options: [
-      { id: 'A', text: 'independent', translation: 'độc lập / tự chủ (Tính từ)' },
-      { id: 'B', text: 'independence', translation: 'sự độc lập (Danh từ)' },
+      { id: 'A', text: 'independent', translation: 'độc lập / tự chủ' },
+      { id: 'B', text: 'independence', translation: 'sự độc lập' },
       { id: 'C', text: 'independently', translation: 'một cách độc lập (Trạng từ)' },
-      { id: 'D', text: 'depend', translation: 'phụ thuộc (Động từ)' }
+      { id: 'D', text: 'depend', translation: 'phụ thuộc' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Đứng trước cụm danh từ "learning habits" ta dùng tính từ "independent".',
@@ -247,8 +247,8 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'grammar',
     questionText: 'Question 15. The historical monument ______ by international conservation experts was built in the 15th century.',
     options: [
-      { id: 'A', text: 'restored', translation: 'được tu bổ (Rút gọn mệnh đề quan hệ bị động)' },
-      { id: 'B', text: 'restoring', translation: 'đang tu bổ (Chủ động)' },
+      { id: 'A', text: 'restored', translation: 'được tu bổ' },
+      { id: 'B', text: 'restoring', translation: 'đang tu bổ' },
       { id: 'C', text: 'which restored', translation: 'sai ngữ nghĩa bị động' },
       { id: 'D', text: 'was restored', translation: 'dư thừa động từ chính' }
     ],
@@ -263,7 +263,7 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     questionText: 'Question 16. The new artificial intelligence software can analyze medical data much ______ than traditional methods.',
     options: [
       { id: 'A', text: 'more efficiently', translation: 'hiệu quả hơn (So sánh hơn trạng từ dài)' },
-      { id: 'B', text: 'efficient', translation: 'hiệu quả (Tính từ)' },
+      { id: 'B', text: 'efficient', translation: 'hiệu quả' },
       { id: 'C', text: 'most efficient', translation: 'hiệu quả nhất' },
       { id: 'D', text: 'as efficient as', translation: 'bằng' }
     ],
@@ -292,7 +292,7 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     type: 'antonym',
     questionText: 'Question 18. Opposite in meaning to ANTONYM:\nMany young entrepreneurs face financial instability during the first few years of launching their startups.',
     options: [
-      { id: 'A', text: 'security', translation: 'sự ổn định / an toàn (Trái nghĩa với instability)' },
+      { id: 'A', text: 'security', translation: 'sự ổn định / an toàn' },
       { id: 'B', text: 'uncertainty', translation: 'sự không chắc chắn' },
       { id: 'C', text: 'risk', translation: 'rủi ro' },
       { id: 'D', text: 'weakness', translation: 'điểm yếu' }
@@ -375,7 +375,7 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HANOI_DIGITAL_TRANSFORMATION_TRANS,
     questionText: 'Question 23. The word "inequality" in paragraph 2 is CLOSEST in meaning to ______.',
     options: [
-      { id: 'A', text: 'disparity', translation: 'sự chênh lệch / bất bình đẳng (= inequality)' },
+      { id: 'A', text: 'disparity', translation: 'sự chênh lệch / bất bình đẳng' },
       { id: 'B', text: 'similarity', translation: 'sự tương đồng' },
       { id: 'C', text: 'harmony', translation: 'sự hòa hợp' },
       { id: 'D', text: 'development', translation: 'sự phát triển' }
@@ -392,7 +392,7 @@ export const HANOI_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_HANOI_DIGITAL_TRANSFORMATION_TRANS,
     questionText: 'Question 24. Which of the following is NOT true according to the passage?',
     options: [
-      { id: 'A', text: 'Students in rural areas have equal digital access to urban students', translation: 'Học sinh nông thôn có sự tiếp cận kỹ thuật số bình đẳng như đô thị (SAI)' },
+      { id: 'A', text: 'Students in rural areas have equal digital access to urban students', translation: 'Học sinh nông thôn có sự tiếp cận kỹ thuật số bình đẳng như đô thị' },
       { id: 'B', text: 'Teachers can track student progress in real time using AI tools', translation: 'Giáo viên có thể theo dõi tiến độ học sinh theo thời gian thực' },
       { id: 'C', text: 'Strategic investments in telecommunications are necessary', translation: 'Đầu tư chiến lược vào viễn thông là cần thiết' },
       { id: 'D', text: 'Achieving equitable digital access is a key priority', translation: 'Đạt được tiếp cận bình đẳng là ưu tiên hàng đầu' }
@@ -427,10 +427,10 @@ export const HANOI_2026_QUESTIONS: Question[] = [
   { id: 'hn-q31', type: 'grammar', questionText: 'Question 31. Not until the emergency alarm went off ______ that a fire had broken out in the basement.', options: [{ id: 'A', text: 'did the employees realize', translation: 'nhân viên mới nhận ra (Đảo ngữ)' }, { id: 'B', text: 'the employees realized', translation: 'sai trật tự đảo ngữ' }, { id: 'C', text: 'had the employees realized', translation: 'sai thì' }, { id: 'D', text: 'did realized the employees', translation: 'sai cấu trúc' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Đảo ngữ với "Not until + Clause + did + S + V-bare".', translation: 'Mãi cho đến khi chuông báo động vang lên thì nhân viên mới nhận ra có đám cháy ở tầng hầm.', topicTag: 'Đảo ngữ (Inversion)' },
   { id: 'hn-q32', type: 'grammar', questionText: 'Question 32. Having completed all the required assignments, ______.', options: [{ id: 'A', text: 'the students were allowed to leave the classroom', translation: 'các học sinh được phép rời phòng học' }, { id: 'B', text: 'the teacher dismissed the class early', translation: 'sai chủ thể đồng dạng' }, { id: 'C', text: 'the classroom was cleaned up', translation: 'sai chủ thể' }, { id: 'D', text: 'leaving the classroom was permitted', translation: 'sai cấu trúc' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Rút gọn phân từ hoàn thành "Having V3/ed" yêu cầu vế sau chung chủ ngữ (students).', translation: 'Sau khi hoàn thành tất cả bài tập bắt buộc, các học sinh được phép rời khỏi lớp.', topicTag: 'Rút gọn Phân từ (Perfect Participle)' },
   { id: 'hn-q33', type: 'grammar', questionText: 'Question 33. The new green initiative has received widespread support ______ its clear environmental benefits.', options: [{ id: 'A', text: 'because of', translation: 'bởi vì (+ N-phrase)' }, { id: 'B', text: 'because', translation: 'bởi vì (+ Clause)' }, { id: 'C', text: 'although', translation: 'mặc dù' }, { id: 'D', text: 'in spite of', translation: 'mặc dù' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: "because of + cụm danh từ" chỉ nguyên nhân.', translation: 'Sáng kiến xanh mới đã nhận được sự ủng hộ rộng rãi bởi vì những lợi ích môi trường rõ rệt của nó.', topicTag: 'Cụm từ chỉ nguyên nhân (Because of)' },
-  { id: 'hn-q34', type: 'grammar', questionText: 'Question 34. The university offers a wide array of courses, ______ cover artificial intelligence and robotics.', options: [{ id: 'A', text: 'several of which', translation: 'một vài trong số đó (đại từ quan hệ chì vật)' }, { id: 'B', text: 'several of whom', translation: 'dùng cho người (SAI)' }, { id: 'C', text: 'several of them', translation: 'thiếu từ nối' }, { id: 'D', text: 'which of several', translation: 'sai cấu trúc' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Cấu trúc "quantifier + of + which" thay thế cho danh từ chỉ vật "courses".', translation: 'Trường đại học cung cấp nhiều khóa học, một vài trong số đó bao gồm trí tuệ nhân tạo và robot.', topicTag: 'Mệnh đề quan hệ với Lượng từ' },
-  { id: 'hn-q35', type: 'grammar', questionText: 'Question 35. It is imperative that every candidate ______ valid identification before entering the examination room.', options: [{ id: 'A', text: 'present', translation: 'xuất trình (Giả định thức dạng nguyên thể)' }, { id: 'B', text: 'presents', translation: 'xuất trình (thì hiện tại)' }, { id: 'C', text: 'presented', translation: 'đã xuất trình' }, { id: 'D', text: 'is presenting', translation: 'đang xuất trình' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Cấu trúc "It is imperative that + S + V-bare" (thức giả định).', translation: 'Bắt buộc mỗi thí sinh phải xuất trình giấy tờ tùy thân hợp lệ trước khi vào phòng thi.', topicTag: 'Thức Giả Định (It is imperative that)' },
-  { id: 'hn-q36', type: 'grammar', questionText: 'Question 36. Had I known about the severe traffic jam on the main highway, I ______ a different route to the airport.', options: [{ id: 'A', text: 'would have taken', translation: 'sẽ chọn (Đảo ngữ điều kiện loại 3)' }, { id: 'B', text: 'will take', translation: 'sẽ chọn' }, { id: 'C', text: 'would take', translation: 'sẽ chọn (loại 2)' }, { id: 'D', text: 'took', translation: 'đã chọn' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Đảo ngữ câu điều kiện loại 3 (Had + S + V3/ed ..., S + would have V3/ed).', translation: 'Giá như tớ biết trước về vụ tắc đường nghiêm trọng trên đại lộ thì tớ đã đi tuyến đường khác đến sân bay.', topicTag: 'Đảo ngữ Điều kiện loại 3' },
-  { id: 'hn-q37', type: 'vocabulary', questionText: 'Question 37. The research team conducted a series of experiments to test the ______ of the new solar battery.', options: [{ id: 'A', text: 'efficiency', translation: 'hiệu suất / tính hiệu quả (Danh từ)' }, { id: 'B', text: 'efficient', translation: 'hiệu quả (Tính từ)' }, { id: 'C', text: 'efficiently', translation: 'một cách hiệu quả (Trạng từ)' }, { id: 'D', text: 'efficientness', translation: 'từ không tồn tại' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Sau mạn từ "the" và chỉ mục đích ta dùng danh từ "efficiency" (hiệu suất).', translation: 'Nhóm nghiên cứu đã tiến hành một loạt thí nghiệm để kiểm tra hiệu suất của pin mặt trời mới.', topicTag: 'Từ loại (Word Formation)' },
+  { id: 'hn-q34', type: 'grammar', questionText: 'Question 34. The university offers a wide array of courses, ______ cover artificial intelligence and robotics.', options: [{ id: 'A', text: 'several of which', translation: 'một vài trong số đó (đại từ quan hệ chì vật)' }, { id: 'B', text: 'several of whom', translation: 'dùng cho người' }, { id: 'C', text: 'several of them', translation: 'thiếu từ nối' }, { id: 'D', text: 'which of several', translation: 'sai cấu trúc' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Cấu trúc "quantifier + of + which" thay thế cho danh từ chỉ vật "courses".', translation: 'Trường đại học cung cấp nhiều khóa học, một vài trong số đó bao gồm trí tuệ nhân tạo và robot.', topicTag: 'Mệnh đề quan hệ với Lượng từ' },
+  { id: 'hn-q35', type: 'grammar', questionText: 'Question 35. It is imperative that every candidate ______ valid identification before entering the examination room.', options: [{ id: 'A', text: 'present', translation: 'xuất trình (Giả định thức dạng nguyên thể)' }, { id: 'B', text: 'presents', translation: 'xuất trình' }, { id: 'C', text: 'presented', translation: 'đã xuất trình' }, { id: 'D', text: 'is presenting', translation: 'đang xuất trình' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Cấu trúc "It is imperative that + S + V-bare" (thức giả định).', translation: 'Bắt buộc mỗi thí sinh phải xuất trình giấy tờ tùy thân hợp lệ trước khi vào phòng thi.', topicTag: 'Thức Giả Định (It is imperative that)' },
+  { id: 'hn-q36', type: 'grammar', questionText: 'Question 36. Had I known about the severe traffic jam on the main highway, I ______ a different route to the airport.', options: [{ id: 'A', text: 'would have taken', translation: 'sẽ chọn (Đảo ngữ điều kiện loại 3)' }, { id: 'B', text: 'will take', translation: 'sẽ chọn' }, { id: 'C', text: 'would take', translation: 'sẽ chọn' }, { id: 'D', text: 'took', translation: 'đã chọn' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Đảo ngữ câu điều kiện loại 3 (Had + S + V3/ed ..., S + would have V3/ed).', translation: 'Giá như tớ biết trước về vụ tắc đường nghiêm trọng trên đại lộ thì tớ đã đi tuyến đường khác đến sân bay.', topicTag: 'Đảo ngữ Điều kiện loại 3' },
+  { id: 'hn-q37', type: 'vocabulary', questionText: 'Question 37. The research team conducted a series of experiments to test the ______ of the new solar battery.', options: [{ id: 'A', text: 'efficiency', translation: 'hiệu suất / tính hiệu quả' }, { id: 'B', text: 'efficient', translation: 'hiệu quả' }, { id: 'C', text: 'efficiently', translation: 'một cách hiệu quả (Trạng từ)' }, { id: 'D', text: 'efficientness', translation: 'từ không tồn tại' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Sau mạn từ "the" và chỉ mục đích ta dùng danh từ "efficiency" (hiệu suất).', translation: 'Nhóm nghiên cứu đã tiến hành một loạt thí nghiệm để kiểm tra hiệu suất của pin mặt trời mới.', topicTag: 'Từ loại (Word Formation)' },
   { id: 'hn-q38', type: 'grammar', questionText: 'Question 38. Rarely ______ such a dramatic transformation in urban infrastructure within such a short timeframe.', options: [{ id: 'A', text: 'have we witnessed', translation: 'chúng tôi mới được chứng kiến (Đảo ngữ)' }, { id: 'B', text: 'we have witnessed', translation: 'sai trật tự đảo ngữ' }, { id: 'C', text: 'did we witnessed', translation: 'sai ngữ pháp' }, { id: 'D', text: 'we witnessed', translation: 'không đảo ngữ' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Trạng từ phủ định "Rarely" đứng đầu câu yêu cầu đảo ngữ (Rarely + auxiliary + S + V).', translation: 'Hiếm khi chúng tôi chứng kiến sự thay đổi hạ tầng đô thị ngoạn mục đến vậy trong khoảng thời gian ngắn.', topicTag: 'Đảo ngữ (Inversion)' },
   { id: 'hn-q39', type: 'grammar', questionText: 'Question 39. She managed to pass the final examination with flying colors despite ______ severe personal difficulties.', options: [{ id: 'A', text: 'facing', translation: 'đối mặt với (despite + V-ing)' }, { id: 'B', text: 'she faced', translation: 'dùng mệnh đề sai sau despite' }, { id: 'C', text: 'face', translation: 'động từ nguyên thể' }, { id: 'D', text: 'faced', translation: 'động từ quá khứ' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Sau giới từ "despite" ta dùng V-ing (facing) khi hai mệnh đề chung chủ ngữ.', translation: 'Cô ấy đã xuất sắc vượt qua kỳ thi tốt nghiệp với điểm số cao mặc dù phải đối mặt với nhiều khó khăn cá nhân.', topicTag: 'Danh động từ sau Despite' },
   { id: 'hn-q40', type: 'vocabulary', questionText: 'Question 40. The new environmental law aims to prevent corporations from ______ hazardous industrial waste into local rivers.', options: [{ id: 'A', text: 'discharging', translation: 'xả rác thải (prevent sby/sth from V-ing)' }, { id: 'B', text: 'to discharge', translation: 'để xả' }, { id: 'C', text: 'discharged', translation: 'đã xả' }, { id: 'D', text: 'discharge', translation: 'xả' }], correctAnswer: 'A', explanation: '• A. ĐÚNG: Cấu trúc "prevent someone/something from + V-ing" (ngăn chặn ai/cái gì làm gì).', translation: 'Đạo luật môi trường mới nhằm ngăn chặn các tập đoàn xả chất thải công nghiệp độc hại ra các dòng sông địa phương.', topicTag: 'Cấu trúc Prevent from V-ing' }

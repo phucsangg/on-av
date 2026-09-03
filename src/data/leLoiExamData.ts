@@ -414,10 +414,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 20. Choose the correct order of sentences to make a meaningful paragraph:\na. Last weekend, our youth group organized a beach clean-up campaign at the local coastal area.\nb. Despite the harsh sunlight, everyone worked tirelessly to collect plastic waste and glass bottles.\nc. By the end of the day, we had gathered over 500 kilograms of trash, restoring the natural beauty of the shore.\nd. This experience taught us the importance of environmental responsibility and teamwork.',
     options: [
-      { id: 'A', text: 'a - b - c - d', translation: 'Trật tự: a -> b -> c -> d' },
-      { id: 'B', text: 'b - a - c - d', translation: 'Trật tự: b -> a -> c -> d' },
-      { id: 'C', text: 'a - c - b - d', translation: 'Trật tự: a -> c -> b -> d' },
-      { id: 'D', text: 'd - a - b - c', translation: 'Trật tự: d -> a -> b -> c' }
+      { id: 'A', text: 'a - b - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd - a - b - c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c - d): Mở đầu sự kiện chiến dịch dọn biển (a) -> Mô tả nỗ lực trong khi dọn (b) -> Nêu kết quả lượng rác thu gom (c) -> Rút ra bài học ý nghĩa (d).',
@@ -429,10 +429,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 21. Choose the correct order of sentences to make a meaningful paragraph:\na. Renewable energy adoption has accelerated significantly over the past decade due to technological advancements.\nb. Consequently, carbon emissions from power generation have dropped noticeably in participating regions.\nc. Furthermore, government incentives and subsidies have made solar panels and wind turbines more affordable.\nd. Transitioning to clean energy is essential for achieving long-term climate sustainability.',
     options: [
-      { id: 'A', text: 'a - c - b - d', translation: 'Trật tự: a -> c -> b -> d' },
-      { id: 'B', text: 'a - b - c - d', translation: 'Trật tự: a -> b -> c -> d' },
-      { id: 'C', text: 'd - a - c - b', translation: 'Trật tự: d -> a -> c -> b' },
-      { id: 'D', text: 'c - a - b - d', translation: 'Trật tự: c -> a -> b -> d' }
+      { id: 'A', text: 'a - c - b - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'a - b - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'd - a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - a - b - d', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - c - b - d): Nêu xu hướng năng lượng tái tạo (a) -> Bổ sung chính sách chính phủ (c - Furthermore) -> Nêu kết quả giảm phát thải (b - Consequently) -> Kết luận tổng quan (d).',
@@ -444,10 +444,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 22. Choose the correct order of sentences to make a meaningful email:\na. Dear Mr. Smith, I am writing to inquire about the upcoming internship program at your marketing agency.\nb. I am currently a senior student majoring in Communications with strong skills in content creation.\nc. Could you please send me detailed information regarding the application deadlines and requirements?\nd. Thank you for your time and assistance, and I look forward to your response.',
     options: [
-      { id: 'A', text: 'a - b - c - d', translation: 'Trật tự: a -> b -> c -> d' },
-      { id: 'B', text: 'b - a - c - d', translation: 'Trật tự: b -> a -> c -> d' },
-      { id: 'C', text: 'a - c - b - d', translation: 'Trật tự: a -> c -> b -> d' },
-      { id: 'D', text: 'd - a - b - c', translation: 'Trật tự: d -> a -> b -> c' }
+      { id: 'A', text: 'a - b - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b - d', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'd - a - b - c', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c - d): Mở đầu hỏi về chương trình thực tập (a) -> Giới thiệu bản thân (b) -> Đưa ra yêu cầu cung cấp thông tin (c) -> Lời cảm ơn và kết thư (d).',
@@ -459,10 +459,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 23. Choose the correct order of sentences to form a coherent paragraph:\na. Digital literacy has become a fundamental requirement in the modern workforce across virtually all industries.\nb. Without basic computer and internet skills, job seekers face severe disadvantages in securing employment.\nc. Therefore, educational institutions must integrate comprehensive digital training into their curricula.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'C', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'D', text: 'c - a - b', translation: 'Trật tự: c -> a -> b' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - a - b', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c): Khẳng định tầm quan trọng của năng lực số (a) -> Nêu bất lợi nếu thiếu kỹ năng (b) -> Đưa ra kết luận giải pháp giáo dục (c - Therefore).',
@@ -474,10 +474,10 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     type: 'reordering',
     questionText: 'Question 24. Choose the correct order of sentences to form a coherent paragraph:\na. E-commerce has revolutionized retail by allowing consumers to purchase goods from the comfort of their homes.\nb. However, this convenience has led to an increase in packaging waste and delivery vehicle emissions.\nc. Implementing eco-friendly packaging and electric delivery fleets is essential to mitigate these environmental impacts.',
     options: [
-      { id: 'A', text: 'a - b - c', translation: 'Trật tự: a -> b -> c' },
-      { id: 'B', text: 'b - a - c', translation: 'Trật tự: b -> a -> c' },
-      { id: 'C', text: 'a - c - b', translation: 'Trật tự: a -> c -> b' },
-      { id: 'D', text: 'c - b - a', translation: 'Trật tự: c - b - a' }
+      { id: 'A', text: 'a - b - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'B', text: 'b - a - c', translation: 'Thứ tự lựa chọn' },
+      { id: 'C', text: 'a - c - b', translation: 'Thứ tự lựa chọn' },
+      { id: 'D', text: 'c - b - a', translation: 'Thứ tự lựa chọn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG (a - b - c): Nêu lợi ích của thương mại điện tử (a) -> Nêu tác hại rác thải đóng gói (b - However) -> Đưa ra giải pháp bao bì xanh (c).',
