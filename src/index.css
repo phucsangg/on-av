@@ -2,7 +2,7 @@
 
 :root {
   --font-sans: 'Be Vietnam Pro', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'Be Vietnam Pro', system-ui, sans-serif;
+  --font-heading: 'Be Vietnam Pro', 'Plus Jakarta Sans', system-ui, sans-serif;
 
   /* Premium Palette - Ultra Modern Light Theme */
   --bg-main: #f8fafc;
@@ -95,7 +95,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-main);
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 /* Custom Scrollbars */

@@ -412,10 +412,10 @@ export const App: React.FC = () => {
               <Clock size={18} />
             </div>
             <div>
-              <div style={{ fontWeight: 800, fontSize: '0.95rem', letterSpacing: '0.01em' }}>
-                ⚡ BÀI THI ĐANG LÀM DỞ: {activeSession.examTitle}
+              <div style={{ fontWeight: 700, fontSize: '0.95rem', letterSpacing: 'normal', fontFamily: 'var(--font-sans)' }}>
+                ⚡ Bài thi đang làm dở: {activeSession.examTitle}
               </div>
-              <div style={{ fontSize: '0.82rem', opacity: 0.9, marginTop: '2px' }}>
+              <div style={{ fontSize: '0.82rem', opacity: 0.9, marginTop: '2px', letterSpacing: 'normal', fontFamily: 'var(--font-sans)' }}>
                 Đã trả lời {Object.values(activeSession.answers || {}).filter(v => v !== null).length} câu • Thời gian làm bài: {Math.floor((activeSession.timeElapsedSeconds || 0) / 60).toString().padStart(2, '0')}:{((activeSession.timeElapsedSeconds || 0) % 60).toString().padStart(2, '0')}
               </div>
             </div>
@@ -433,7 +433,7 @@ export const App: React.FC = () => {
               style={{
                 background: '#ffffff',
                 color: '#4f46e5',
-                fontWeight: 800,
+                fontWeight: 700,
                 border: 'none',
                 padding: '8px 18px',
                 borderRadius: '999px',
@@ -443,10 +443,13 @@ export const App: React.FC = () => {
                 gap: '6px',
                 fontSize: '0.88rem',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.2s ease',
+                whiteSpace: 'nowrap',
+                letterSpacing: 'normal',
+                fontFamily: 'var(--font-sans)'
               }}
             >
-              <Play size={15} fill="#4f46e5" /> Tiếp Tục Làm Bài
+              <Play size={15} fill="#4f46e5" /> Tiếp tục làm bài
             </button>
 
             <button
