@@ -233,6 +233,18 @@ mark.user-hl-pink,
   box-shadow: var(--shadow-hover);
 }
 
+/* Passage Paragraph Card Isolated Selection System */
+.passage-paragraph-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.passage-paragraph-card:hover {
+  border-color: rgba(79, 70, 229, 0.35);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.06);
+}
+
 /* Ultra-Premium Form Input & Search Bar System */
 .form-input, 
 input[type="text"], 

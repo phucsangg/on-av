@@ -324,6 +324,23 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const activePassage = applyUserHighlights(autoHighlightTargetWord(formatPassageForTaking(activePassageData?.passage), currentQuestion.questionText));
   const activeTranslation = activePassageData?.translation;
 
+  // Split passage HTML into individual paragraphs for clean modern SAT/IELTS layout & isolated text selection
+  const passageParagraphs = React.useMemo(() => {
+    if (!activePassage) return [];
+    return activePassage
+      .split(/(?:\r?\n){2,}/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+  }, [activePassage]);
+
+  const translationParagraphs = React.useMemo(() => {
+    if (!activeTranslation) return [];
+    return activeTranslation
+      .split(/(?:\r?\n){2,}/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0);
+  }, [activeTranslation]);
+
   // Timer count-up stopwatch hook (starts at 0 and counts UP)
   useEffect(() => {
     if (isPaused) return;
@@ -563,25 +580,73 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
               </div>
               
               <div style={{
-                whiteSpace: 'pre-line',
                 fontSize: '1.08rem',
                 lineHeight: 1.85,
                 color: 'var(--text-main)',
-                background: isPassageTranslated ? 'var(--success-bg)' : 'var(--bg-subtle)',
-                padding: '24px',
-                borderRadius: 'var(--radius-md)',
-                border: `1px solid ${isPassageTranslated ? 'var(--success-border)' : 'var(--border-light)'}`,
                 transition: 'all 0.25s ease'
               }}>
                 {isPassageTranslated && activeTranslation ? (
-                  <div>
-                    <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--success)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--success)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Sparkles size={14} /> Bản dịch tham khảo Tiếng Việt:
                     </div>
-                    {activeTranslation}
+                    {translationParagraphs.map((para, pIdx) => (
+                      <div key={pIdx} style={{
+                        padding: '16px 20px',
+                        background: 'var(--success-bg)',
+                        borderRadius: 'var(--radius-md)',
+                        border: '1px solid var(--success-border)',
+                        lineHeight: 1.8,
+                        fontSize: '1.02rem',
+                        color: 'var(--text-main)'
+                      }}>
+                        <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--success)', marginRight: '8px', textTransform: 'uppercase' }}>
+                          [Đoạn {pIdx + 1}]
+                        </span>
+                        {para}
+                      </div>
+                    ))}
                   </div>
                 ) : (
-                  <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: activePassage || '' }} />
+                  <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    {passageParagraphs.map((paraHtml, pIdx) => (
+                      <div 
+                        key={pIdx} 
+                        className="passage-paragraph-card"
+                        style={{
+                          position: 'relative',
+                          padding: '18px 22px',
+                          borderRadius: 'var(--radius-md)',
+                          background: 'var(--bg-surface)',
+                          border: '1px solid var(--border-light)',
+                          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+                          fontSize: '1.08rem',
+                          lineHeight: 1.85,
+                          color: 'var(--text-main)',
+                          userSelect: 'text',
+                          WebkitUserSelect: 'text'
+                        }}
+                      >
+                        <div style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          fontSize: '0.72rem',
+                          fontWeight: 800,
+                          color: 'var(--brand-primary)',
+                          background: 'rgba(79, 70, 229, 0.08)',
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          marginBottom: '10px',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px'
+                        }}>
+                          <BookOpen size={11} /> Đoạn {pIdx + 1}
+                        </div>
+                        <div style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: paraHtml }} />
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
             </div>
