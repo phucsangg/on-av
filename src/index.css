@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Outfit:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap');
 
 :root {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans: 'Be Vietnam Pro', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Be Vietnam Pro', system-ui, sans-serif;
 
-  /* Premium Palette - Ultra Light Theme */
+  /* Premium Palette - Ultra Modern Light Theme */
   --bg-main: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card: rgba(255, 255, 255, 0.94);
   --bg-subtle: #f1f5f9;
   --bg-tertiary: #e2e8f0;
   --bg-highlight: #eef2ff;
 
-  --border-light: rgba(226, 232, 240, 0.95);
+  --border-light: rgba(226, 232, 240, 0.9);
   --border-focus: #4f46e5;
   --card-border: rgba(226, 232, 240, 0.85);
 
@@ -22,24 +22,24 @@
   --text-white: #ffffff;
 
   --brand-primary: #4f46e5;
-  --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-  --brand-gradient-hover: linear-gradient(135deg, #4338ca 0%, #0891b2 100%);
-  --hero-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+  --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+  --brand-gradient-hover: linear-gradient(135deg, #4338ca 0%, #6d28d9 50%, #0891b2 100%);
+  --hero-gradient: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(124, 58, 237, 0.06) 50%, rgba(6, 182, 212, 0.08) 100%);
 
   --success: #10b981;
-  --success-bg: rgba(16, 185, 129, 0.1);
-  --success-border: rgba(16, 185, 129, 0.25);
+  --success-bg: rgba(16, 185, 129, 0.12);
+  --success-border: rgba(16, 185, 129, 0.28);
 
   --danger: #ef4444;
-  --danger-bg: rgba(239, 68, 68, 0.1);
-  --danger-border: rgba(239, 68, 68, 0.25);
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.28);
 
   --warning: #f59e0b;
-  --warning-bg: rgba(245, 158, 11, 0.12);
+  --warning-bg: rgba(245, 158, 11, 0.14);
 
   --shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-  --shadow-hover: 0 20px 40px -10px rgba(79, 70, 229, 0.2);
+  --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 20px 40px -10px rgba(79, 70, 229, 0.25);
 
   --radius-xs: 6px;
   --radius-sm: 10px;
