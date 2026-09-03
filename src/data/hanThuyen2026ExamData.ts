@@ -521,14 +521,14 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_BA_BE_TRANS,
     questionText: 'Question 28. The heart of the park, Ba Be Lake, is (28) _____: Pe Leng, Pe Lu, and Pe Lam.',
     options: [
-      { id: 'A', text: 'surrounded by dense jungle, impenetrable to humans', translation: 'mâu thuẫn du lịch' },
+      { id: 'A', text: 'surrounded by dense jungle, impenetrable to humans', translation: 'được bao quanh bởi rừng rậm dày đặc, con người không thể xuyên qua' },
       { id: 'B', text: 'actually comprised of three interconnected lakes', translation: 'thực chất được tạo thành từ 3 hồ thông nhau' },
-      { id: 'C', text: 'home to a unique species of freshwater dolphin', translation: 'sai thực tế' },
-      { id: 'D', text: 'artificially created to provide water for the local communities', translation: 'hồ tự nhiên không phải nhân tạo' }
+      { id: 'C', text: 'home to a unique species of freshwater dolphin', translation: 'là nơi sinh sống của một loài cá heo nước ngọt độc đáo' },
+      { id: 'D', text: 'artificially created to provide water for the local communities', translation: 'được tạo ra nhân tạo để cung cấp nước cho các cộng đồng địa phương' }
     ],
     correctAnswer: 'B',
     explanation: '• Sau dấu hai chấm liệt kê tên 3 hồ (Pe Leng, Pe Lu, Pe Lam) -> Vế trước cần "comprised of three interconnected lakes". Chọn B.',
-    translation: 'Trái tim của công viên — hồ Ba Bể — thực chất được tạo thành từ 3 hồ thông nhau.',
+    translation: 'Trái tim của công viên, hồ Ba Bể, (28) _____: Pe Leng, Pe Lu, và Pe Lam.',
     topicTag: 'Cụm từ chỉ cấu trúc'
   },
   {
@@ -538,14 +538,14 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_BA_BE_TRANS,
     questionText: 'Question 29. Fill in blank (29):',
     options: [
-      { id: 'A', text: 'The nearby town, with its bustling markets and vibrant nightlife,', translation: 'không hợp ngắm chim' },
-      { id: 'B', text: 'A guided tour through the park\'s extensive cave system,', translation: 'hang động tối không ngắm chim' },
-      { id: 'C', text: 'The challenging climb to the summit of the highest peak,', translation: 'mang tính mạo hiểm' },
+      { id: 'A', text: 'The nearby town, with its bustling markets and vibrant nightlife,', translation: 'Thị trấn lân cận, với các chợ nhộn nhịp và cuộc sống về đêm sôi động' },
+      { id: 'B', text: 'A guided tour through the park\'s extensive cave system,', translation: 'Chuyến tham quan có hướng dẫn qua hệ thống hang động rộng lớn của công viên' },
+      { id: 'C', text: 'The challenging climb to the summit of the highest peak,', translation: 'Cuộc leo núi đầy thử thách lên đỉnh ngọn núi cao nhất' },
       { id: 'D', text: 'Kiem Lake, a smaller lake located within the park and accessible by foot,', translation: 'Hồ Kiếm, một hồ nhỏ hơn nằm trong công viên có thể đi bộ đến' }
     ],
     correctAnswer: 'D',
     explanation: '• D phù hợp nhất làm chủ ngữ cho vế sau "...provides yet another opportunity to connect with nature and observe the diverse birdlife". Chọn D.',
-    translation: 'Hồ Kiếm, một hồ nhỏ nằm trong công viên có thể đi bộ đến, mang đến cơ hội ngắm chim.',
+    translation: 'Điền cụm từ phù hợp vào chỗ trống (29) _____:',
     topicTag: 'Điền cụm từ hoàn thành câu'
   },
   {
@@ -555,14 +555,14 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
     passageTranslation: PASSAGE_BA_BE_TRANS,
     questionText: 'Question 30. Fill in blank (30):',
     options: [
-      { id: 'A', text: 'However, the increasing number of tourists poses a threat to the park\'s delicate balance', translation: 'tiêu cực mâu thuẫn' },
+      { id: 'A', text: 'However, the increasing number of tourists poses a threat to the park\'s delicate balance', translation: 'Tuy nhiên, số lượng khách du lịch ngày càng tăng đặt ra mối đe dọa cho sự cân bằng mỏng manh của công viên' },
       { id: 'B', text: 'Despite its remote location, Ba Be National Park is well worth the journey', translation: 'Mặc dù ở vị trí xa xôi, Vườn quốc gia Ba Bể rất đáng để ghé thăm' },
-      { id: 'C', text: 'Whether seeking adventure or simply a moment of tranquility in nature\'s embrace, Ba Be National Park offers a unique and unforgettable experience', translation: 'Dù tìm kiếm trải nghiệm phiêu lưu hay khoảnh khắc tĩnh lặng trong lòng thiên nhiên, Vườn quốc gia Ba Bể đều mang đến một trải nghiệm độc đáo khó quên' },
-      { id: 'D', text: 'Therefore, it is crucial to implement sustainable tourism practices', translation: 'lời kêu gọi chính sách' }
+      { id: 'C', text: 'Whether seeking adventure or simply a moment of tranquility in nature\'s embrace, Ba Be National Park offers a unique and unforgettable experience', translation: 'Dù tìm kiếm cuộc phiêu lưu hay chỉ đơn giản là khoảnh khắc thanh bình giữa thiên nhiên, Vườn quốc gia Ba Bể mang đến trải nghiệm độc đáo và khó quên' },
+      { id: 'D', text: 'Therefore, it is crucial to implement sustainable tourism practices', translation: 'Vì vậy, điều quan trọng là phải thực hiện các hoạt động du lịch bền vững' }
     ],
     correctAnswer: 'C',
     explanation: '• C tóm tắt hoàn hảo 2 khía cạnh đã đề cập trong bài (Phiêu lưu & Tĩnh lặng) làm câu kết bài trọn vẹn. Chọn C.',
-    translation: 'Dù tìm kiếm phiêu lưu hay tĩnh lặng, Vườn quốc gia Ba Bể đều mang đến trải nghiệm khó quên.',
+    translation: 'Điền câu phù hợp vào chỗ trống (30) _____:',
     topicTag: 'Điền câu kết đoạn'
   },
   {
