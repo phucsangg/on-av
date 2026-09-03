@@ -312,21 +312,71 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const activeTranslation = activePassageData?.translation;
 
-  // Split passage text into individual paragraphs for clean modern SAT/IELTS layout & isolated text selection
-  const passageParagraphs = React.useMemo(() => {
-    if (!activePassageData?.passage) return [];
-    return activePassageData.passage
-      .split(/\r?\n/)
-      .map(p => p.trim())
-      .filter(p => p.length > 0);
+  // Parse passage into title + clean paragraphs separated by double newlines or blank lines
+  const parsedPassage = React.useMemo(() => {
+    if (!activePassageData?.passage) return { title: null, paragraphs: [] };
+    const raw = activePassageData.passage.trim();
+
+    // Split into distinct blocks by double newlines or empty lines
+    const blocks = raw
+      .split(/(?:\r?\n){2,}/)
+      .map(b => b.trim())
+      .filter(b => b.length > 0);
+
+    if (blocks.length === 0) return { title: null, paragraphs: [] };
+
+    // Check if the first block is a title line (short single line <= 110 chars, no ending period)
+    const firstBlock = blocks[0];
+    const isFirstBlockTitle = (
+      !firstBlock.includes('\n') &&
+      firstBlock.length <= 110 &&
+      !firstBlock.endsWith('.') &&
+      blocks.length > 1
+    );
+
+    if (isFirstBlockTitle) {
+      return {
+        title: firstBlock,
+        paragraphs: blocks.slice(1)
+      };
+    }
+
+    return {
+      title: null,
+      paragraphs: blocks
+    };
   }, [activePassageData]);
 
-  const translationParagraphs = React.useMemo(() => {
-    if (!activeTranslation) return [];
-    return activeTranslation
-      .split(/\r?\n/)
-      .map(p => p.trim())
-      .filter(p => p.length > 0);
+  const parsedTranslation = React.useMemo(() => {
+    if (!activeTranslation) return { title: null, paragraphs: [] };
+    const raw = activeTranslation.trim();
+
+    const blocks = raw
+      .split(/(?:\r?\n){2,}/)
+      .map(b => b.trim())
+      .filter(b => b.length > 0);
+
+    if (blocks.length === 0) return { title: null, paragraphs: [] };
+
+    const firstBlock = blocks[0];
+    const isFirstBlockTitle = (
+      !firstBlock.includes('\n') &&
+      firstBlock.length <= 110 &&
+      !firstBlock.endsWith('.') &&
+      blocks.length > 1
+    );
+
+    if (isFirstBlockTitle) {
+      return {
+        title: firstBlock,
+        paragraphs: blocks.slice(1)
+      };
+    }
+
+    return {
+      title: null,
+      paragraphs: blocks
+    };
   }, [activeTranslation]);
 
   // Timer count-up stopwatch hook (starts at 0 and counts UP)
@@ -574,7 +624,21 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--success)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Sparkles size={14} /> Bản dịch tham khảo Tiếng Việt:
                     </div>
-                    {translationParagraphs.map((para, pIdx) => (
+                    {parsedTranslation.title && (
+                      <div style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 800,
+                        color: 'var(--success)',
+                        padding: '12px 18px',
+                        background: 'var(--success-bg)',
+                        borderRadius: 'var(--radius-md)',
+                        borderLeft: '4px solid var(--success)',
+                        marginBottom: '8px'
+                      }}>
+                        {parsedTranslation.title}
+                      </div>
+                    )}
+                    {parsedTranslation.paragraphs.map((para, pIdx) => (
                       <div key={pIdx} style={{
                         padding: '16px 20px',
                         background: 'var(--success-bg)',
@@ -593,7 +657,22 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   </div>
                 ) : (
                   <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {passageParagraphs.map((paraText, pIdx) => (
+                    {parsedPassage.title && (
+                      <div style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 800,
+                        color: 'var(--brand-primary)',
+                        padding: '12px 18px',
+                        background: 'rgba(79, 70, 229, 0.06)',
+                        borderRadius: 'var(--radius-md)',
+                        borderLeft: '4px solid var(--brand-primary)',
+                        marginBottom: '8px',
+                        lineHeight: 1.5
+                      }}>
+                        {renderHighlightedText(parsedPassage.title)}
+                      </div>
+                    )}
+                    {parsedPassage.paragraphs.map((paraText, pIdx) => (
                       <div 
                         key={pIdx} 
                         data-paragraph-index={pIdx}
