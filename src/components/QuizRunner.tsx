@@ -600,16 +600,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
                 if (sentenceItems.length > 0) {
                   return (
-                    <div style={{ marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '24px' }}>
+                    <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '24px' }}>
                       <div style={{
                         fontSize: '1.18rem',
                         fontWeight: 700,
                         lineHeight: 1.65,
                         color: 'var(--text-main)',
                         marginBottom: '16px'
-                      }}>
-                        {headerPrompt}
-                      </div>
+                      }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(headerPrompt) }} />
 
                       <div style={{
                         display: 'flex',
@@ -652,7 +650,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                               }}>
                                 {label}
                               </span>
-                              <span style={{ fontWeight: 500 }}>{textContent}</span>
+                              <span style={{ fontWeight: 500 }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(textContent) }} />
                             </div>
                           );
                         })}
@@ -663,14 +661,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
               }
 
               return (
-                <div style={{
+                <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{
                   fontSize: '1.18rem',
                   fontWeight: 500,
                   lineHeight: 1.7,
                   marginBottom: (showQuestionTranslation && currentQuestion.translation) ? '16px' : '28px',
                   color: 'var(--text-main)',
                   whiteSpace: 'pre-line'
-                }} dangerouslySetInnerHTML={{ __html: rawText }} />
+                }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(rawText) }} />
               );
             })()}
 
@@ -734,7 +732,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       {opt.id}
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: '1.08rem', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: opt.text }} />
+                      <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.08rem', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: applyUserHighlights(opt.text) }} />
                       {showQuestionTranslation && opt.translation && (
                         <div style={{ fontSize: '0.9rem', color: 'var(--success)', marginTop: '4px', fontWeight: 500 }}>
                           {opt.translation}
