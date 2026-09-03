@@ -797,8 +797,18 @@ import { CHUYEN_VINH_PHUC_2026_EXAM } from './chuyenVinhPhucExamData';
 import { CUM_HAI_PHONG_2026_EXAM } from './cumHaiPhongExamData';
 import { DA_NANG_2026_EXAM } from './daNangExamData';
 import { HANOI_2026_EXAM } from './hanoiExamData';
+import { NGHE_AN_2026_EXAM } from './ngheAn2026ExamData';
+import { BAC_NINH_2026_EXAM } from './bacNinh2026ExamData';
+import { HA_TINH_2026_L1_EXAM } from './haTinh2026L1ExamData';
+import { HANOI_CUM_2026_EXAM } from './hanoiCum2026ExamData';
+import { ELON_MUSK_2026_EXAM } from './elonMusk2026ExamData';
 
 export const SAMPLE_EXAM_SETS: ExamSet[] = [
+  NGHE_AN_2026_EXAM,
+  BAC_NINH_2026_EXAM,
+  HA_TINH_2026_L1_EXAM,
+  HANOI_CUM_2026_EXAM,
+  ELON_MUSK_2026_EXAM,
   HANOI_2026_EXAM,
   THAI_PHIEN_2026_EXAM,
   CHUYEN_VINH_PHUC_2026_EXAM,
