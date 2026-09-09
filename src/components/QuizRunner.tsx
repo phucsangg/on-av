@@ -62,28 +62,36 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   // Refs and scroll handlers for long reading passages
   const passagePaneRef = React.useRef<HTMLDivElement>(null);
+  const passageScrollBoxRef = React.useRef<HTMLDivElement>(null);
   const passageBottomRef = React.useRef<HTMLDivElement>(null);
   const questionPaneRef = React.useRef<HTMLDivElement>(null);
 
   const scrollToPassageTop = () => {
+    if (passageScrollBoxRef.current) {
+      passageScrollBoxRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     if (passagePaneRef.current) {
       passagePaneRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const scrollToPassageBottom = () => {
+    if (passageScrollBoxRef.current) {
+      passageScrollBoxRef.current.scrollTo({ top: passageScrollBoxRef.current.scrollHeight, behavior: 'smooth' });
+    }
     if (questionPaneRef.current) {
       questionPaneRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (passageBottomRef.current) {
-      passageBottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    } else {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   };
 
   const scrollToParagraph = (pIdx: number) => {
+    if (passageScrollBoxRef.current) {
+      const el = passageScrollBoxRef.current.querySelector(`[data-paragraph-index="${pIdx}"]`) as HTMLElement;
+      if (el) {
+        passageScrollBoxRef.current.scrollTo({ top: el.offsetTop - 12, behavior: 'smooth' });
+        return;
+      }
+    }
     const el = document.querySelector(`[data-paragraph-index="${pIdx}"]`);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -685,7 +693,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   fontSize: '1.15rem'
                 }}>
                   <BookOpen size={24} />
-                  <span>ĐOẠN VĂN / DỮ KIỆN DÙNG CHUNG</span>
+                  <div>
+                    <span>ĐOẠN VĂN / DỮ KIỆN DÙNG CHUNG</span>
+                    <div style={{ fontSize: '0.73rem', fontWeight: 600, color: 'var(--text-muted)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      🖱️ Dùng con cuộn chuột để xem toàn bộ bài đọc
+                    </div>
+                  </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
@@ -736,12 +749,21 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 </div>
               </div>
               
-              <div style={{
-                fontSize: '1.08rem',
-                lineHeight: 1.85,
-                color: 'var(--text-main)',
-                transition: 'all 0.25s ease'
-              }}>
+              {/* Mouse-Scrollable Passage Container */}
+              <div 
+                ref={passageScrollBoxRef}
+                className="custom-scrollbar"
+                style={{
+                  maxHeight: 'calc(78vh - 120px)',
+                  minHeight: '340px',
+                  overflowY: 'auto',
+                  paddingRight: '10px',
+                  fontSize: '1.08rem',
+                  lineHeight: 1.85,
+                  color: 'var(--text-main)',
+                  transition: 'all 0.25s ease'
+                }}
+              >
                 {isPassageTranslated && activeTranslation ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--success)', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>

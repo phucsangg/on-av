@@ -449,3 +449,30 @@ textarea:focus {
     display: flex !important;
   }
 }
+
+/* Custom Scrollbar for Reading Passages */
+.custom-scrollbar {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-primary, #4f46e5) rgba(0, 0, 0, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-subtle, rgba(0, 0, 0, 0.03));
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--brand-primary, #4f46e5) 0%, #3730a3 100%);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #3730a3;
+}
+
