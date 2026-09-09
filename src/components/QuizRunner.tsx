@@ -281,11 +281,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
+  // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
   const renderHighlightedText = (rawText?: string, pIdx?: number) => {
     if (!rawText) return null;
 
     // First format cloze test blanks
     const formattedText = formatPassageForTaking(rawText);
+
+    // Check if passage text already has explicit <mark> tags for target words (excluding cloze blanks)
+    const hasExplicitWordMark = /<mark>(?!\s*\(\d+\)\s*_)[^<]+<\/mark>/i.test(formattedText);
 
     // Extract auto-highlight target word and target paragraph number from question text
     let autoWord: string | null = null;
@@ -299,14 +303,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       targetParagraphIndex = parseInt(pMatch[1], 10) - 1; // Convert 1-indexed to 0-indexed
     }
 
-    const autoMatch = qText.match(/(?:word|pronoun|phrase|Từ|cụm từ|từ)\s+["'“‘]([^"'”’]+)["'”’]/i) ||
-                      qText.match(/["'“‘]([^"'”’]+)["'”’]\s+(?:in paragraph|in line|is closest in meaning|refers to|gần nghĩa)/i) ||
-                      qText.match(/["'“‘]([^"'”’]+)["'”’]/i);
+    // Only extract autoWord if passage does NOT already have explicit author <mark> tags
+    if (!hasExplicitWordMark) {
+      const autoMatch = qText.match(/(?:word|pronoun|phrase|Từ|cụm từ|từ)\s+["'“‘]([^"'”’]+)["'”’]/i) ||
+                        qText.match(/["'“‘]([^"'”’]+)["'”’]\s+(?:in paragraph|in line|is closest in meaning|refers to|gần nghĩa)/i) ||
+                        qText.match(/["'“‘]([^"'”’]+)["'”’]/i);
 
-    if (autoMatch && autoMatch[1] && autoMatch[1].trim().length >= 2) {
-      const candidate = autoMatch[1].trim();
-      if (candidate.split(/\s+/).length <= 6) {
-        autoWord = candidate;
+      if (autoMatch && autoMatch[1] && autoMatch[1].trim().length >= 2) {
+        const candidate = autoMatch[1].trim();
+        if (candidate.split(/\s+/).length <= 6) {
+          autoWord = candidate;
+        }
       }
     }
 
@@ -356,6 +363,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
     const regex = new RegExp(`(<mark>.*?<\/mark>|${patterns.join('|')})`, 'gi');
     const parts = formattedText.split(regex);
+    let hasAutoHighlighted = false;
 
     return (
       <>
@@ -370,8 +378,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           const matchedTerm = terms.find(t => t.phrase.toLowerCase() === part.toLowerCase());
           if (matchedTerm) {
             if (matchedTerm.isAuto) {
-              return <mark key={idx}>{part}</mark>;
+              if (!hasAutoHighlighted) {
+                hasAutoHighlighted = true;
+                return <mark key={idx}>{part}</mark>;
+              }
+              // Skip highlighting duplicate occurrences of the same target word
+              return part;
             }
+
             return (
               <mark 
                 key={idx} 
