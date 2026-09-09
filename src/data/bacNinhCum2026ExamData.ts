@@ -223,7 +223,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'bnc-q9',
     type: 'reordering',
-    questionText: 'Question 9. Choose the best arrangement of the sentences to form a meaningful text:\nd. In recent years, the city center has witnessed a dramatic increase in high-rise buildings, shopping complexes, and new transport systems.\nb. This rapid urban growth has attracted thousands of workers from nearby rural provinces seeking better opportunities.\ne. However, the pace of infrastructure development has not matched the growing demands of the population.\nc. Traffic congestion and housing shortages have now become major challenges that city authorities struggle to manage.\na. These ongoing problems clearly highlight the urgent need for more effective urban planning and long-term strategies.',
+    questionText: 'Question 9. Choose the best arrangement of the sentences to form a meaningful text:\na. These ongoing problems clearly highlight the urgent need for more effective urban planning and long-term strategies.\nb. This rapid urban growth has attracted thousands of workers from nearby rural provinces seeking better opportunities.\nc. Traffic congestion and housing shortages have now become major challenges that city authorities struggle to manage.\nd. In recent years, the city center has witnessed a dramatic increase in high-rise buildings, shopping complexes, and new transport systems.\ne. However, the pace of infrastructure development has not matched the growing demands of the population.',
     options: [
       { id: 'A', text: 'd – b – e – c – a', translation: 'd-b-e-c-a' },
       { id: 'B', text: 'b – d – e – a – c', translation: 'b-d-e-a-c' },
@@ -238,7 +238,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'bnc-q10',
     type: 'reordering',
-    questionText: 'Question 10. Choose the best arrangement of the sentences to form a complete email:\nd. Sorry to hear you haven\'t been feeling well lately, but it\'s good that you\'ve seen a doctor; I\'m sure it\'s nothing serious.\nb. About what I\'ve been doing since we last met, I have mostly been working on the new house and I\'m quite occupied with work.\na. Although Fahim is also busy with the new job and we don\'t really have much spare time, we\'ve spent every minute we got in the house and garden.\nc. We had a bit sunshine this morning, so we made the most of it: I mowed the lawn, trimmed the hedge and watered the plants while Fahim finished painting the fence.\ne. I apologize if this email has been boring, but there really isn\'t much going on in our lives right now. Anyway, let\'s meet up soon.',
+    questionText: 'Question 10. Choose the best arrangement of the sentences to form a complete email:\na. Although Fahim is also busy with the new job and we don\'t really have much spare time, we\'ve spent every minute we got in the house and garden.\nb. About what I\'ve been doing since we last met, I have mostly been working on the new house and I\'m quite occupied with work.\nc. We had a bit sunshine this morning, so we made the most of it: I mowed the lawn, trimmed the hedge and watered the plants while Fahim finished painting the fence.\nd. Sorry to hear you haven\'t been feeling well lately, but it\'s good that you\'ve seen a doctor; I\'m sure it\'s nothing serious.\ne. I apologize if this email has been boring, but there really isn\'t much going on in our lives right now. Anyway, let\'s meet up soon.',
     options: [
       { id: 'A', text: 'a – c – d – b – e', translation: 'a-c-d-b-e' },
       { id: 'B', text: 'd – b – a – c – e', translation: 'd-b-a-c-e' },
@@ -253,7 +253,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'bnc-q11',
     type: 'reordering',
-    questionText: 'Question 11. Choose the best arrangement of the sentences to form a coherent text:\ne. Physical activity improves physical function among individuals of all ages, enabling them to conduct their daily lives with energy.\nb. This is true for older adults, for whom improved physical function reduces risk of falls and contributes to their ability to maintain independence.\na. It is also true for young and middle-aged adults, as improved physical function helps them more easily accomplish the tasks of daily living.\nc. Apart from improving physical function, physical activity may improve cognitive function among youth and adults.\nd. Aspects of cognitive function that may be improved include memory, attention, executive function, and academic performance among youth.',
+    questionText: 'Question 11. Choose the best arrangement of the sentences to form a coherent text:\na. It is also true for young and middle-aged adults, as improved physical function helps them more easily accomplish the tasks of daily living.\nb. This is true for older adults, for whom improved physical function reduces risk of falls and contributes to their ability to maintain independence.\nc. Apart from improving physical function, physical activity may improve cognitive function among youth and adults.\nd. Aspects of cognitive function that may be improved include memory, attention, executive function, and academic performance among youth.\ne. Physical activity improves physical function among individuals of all ages, enabling them to conduct their daily lives with energy.',
     options: [
       { id: 'A', text: 'e – c – a – b – d', translation: 'e-c-a-b-d' },
       { id: 'B', text: 'e – a – b – d – c', translation: 'e-a-b-d-c' },
@@ -268,7 +268,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'bnc-q12',
     type: 'reordering',
-    questionText: 'Question 12. Choose the best arrangement of sentences to make a meaningful conversation:\nb. Nam: Hi, Mark! It\'s been a while since we last talked. You seem to be keeping up with technology so well!\na. Mark: Hi, Nam! Thanks! You seem to be embracing AI in your work too! Have you been using AI tools a lot lately?\nc. Nam: Yes, I have! I use AI-powered applications every day to improve my productivity and stay updated on the latest trends.',
+    questionText: 'Question 12. Choose the best arrangement of sentences to make a meaningful conversation:\na. Mark: Hi, Nam! Thanks! You seem to be embracing AI in your work too! Have you been using AI tools a lot lately?\nb. Nam: Hi, Mark! It\'s been a while since we last talked. You seem to be keeping up with technology so well!\nc. Nam: Yes, I have! I use AI-powered applications every day to improve my productivity and stay updated on the latest trends.',
     options: [
       { id: 'A', text: 'c – a – b', translation: 'c-a-b' },
       { id: 'B', text: 'a – b – c', translation: 'a-b-c' },
@@ -283,7 +283,7 @@ export const BAC_NINH_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'bnc-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of sentences:\na. An: Have you heard about the fake milk scandal?\nd. Binh: Yes, it’s shocking that nearly 600 brands were involved!\nc. Binh: It puts a real scare into parents trying to feed their children.\ne. An: The authorities are working hard to identify and remove these products.\nb. An: I hope they find a solution quickly to restore trust in the market.',
+    questionText: 'Question 13. Choose the best arrangement of sentences:\na. An: Have you heard about the fake milk scandal?\nb. An: I hope they find a solution quickly to restore trust in the market.\nc. Binh: It puts a real scare into parents trying to feed their children.\nd. Binh: Yes, it’s shocking that nearly 600 brands were involved!\ne. An: The authorities are working hard to identify and remove these products.',
     options: [
       { id: 'A', text: 'a – c – e – d – b', translation: 'a-c-e-d-b' },
       { id: 'B', text: 'a – d – e – c – b', translation: 'a-d-e-c-b' },

@@ -247,7 +247,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
   {
     id: 'em-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of sentences:\nc. Mark: Have you seen the latest launch test of the Starship rocket?\na. Linda: Yes! The booster separation was incredible to watch live.\nb. Mark: Absolutely. It feels like we are living in the future of space exploration.',
+    questionText: 'Question 14. Choose the best arrangement of sentences:\na. Linda: Yes! The booster separation was incredible to watch live.\nb. Mark: Absolutely. It feels like we are living in the future of space exploration.\nc. Mark: Have you seen the latest launch test of the Starship rocket?',
     options: [
       { id: 'A', text: 'c – a – b', translation: 'c-a-b' },
       { id: 'B', text: 'b – a – c', translation: 'b-a-c' },
@@ -262,7 +262,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
   {
     id: 'em-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of sentences:\ne. Modern teenagers often face significant academic stress as they navigate high school.\nd. Pressure from upcoming entrance exams can feel overwhelming at times.\nc. However, maintaining a balanced study routine and getting enough sleep can mitigate anxiety.\nb. Furthermore, engaging in regular physical exercise boosts mental wellbeing.\na. Ultimately, self-care is just as important as high grades for long-term success.',
+    questionText: 'Question 15. Choose the best arrangement of sentences:\na. Ultimately, self-care is just as important as high grades for long-term success.\nb. Furthermore, engaging in regular physical exercise boosts mental wellbeing.\nc. However, maintaining a balanced study routine and getting enough sleep can mitigate anxiety.\nd. Pressure from upcoming entrance exams can feel overwhelming at times.\ne. Modern teenagers often face significant academic stress as they navigate high school.',
     options: [
       { id: 'A', text: 'e – d – c – b – a', translation: 'e-d-c-b-a' },
       { id: 'B', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },
@@ -582,7 +582,7 @@ export const ELON_MUSK_2026_QUESTIONS: Question[] = [
   {
     id: 'em-q35',
     type: 'reordering',
-    questionText: 'Question 35. Choose the best arrangement of the sentences to form a meaningful paragraph:\ne. Elon Musk’s ambitious visions have constantly pushed the boundaries of human technology.\nd. His achievements with SpaceX proved that reusable rockets could dramatically lower space exploration costs.\nc. Meanwhile, Tesla accelerated the global transition toward electric vehicles and sustainable energy.\nb. Despite facing heavy skepticism from critics early on, he remained steadfast in his pursuit.\na. Today, his pioneering ventures continue to inspire future generations of engineers worldwide.',
+    questionText: 'Question 35. Choose the best arrangement of the sentences to form a meaningful paragraph:\na. Today, his pioneering ventures continue to inspire future generations of engineers worldwide.\nb. Despite facing heavy skepticism from critics early on, he remained steadfast in his pursuit.\nc. Meanwhile, Tesla accelerated the global transition toward electric vehicles and sustainable energy.\nd. His achievements with SpaceX proved that reusable rockets could dramatically lower space exploration costs.\ne. Elon Musk’s ambitious visions have constantly pushed the boundaries of human technology.',
     options: [
       { id: 'A', text: 'e – d – c – b – a', translation: 'e-d-c-b-a' },
       { id: 'B', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },

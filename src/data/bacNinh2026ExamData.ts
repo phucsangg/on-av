@@ -342,7 +342,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q19',
     type: 'reordering',
-    questionText: 'Question 19. Choose the best arrangement of the sentences to form a complete email:\ne. We are writing to remind you that your annual membership with the Association of Architects is due for renewal.\nd. Your current professional subscription is set to expire on December 31st.\nc. Please log in to the member portal to complete the payment at your earliest convenience.\nb. Renewing before the deadline ensures you retain uninterrupted access to our exclusive digital library.\na. If you encounter any technical difficulties, please contact our support team immediately.',
+    questionText: 'Question 19. Choose the best arrangement of the sentences to form a complete email:\na. If you encounter any technical difficulties, please contact our support team immediately.\nb. Renewing before the deadline ensures you retain uninterrupted access to our exclusive digital library.\nc. Please log in to the member portal to complete the payment at your earliest convenience.\nd. Your current professional subscription is set to expire on December 31st.\ne. We are writing to remind you that your annual membership with the Association of Architects is due for renewal.',
     options: [
       { id: 'A', text: 'd – c – a – b – e', translation: 'd-c-a-b-e' },
       { id: 'B', text: 'd – e – c – b – a', translation: 'd-e-c-b-a' },
@@ -357,7 +357,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q20',
     type: 'reordering',
-    questionText: 'Question 20. Choose the best arrangement of the sentences to form a coherent text:\nd. My interest in both logic and math naturally led me to a rewarding career in software engineering.\nc. Indeed, for the past two years, I have thrived in this role at a tech startup.\nb. Working in a quiet home office fuels my focus and allows for a more efficient coding environment.\na. While coding and debugging are essential, regular team meetings are a small trade-off.\ne. In conclusion, I am very satisfied with my current job and the growth it offers.',
+    questionText: 'Question 20. Choose the best arrangement of the sentences to form a coherent text:\na. While coding and debugging are essential, regular team meetings are a small trade-off.\nb. Working in a quiet home office fuels my focus and allows for a more efficient coding environment.\nc. Indeed, for the past two years, I have thrived in this role at a tech startup.\nd. My interest in both logic and math naturally led me to a rewarding career in software engineering.\ne. In conclusion, I am very satisfied with my current job and the growth it offers.',
     options: [
       { id: 'A', text: 'c – a – d – b – e', translation: 'c-a-d-b-e' },
       { id: 'B', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },
@@ -372,7 +372,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q21',
     type: 'reordering',
-    questionText: 'Question 21. Choose the best arrangement of the sentences to make a meaningful conversation:\nd. Sarah: Hey, have you finalised your plans for the upcoming summer holiday?\na. Tom: Not yet. I am torn between booking a beach trip or mountain hiking. What about you?\ne. Sarah: I am going to Japan. I want to visit ancient temples in Kyoto.\nb. Tom: Japan is amazing! The history is deep and local cuisine is fascinating.\nc. Sarah: I agree completely. Exploring new cultures is the best part of travel.',
+    questionText: 'Question 21. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Tom: Not yet. I am torn between booking a beach trip or mountain hiking. What about you?\nb. Tom: Japan is amazing! The history is deep and local cuisine is fascinating.\nc. Sarah: I agree completely. Exploring new cultures is the best part of travel.\nd. Sarah: Hey, have you finalised your plans for the upcoming summer holiday?\ne. Sarah: I am going to Japan. I want to visit ancient temples in Kyoto.',
     options: [
       { id: 'A', text: 'd – a – e – b – c', translation: 'd-a-e-b-c' },
       { id: 'B', text: 'd – a – c – b – e', translation: 'd-a-c-b-e' },
@@ -387,7 +387,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q22',
     type: 'reordering',
-    questionText: 'Question 22. Choose the best arrangement of sentences:\nb. Tom: I’m going to the gym now. Would you like to join me for a session?\nc. Mary: Thanks, but I’m going to finish this laundry and then head there by myself later.\na. Tom: Then, message me when you’ve finished your workout.',
+    questionText: 'Question 22. Choose the best arrangement of sentences:\na. Tom: Then, message me when you’ve finished your workout.\nb. Tom: I’m going to the gym now. Would you like to join me for a session?\nc. Mary: Thanks, but I’m going to finish this laundry and then head there by myself later.',
     options: [
       { id: 'A', text: 'a – b – c', translation: 'a-b-c' },
       { id: 'B', text: 'b – a – c', translation: 'b-a-c' },
@@ -402,7 +402,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q23',
     type: 'reordering',
-    questionText: 'Question 23. Choose the best arrangement of sentences:\ne. In recent years, the logistics firm has shifted from an office-based model to a remote-first work environment.\nd. This sudden transformation revealed significant gaps in digital infrastructure.\nc. Consequently, management invested heavily in cloud-based collaboration tools.\nb. Furthermore, strict cybersecurity protocols were introduced.\na. Today, the corporation operates more efficiently with a flexible workforce.',
+    questionText: 'Question 23. Choose the best arrangement of sentences:\na. Today, the corporation operates more efficiently with a flexible workforce.\nb. Furthermore, strict cybersecurity protocols were introduced.\nc. Consequently, management invested heavily in cloud-based collaboration tools.\nd. This sudden transformation revealed significant gaps in digital infrastructure.\ne. In recent years, the logistics firm has shifted from an office-based model to a remote-first work environment.',
     options: [
       { id: 'A', text: 'e – d – c – b – a', translation: 'e-d-c-b-a' },
       { id: 'B', text: 'a – d – c – b – e', translation: 'a-d-c-b-e' },

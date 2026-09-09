@@ -308,7 +308,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
   {
     id: 'db-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\nc. Nam: Hi, Linh! Long time no see. Your phone looks new!\nb. Linh: Thanks, Nam! I’ve been learning how to use a new app on my phone.\na. Nam: That’s nice! Learning new apps is fun.',
+    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Nam: That’s nice! Learning new apps is fun.\nb. Linh: Thanks, Nam! I’ve been learning how to use a new app on my phone.\nc. Nam: Hi, Linh! Long time no see. Your phone looks new!',
     options: [
       { id: 'A', text: 'c – b – a', translation: 'c-b-a' },
       { id: 'B', text: 'a – b – c', translation: 'a-b-c' },
@@ -323,7 +323,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
   {
     id: 'db-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Linh: I’m helping my dad wash the car this afternoon.\nb. Minh: That sounds fun! What kind of car do you have?\ne. Minh: My dad bought a VF3 last month. It is an electric car.\nc. Minh: Oh, nice! Do you often do things together with your family?\nd. Linh: Yes, we try to do something together every weekend. I really enjoy it.',
+    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Linh: I’m helping my dad wash the car this afternoon.\nb. Minh: That sounds fun! What kind of car do you have?\nc. Minh: Oh, nice! Do you often do things together with your family?\nd. Linh: Yes, we try to do something together every weekend. I really enjoy it.\ne. Minh: My dad bought a VF3 last month. It is an electric car.',
     options: [
       { id: 'A', text: 'a – c – e – b – d', translation: 'a-c-e-b-d' },
       { id: 'B', text: 'a – b – e – c – d', translation: 'a-b-e-c-d' },
@@ -338,7 +338,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
   {
     id: 'db-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of the sentences to form a complete email:\na. Thanks for inviting me to your birthday party. It was so much fun!\nb. I really enjoyed meeting your friends and spending time with everyone.\nc. Also, the decorations and food were amazing! Did you make the cake yourself?\ne. Hope you had as much fun as I did!\nd. I\'m looking forward to our next gathering. Let me know when you’re free.',
+    questionText: 'Question 15. Choose the best arrangement of the sentences to form a complete email:\na. Thanks for inviting me to your birthday party. It was so much fun!\nb. I really enjoyed meeting your friends and spending time with everyone.\nc. Also, the decorations and food were amazing! Did you make the cake yourself?\nd. I\'m looking forward to our next gathering. Let me know when you’re free.\ne. Hope you had as much fun as I did!',
     options: [
       { id: 'A', text: 'a – c – b – e – d', translation: 'a-c-b-e-d' },
       { id: 'B', text: 'a – b – c – e – d', translation: 'a-b-c-e-d' },
@@ -353,7 +353,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
   {
     id: 'db-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent story:\nd. Arnel Pineda was born in Sampaloc, Manila, the Philippines in 1967, and he is an inspiring person.\nc. He has been passionate about singing since he was five years old and has achieved great success as a professional singer.\nb. In 1982, at the age of fifteen, he joined a local band as a lead singer, singing pop songs by famous bands.\na. Arnel didn’t make much money this way, but he never gave up on his passion.\ne. Arnel’s success shows that anyone can achieve their dreams if they try hard enough.',
+    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent story:\na. Arnel didn’t make much money this way, but he never gave up on his passion.\nb. In 1982, at the age of fifteen, he joined a local band as a lead singer, singing pop songs by famous bands.\nc. He has been passionate about singing since he was five years old and has achieved great success as a professional singer.\nd. Arnel Pineda was born in Sampaloc, Manila, the Philippines in 1967, and he is an inspiring person.\ne. Arnel’s success shows that anyone can achieve their dreams if they try hard enough.',
     options: [
       { id: 'A', text: 'd – c – b – a – e', translation: 'd-c-b-a-e' },
       { id: 'B', text: 'a – b – c – d – e', translation: 'a-b-c-d-e' },
@@ -368,7 +368,7 @@ export const DIEN_BIEN_2026_QUESTIONS: Question[] = [
   {
     id: 'db-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of sentences to describe a chart:\nd. The chart shows how the populations of three major cities in the USA changed from 1950 to 2010. These cities are Atlanta, Charlotte, and New Orleans.\ne. In general, the population in each city increased over the 60-year period.\nb. During this time, Atlanta had the most significant change in population. The population of Atlanta in 1950 was around 500 thousand, and it rose significantly to 2.2 million by 1990.\nc. Similarly, Charlotte\'s population went up over the 60-year period. It grew steadily from 100 thousand to 500 thousand between 1950 and 1990.\na. The population of New Orleans had some fluctuation between 1950 and 2010. It had a slight growth between 1950 and 1970.',
+    questionText: 'Question 17. Choose the best arrangement of sentences to describe a chart:\na. The population of New Orleans had some fluctuation between 1950 and 2010. It had a slight growth between 1950 and 1970.\nb. During this time, Atlanta had the most significant change in population. The population of Atlanta in 1950 was around 500 thousand, and it rose significantly to 2.2 million by 1990.\nc. Similarly, Charlotte\'s population went up over the 60-year period. It grew steadily from 100 thousand to 500 thousand between 1950 and 1990.\nd. The chart shows how the populations of three major cities in the USA changed from 1950 to 2010. These cities are Atlanta, Charlotte, and New Orleans.\ne. In general, the population in each city increased over the 60-year period.',
     options: [
       { id: 'A', text: 'd – b – c – e – a', translation: 'd-b-c-e-a' },
       { id: 'B', text: 'd – c – a – b – e', translation: 'd-c-a-b-e' },

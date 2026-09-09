@@ -316,7 +316,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
   {
     id: 'tpht-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of the sentences to make a meaningful conversation:\ne. I\'m trying to live a healthier lifestyle these days.\na. I used to eat fast food every day, but I\'ve recently switched to cooking at home.\nb. That\'s great! Have you noticed any difference since you changed your diet?\nc. Yes, I feel more energetic and have even lost some weight.\nd. Congratulations! Home-cooked meals are always healthier.',
+    questionText: 'Question 15. Choose the best arrangement of the sentences to make a meaningful conversation:\na. I used to eat fast food every day, but I\'ve recently switched to cooking at home.\nb. That\'s great! Have you noticed any difference since you changed your diet?\nc. Yes, I feel more energetic and have even lost some weight.\nd. Congratulations! Home-cooked meals are always healthier.\ne. I\'m trying to live a healthier lifestyle these days.',
     options: [
       { id: 'A', text: 'e – a – b – c – d', translation: 'e-a-b-c-d' },
       { id: 'B', text: 'a – b – e – d – c', translation: 'a-b-e-d-c' },
@@ -331,7 +331,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
   {
     id: 'tpht-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of the sentences to make a meaningful conversation:\ne. Have you heard about the city\'s latest environmental project?\na. The city has launched a new public bike system to reduce air pollution.\nb. That\'s a smart move! It can also help people stay fit.\nc. Exactly. More people cycling means fewer cars on the road.\nd. True. I hope they build more bike lanes soon.',
+    questionText: 'Question 16. Choose the best arrangement of the sentences to make a meaningful conversation:\na. The city has launched a new public bike system to reduce air pollution.\nb. That\'s a smart move! It can also help people stay fit.\nc. Exactly. More people cycling means fewer cars on the road.\nd. True. I hope they build more bike lanes soon.\ne. Have you heard about the city\'s latest environmental project?',
     options: [
       { id: 'A', text: 'e – a – b – c – d', translation: 'e-a-b-c-d' },
       { id: 'B', text: 'e – b – a – d – c', translation: 'e-b-a-d-c' },
@@ -346,7 +346,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
   {
     id: 'tpht-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Volunteering abroad has been one of the most rewarding experiences of my life.\nc. That sounds amazing! What inspired you to do that?\nb. I joined a program that helps build schools in rural areas.\nd. I\'ve always wanted to make a positive impact and learn about new cultures.\ne. It must have taught you a lot about teamwork and patience.',
+    questionText: 'Question 17. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Volunteering abroad has been one of the most rewarding experiences of my life.\nb. I joined a program that helps build schools in rural areas.\nc. That sounds amazing! What inspired you to do that?\nd. I\'ve always wanted to make a positive impact and learn about new cultures.\ne. It must have taught you a lot about teamwork and patience.',
     options: [
       { id: 'A', text: 'a – c – b – e – d', translation: 'a-c-b-e-d' },
       { id: 'B', text: 'a – c – b – d – e', translation: 'a-c-b-d-e' },
@@ -361,7 +361,7 @@ export const TRAN_PHU_HA_TINH_2026_QUESTIONS: Question[] = [
   {
     id: 'tpht-q18',
     type: 'reordering',
-    questionText: 'Question 18. Choose the best arrangement of the sentences to make a meaningful conversation:\nb. I\'m planning to switch to renewable energy for my house.\nc. That\'s a great idea! Solar panels can really cut down electricity bills.\na. Yes, I think it\'s worth investing in a cleaner and greener future.',
+    questionText: 'Question 18. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Yes, I think it\'s worth investing in a cleaner and greener future.\nb. I\'m planning to switch to renewable energy for my house.\nc. That\'s a great idea! Solar panels can really cut down electricity bills.',
     options: [
       { id: 'A', text: 'a – b – c', translation: 'a-b-c' },
       { id: 'B', text: 'b – c – a', translation: 'b-c-a' },

@@ -264,7 +264,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
   {
     id: 'cbg-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Customer: Could I get a matcha latte with salted cream on top, please?\nc. Barista: No problem! Do you want it iced or hot?\nb. Customer: It\'s June, so I\'m definitely treating myself to a cold one.',
+    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Customer: Could I get a matcha latte with salted cream on top, please?\nb. Customer: It\'s June, so I\'m definitely treating myself to a cold one.\nc. Barista: No problem! Do you want it iced or hot?',
     options: [
       { id: 'A', text: 'c – b – a', translation: 'c-b-a' },
       { id: 'B', text: 'a – c – b', translation: 'a-c-b' },
@@ -279,7 +279,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
   {
     id: 'cbg-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Mia: Hey, have you started revising for the graduation exam yet?\nd. Sam: Yeah, I\'ve been hitting the books hard, especially for math. It\'s tougher than I thought!\ne. Mia: Tell me about it! I\'m freaking out over chemistry. Want to study together this weekend?\nb. Sam: That\'d be awesome. We could quiz each other and sort out the tricky topics.\nc. Mia: Perfect! Let\'s meet at my place on Saturday and power through those practice tests.',
+    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Mia: Hey, have you started revising for the graduation exam yet?\nb. Sam: That\'d be awesome. We could quiz each other and sort out the tricky topics.\nc. Mia: Perfect! Let\'s meet at my place on Saturday and power through those practice tests.\nd. Sam: Yeah, I\'ve been hitting the books hard, especially for math. It\'s tougher than I thought!\ne. Mia: Tell me about it! I\'m freaking out over chemistry. Want to study together this weekend?',
     options: [
       { id: 'A', text: 'a – d – e – b – c', translation: 'a-d-e-b-c' },
       { id: 'B', text: 'a – d – c – b – e', translation: 'a-d-c-b-e' },
@@ -294,7 +294,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
   {
     id: 'cbg-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of the sentences to form a complete formal request letter:\nb. On behalf of the Music Club, I am writing to respectfully request your permission to organize a musical event on school premises to raise funds for Heart of Gold.\nd. We propose holding this event on 15th December in the school\'s auditorium, aiming to showcase our students\' musical talent for a worthy cause.\na. We believe this event will foster community spirit and allow students to contribute meaningfully to Heart of Gold.\nc. We commit to handling all logistics, including supervision and financial reporting, responsibly.\ne. For further information, I am available to meet at your convenience to discuss this further. Thank you for considering our request.',
+    questionText: 'Question 15. Choose the best arrangement of the sentences to form a complete formal request letter:\na. We believe this event will foster community spirit and allow students to contribute meaningfully to Heart of Gold.\nb. On behalf of the Music Club, I am writing to respectfully request your permission to organize a musical event on school premises to raise funds for Heart of Gold.\nc. We commit to handling all logistics, including supervision and financial reporting, responsibly.\nd. We propose holding this event on 15th December in the school\'s auditorium, aiming to showcase our students\' musical talent for a worthy cause.\ne. For further information, I am available to meet at your convenience to discuss this further. Thank you for considering our request.',
     options: [
       { id: 'A', text: 'b – d – a – e – c', translation: 'b-d-a-e-c' },
       { id: 'B', text: 'b – d – a – c – e', translation: 'b-d-a-c-e' },
@@ -309,7 +309,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
   {
     id: 'cbg-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent text:\ne. The rise of social media has profoundly transformed how natural landmarks are discovered and experienced.\nc. A prime example is Horseshoe Bend, a spectacular U-shaped curve in the Colorado River.\nb. Once considered a hidden gem, known only to a few locals and accessible via an unmarked trail in the early 1990s, its visitor numbers have dramatically surged.\nd. Social networking platforms, particularly Instagram, have acted as a powerful catalyst for this transformation.\na. However, this sudden exposure can be overwhelming, placing immense pressure on its delicate ecosystems and resources.',
+    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent text:\na. However, this sudden exposure can be overwhelming, placing immense pressure on its delicate ecosystems and resources.\nb. Once considered a hidden gem, known only to a few locals and accessible via an unmarked trail in the early 1990s, its visitor numbers have dramatically surged.\nc. A prime example is Horseshoe Bend, a spectacular U-shaped curve in the Colorado River.\nd. Social networking platforms, particularly Instagram, have acted as a powerful catalyst for this transformation.\ne. The rise of social media has profoundly transformed how natural landmarks are discovered and experienced.',
     options: [
       { id: 'A', text: 'd – e – c – b – a', translation: 'd-e-c-b-a' },
       { id: 'B', text: 'e – b – d – a – c', translation: 'e-b-d-a-c' },
@@ -324,7 +324,7 @@ export const CHUYEN_BAC_GIANG_2026_QUESTIONS: Question[] = [
   {
     id: 'cbg-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of the sentences to form a coherent text:\nb. Career paths have evolved dramatically over the years, with more options available than ever before.\nc. The rise of digital technologies has also created new jobs, especially in fields like IT, marketing, and online business.\nd. This shift in the job market has led to a surge in specialized education and training, giving people a chance to pursue various career interests.\na. However, despite this increase in opportunities, many fields still lack sufficient training programs, especially in smaller towns.\ne. As a result, more young people are seeking out non-traditional careers that allow for remote work and flexible schedules.',
+    questionText: 'Question 17. Choose the best arrangement of the sentences to form a coherent text:\na. However, despite this increase in opportunities, many fields still lack sufficient training programs, especially in smaller towns.\nb. Career paths have evolved dramatically over the years, with more options available than ever before.\nc. The rise of digital technologies has also created new jobs, especially in fields like IT, marketing, and online business.\nd. This shift in the job market has led to a surge in specialized education and training, giving people a chance to pursue various career interests.\ne. As a result, more young people are seeking out non-traditional careers that allow for remote work and flexible schedules.',
     options: [
       { id: 'A', text: 'b – c – d – a – e', translation: 'b-c-d-a-e' },
       { id: 'B', text: 'b – d – c – a – e', translation: 'b-d-c-a-e' },

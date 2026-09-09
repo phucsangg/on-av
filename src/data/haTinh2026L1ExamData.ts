@@ -264,7 +264,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
     id: 'htl1-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of the sentences:\nc. Won-gyu: Hi Kelly. How’s your French class going?\na. Kelly: Hi Won-gyu. Not bad, but I’m finding the pronunciation difficult.\nb. Won-gyu: I imagine it takes a while to get it right.',
+    questionText: 'Question 13. Choose the best arrangement of the sentences:\na. Kelly: Hi Won-gyu. Not bad, but I’m finding the pronunciation difficult.\nb. Won-gyu: I imagine it takes a while to get it right.\nc. Won-gyu: Hi Kelly. How’s your French class going?',
     options: [
       { id: 'A', text: 'c – a – b', translation: 'c-a-b' },
       { id: 'B', text: 'b – a – c', translation: 'b-a-c' },
@@ -279,7 +279,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
     id: 'htl1-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of sentences:\nb. Sophie: Would you ever go on a holiday without your parents?\nd. Jake: Definitely! It sounds like an adventure and a chance to be independent.\ne. Sophie: True, but planning everything alone could be stressful.\nc. Jake: That’s part of the fun! You get to decide where to go.\na. Sophie: I guess it would be exciting - as long as nothing goes wrong!',
+    questionText: 'Question 14. Choose the best arrangement of sentences:\na. Sophie: I guess it would be exciting - as long as nothing goes wrong!\nb. Sophie: Would you ever go on a holiday without your parents?\nc. Jake: That’s part of the fun! You get to decide where to go.\nd. Jake: Definitely! It sounds like an adventure and a chance to be independent.\ne. Sophie: True, but planning everything alone could be stressful.',
     options: [
       { id: 'A', text: 'b – c – a – d – e', translation: 'b-c-a-d-e' },
       { id: 'B', text: 'a – d – e – c – b', translation: 'a-d-e-c-b' },
@@ -294,7 +294,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
     id: 'htl1-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of sentences:\nd. I wanted to tell you about the history project we need to complete this month.\nc. Our teacher suggested using multiple sources, so I think the library would be a great place to start.\na. There are several books on ancient civilisations that could help us.\nb. This weekend might be a good time to go.\ne. Let me know if you’re free, and we can plan a visit together!',
+    questionText: 'Question 15. Choose the best arrangement of sentences:\na. There are several books on ancient civilisations that could help us.\nb. This weekend might be a good time to go.\nc. Our teacher suggested using multiple sources, so I think the library would be a great place to start.\nd. I wanted to tell you about the history project we need to complete this month.\ne. Let me know if you’re free, and we can plan a visit together!',
     options: [
       { id: 'A', text: 'b – c – e – a – d', translation: 'b-c-e-a-d' },
       { id: 'B', text: 'd – c – a – b – e', translation: 'd-c-a-b-e' },
@@ -309,7 +309,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
     id: 'htl1-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of sentences:\ne. According to a recent study, the majority of teenagers do housework without any intention of earning pocket money.\nd. Instead, many of them view these tasks as a way to prepare for adult life.\nb. In fact, more than two-thirds of teenagers surveyed clean the floors at least once a week.\na. Girls are more likely than boys to take responsibility for washing their own clothes.\nc. However, there are still a few teenagers who only do housework because their parents make them.',
+    questionText: 'Question 16. Choose the best arrangement of sentences:\na. Girls are more likely than boys to take responsibility for washing their own clothes.\nb. In fact, more than two-thirds of teenagers surveyed clean the floors at least once a week.\nc. However, there are still a few teenagers who only do housework because their parents make them.\nd. Instead, many of them view these tasks as a way to prepare for adult life.\ne. According to a recent study, the majority of teenagers do housework without any intention of earning pocket money.',
     options: [
       { id: 'A', text: 'e – c – b – a – d', translation: 'e-c-b-a-d' },
       { id: 'B', text: 'e – b – c – d – a', translation: 'e-b-c-d-a' },
@@ -324,7 +324,7 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   {
     id: 'htl1-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of sentences:\na. During the Covid-19 pandemic, I found myself looking for ways to make a meaningful contribution.\nd. Volunteering at a local food bank turned out to be one of the most rewarding experiences.\nc. Every day, a steady stream of families came for support, and I witnessed firsthand kindness.\ne. Although the work was often exhausting, the sense of purpose kept everyone motivated.\nb. Looking back, I am grateful for the opportunity to help others.',
+    questionText: 'Question 17. Choose the best arrangement of sentences:\na. During the Covid-19 pandemic, I found myself looking for ways to make a meaningful contribution.\nb. Looking back, I am grateful for the opportunity to help others.\nc. Every day, a steady stream of families came for support, and I witnessed firsthand kindness.\nd. Volunteering at a local food bank turned out to be one of the most rewarding experiences.\ne. Although the work was often exhausting, the sense of purpose kept everyone motivated.',
     options: [
       { id: 'A', text: 'd – e – a – c – b', translation: 'd-e-a-c-b' },
       { id: 'B', text: 'e – a – c – d – b', translation: 'e-a-c-d-b' },

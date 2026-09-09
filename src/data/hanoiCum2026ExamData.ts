@@ -48,7 +48,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'hnc-q1',
     type: 'reordering',
-    questionText: 'Question 1. Choose the best arrangement of the sentences to form a complaint letter:\nd. I am writing to complain about a washing machine I purchased on 22 February 2026.\na. After bringing it home and installing it correctly, I found that it did not work properly.\nc. Whenever the power is on, the drum does not spin, and the machine makes a strange noise.\ne. As this is a brand-new product and still under warranty, I would like to request a replacement or refund.\nb. Please advise me on how to return the faulty item. I look forward to your prompt response.',
+    questionText: 'Question 1. Choose the best arrangement of the sentences to form a complaint letter:\na. After bringing it home and installing it correctly, I found that it did not work properly.\nb. Please advise me on how to return the faulty item. I look forward to your prompt response.\nc. Whenever the power is on, the drum does not spin, and the machine makes a strange noise.\nd. I am writing to complain about a washing machine I purchased on 22 February 2026.\ne. As this is a brand-new product and still under warranty, I would like to request a replacement or refund.',
     options: [
       { id: 'A', text: 'c – a – d – b – e', translation: 'c-a-d-b-e' },
       { id: 'B', text: 'd – a – c – e – b', translation: 'd-a-c-e-b' },
@@ -63,7 +63,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'hnc-q2',
     type: 'reordering',
-    questionText: 'Question 2. Choose the best arrangement of the sentences:\nb. The line graph shows population trends in Fantasia’s urban and rural areas.\nd. Overall, the urban population has increased while the rural population has decreased.\ne. In 1950, 94 per cent of Fantasia’s population lived in rural areas; this figure remained stable until 1960.\nc. By contrast, the urban population rose throughout the same period.\na. The upward trend continued and in 2020, more than half lived in urban areas.',
+    questionText: 'Question 2. Choose the best arrangement of the sentences:\na. The upward trend continued and in 2020, more than half lived in urban areas.\nb. The line graph shows population trends in Fantasia’s urban and rural areas.\nc. By contrast, the urban population rose throughout the same period.\nd. Overall, the urban population has increased while the rural population has decreased.\ne. In 1950, 94 per cent of Fantasia’s population lived in rural areas; this figure remained stable until 1960.',
     options: [
       { id: 'A', text: 'b – c – d – a – e', translation: 'b-c-d-a-e' },
       { id: 'B', text: 'b – c – d – a – e', translation: 'b-c-d-a-e' },
@@ -78,7 +78,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'hnc-q3',
     type: 'reordering',
-    questionText: 'Question 3. Choose the best arrangement of the sentences:\nc. Lucy: Hey! How did your Pragmatics exam go?\na. Mike: Not bad, thanks. I’m just glad it’s over! How about your presentation?\ne. Lucy: Oh, it went really well. Thanks for helping me with it!\nd. Mike: No problem. So... do you feel like studying tomorrow for our English exam?\nb. Lucy: Sure thing! Come over around 10:00, after breakfast.',
+    questionText: 'Question 3. Choose the best arrangement of the sentences:\na. Mike: Not bad, thanks. I’m just glad it’s over! How about your presentation?\nb. Lucy: Sure thing! Come over around 10:00, after breakfast.\nc. Lucy: Hey! How did your Pragmatics exam go?\nd. Mike: No problem. So... do you feel like studying tomorrow for our English exam?\ne. Lucy: Oh, it went really well. Thanks for helping me with it!',
     options: [
       { id: 'A', text: 'c – a – e – d – b', translation: 'c-a-e-d-b' },
       { id: 'B', text: 'c – d – e – a – b', translation: 'c-d-e-a-b' },
@@ -93,7 +93,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'hnc-q4',
     type: 'reordering',
-    questionText: 'Question 4. Choose the best arrangement of the sentences:\ne. Media literacy is an essential skill in the modern world because it enables individuals to evaluate information.\na. Firstly, it helps people distinguish between reliable sources and misleading content.\nc. Media literacy also encourages audiences to recognize bias and persuasive techniques.\nb. As a result, individuals are better equipped to make informed decisions.\nd. On a larger scale, integrating media literacy education into school curricula is crucial.',
+    questionText: 'Question 4. Choose the best arrangement of the sentences:\na. Firstly, it helps people distinguish between reliable sources and misleading content.\nb. As a result, individuals are better equipped to make informed decisions.\nc. Media literacy also encourages audiences to recognize bias and persuasive techniques.\nd. On a larger scale, integrating media literacy education into school curricula is crucial.\ne. Media literacy is an essential skill in the modern world because it enables individuals to evaluate information.',
     options: [
       { id: 'A', text: 'c – b – a – e – d', translation: 'c-b-a-e-d' },
       { id: 'B', text: 'e – a – c – b – d', translation: 'e-a-c-b-d' },
@@ -108,7 +108,7 @@ export const HANOI_CUM_2026_QUESTIONS: Question[] = [
   {
     id: 'hnc-q5',
     type: 'reordering',
-    questionText: 'Question 5. Choose the best arrangement of sentences:\nb. Jane: Hi, Katy. Are you going to Sam’s party at the weekend?\na. Katy: Honestly, I’m not sure if I’ll go. I don’t know Sam that well.\nc. Jane: Don’t worry. He’s very friendly, so I think you two will get along.',
+    questionText: 'Question 5. Choose the best arrangement of sentences:\na. Katy: Honestly, I’m not sure if I’ll go. I don’t know Sam that well.\nb. Jane: Hi, Katy. Are you going to Sam’s party at the weekend?\nc. Jane: Don’t worry. He’s very friendly, so I think you two will get along.',
     options: [
       { id: 'A', text: 'b – c – a', translation: 'b-c-a' },
       { id: 'B', text: 'b – a – c', translation: 'b-a-c' },

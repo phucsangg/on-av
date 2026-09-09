@@ -272,7 +272,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
   {
     id: 'ht-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of sentences to form a coherent text:\nd. In today’s globalized world, cultural identity plays a vital role in helping young people express themselves.\ne. It provides a sense of belonging and pride, allowing them to connect with their heritage while navigating diverse influences.\nc. By embracing their cultural roots, youth can confidently share their unique perspectives and creativity.\nb. This blend of tradition and modernity enriches the global community, fostering understanding and respect among different cultures.\na. Ultimately, cultural identity empowers young individuals to celebrate who they are while engaging with the world around them.',
+    questionText: 'Question 13. Choose the best arrangement of sentences to form a coherent text:\na. Ultimately, cultural identity empowers young individuals to celebrate who they are while engaging with the world around them.\nb. This blend of tradition and modernity enriches the global community, fostering understanding and respect among different cultures.\nc. By embracing their cultural roots, youth can confidently share their unique perspectives and creativity.\nd. In today’s globalized world, cultural identity plays a vital role in helping young people express themselves.\ne. It provides a sense of belonging and pride, allowing them to connect with their heritage while navigating diverse influences.',
     options: [
       { id: 'A', text: 'c – e – b – d – a', translation: 'c-e-b-d-a' },
       { id: 'B', text: 'd – e – c – b – a', translation: 'd-e-c-b-a' },
@@ -287,7 +287,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
   {
     id: 'ht-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of sentences to form a coherent text:\nb. The reintroduction of wolves to Yellowstone National Park has become a classic example of successful conservation.\na. Initially, many were skeptical about how this would affect the ecosystem.\nc. Over time, the wolves\' presence helped control the elk population.\nd. This led to the regeneration of vegetation and the return of various species.\ne. Today, the park serves as a model for ecosystem restoration worldwide.',
+    questionText: 'Question 14. Choose the best arrangement of sentences to form a coherent text:\na. Initially, many were skeptical about how this would affect the ecosystem.\nb. The reintroduction of wolves to Yellowstone National Park has become a classic example of successful conservation.\nc. Over time, the wolves\' presence helped control the elk population.\nd. This led to the regeneration of vegetation and the return of various species.\ne. Today, the park serves as a model for ecosystem restoration worldwide.',
     options: [
       { id: 'A', text: 'b – a – c – e – d', translation: 'b-a-c-e-d' },
       { id: 'B', text: 'b – e – c – d – a', translation: 'b-e-c-d-a' },
@@ -302,7 +302,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
   {
     id: 'ht-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of sentences to make a meaningful conversation:\nc. Hoa: Hey Linh, how’s your online course going these days?\na. Linh: Actually, it\'s better than I expected. The teachers are supportive and the lessons are interesting.\nb. Hoa: That’s great to hear! I was worried it might be hard to stay focused at home.',
+    questionText: 'Question 15. Choose the best arrangement of sentences to make a meaningful conversation:\na. Linh: Actually, it\'s better than I expected. The teachers are supportive and the lessons are interesting.\nb. Hoa: That’s great to hear! I was worried it might be hard to stay focused at home.\nc. Hoa: Hey Linh, how’s your online course going these days?',
     options: [
       { id: 'A', text: 'c – a – b', translation: 'c-a-b' },
       { id: 'B', text: 'a – b – c', translation: 'a-b-c' },
@@ -317,7 +317,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
   {
     id: 'ht-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of sentences to form a complete email:\nb. Thanks so much for sharing the academic papers on green living.\na. I found it fascinating to explore some of the new research articles you recommended.\nd. Thanks also for the suggestion about the online conferences – they are much more insightful than the ones I usually attend.\ne. I find the topic of environmental protection incredibly intriguing, but I am currently overwhelmed with coursework, so I will explore it further next semester.\nc. By the way, we should collaborate on a research project sometime. What do you think?',
+    questionText: 'Question 16. Choose the best arrangement of sentences to form a complete email:\na. I found it fascinating to explore some of the new research articles you recommended.\nb. Thanks so much for sharing the academic papers on green living.\nc. By the way, we should collaborate on a research project sometime. What do you think?\nd. Thanks also for the suggestion about the online conferences – they are much more insightful than the ones I usually attend.\ne. I find the topic of environmental protection incredibly intriguing, but I am currently overwhelmed with coursework, so I will explore it further next semester.',
     options: [
       { id: 'A', text: 'b – a – d – e – c', translation: 'b-a-d-e-c' },
       { id: 'B', text: 'd – b – a – e – c', translation: 'd-b-a-e-c' },
@@ -332,7 +332,7 @@ export const HAN_THUYEN_2026_QUESTIONS: Question[] = [
   {
     id: 'ht-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of sentences to make a meaningful conversation:\nc. Steven: Have you heard Elon Musk’s story? He faced so many challenges to make an impact.\nd. Paul: Yes, I admire his determination. Who else do you find inspiring?\na. Steven: Malala Yousafzai. Her courage in fighting for girls’ education is incredible.\nb. Paul: Absolutely, she’s a true role model. Do you think her story has influenced more young people to stand up for their beliefs?\ne. Steven: Definitely. I think her story empowers people to make a difference no matter how tough the circumstances.',
+    questionText: 'Question 17. Choose the best arrangement of sentences to make a meaningful conversation:\na. Steven: Malala Yousafzai. Her courage in fighting for girls’ education is incredible.\nb. Paul: Absolutely, she’s a true role model. Do you think her story has influenced more young people to stand up for their beliefs?\nc. Steven: Have you heard Elon Musk’s story? He faced so many challenges to make an impact.\nd. Paul: Yes, I admire his determination. Who else do you find inspiring?\ne. Steven: Definitely. I think her story empowers people to make a difference no matter how tough the circumstances.',
     options: [
       { id: 'A', text: 'e – d – c – a – b', translation: 'e-d-c-a-b' },
       { id: 'B', text: 'e – b – a – d – c', translation: 'e-b-a-d-c' },

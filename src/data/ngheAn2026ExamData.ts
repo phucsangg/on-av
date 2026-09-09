@@ -264,7 +264,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of the following sentences to make a meaningful conversation:\nc. John asks about dietary supplements.\nb. Mary replies, suggesting Omega-3 and Vitamin D3.\na. John thanks Mary for the recommendation.',
+    questionText: 'Question 13. Choose the best arrangement of the following sentences to make a meaningful conversation:\na. John thanks Mary for the recommendation.\nb. Mary replies, suggesting Omega-3 and Vitamin D3.\nc. John asks about dietary supplements.',
     options: [
       { id: 'A', text: 'a – b – c', translation: 'Cảm ơn' },
       { id: 'B', text: 'b – c – a', translation: 'Trả lời' },
@@ -279,7 +279,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of the sentences to form a meaningful paragraph:\nd. For centuries, crafting fine spirits has been an art form.\nb. This traditional craftsmanship relies on centuries-old techniques.\ne. Recently, however, modern technology has begun to exert its influence.\na. For instance, automated distillation systems are now widely used.\nc. Despite these modern interventions, the true essence remains rooted in tradition.',
+    questionText: 'Question 14. Choose the best arrangement of the sentences to form a meaningful paragraph:\na. For instance, automated distillation systems are now widely used.\nb. This traditional craftsmanship relies on centuries-old techniques.\nc. Despite these modern interventions, the true essence remains rooted in tradition.\nd. For centuries, crafting fine spirits has been an art form.\ne. Recently, however, modern technology has begun to exert its influence.',
     options: [
       { id: 'A', text: 'd – b – a – c – e', translation: 'd-b-a-c-e' },
       { id: 'B', text: 'd – b – e – a – c', translation: 'd-b-e-a-c' },
@@ -294,7 +294,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of sentences to make a formal proposal letter:\nc. I am writing to propose a new employee wellness initiative.\ne. The primary objective is to reduce workplace burnout.\na. Attached are supporting documentations outlining the budget.\nd. Based on these files, I believe this program will greatly benefit our team.\nb. Thank you for considering this proposal.',
+    questionText: 'Question 15. Choose the best arrangement of sentences to make a formal proposal letter:\na. Attached are supporting documentations outlining the budget.\nb. Thank you for considering this proposal.\nc. I am writing to propose a new employee wellness initiative.\nd. Based on these files, I believe this program will greatly benefit our team.\ne. The primary objective is to reduce workplace burnout.',
     options: [
       { id: 'A', text: 'c – a – e – d – b', translation: 'c-a-e-d-b' },
       { id: 'B', text: 'e – c – a – d – b', translation: 'e-c-a-d-b' },
@@ -309,7 +309,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of sentences:\nd. My initial experience with AI integration in the classroom was overwhelming.\nb. I had never anticipated how much preparation would be required.\nc. From organizing datasets to troubleshooting software, the workload was massive.\ne. Because of that workload, I often suffered from sleep deprivation.\na. As a result, I gained valuable insights into time management.',
+    questionText: 'Question 16. Choose the best arrangement of sentences:\na. As a result, I gained valuable insights into time management.\nb. I had never anticipated how much preparation would be required.\nc. From organizing datasets to troubleshooting software, the workload was massive.\nd. My initial experience with AI integration in the classroom was overwhelming.\ne. Because of that workload, I often suffered from sleep deprivation.',
     options: [
       { id: 'A', text: 'd – c – b – e – a', translation: 'd-c-b-e-a' },
       { id: 'B', text: 'b – d – c – e – a', translation: 'b-d-c-e-a' },
@@ -324,7 +324,7 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of sentences:\ne. Mastering a foreign language requires immense patience and discipline.\nc. At first, confusing grammar rules and vocabulary lists made me feel discouraged.\na. To overcome this, I developed a structured daily practice routine.\nd. Consequently, my fluency and pronunciation improved dramatically.\nb. Today, I feel completely confident when speaking with native speakers.',
+    questionText: 'Question 17. Choose the best arrangement of sentences:\na. To overcome this, I developed a structured daily practice routine.\nb. Today, I feel completely confident when speaking with native speakers.\nc. At first, confusing grammar rules and vocabulary lists made me feel discouraged.\nd. Consequently, my fluency and pronunciation improved dramatically.\ne. Mastering a foreign language requires immense patience and discipline.',
     options: [
       { id: 'A', text: 'e – a – c – d – b', translation: 'e-a-c-d-b' },
       { id: 'B', text: 'c – e – a – d – b', translation: 'c-e-a-d-b' },

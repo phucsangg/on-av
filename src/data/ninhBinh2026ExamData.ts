@@ -305,7 +305,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
   {
     id: 'nb-q13',
     type: 'reordering',
-    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\nb. Emma: I love hearing my grandparents’ life stories. They faced so many challenges growing up.\na. Liam: That’s amazing! Did you learn any specific lessons from them?\nc. Emma: Definitely. They taught me to be strong and face my own challenges with confidence.',
+    questionText: 'Question 13. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Liam: That’s amazing! Did you learn any specific lessons from them?\nb. Emma: I love hearing my grandparents’ life stories. They faced so many challenges growing up.\nc. Emma: Definitely. They taught me to be strong and face my own challenges with confidence.',
     options: [
       { id: 'A', text: 'b – c – a', translation: 'b-c-a' },
       { id: 'B', text: 'b – a – c', translation: 'b-a-c' },
@@ -320,7 +320,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
   {
     id: 'nb-q14',
     type: 'reordering',
-    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\nd. Mia: Hi Alex! Our cultural exchange trip is coming up soon. Are you getting excited?\ne. Alex: Absolutely! I can’t wait to try local food, visit historical sites, and join daily activities.\na. Mia: Me too! I really want to learn how to make traditional pottery and talk to local artisans.\nc. Alex: Sounds great! We could also join a workshop or attend a cultural festival.\nb. Mia: Definitely! Exploring the culture, meeting locals, and trying those activities will be fun.',
+    questionText: 'Question 14. Choose the best arrangement of the sentences to make a meaningful conversation:\na. Mia: Me too! I really want to learn how to make traditional pottery and talk to local artisans.\nb. Mia: Definitely! Exploring the culture, meeting locals, and trying those activities will be fun.\nc. Alex: Sounds great! We could also join a workshop or attend a cultural festival.\nd. Mia: Hi Alex! Our cultural exchange trip is coming up soon. Are you getting excited?\ne. Alex: Absolutely! I can’t wait to try local food, visit historical sites, and join daily activities.',
     options: [
       { id: 'A', text: 'c – d – a – b – e', translation: 'c-d-a-b-e' },
       { id: 'B', text: 'c – a – b – e – d', translation: 'c-a-b-e-d' },
@@ -335,7 +335,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
   {
     id: 'nb-q15',
     type: 'reordering',
-    questionText: 'Question 15. Choose the best arrangement of sentences to form a complete letter from a mother to her daughter:\nb. I am writing from my workplace far from home to let you know how proud I am of you and how much I believe in you.\nc. As you begin your final year of high school, I hope you stay focused, work hard, and use this important time wisely.\na. Because this is such a meaningful year, I hope you won’t let yourself get too distracted, especially by early relationships, so you can give more attention to your goals.\ne. Even though I’m away, I trust that you will stay responsible, maintain healthy habits, and spend your time on what truly helps you grow.\nd. Remember that your efforts now will bring many opportunities later, and I will always love and support you no matter where I am.',
+    questionText: 'Question 15. Choose the best arrangement of sentences to form a complete letter from a mother to her daughter:\na. Because this is such a meaningful year, I hope you won’t let yourself get too distracted, especially by early relationships, so you can give more attention to your goals.\nb. I am writing from my workplace far from home to let you know how proud I am of you and how much I believe in you.\nc. As you begin your final year of high school, I hope you stay focused, work hard, and use this important time wisely.\nd. Remember that your efforts now will bring many opportunities later, and I will always love and support you no matter where I am.\ne. Even though I’m away, I trust that you will stay responsible, maintain healthy habits, and spend your time on what truly helps you grow.',
     options: [
       { id: 'A', text: 'a – d – c – e – b', translation: 'a-d-c-e-b' },
       { id: 'B', text: 'b – c – a – e – d', translation: 'b-c-a-e-d' },
@@ -350,7 +350,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
   {
     id: 'nb-q16',
     type: 'reordering',
-    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent text:\nc. I’ve realized recently that I lack many soft skills, especially communication and teamwork, which makes me feel unsure of my abilities in group projects.\nb. At times, I avoid speaking up because I’m afraid of saying something wrong or not expressing my ideas clearly.\na. To improve, I plan to join school clubs where I can practice working with others and get more comfortable sharing my opinions.\ne. I also want to learn from classmates who are confident speakers and observe how they interact with people from different backgrounds.\nd. Little by little, I hope these efforts will help me become more confident and develop the skills needed to connect well in a global environment.',
+    questionText: 'Question 16. Choose the best arrangement of the sentences to form a coherent text:\na. To improve, I plan to join school clubs where I can practice working with others and get more comfortable sharing my opinions.\nb. At times, I avoid speaking up because I’m afraid of saying something wrong or not expressing my ideas clearly.\nc. I’ve realized recently that I lack many soft skills, especially communication and teamwork, which makes me feel unsure of my abilities in group projects.\nd. Little by little, I hope these efforts will help me become more confident and develop the skills needed to connect well in a global environment.\ne. I also want to learn from classmates who are confident speakers and observe how they interact with people from different backgrounds.',
     options: [
       { id: 'A', text: 'c – b – a – e – d', translation: 'c-b-a-e-d' },
       { id: 'B', text: 'c – a – e – b – d', translation: 'c-a-e-b-d' },
@@ -365,7 +365,7 @@ export const NINH_BINH_2026_QUESTIONS: Question[] = [
   {
     id: 'nb-q17',
     type: 'reordering',
-    questionText: 'Question 17. Choose the best arrangement of the sentences to form a coherent text:\na. In recent years, many places in Vietnam - especially the central region - have suffered severe floods that damaged houses, farmland, and essential infrastructure.\ne. As weather patterns become more unpredictable, such flooding has occurred more frequently and affected people’s daily lives more seriously.\nd. Because of these rising risks, more organizations and local authorities are paying greater attention to disaster preparedness and sustainable development.\nb. Many communities are now improving early-warning systems, strengthening flood-resistant infrastructure, and restoring natural areas to reduce future danger.\nc. These efforts help protect both the environment and local livelihoods, allowing communities to recover faster and become more resilient over time.',
+    questionText: 'Question 17. Choose the best arrangement of the sentences to form a coherent text:\na. In recent years, many places in Vietnam - especially the central region - have suffered severe floods that damaged houses, farmland, and essential infrastructure.\nb. Many communities are now improving early-warning systems, strengthening flood-resistant infrastructure, and restoring natural areas to reduce future danger.\nc. These efforts help protect both the environment and local livelihoods, allowing communities to recover faster and become more resilient over time.\nd. Because of these rising risks, more organizations and local authorities are paying greater attention to disaster preparedness and sustainable development.\ne. As weather patterns become more unpredictable, such flooding has occurred more frequently and affected people’s daily lives more seriously.',
     options: [
       { id: 'A', text: 'a – d – b – e – c', translation: 'a-d-b-e-c' },
       { id: 'B', text: 'a – e – b – d – c', translation: 'a-e-b-d-c' },
