@@ -9,6 +9,8 @@ import {
   Flag, 
   ChevronLeft, 
   ChevronRight, 
+  ChevronDown,
+  ChevronUp,
   Volume2, 
   AlertCircle, 
   CheckCircle,
@@ -57,6 +59,36 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState<boolean>(true);
   const [isGridModalOpen, setIsGridModalOpen] = useState<boolean>(false);
+
+  // Refs and scroll handlers for long reading passages
+  const passagePaneRef = React.useRef<HTMLDivElement>(null);
+  const passageBottomRef = React.useRef<HTMLDivElement>(null);
+  const questionPaneRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollToPassageTop = () => {
+    if (passagePaneRef.current) {
+      passagePaneRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToPassageBottom = () => {
+    if (questionPaneRef.current) {
+      questionPaneRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (passageBottomRef.current) {
+      passageBottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    } else {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToParagraph = (pIdx: number) => {
+    const el = document.querySelector(`[data-paragraph-index="${pIdx}"]`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   // Auto-save active progress to localStorage
   useEffect(() => {
@@ -625,17 +657,24 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           
           {/* Shared Passage Pane (Left 50%) */}
           {activePassageData && (
-            <div className="glass-card animate-fade-in" style={{
-              padding: '32px',
-              boxSizing: 'border-box'
-            }}>
+            <div 
+              ref={passagePaneRef}
+              className="glass-card animate-fade-in" 
+              style={{
+                padding: '32px',
+                boxSizing: 'border-box',
+                position: 'relative'
+              }}
+            >
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 marginBottom: '18px',
                 borderBottom: '1px solid var(--border-light)',
-                paddingBottom: '12px'
+                paddingBottom: '12px',
+                flexWrap: 'wrap',
+                gap: '12px'
               }}>
                 <div style={{
                   display: 'flex',
@@ -649,14 +688,52 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   <span>ĐOẠN VĂN / DỮ KIỆN DÙNG CHUNG</span>
                 </div>
 
-                {/* Translation Toggle Button */}
-                <button
-                  onClick={() => setIsPassageTranslated(!isPassageTranslated)}
-                  className={`btn ${isPassageTranslated ? 'btn-primary' : 'btn-secondary'}`}
-                  style={{ padding: '6px 12px', fontSize: '0.8rem' }}
-                >
-                  <Languages size={15} /> {isPassageTranslated ? 'Xem Tiếng Anh' : 'Dịch Tiếng Việt'}
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  {/* Quick jump to paragraphs if 2+ paragraphs */}
+                  {parsedPassage.paragraphs.length > 1 && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                      {parsedPassage.paragraphs.map((_, pIdx) => (
+                        <button
+                          key={pIdx}
+                          onClick={() => scrollToParagraph(pIdx)}
+                          title={`Cuộn đến Đoạn ${pIdx + 1}`}
+                          className="btn btn-secondary"
+                          style={{ padding: '4px 9px', fontSize: '0.76rem', borderRadius: '6px', fontWeight: 700 }}
+                        >
+                          Đoạn {pIdx + 1}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Scroll Down Button */}
+                  <button
+                    onClick={scrollToPassageBottom}
+                    className="btn btn-secondary"
+                    style={{
+                      padding: '6px 12px',
+                      fontSize: '0.8rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      fontWeight: 700,
+                      color: 'var(--brand-primary)',
+                      background: 'rgba(79, 70, 229, 0.08)'
+                    }}
+                    title="Cuộn xuống cuối đoạn văn / xem câu hỏi"
+                  >
+                    <ChevronDown size={16} /> Kéo xuống
+                  </button>
+
+                  {/* Translation Toggle Button */}
+                  <button
+                    onClick={() => setIsPassageTranslated(!isPassageTranslated)}
+                    className={`btn ${isPassageTranslated ? 'btn-primary' : 'btn-secondary'}`}
+                    style={{ padding: '6px 12px', fontSize: '0.8rem' }}
+                  >
+                    <Languages size={15} /> {isPassageTranslated ? 'Xem Tiếng Anh' : 'Dịch Tiếng Việt'}
+                  </button>
+                </div>
               </div>
               
               <div style={{
@@ -762,17 +839,52 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   </div>
                 )}
               </div>
+
+              {/* Passage Bottom Navigation Bar */}
+              <div 
+                ref={passageBottomRef}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginTop: '24px',
+                  paddingTop: '16px',
+                  borderTop: '1px solid var(--border-light)',
+                  gap: '12px',
+                  flexWrap: 'wrap'
+                }}
+              >
+                <button
+                  onClick={scrollToPassageTop}
+                  className="btn btn-secondary"
+                  style={{ padding: '8px 16px', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700 }}
+                >
+                  <ChevronUp size={16} /> Kéo lên đầu đoạn văn
+                </button>
+
+                <button
+                  onClick={scrollToPassageBottom}
+                  className="btn btn-primary"
+                  style={{ padding: '8px 18px', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px', fontWeight: 700 }}
+                >
+                  <ChevronDown size={16} /> Đến phần câu hỏi
+                </button>
+              </div>
             </div>
           )}
 
           {/* Question & Options Pane (Right 50% or Full Width) */}
-          <div className="glass-card animate-fade-in" style={{
-            padding: '36px',
-            maxWidth: activePassageData ? '100%' : '980px',
-            margin: activePassageData ? '0' : '0 auto',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}>
+          <div 
+            ref={questionPaneRef}
+            className="glass-card animate-fade-in" 
+            style={{
+              padding: '36px',
+              maxWidth: activePassageData ? '100%' : '980px',
+              margin: activePassageData ? '0' : '0 auto',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
             {/* Question Badge & Tools */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -784,7 +896,30 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 </span>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                {/* Back to Passage Jump Button */}
+                {activePassageData && (
+                  <button
+                    onClick={scrollToPassageTop}
+                    style={{
+                      padding: '8px 14px',
+                      borderRadius: 'var(--radius-sm)',
+                      border: '1.5px solid var(--brand-primary)',
+                      background: 'rgba(79, 70, 229, 0.08)',
+                      color: 'var(--brand-primary)',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      fontSize: '0.85rem',
+                      fontWeight: 700,
+                      transition: 'all 0.2s ease'
+                    }}
+                    title="Kéo lên xem lại đoạn văn"
+                  >
+                    <BookOpen size={15} /> Xem đoạn văn
+                  </button>
+                )}
                 <button
                   onClick={() => setShowQuestionTranslation(!showQuestionTranslation)}
                   style={{
