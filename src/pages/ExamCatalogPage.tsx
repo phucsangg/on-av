@@ -261,27 +261,28 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             return (
               <div
                 key={exam.id}
-                className="card card-hover hover-lift"
+                className="card card-hover hover-lift animate-fade-in"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  padding: '24px',
+                  padding: '26px 28px',
                   position: 'relative',
-                  border: isCustom ? '1px dashed var(--brand-primary)' : '1px solid var(--border-light)'
+                  border: isCustom ? '1.5px dashed var(--brand-primary)' : '1px solid var(--border-light)',
+                  overflow: 'hidden'
                 }}
               >
                 <div>
                   {/* Badge & Category */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
                     <span style={{
-                      fontSize: '0.75rem',
+                      fontSize: '0.74rem',
                       fontWeight: 800,
                       padding: '4px 10px',
                       borderRadius: 'var(--radius-pill)',
-                      background: isCustom ? 'rgba(236, 72, 153, 0.12)' : 'var(--badge-bg)',
-                      color: isCustom ? '#ec4899' : 'var(--badge-color)',
-                      border: isCustom ? '1px solid rgba(236, 72, 153, 0.3)' : '1px solid var(--border-light)',
+                      background: isCustom ? 'rgba(236, 72, 153, 0.12)' : 'rgba(var(--brand-primary-rgb), 0.1)',
+                      color: isCustom ? '#ec4899' : 'var(--brand-primary)',
+                      border: isCustom ? '1px solid rgba(236, 72, 153, 0.3)' : '1px solid rgba(var(--brand-primary-rgb), 0.25)',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px'
@@ -290,14 +291,14 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
                       {exam.badge}
                     </span>
 
-                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                       {exam.totalQuestions} Câu hỏi
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 style={{
-                    fontSize: '1.15rem',
+                    fontSize: '1.18rem',
                     fontWeight: 800,
                     margin: '0 0 10px 0',
                     lineHeight: 1.4,
@@ -308,9 +309,9 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
 
                   {/* Description */}
                   <p style={{
-                    fontSize: '0.875rem',
+                    fontSize: '0.88rem',
                     color: 'var(--text-muted)',
-                    lineHeight: 1.5,
+                    lineHeight: 1.55,
                     margin: '0 0 18px 0',
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
@@ -345,13 +346,15 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
                     className="btn btn-primary"
                     style={{
                       width: '100%',
+                      height: '42px',
                       justifyContent: 'center',
-                      padding: '10px 16px',
-                      fontSize: '0.9rem',
-                      fontWeight: 700
+                      padding: '0 16px',
+                      fontSize: '0.92rem',
+                      fontWeight: 700,
+                      gap: '8px'
                     }}
                   >
-                    <Play size={16} fill="currentColor" />
+                    <Play size={15} fill="currentColor" />
                     <span>Bắt Đầu Làm Bài</span>
                   </button>
                 </div>

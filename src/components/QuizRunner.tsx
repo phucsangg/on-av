@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import type { 
   ExamSet, 
   UserAnswerRecord 
 } from '../types/quiz';
 import { DictionaryModal } from './DictionaryModal';
+import { useQuizTimer } from '../hooks/useQuizTimer';
+import { storageService } from '../services/storageService';
 import { 
   Clock, 
   Flag, 
@@ -46,15 +48,27 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           return parsed;
         }
       }
-    } catch (_e) {}
+    } catch {}
     return null;
   }, [exam.id]);
 
   const [currentIndex, setCurrentIndex] = useState<number>(savedSession?.currentIndex ?? 0);
   const [answers, setAnswers] = useState<Record<string, 'A' | 'B' | 'C' | 'D' | null>>(savedSession?.answers ?? {});
   const [flagged, setFlagged] = useState<Record<string, boolean>>(savedSession?.flagged ?? {});
-  const [timeElapsedSeconds, setTimeElapsedSeconds] = useState<number>(savedSession?.timeElapsedSeconds ?? 0);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [quizMode, setQuizMode] = useState<'exam' | 'practice'>('exam');
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
+  const [drawerFilter, setDrawerFilter] = useState<'all' | 'unanswered' | 'flagged'>('all');
+  
+  const {
+    timeElapsed: timeElapsedSeconds,
+    isPaused,
+    pause: pauseTimer,
+    resume: resumeTimer
+  } = useQuizTimer({
+    initialSeconds: savedSession?.timeElapsedSeconds ?? 0,
+    durationMinutes: exam.durationMinutes,
+    autoStart: true
+  });
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState<boolean>(true);
@@ -98,20 +112,24 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     }
   };
 
-  // Auto-save active progress to localStorage
+  // Auto-save active progress to storageService
   useEffect(() => {
-    try {
-      const sessionData = {
+    storageService.saveActiveSession({
+      examId: exam.id,
+      selectedAnswers: answers as Record<string, 'A' | 'B' | 'C' | 'D'>,
+      flagged,
+      currentIndex,
+      timeRemainingSeconds: 0,
+      startTime: Date.now(),
+      timestamp: Date.now(),
+      ...({
         examSetId: exam.id,
         examTitle: exam.title,
-        currentIndex,
         answers,
-        flagged,
         timeElapsedSeconds,
         lastUpdated: new Date().toISOString()
-      };
-      localStorage.setItem('on_av_active_session', JSON.stringify(sessionData));
-    } catch (_e) {}
+      } as any)
+    });
   }, [exam.id, exam.title, currentIndex, answers, flagged, timeElapsedSeconds]);
 
   const navPillsContainerRef = React.useRef<HTMLDivElement>(null);
@@ -257,7 +275,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const formatPassageForTaking = (rawPassage?: string): string => {
     if (!rawPassage) return '';
 
-    return rawPassage.replace(/<mark>\(?(\d+)\)?[\s\.\:]*\s*([\s\S]*?)<\/mark>/gi, (_fullMatch, blankNumStr) => {
+    return rawPassage.replace(/<mark>\(?(\d+)\)?[\s.:]*\s*([\s\S]*?)<\/mark>/gi, (_fullMatch, blankNumStr) => {
       const blankNum = parseInt(blankNumStr, 10);
       
       // Find matching question in exam.questions for this blank number
@@ -361,7 +379,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       return t.phrase.includes(' ') ? escaped : `\\b${escaped}\\b`;
     });
 
-    const regex = new RegExp(`(<mark>.*?<\/mark>|${patterns.join('|')})`, 'gi');
+    const regex = new RegExp(`(<mark>.*?</mark>|${patterns.join('|')})`, 'gi');
     const parts = formattedText.split(regex);
     let hasAutoHighlighted = false;
 
@@ -476,23 +494,33 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     };
   }, [activeTranslation]);
 
-  // Timer count-up stopwatch hook (starts at 0 and counts UP)
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setTimeElapsedSeconds(prev => prev + 1);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [isPaused]);
+  const handleSelectOption = useCallback((optionId: 'A' | 'B' | 'C' | 'D') => {
+    setAnswers(prev => ({
+      ...prev,
+      [currentQuestion.id]: prev[currentQuestion.id] === optionId ? null : optionId
+    }));
+  }, [currentQuestion.id]);
 
-  // Keyboard navigation shortcuts
+  const toggleFlag = useCallback(() => {
+    setFlagged(prev => ({
+      ...prev,
+      [currentQuestion.id]: !prev[currentQuestion.id]
+    }));
+  }, [currentQuestion.id]);
+
+  // Keyboard navigation shortcuts (1-4 / A-D for options, F for flag, Arrows for navigation)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isSubmitModalOpen || isDictOpen) return;
+      // Don't trigger if user is typing in an input
+      if (['input', 'textarea'].includes((e.target as HTMLElement)?.tagName?.toLowerCase())) return;
+
       if (['a', 'A', '1'].includes(e.key)) handleSelectOption('A');
       if (['b', 'B', '2'].includes(e.key)) handleSelectOption('B');
       if (['c', 'C', '3'].includes(e.key)) handleSelectOption('C');
       if (['d', 'D', '4'].includes(e.key)) handleSelectOption('D');
+      if (['f', 'F'].includes(e.key)) toggleFlag();
+
       if (e.key === 'ArrowRight' && currentIndex < exam.questions.length - 1) {
         setCurrentIndex(prev => prev + 1);
       }
@@ -502,21 +530,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, isSubmitModalOpen, isDictOpen, exam.questions.length]);
-
-  const handleSelectOption = (optionId: 'A' | 'B' | 'C' | 'D') => {
-    setAnswers(prev => ({
-      ...prev,
-      [currentQuestion.id]: prev[currentQuestion.id] === optionId ? null : optionId
-    }));
-  };
-
-  const toggleFlag = () => {
-    setFlagged(prev => ({
-      ...prev,
-      [currentQuestion.id]: !prev[currentQuestion.id]
-    }));
-  };
+  }, [currentIndex, isSubmitModalOpen, isDictOpen, exam.questions.length, handleSelectOption, toggleFlag]);
 
   const handleSpeech = () => {
     if ('speechSynthesis' in window) {
@@ -542,9 +556,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const handleSubmit = () => {
-    try {
-      localStorage.removeItem('on_av_active_session');
-    } catch (_e) {}
+    storageService.clearActiveSession();
     const timeSpent = timeElapsedSeconds;
     const finalRecords: UserAnswerRecord[] = exam.questions.map(q => {
       const selected = answers[q.id] || null;
@@ -576,87 +588,191 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       paddingBottom: isNavigatorOpen ? '110px' : '60px'
     }}>
       
-      {/* Sticky Header Bar */}
+      {/* Sticky Header Bar - Compact & Balanced */}
       <div className="glass-card" style={{
         borderRadius: 0,
         borderLeft: 0,
         borderRight: 0,
-        padding: '12px 28px',
+        padding: '8px 20px',
+        minHeight: '52px',
+        boxSizing: 'border-box',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        gap: '12px',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        boxShadow: 'var(--shadow-subtle)'
+        boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <button onClick={onExit} className="btn btn-secondary" style={{ padding: '8px 14px', fontSize: '0.85rem' }}>
-            <X size={16} /> Thoát
+        {/* Left: Exit button & Exam Title with inline badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flexShrink: 1 }}>
+          <button
+            onClick={onExit}
+            className="btn btn-secondary"
+            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', fontWeight: 600, flexShrink: 0 }}
+            title="Thoát khỏi bài thi"
+          >
+            <X size={15} /> Thoát
           </button>
-          <div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0 }}>{exam.title}</h3>
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-              Tiến độ: <strong>{answeredCount}/{exam.questions.length}</strong> câu
+          <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h3
+              style={{
+                fontSize: '0.92rem',
+                fontWeight: 700,
+                margin: 0,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '320px',
+                color: 'var(--text-primary)'
+              }}
+              title={exam.title}
+            >
+              {exam.title}
+            </h3>
+            <span
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                color: 'var(--brand-primary)',
+                background: 'rgba(99, 102, 241, 0.08)',
+                padding: '2px 8px',
+                borderRadius: 'var(--radius-pill)',
+                whiteSpace: 'nowrap',
+                flexShrink: 0
+              }}
+              title={`Tiến độ làm bài: ${answeredCount}/${exam.questions.length} câu`}
+            >
+              {answeredCount}/{exam.questions.length}
             </span>
           </div>
         </div>
 
-        {/* Center Count-up Timer & Pause Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {/* Center: Unified Compact Timer + Mode Switcher */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          {/* Integrated Timer Pill with Pause/Resume */}
           <div style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
+            height: '34px',
+            padding: '0 8px 0 12px',
             gap: '8px',
-            padding: '8px 20px',
             borderRadius: 'var(--radius-pill)',
             background: 'var(--bg-subtle)',
-            color: 'var(--brand-primary)',
-            border: '1.5px solid var(--border-light)',
+            border: '1px solid var(--border-light)',
+            color: isPaused ? 'var(--text-muted)' : 'var(--brand-primary)',
+            fontSize: '0.92rem',
             fontWeight: 800,
-            fontSize: '1.25rem'
-          }} title="Đồng hồ bấm giờ tăng dần theo dõi tốc độ làm bài">
-            <Clock size={22} style={{ color: 'var(--brand-primary)' }} />
-            <span>{formatTime(timeElapsedSeconds)}</span>
+            letterSpacing: '0.5px'
+          }} title={isPaused ? "Đang tạm dừng - bấm nút để tiếp tục" : "Thời gian làm bài"}>
+            <Clock size={16} style={{ color: isPaused ? 'var(--text-muted)' : 'var(--brand-primary)' }} />
+            <span style={{ fontVariantNumeric: 'tabular-nums' }}>{formatTime(timeElapsedSeconds)}</span>
+            <button
+              onClick={isPaused ? resumeTimer : pauseTimer}
+              style={{
+                border: 'none',
+                background: isPaused ? 'var(--brand-primary)' : 'rgba(0,0,0,0.06)',
+                color: isPaused ? '#fff' : 'var(--text-secondary)',
+                borderRadius: '50%',
+                width: '24px',
+                height: '24px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                padding: 0
+              }}
+              title={isPaused ? "Tiếp tục làm bài" : "Tạm dừng bấm giờ"}
+              aria-label={isPaused ? "Tiếp tục" : "Tạm dừng"}
+            >
+              {isPaused ? <Play size={12} style={{ marginLeft: '1px' }} /> : <Pause size={12} />}
+            </button>
           </div>
 
-          <button
-            onClick={() => setIsPaused(true)}
-            className="btn btn-secondary"
-            style={{ padding: '8px 14px', fontSize: '0.85rem', fontWeight: 700 }}
-            title="Tạm dừng bấm giờ bài thi"
-          >
-            <Pause size={16} /> Tạm Dừng
-          </button>
+          {/* Quiz Mode Switcher (Exam vs Practice) */}
+          <div style={{
+            display: 'flex',
+            background: 'var(--bg-subtle)',
+            borderRadius: 'var(--radius-pill)',
+            padding: '2px',
+            border: '1px solid var(--border-light)',
+            height: '34px',
+            boxSizing: 'border-box'
+          }}>
+            <button
+              onClick={() => setQuizMode('exam')}
+              style={{
+                padding: '0 12px',
+                height: '100%',
+                borderRadius: 'var(--radius-pill)',
+                border: 'none',
+                background: quizMode === 'exam' ? 'var(--brand-gradient)' : 'transparent',
+                color: quizMode === 'exam' ? '#fff' : 'var(--text-muted)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+              title="Chế độ Thi thử: Làm bài tính giờ và nộp bài để xem kết quả"
+            >
+              ⏱️ Thi thử
+            </button>
+            <button
+              onClick={() => setQuizMode('practice')}
+              style={{
+                padding: '0 12px',
+                height: '100%',
+                borderRadius: 'var(--radius-pill)',
+                border: 'none',
+                background: quizMode === 'practice' ? 'var(--brand-gradient)' : 'transparent',
+                color: quizMode === 'practice' ? '#fff' : 'var(--text-muted)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+              title="Chế độ Luyện tập: Xem ngay lời giải chi tiết và bản dịch khi chọn đáp án"
+            >
+              🎯 Luyện tập
+            </button>
+          </div>
         </div>
 
         {/* Right Header Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
           {/* Dictionary Trigger Button */}
           <button
             onClick={() => openDictionary('')}
             className="btn btn-secondary"
-            style={{ padding: '8px 14px', fontSize: '0.85rem', color: 'var(--brand-primary)', fontWeight: 700 }}
+            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: 600 }}
             title="Mở từ điển tra từ Anh-Việt"
           >
-            <Languages size={17} /> Tra từ điển
+            <Languages size={15} /> <span className="hide-on-mobile">Tra từ điển</span>
           </button>
 
           <button
             onClick={() => setIsGridModalOpen(true)}
             className="btn btn-secondary hover-lift"
-            style={{ padding: '8px 14px', fontSize: '0.85rem', color: 'var(--brand-primary)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
+            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}
             title="Mở Bảng Chọn 40 Câu Hỏi Trực Quan"
           >
-            <Grid size={16} /> Bảng chọn ({answeredCount}/{exam.questions.length})
+            <Grid size={15} /> Bảng chọn <span className="hide-on-mobile">({answeredCount}/{exam.questions.length})</span>
           </button>
 
           <button
             onClick={() => setIsSubmitModalOpen(true)}
             className="btn btn-primary"
-            style={{ padding: '10px 22px' }}
+            style={{ height: '34px', padding: '0 16px', fontSize: '0.84rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
           >
-            <CheckCircle size={18} /> Nộp Bài
+            <CheckCircle size={15} /> Nộp Bài
           </button>
         </div>
       </div>
@@ -667,7 +783,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         width: '100%',
         maxWidth: '1560px',
         margin: '0 auto',
-        padding: '28px 36px',
+        padding: '16px 24px',
         boxSizing: 'border-box'
       }}>
         <div style={{
@@ -1040,7 +1156,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         border: '1px solid var(--border-light)'
                       }}>
                         {sentenceItems.map((item, idx) => {
-                          const itemMatch = item.match(/^([a-e1-5])[\.\)]\s*(.*)$/i);
+                          const itemMatch = item.match(/^([a-e1-5])[.)]\s*(.*)$/i);
                           const label = itemMatch ? itemMatch[1].toLowerCase() : String.fromCharCode(97 + idx);
                           const textContent = itemMatch ? itemMatch[2] : item;
 
@@ -1118,57 +1234,191 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             )}
 
             {/* Options List */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px' }}>
+            <div 
+              role="radiogroup" 
+              aria-label="Danh sách phương án lựa chọn" 
+              style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '28px' }}
+            >
               {currentQuestion.options.map((opt) => {
                 const isSelected = answers[currentQuestion.id] === opt.id;
+                const hasAnswered = answers[currentQuestion.id] !== undefined && answers[currentQuestion.id] !== null;
+                const isCorrect = opt.id === currentQuestion.correctAnswer;
+                const isPractice = quizMode === 'practice';
+
+                // Practice mode dynamic coloring
+                let borderStyle = `2px solid ${isSelected ? 'var(--brand-primary)' : 'var(--border-light)'}`;
+                let bgStyle = isSelected ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-surface)';
+                let colorBadgeBg = isSelected ? 'var(--brand-primary)' : 'var(--bg-subtle)';
+                let colorBadgeText = isSelected ? '#ffffff' : 'var(--text-main)';
+
+                if (isPractice && hasAnswered) {
+                  if (isCorrect) {
+                    borderStyle = '2px solid var(--success)';
+                    bgStyle = 'var(--success-bg)';
+                    colorBadgeBg = 'var(--success)';
+                    colorBadgeText = '#ffffff';
+                  } else if (isSelected && !isCorrect) {
+                    borderStyle = '2px solid var(--danger)';
+                    bgStyle = 'var(--danger-bg)';
+                    colorBadgeBg = 'var(--danger)';
+                    colorBadgeText = '#ffffff';
+                  }
+                }
+
+                const shortcutKey = opt.id === 'A' ? '1' : opt.id === 'B' ? '2' : opt.id === 'C' ? '3' : '4';
+
                 return (
                   <div
                     key={opt.id}
+                    role="radio"
+                    aria-checked={isSelected}
+                    tabIndex={0}
                     onClick={() => handleSelectOption(opt.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === ' ' || e.key === 'Enter') {
+                        e.preventDefault();
+                        handleSelectOption(opt.id);
+                      }
+                    }}
                     className="hover-lift"
                     style={{
-                      padding: '18px 24px',
+                      padding: '16px 22px',
                       borderRadius: 'var(--radius-lg)',
-                      border: `2px solid ${isSelected ? 'var(--brand-primary)' : 'var(--border-light)'}`,
-                      background: isSelected ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-surface)',
-                      boxShadow: isSelected ? '0 0 18px rgba(79, 70, 229, 0.25)' : '0 2px 6px rgba(0, 0, 0, 0.02)',
+                      border: borderStyle,
+                      background: bgStyle,
+                      boxShadow: isSelected ? '0 0 0 3px rgba(var(--brand-primary-rgb), 0.2), 0 8px 24px rgba(var(--brand-primary-rgb), 0.12)' : '0 2px 8px rgba(0, 0, 0, 0.02)',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '16px',
-                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-                      fontWeight: isSelected ? 700 : 500
+                      transition: 'all 0.22s cubic-bezier(0.4, 0, 0.2, 1)',
+                      fontWeight: isSelected ? 700 : 500,
+                      outline: 'none',
+                      position: 'relative',
+                      overflow: 'hidden'
                     }}
                   >
                     <div style={{
                       width: '38px',
                       height: '38px',
-                      borderRadius: '50%',
-                      background: isSelected ? 'var(--brand-primary)' : 'var(--bg-subtle)',
-                      color: isSelected ? '#ffffff' : 'var(--text-main)',
+                      borderRadius: '12px',
+                      background: colorBadgeBg,
+                      color: colorBadgeText,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontWeight: 800,
                       fontSize: '1.05rem',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      boxShadow: isSelected ? '0 4px 12px rgba(var(--brand-primary-rgb), 0.35)' : '0 2px 4px rgba(0, 0, 0, 0.04)',
+                      transition: 'all 0.2s ease'
                     }}>
                       {opt.id}
                     </div>
-                    <div style={{ flex: 1 }}>
-                      <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.08rem', lineHeight: 1.5 }}>
+
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.05rem', lineHeight: 1.55 }}>
                         {renderHighlightedText(opt.text)}
                       </div>
                       {showQuestionTranslation && opt.translation && (
-                        <div style={{ fontSize: '0.9rem', color: 'var(--success)', marginTop: '4px', fontWeight: 500 }}>
+                        <div style={{ fontSize: '0.88rem', color: 'var(--success)', marginTop: '6px', fontWeight: 500, lineHeight: 1.5 }}>
                           {opt.translation}
                         </div>
                       )}
+                    </div>
+
+                    {/* Right indicators: shortcut badge or correct/wrong icon */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                      {isPractice && hasAnswered && isCorrect && (
+                        <span className="badge badge-success" style={{ fontSize: '0.74rem' }}>
+                          ✓ Đúng
+                        </span>
+                      )}
+                      {isPractice && hasAnswered && isSelected && !isCorrect && (
+                        <span className="badge badge-danger" style={{ fontSize: '0.74rem' }}>
+                          ✕ Sai
+                        </span>
+                      )}
+                      <span 
+                        style={{
+                          fontSize: '0.72rem',
+                          fontWeight: 800,
+                          color: 'var(--text-muted)',
+                          background: 'var(--bg-subtle)',
+                          padding: '3px 8px',
+                          borderRadius: '6px',
+                          border: '1px solid var(--border-light)',
+                          boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
+                          letterSpacing: '0.5px'
+                        }}
+                        title={`Bấm phím ${shortcutKey} hoặc ${opt.id} trên bàn phím`}
+                      >
+                        {shortcutKey}
+                      </span>
                     </div>
                   </div>
                 );
               })}
             </div>
+
+            {/* Practice Mode Instant Learning & Explanation Card */}
+            {quizMode === 'practice' && answers[currentQuestion.id] && (
+              <div 
+                className="animate-fade-in" 
+                style={{
+                  marginBottom: '28px',
+                  padding: '22px 26px',
+                  borderRadius: 'var(--radius-md)',
+                  background: answers[currentQuestion.id] === currentQuestion.correctAnswer 
+                    ? 'rgba(16, 185, 129, 0.08)' 
+                    : 'rgba(239, 68, 68, 0.08)',
+                  border: `1.5px solid ${answers[currentQuestion.id] === currentQuestion.correctAnswer ? 'var(--success-border)' : 'var(--danger-border)'}`
+                }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  marginBottom: '10px',
+                  fontWeight: 800,
+                  fontSize: '1.05rem',
+                  color: answers[currentQuestion.id] === currentQuestion.correctAnswer ? 'var(--success)' : 'var(--danger)'
+                }}>
+                  {answers[currentQuestion.id] === currentQuestion.correctAnswer ? (
+                    <>
+                      <span>🎉 Chính xác! Bạn đã chọn đúng phương án {currentQuestion.correctAnswer}.</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>⚠️ Chưa đúng. Bạn chọn {answers[currentQuestion.id]}, nhưng đáp án chuẩn là {currentQuestion.correctAnswer}.</span>
+                    </>
+                  )}
+                </div>
+
+                <div style={{ fontSize: '0.94rem', lineHeight: 1.7, color: 'var(--text-main)', marginTop: '8px' }}>
+                  <strong style={{ color: 'var(--brand-primary)', display: 'block', marginBottom: '4px' }}>
+                    💡 Lời giải & Phân tích ngữ pháp chi tiết:
+                  </strong>
+                  <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.explanation}</div>
+                </div>
+
+                {currentQuestion.translation && (
+                  <div style={{
+                    marginTop: '14px',
+                    paddingTop: '12px',
+                    borderTop: '1px dashed var(--border-light)',
+                    fontSize: '0.9rem',
+                    lineHeight: 1.6,
+                    color: 'var(--text-body)'
+                  }}>
+                    <strong style={{ color: 'var(--success)', display: 'block', marginBottom: '2px' }}>
+                      📖 Bản dịch câu hỏi & dịch nghĩa:
+                    </strong>
+                    <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.translation}</div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Footer Navigation Bar */}
             <div style={{
@@ -1422,10 +1672,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           right: 0,
           zIndex: 45,
           background: 'var(--bg-card)',
-          backdropFilter: 'blur(16px)',
+          backdropFilter: 'blur(20px)',
           borderTop: '1px solid var(--border-light)',
-          padding: '10px 28px',
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.08)'
+          padding: '8px 24px',
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.06)'
         }}>
           <div style={{
             maxWidth: '1440px',
@@ -1433,7 +1683,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '20px'
+            gap: '16px'
           }}>
             {/* Horizontal Pill Bar */}
             <div
@@ -1443,7 +1693,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 alignItems: 'center',
                 gap: '6px',
                 overflowX: 'auto',
-                paddingBottom: '4px',
+                padding: '4px 2px',
                 flex: 1,
                 scrollBehavior: 'smooth'
               }}
@@ -1460,13 +1710,13 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 let transform = 'none';
 
                 if (isCurrent) {
-                  border = '2.5px solid var(--brand-primary)';
-                  boxShadow = '0 0 14px rgba(79, 70, 229, 0.45)';
-                  transform = 'scale(1.1)';
-                  bg = isAnswered ? 'var(--brand-primary)' : 'rgba(79, 70, 229, 0.18)';
+                  border = '2px solid var(--brand-primary)';
+                  boxShadow = '0 0 0 2px rgba(var(--brand-primary-rgb), 0.25), 0 4px 12px rgba(var(--brand-primary-rgb), 0.35)';
+                  transform = 'scale(1.08)';
+                  bg = isAnswered ? 'var(--brand-primary)' : 'rgba(var(--brand-primary-rgb), 0.15)';
                   color = isAnswered ? '#ffffff' : 'var(--brand-primary)';
                 } else if (isQuestionFlagged) {
-                  bg = 'rgba(245, 158, 11, 0.25)';
+                  bg = 'rgba(245, 158, 11, 0.2)';
                   color = 'var(--warning)';
                   border = '1px solid var(--warning)';
                 } else if (isAnswered) {
@@ -1479,14 +1729,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     key={q.id}
                     onClick={() => setCurrentIndex(idx)}
                     style={{
-                      minWidth: '34px',
-                      height: '34px',
-                      borderRadius: 'var(--radius-sm)',
+                      minWidth: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
                       border: border,
                       background: bg,
                       color: color,
                       fontWeight: 800,
-                      fontSize: '0.85rem',
+                      fontSize: '0.82rem',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -1496,9 +1746,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       boxShadow: boxShadow,
                       transform: transform,
                       zIndex: isCurrent ? 2 : 1,
-                      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                      transition: 'all 0.18s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
-                    title={`Câu ${idx + 1}`}
+                    title={`Câu ${idx + 1}${isQuestionFlagged ? ' (Đã đánh dấu)' : ''}${isAnswered ? ' (Đã trả lời)' : ''}`}
                   >
                     {idx + 1}
                     {isQuestionFlagged && (
@@ -1509,7 +1759,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         width: '5px',
                         height: '5px',
                         borderRadius: '50%',
-                        background: 'var(--warning)'
+                        background: 'var(--warning)',
+                        boxShadow: '0 0 4px var(--warning)'
                       }} />
                     )}
                   </button>
@@ -1537,6 +1788,197 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--warning)' }} />
                 Đánh dấu ({Object.values(flagged).filter(Boolean).length})
               </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Floating Drawer Trigger Button (Only visible on mobile <= 768px) */}
+      <div 
+        className="mobile-only-pill"
+        style={{
+          position: 'fixed',
+          bottom: '16px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 48,
+          display: 'none'
+        }}
+      >
+        <button
+          onClick={() => setIsMobileDrawerOpen(true)}
+          className="btn btn-primary hover-lift"
+          style={{
+            padding: '10px 20px',
+            borderRadius: 'var(--radius-pill)',
+            fontSize: '0.88rem',
+            fontWeight: 800,
+            boxShadow: '0 8px 24px rgba(79, 70, 229, 0.45)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            whiteSpace: 'nowrap'
+          }}
+          aria-label="Mở bảng 40 câu hỏi trắc nghiệm"
+        >
+          <Grid size={16} /> Câu {currentIndex + 1} / {exam.questions.length} • Bảng câu hỏi
+        </button>
+      </div>
+
+      {/* Mobile Bottom Sheet Drawer for Questions */}
+      {isMobileDrawerOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 150,
+            backgroundColor: 'rgba(15, 23, 42, 0.6)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end'
+          }}
+          onClick={() => setIsMobileDrawerOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Danh sách câu hỏi trắc nghiệm"
+        >
+          <div
+            className="animate-slide-up"
+            style={{
+              background: 'var(--bg-surface)',
+              borderTopLeftRadius: '24px',
+              borderTopRightRadius: '24px',
+              borderTop: '2px solid var(--border-light)',
+              padding: '20px 20px 32px',
+              maxHeight: '82vh',
+              overflowY: 'auto',
+              boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.3)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Handle Drag Bar */}
+            <div style={{
+              width: '40px',
+              height: '5px',
+              borderRadius: '999px',
+              background: 'var(--border-light)',
+              margin: '0 auto 16px'
+            }} />
+
+            {/* Sheet Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <div>
+                <h4 style={{ fontSize: '1.15rem', fontWeight: 800, margin: 0 }}>
+                  Danh Sách Câu Hỏi
+                </h4>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                  Đã làm {answeredCount} / {exam.questions.length} câu
+                </div>
+              </div>
+              <button
+                onClick={() => setIsMobileDrawerOpen(false)}
+                style={{
+                  background: 'var(--bg-subtle)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--text-muted)',
+                  cursor: 'pointer'
+                }}
+                aria-label="Đóng danh sách câu hỏi"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Quick Filter Buttons */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', overflowX: 'auto', paddingBottom: '4px' }}>
+              <button
+                onClick={() => setDrawerFilter('all')}
+                className={`btn ${drawerFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ padding: '6px 14px', fontSize: '0.8rem', borderRadius: 'var(--radius-pill)', whiteSpace: 'nowrap' }}
+              >
+                Tất cả ({exam.questions.length})
+              </button>
+              <button
+                onClick={() => setDrawerFilter('unanswered')}
+                className={`btn ${drawerFilter === 'unanswered' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ padding: '6px 14px', fontSize: '0.8rem', borderRadius: 'var(--radius-pill)', whiteSpace: 'nowrap' }}
+              >
+                Chưa làm ({exam.questions.length - answeredCount})
+              </button>
+              <button
+                onClick={() => setDrawerFilter('flagged')}
+                className={`btn ${drawerFilter === 'flagged' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ padding: '6px 14px', fontSize: '0.8rem', borderRadius: 'var(--radius-pill)', whiteSpace: 'nowrap' }}
+              >
+                Đã gắn cờ ({Object.values(flagged).filter(Boolean).length})
+              </button>
+            </div>
+
+            {/* Question Buttons Grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: '10px'
+            }}>
+              {exam.questions.map((q, idx) => {
+                const isCurrent = idx === currentIndex;
+                const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
+                const isQuestionFlagged = !!flagged[q.id];
+
+                if (drawerFilter === 'unanswered' && isAnswered) return null;
+                if (drawerFilter === 'flagged' && !isQuestionFlagged) return null;
+
+                let bg = 'var(--bg-subtle)';
+                let color = 'var(--text-main)';
+                let border = '1px solid var(--border-light)';
+
+                if (isCurrent) {
+                  border = '2px solid var(--brand-primary)';
+                  bg = isAnswered ? 'var(--brand-primary)' : 'rgba(79, 70, 229, 0.15)';
+                  color = isAnswered ? '#fff' : 'var(--brand-primary)';
+                } else if (isQuestionFlagged) {
+                  bg = 'rgba(245, 158, 11, 0.2)';
+                  color = 'var(--warning)';
+                  border = '1px solid var(--warning)';
+                } else if (isAnswered) {
+                  bg = 'var(--brand-primary)';
+                  color = '#fff';
+                }
+
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => {
+                      setCurrentIndex(idx);
+                      setIsMobileDrawerOpen(false);
+                    }}
+                    style={{
+                      height: '46px',
+                      borderRadius: 'var(--radius-sm)',
+                      border,
+                      background: bg,
+                      color,
+                      fontWeight: 800,
+                      fontSize: '0.9rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <span>{idx + 1}</span>
+                    {isAnswered && <span style={{ fontSize: '0.65rem', opacity: 0.9 }}>({answers[q.id]})</span>}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -1858,7 +2300,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             </p>
 
             <button
-              onClick={() => setIsPaused(false)}
+              onClick={resumeTimer}
               className="btn btn-primary"
               style={{
                 width: '100%',

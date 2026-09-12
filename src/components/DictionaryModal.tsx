@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Search, 
   Volume2, 
@@ -8,22 +8,12 @@ import {
   ArrowRight,
   CheckCircle2
 } from 'lucide-react';
-import { findLocalDictEntry } from '../data/dictionaryData';
+import { dictionaryService, type UnifiedDictResult } from '../services/dictionaryService';
 
 interface DictionaryModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialWord?: string;
-}
-
-interface DictionaryResult {
-  word: string;
-  phonetic?: string;
-  partOfSpeech?: string;
-  definitionEn?: string;
-  translationVi?: string;
-  examples?: string[];
-  audioUrl?: string;
 }
 
 export const DictionaryModal: React.FC<DictionaryModalProps> = ({
@@ -33,8 +23,29 @@ export const DictionaryModal: React.FC<DictionaryModalProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [result, setResult] = useState<DictionaryResult | null>(null);
+  const [result, setResult] = useState<UnifiedDictResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const handleSearchWord = useCallback(async (wordToSearch: string) => {
+    const cleanWord = wordToSearch.trim().toLowerCase().replace(/[^a-zA-Z\s-]/g, '');
+    if (!cleanWord) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const match = await dictionaryService.lookup(cleanWord);
+      if (match) {
+        setResult(match);
+      } else {
+        setError(`Chưa tìm thấy từ "${cleanWord}" trong từ điển.`);
+      }
+    } catch {
+      setError(`Lỗi tra cứu từ "${cleanWord}". Vui lòng thử lại sau.`);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -47,77 +58,12 @@ export const DictionaryModal: React.FC<DictionaryModalProps> = ({
         setError(null);
       }
     }
-  }, [initialWord, isOpen]);
-
-  const handleSearchWord = async (wordToSearch: string) => {
-    const cleanWord = wordToSearch.trim().toLowerCase().replace(/[^a-zA-Z\s-]/g, '');
-    if (!cleanWord) return;
-
-    setLoading(true);
-    setError(null);
-
-    // 1. Check Local Dictionary (Instant 0ms)
-    const localMatch = findLocalDictEntry(cleanWord);
-    if (localMatch) {
-      setResult({
-        word: localMatch.word,
-        phonetic: localMatch.phonetic,
-        partOfSpeech: localMatch.pos,
-        definitionEn: localMatch.enDef,
-        translationVi: localMatch.vi,
-        examples: localMatch.examples
-      });
-      setLoading(false);
-      return;
-    }
-
-    // 2. Fast Online API Fetch with 2-second timeout (Prevents any lagging)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
-
-    try {
-      const transRes = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanWord)}&langpair=en|vi`,
-        { signal: controller.signal }
-      );
-      
-      clearTimeout(timeoutId);
-
-      let translationText = '';
-      if (transRes.ok) {
-        const transJson = await transRes.json();
-        if (transJson.responseData && transJson.responseData.translatedText) {
-          translationText = transJson.responseData.translatedText;
-        }
-      }
-
-      if (translationText) {
-        setResult({
-          word: cleanWord,
-          partOfSpeech: 'từ vựng',
-          translationVi: translationText,
-          definitionEn: `Từ vựng tiếng Anh: "${cleanWord}"`
-        });
-      } else {
-        setError(`Chưa tìm thấy bản dịch cho từ "${cleanWord}". Thử kiểm tra lại chính tả.`);
-      }
-    } catch (err: any) {
-      clearTimeout(timeoutId);
-      setError(`Chưa tìm thấy từ "${cleanWord}" trong từ điển.`);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [initialWord, isOpen, handleSearchWord]);
 
   const handleSpeechPronunciation = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const wordToSay = result?.word || searchTerm;
-      if (!wordToSay) return;
-      const utterance = new SpeechSynthesisUtterance(wordToSay);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
+    const wordToSay = result?.word || searchTerm;
+    if (wordToSay) {
+      dictionaryService.speak(wordToSay);
     }
   };
 

@@ -7,6 +7,7 @@ import {
   FileJson, 
   CheckCircle
 } from 'lucide-react';
+import { validateExam, validateQuestion } from '../utils/validation';
 
 interface CustomExamBuilderProps {
   onSaveNewExam: (exam: ExamSet) => void;
@@ -86,26 +87,26 @@ export const CustomExamBuilder: React.FC<CustomExamBuilderProps> = ({ onSaveNewE
       alert('Vui lòng nhập tên đề thi!');
       return;
     }
-    for (let i = 0; i < questions.length; i++) {
-      if (!questions[i].questionText.trim()) {
-        alert(`Vui lòng nhập nội dung câu hỏi số ${i + 1}!`);
-        return;
-      }
-    }
 
-    const newExam: ExamSet = {
+    const rawExam = {
       id: `custom-exam-${Date.now()}`,
       title: title.trim(),
       description: description.trim() || 'Đề thi tự tạo bởi người dùng.',
       category,
-      durationMinutes: Number(duration),
+      durationMinutes: Number(duration) || 15,
       totalQuestions: questions.length,
       badge: badge.trim() || 'Tự Tạo',
       iconName: 'Sparkles',
       questions
     };
 
-    onSaveNewExam(newExam);
+    const validation = validateExam(rawExam);
+    if (!validation.valid || !validation.sanitizedExam) {
+      alert(`Đề thi chưa hợp lệ:\n${validation.errors.slice(0, 3).join('\n')}`);
+      return;
+    }
+
+    onSaveNewExam(validation.sanitizedExam);
     setSuccessMessage('Lưu đề thi thành công! Đề thi mới đã xuất hiện ngoài Trang chủ.');
     setTimeout(() => setSuccessMessage(''), 4000);
   };
@@ -114,19 +115,46 @@ export const CustomExamBuilder: React.FC<CustomExamBuilderProps> = ({ onSaveNewE
     try {
       const parsed = JSON.parse(jsonText);
       if (Array.isArray(parsed)) {
-        setQuestions(parsed);
+        const validatedQuestions: Question[] = [];
+        const errors: string[] = [];
+        parsed.forEach((q, idx) => {
+          const res = validateQuestion(q, idx);
+          if (res.valid && res.sanitizedQuestion) {
+            validatedQuestions.push(res.sanitizedQuestion);
+          } else {
+            errors.push(...res.errors);
+          }
+        });
+
+        if (validatedQuestions.length === 0) {
+          alert(`Không thể import: ${errors.slice(0, 3).join('\n')}`);
+          return;
+        }
+
+        setQuestions(validatedQuestions);
         setIsJsonModalOpen(false);
-        alert(`Đã import thành công ${parsed.length} câu hỏi!`);
-      } else if (parsed.questions && Array.isArray(parsed.questions)) {
-        setTitle(parsed.title || title);
-        setDescription(parsed.description || description);
-        setQuestions(parsed.questions);
+        setJsonText('');
+        alert(`Đã import an toàn ${validatedQuestions.length} câu hỏi!${errors.length > 0 ? ` (${errors.length} câu lỗi đã bỏ qua)` : ''}`);
+      } else if (parsed && typeof parsed === 'object' && Array.isArray(parsed.questions)) {
+        const examValidation = validateExam(parsed);
+        if (!examValidation.valid || !examValidation.sanitizedExam) {
+          alert(`Dữ liệu đề thi không hợp lệ:\n${examValidation.errors.slice(0, 3).join('\n')}`);
+          return;
+        }
+
+        const validExam = examValidation.sanitizedExam;
+        setTitle(validExam.title);
+        setDescription(validExam.description);
+        setQuestions(validExam.questions);
+        if (validExam.durationMinutes) setDuration(validExam.durationMinutes);
+        if (validExam.badge) setBadge(validExam.badge);
         setIsJsonModalOpen(false);
-        alert(`Đã import thành công bộ đề thi với ${parsed.questions.length} câu hỏi!`);
+        setJsonText('');
+        alert(`Đã import thành công bộ đề thi với ${validExam.questions.length} câu hỏi!`);
       } else {
-        alert('Cấu trúc JSON không hợp lệ. Phải là mảng câu hỏi hoặc object đề thi.');
+        alert('Cấu trúc JSON không hợp lệ. Phải là mảng câu hỏi hoặc object đề thi hợp lệ.');
       }
-    } catch (e) {
+    } catch {
       alert('Lỗi cú pháp JSON. Vui lòng kiểm tra lại dữ liệu!');
     }
   };

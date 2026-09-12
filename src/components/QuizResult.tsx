@@ -17,6 +17,7 @@ import {
   Languages,
   Sparkles
 } from 'lucide-react';
+import { sanitizeHtml } from '../utils/sanitize';
 
 interface QuizResultProps {
   exam: ExamSet;
@@ -79,6 +80,29 @@ export const QuizResult: React.FC<QuizResultProps> = ({
 
   const evalTag = getEvaluationTag();
 
+  const avgSecondsPerQ = Math.round(timeSpentSeconds / Math.max(1, totalQuestions));
+
+  // Calculate topic performance in this test
+  const topicInsights = React.useMemo(() => {
+    const map: Record<string, { total: number; correct: number }> = {};
+    exam.questions.forEach(q => {
+      const rec = answers.find(a => a.questionId === q.id);
+      const t = q.topicTag || 'Tổng hợp';
+      if (!map[t]) map[t] = { total: 0, correct: 0 };
+      map[t].total++;
+      if (rec?.isCorrect) map[t].correct++;
+    });
+    return Object.entries(map).map(([topic, d]) => ({
+      topic,
+      total: d.total,
+      correct: d.correct,
+      rate: Math.round((d.correct / d.total) * 100)
+    }));
+  }, [exam, answers]);
+
+  const weakExamTopics = topicInsights.filter(t => t.rate < 70);
+  const strongExamTopics = topicInsights.filter(t => t.rate >= 80);
+
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 24px' }}>
       
@@ -86,7 +110,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
       <div className="glass-card animate-fade-in" style={{
         padding: '36px',
         textAlign: 'center',
-        marginBottom: '32px',
+        marginBottom: '28px',
         background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.06) 0%, rgba(16, 185, 129, 0.06) 100%)'
       }}>
         <div style={{
@@ -94,7 +118,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
           height: '72px',
           borderRadius: '50%',
           background: 'rgba(79, 70, 229, 0.12)',
-          color: 'var(--accent-primary)',
+          color: 'var(--brand-primary)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -107,27 +131,83 @@ export const QuizResult: React.FC<QuizResultProps> = ({
           {evalTag.label}
         </span>
 
-        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '8px' }}>
+        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, marginBottom: '8px' }}>
           {correctCount} / {totalQuestions} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>câu đúng</span>
         </h2>
 
-        <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginBottom: '24px' }}>
-          Tỷ lệ chính xác: <strong style={{ color: evalTag.color }}>{percentage}%</strong> • Thời gian: <strong>{formatTime(timeSpentSeconds)}</strong>
-        </p>
+        {/* 3 Metrics Pills */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '16px',
+          flexWrap: 'wrap',
+          margin: '20px 0 28px'
+        }}>
+          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
+            🎯 Độ chính xác: <strong style={{ color: evalTag.color }}>{percentage}%</strong>
+          </div>
+          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
+            ⏱️ Thời gian: <strong>{formatTime(timeSpentSeconds)}</strong>
+          </div>
+          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
+            ⚡ Tốc độ: <strong>~{avgSecondsPerQ}s / câu</strong>
+          </div>
+        </div>
 
         {/* Action Buttons */}
         <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <button onClick={onRetake} className="btn btn-primary">
-            <RotateCcw size={16} /> Làm Là Bài Này
+          <button onClick={onRetake} className="btn btn-primary" style={{ padding: '12px 24px' }}>
+            <RotateCcw size={16} /> Làm Lại Đề Này
           </button>
-          <button onClick={onOpenMistakes} className="btn btn-secondary">
+          <button onClick={onOpenMistakes} className="btn btn-secondary" style={{ padding: '12px 24px' }}>
             <BookMarked size={16} /> Xem Sổ Tay Câu Sai
           </button>
-          <button onClick={onGoHome} className="btn btn-secondary">
+          <button onClick={onGoHome} className="btn btn-secondary" style={{ padding: '12px 24px' }}>
             <Home size={16} /> Về Trang Chủ
           </button>
         </div>
       </div>
+
+      {/* Topic Feedback Insights */}
+      {(weakExamTopics.length > 0 || strongExamTopics.length > 0) && (
+        <div className="glass-card animate-fade-in" style={{
+          padding: '24px 28px',
+          marginBottom: '28px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '20px'
+        }}>
+          {weakExamTopics.length > 0 && (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--danger)', fontWeight: 800, fontSize: '0.95rem', marginBottom: '8px' }}>
+                <span>⚠️ Chủ đề bạn cần chú ý ôn lại:</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {weakExamTopics.map(t => (
+                  <span key={t.topic} className="badge badge-danger">
+                    {t.topic}: {t.correct}/{t.total} ({t.rate}%)
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {strongExamTopics.length > 0 && (
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--success)', fontWeight: 800, fontSize: '0.95rem', marginBottom: '8px' }}>
+                <span>🌟 Chủ đề bạn làm rất tốt:</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                {strongExamTopics.map(t => (
+                  <span key={t.topic} className="badge badge-success">
+                    {t.topic}: {t.correct}/{t.total} ({t.rate}%)
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Answer Review Section Header */}
       <div style={{
@@ -235,7 +315,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
                 </div>
               )}
 
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 500, marginBottom: '12px', whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: q.questionText }} />
+              <h4 style={{ fontSize: '1.05rem', fontWeight: 500, marginBottom: '12px', whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: sanitizeHtml(q.questionText) }} />
 
               {/* Question Translation Box */}
               {showTransMap[q.id] && (
@@ -308,7 +388,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
                       }}>
                         {opt.id}
                       </span>
-                      <span dangerouslySetInnerHTML={{ __html: opt.text }} />
+                      <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(opt.text) }} />
                     </div>
                   );
                 })}

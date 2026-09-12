@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Clock, Play } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Dashboard } from './components/Dashboard';
-import { QuizRunner } from './components/QuizRunner';
-import { QuizResult } from './components/QuizResult';
-import { MistakeNotebook } from './components/MistakeNotebook';
-import { CustomExamBuilder } from './components/CustomExamBuilder';
-import { ExamCatalogPage } from './pages/ExamCatalogPage';
-import { HistoryStatsPage } from './pages/HistoryStatsPage';
-import { DictionaryPage } from './pages/DictionaryPage';
+import { LoadingFallback } from './components/LoadingFallback';
+import { SettingsModal } from './components/SettingsModal';
 import { SAMPLE_EXAM_SETS } from './data/questionBank';
+import { storageService } from './services/storageService';
 import type { 
   ExamSet, 
   UserAttempt, 
   UserAnswerRecord, 
   SavedMistake, 
   UserStats, 
-  Question,
-  SavedWord,
-  PageTab
+  Question, 
+  SavedWord, 
+  PageTab 
 } from './types/quiz';
+
+// Lazy loaded views for optimal bundle splitting and performance
+const QuizRunner = lazy(() => import('./components/QuizRunner').then(m => ({ default: m.QuizRunner })));
+const QuizResult = lazy(() => import('./components/QuizResult').then(m => ({ default: m.QuizResult })));
+const MistakeNotebook = lazy(() => import('./components/MistakeNotebook').then(m => ({ default: m.MistakeNotebook })));
+const CustomExamBuilder = lazy(() => import('./components/CustomExamBuilder').then(m => ({ default: m.CustomExamBuilder })));
+const ExamCatalogPage = lazy(() => import('./pages/ExamCatalogPage').then(m => ({ default: m.ExamCatalogPage })));
+const HistoryStatsPage = lazy(() => import('./pages/HistoryStatsPage').then(m => ({ default: m.HistoryStatsPage })));
+const DictionaryPage = lazy(() => import('./pages/DictionaryPage').then(m => ({ default: m.DictionaryPage })));
 
 // URL Path to View & Tab Mappings
 const TAB_TO_PATH: Record<string, string> = {
@@ -47,8 +52,9 @@ const PATH_TO_VIEW: Record<string, PageTab | 'runner' | 'result'> = {
 export const App: React.FC = () => {
   // Theme state
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('eq_theme') === 'dark';
+    return storageService.getTheme() === 'dark';
   });
+  const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
 
   // Initial path resolution from browser address bar
   const getInitialView = (): { tab: PageTab; view: PageTab | 'runner' | 'result' } => {
@@ -74,82 +80,45 @@ export const App: React.FC = () => {
   const [lastAttemptTime, setLastAttemptTime] = useState<number>(0);
 
   // Active In-Progress Session State
-  const [activeSession, setActiveSession] = useState<{
-    examSetId: string;
-    examTitle: string;
-    currentIndex: number;
-    answers: Record<string, string>;
-    timeElapsedSeconds: number;
-    lastUpdated: string;
-  } | null>(() => {
-    try {
-      const saved = localStorage.getItem('on_av_active_session');
-      return saved ? JSON.parse(saved) : null;
-    } catch (_e) {
-      return null;
-    }
+  const [activeSession, setActiveSession] = useState<any>(() => {
+    return storageService.getActiveSession();
   });
 
   // Sync activeSession whenever currentView changes
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('on_av_active_session');
-      setActiveSession(saved ? JSON.parse(saved) : null);
-    } catch (_e) {}
+    setActiveSession(storageService.getActiveSession());
   }, [currentView]);
 
-  // Storage States
+  // Storage States initialized from storageService
   const [examSets, setExamSets] = useState<ExamSet[]>(() => {
-    const savedCustom = localStorage.getItem('eq_custom_exams');
-    if (savedCustom) {
-      try {
-        const parsed = JSON.parse(savedCustom);
-        return [...SAMPLE_EXAM_SETS, ...parsed];
-      } catch (e) {
-        return SAMPLE_EXAM_SETS;
-      }
-    }
-    return SAMPLE_EXAM_SETS;
+    const custom = storageService.getCustomExams();
+    return [...SAMPLE_EXAM_SETS, ...custom];
   });
 
   const [attempts, setAttempts] = useState<UserAttempt[]>(() => {
-    const saved = localStorage.getItem('eq_attempts');
-    return saved ? JSON.parse(saved) : [];
+    return storageService.getAttempts();
   });
 
   const [mistakes, setMistakes] = useState<SavedMistake[]>(() => {
-    const saved = localStorage.getItem('eq_mistakes');
-    return saved ? JSON.parse(saved) : [];
+    return storageService.getMistakes();
   });
 
   const [savedWords, setSavedWords] = useState<SavedWord[]>(() => {
-    const saved = localStorage.getItem('eq_saved_words');
-    return saved ? JSON.parse(saved) : [];
+    return storageService.getSavedWords();
   });
 
   const [stats, setStats] = useState<UserStats>(() => {
-    const saved = localStorage.getItem('eq_stats');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
-    }
-    return {
-      totalTestsTaken: 0,
-      totalQuestionsAnswered: 0,
-      correctAnswersCount: 0,
-      streakDays: 1,
-      lastActiveDate: new Date().toISOString(),
-      skillAccuracy: {}
-    };
+    return storageService.getStats();
   });
 
   // Sync Theme with DOM
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('eq_theme', 'dark');
+      storageService.setTheme('dark');
     } else {
       document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('eq_theme', 'light');
+      storageService.setTheme('light');
     }
   }, [isDarkMode]);
 
@@ -203,21 +172,21 @@ export const App: React.FC = () => {
     }
   }, [currentView, activeExam, examSets]);
 
-  // Persist State to LocalStorage
+  // Persist State to storageService
   useEffect(() => {
-    localStorage.setItem('eq_attempts', JSON.stringify(attempts));
+    storageService.saveAttempts(attempts);
   }, [attempts]);
 
   useEffect(() => {
-    localStorage.setItem('eq_mistakes', JSON.stringify(mistakes));
+    storageService.saveMistakes(mistakes);
   }, [mistakes]);
 
   useEffect(() => {
-    localStorage.setItem('eq_saved_words', JSON.stringify(savedWords));
+    storageService.saveSavedWords(savedWords);
   }, [savedWords]);
 
   useEffect(() => {
-    localStorage.setItem('eq_stats', JSON.stringify(stats));
+    storageService.saveStats(stats);
   }, [stats]);
 
   // Handle Page Navigation Change from Navbar or Buttons
@@ -227,18 +196,15 @@ export const App: React.FC = () => {
 
   // Start Exam Handler
   const handleSelectExam = (exam: ExamSet) => {
-    try {
-      const saved = localStorage.getItem('on_av_active_session');
-      const session = saved ? JSON.parse(saved) : null;
-      if (session && session.examSetId !== exam.id) {
-        const confirmNew = window.confirm(`Bạn đang làm dở bài thi "${session.examTitle}". Bạn có muốn hủy bài cũ đó để bắt đầu bài thi mới này không?`);
-        if (!confirmNew) {
-          return;
-        }
-        localStorage.removeItem('on_av_active_session');
-        setActiveSession(null);
+    const session = storageService.getActiveSession() as any;
+    if (session && (session.examSetId !== exam.id && session.examId !== exam.id)) {
+      const confirmNew = window.confirm(`Bạn đang làm dở bài thi "${session.examTitle || 'trước đó'}". Bạn có muốn hủy bài cũ đó để bắt đầu bài thi mới này không?`);
+      if (!confirmNew) {
+        return;
       }
-    } catch (_e) {}
+      storageService.clearActiveSession();
+      setActiveSession(null);
+    }
 
     setActiveExam(exam);
     navigateToView('runner');
@@ -338,8 +304,8 @@ export const App: React.FC = () => {
   // Save Custom Exam Handler
   const handleSaveNewExam = (newExam: ExamSet) => {
     setExamSets(prev => [newExam, ...prev]);
-    const customOnly = examSets.filter(e => e.id.startsWith('custom-exam-'));
-    localStorage.setItem('eq_custom_exams', JSON.stringify([...customOnly, newExam]));
+    const customOnly = examSets.filter(e => e.id.startsWith('custom-exam-') || e.id.startsWith('custom-'));
+    storageService.saveCustomExams([...customOnly, newExam]);
     handleTabChange('catalog');
   };
 
@@ -352,6 +318,10 @@ export const App: React.FC = () => {
       setLastAttemptTime(attempt.timeSpentSeconds);
       navigateToView('result');
     }
+  };
+
+  const handleToggleMistakeMastered = (questionId: string) => {
+    setMistakes(prev => prev.map(m => m.question.id === questionId ? { ...m, mastered: !m.mastered } : m));
   };
 
   // Word notebook handlers
@@ -379,6 +349,7 @@ export const App: React.FC = () => {
           stats={stats}
           mistakesCount={mistakes.length}
           savedWordsCount={savedWords.length}
+          onOpenSettings={() => setIsSettingsOpen(true)}
         />
       )}
 
@@ -413,10 +384,10 @@ export const App: React.FC = () => {
             </div>
             <div>
               <div style={{ fontWeight: 700, fontSize: '0.95rem', letterSpacing: 'normal', fontFamily: 'var(--font-sans)' }}>
-                ⚡ Bài thi đang làm dở: {activeSession.examTitle}
+                ⚡ Bài thi đang làm dở: {activeSession.examTitle || 'Bài làm trước đó'}
               </div>
               <div style={{ fontSize: '0.82rem', opacity: 0.9, marginTop: '2px', letterSpacing: 'normal', fontFamily: 'var(--font-sans)' }}>
-                Đã trả lời {Object.values(activeSession.answers || {}).filter(v => v !== null).length} câu • Thời gian làm bài: {Math.floor((activeSession.timeElapsedSeconds || 0) / 60).toString().padStart(2, '0')}:{((activeSession.timeElapsedSeconds || 0) % 60).toString().padStart(2, '0')}
+                Đã trả lời {Object.values(activeSession.answers || activeSession.selectedAnswers || {}).filter(v => v !== null).length} câu • Thời gian làm bài: {Math.floor((activeSession.timeElapsedSeconds || 0) / 60).toString().padStart(2, '0')}:{((activeSession.timeElapsedSeconds || 0) % 60).toString().padStart(2, '0')}
               </div>
             </div>
           </div>
@@ -424,7 +395,8 @@ export const App: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <button
               onClick={() => {
-                const found = examSets.find(e => e.id === activeSession.examSetId);
+                const targetExamId = activeSession.examSetId || activeSession.examId;
+                const found = examSets.find(e => e.id === targetExamId);
                 if (found) {
                   setActiveExam(found);
                   navigateToView('runner');
@@ -455,7 +427,7 @@ export const App: React.FC = () => {
             <button
               onClick={() => {
                 if (window.confirm('Bạn có chắc chắn muốn hủy bài thi đang làm dở này không?')) {
-                  localStorage.removeItem('on_av_active_session');
+                  storageService.clearActiveSession();
                   setActiveSession(null);
                 }
               }}
@@ -479,76 +451,113 @@ export const App: React.FC = () => {
 
       {/* Main View Router For Individual Pages */}
       <main style={{ flex: 1 }}>
-        {currentView === 'dashboard' && (
-          <Dashboard
-            examSets={examSets}
-            onSelectExam={handleSelectExam}
-            attempts={attempts}
-            stats={stats}
-          />
-        )}
+        <Suspense fallback={<LoadingFallback />}>
+          {currentView === 'dashboard' && (
+            <Dashboard
+              examSets={examSets}
+              onSelectExam={handleSelectExam}
+              attempts={attempts}
+              stats={stats}
+              activeSession={activeSession}
+              onResumeActiveSession={() => {
+                const targetExamId = activeSession?.examSetId || activeSession?.examId;
+                const found = examSets.find(e => e.id === targetExamId);
+                if (found) {
+                  setActiveExam(found);
+                  navigateToView('runner');
+                }
+              }}
+              onNavigateTab={(tab) => handleTabChange(tab)}
+              mistakesCount={mistakes.length}
+              savedWordsCount={savedWords.length}
+            />
+          )}
 
-        {currentView === 'catalog' && (
-          <ExamCatalogPage
-            examSets={examSets}
-            onSelectExam={handleSelectExam}
-          />
-        )}
+          {currentView === 'catalog' && (
+            <ExamCatalogPage
+              examSets={examSets}
+              onSelectExam={handleSelectExam}
+            />
+          )}
 
-        {currentView === 'mistakes' && (
-          <MistakeNotebook
-            mistakes={mistakes}
-            onRemoveMistake={handleRemoveMistake}
-            onPracticeMistakes={handlePracticeMistakes}
-          />
-        )}
+          {currentView === 'mistakes' && (
+            <MistakeNotebook
+              mistakes={mistakes}
+              onRemoveMistake={handleRemoveMistake}
+              onPracticeMistakes={handlePracticeMistakes}
+              onToggleMastered={handleToggleMistakeMastered}
+            />
+          )}
 
-        {currentView === 'history' && (
-          <HistoryStatsPage
-            attempts={attempts}
-            stats={stats}
-            examSets={examSets}
-            onSelectExam={handleSelectExam}
-            onViewResult={handleViewPastAttempt}
-            onClearHistory={() => setAttempts([])}
-          />
-        )}
+          {currentView === 'history' && (
+            <HistoryStatsPage
+              attempts={attempts}
+              stats={stats}
+              examSets={examSets}
+              onSelectExam={handleSelectExam}
+              onViewResult={handleViewPastAttempt}
+              onClearHistory={() => setAttempts([])}
+            />
+          )}
 
-        {currentView === 'dictionary' && (
-          <DictionaryPage
-            savedWords={savedWords}
-            onSaveWord={handleSaveWord}
-            onRemoveWord={handleRemoveWord}
-          />
-        )}
+          {currentView === 'dictionary' && (
+            <DictionaryPage
+              savedWords={savedWords}
+              onSaveWord={handleSaveWord}
+              onRemoveWord={handleRemoveWord}
+            />
+          )}
 
-        {currentView === 'builder' && (
-          <CustomExamBuilder
-            onSaveNewExam={handleSaveNewExam}
-          />
-        )}
+          {currentView === 'builder' && (
+            <CustomExamBuilder
+              onSaveNewExam={handleSaveNewExam}
+            />
+          )}
 
-        {currentView === 'runner' && activeExam && (
-          <QuizRunner
-            exam={activeExam}
-            onFinishExam={handleFinishExam}
-            onExit={() => handleTabChange('dashboard')}
-          />
-        )}
+          {currentView === 'runner' && activeExam && (
+            <QuizRunner
+              exam={activeExam}
+              onFinishExam={handleFinishExam}
+              onExit={() => handleTabChange('dashboard')}
+            />
+          )}
 
-        {currentView === 'result' && activeExam && (
-          <QuizResult
-            exam={activeExam}
-            answers={lastAttemptAnswers}
-            timeSpentSeconds={lastAttemptTime}
-            onRetake={() => navigateToView('runner')}
-            onGoHome={() => handleTabChange('dashboard')}
-            onOpenMistakes={() => handleTabChange('mistakes')}
-            onSaveMistakeQuestion={handleSaveMistakeQuestion}
-            savedMistakesIds={mistakes.map(m => m.question.id)}
-          />
-        )}
+          {currentView === 'result' && activeExam && (
+            <QuizResult
+              exam={activeExam}
+              answers={lastAttemptAnswers}
+              timeSpentSeconds={lastAttemptTime}
+              onRetake={() => navigateToView('runner')}
+              onGoHome={() => handleTabChange('dashboard')}
+              onOpenMistakes={() => handleTabChange('mistakes')}
+              onSaveMistakeQuestion={handleSaveMistakeQuestion}
+              savedMistakesIds={mistakes.map(m => m.question.id)}
+            />
+          )}
+        </Suspense>
       </main>
+
+      {/* Settings Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        onResetAllData={() => {
+          storageService.clearAllData();
+          setAttempts([]);
+          setMistakes([]);
+          setSavedWords([]);
+          setStats(storageService.getStats());
+        }}
+        onDataRestored={() => {
+          setAttempts(storageService.getAttempts());
+          setMistakes(storageService.getMistakes());
+          setSavedWords(storageService.getSavedWords());
+          setStats(storageService.getStats());
+          setExamSets([...SAMPLE_EXAM_SETS, ...storageService.getCustomExams()]);
+        }}
+      />
 
       {/* Footer */}
       {currentView !== 'runner' && (

@@ -15,6 +15,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import type { SavedWord } from '../types/quiz';
+import { dictionaryService } from '../services/dictionaryService';
 
 interface DictionaryPageProps {
   savedWords: SavedWord[];
@@ -49,72 +50,6 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
     example?: string;
   } | null>(null);
 
-  // Fast built-in offline dictionary database for instant lookup
-  const BUILTIN_DICT: Record<string, {
-    phonetic: string;
-    partOfSpeech: string;
-    definition: string;
-    translation: string;
-    example: string;
-  }> = {
-    'biodiversity': {
-      phonetic: '/ˌbaɪ.oʊ.daɪˈvɝː.sə.t̬i/',
-      partOfSpeech: 'noun',
-      definition: 'The number and types of plants and animals that exist in a particular area.',
-      translation: 'Đa dạng sinh học - Sự phong phú của các loài động thực vật trong tự nhiên.',
-      example: 'Integrated ecotourism helps protect global biodiversity.'
-    },
-    'conservation': {
-      phonetic: '/ˌkɑːn.sɚˈveɪ.ʃən/',
-      partOfSpeech: 'noun',
-      definition: 'The protection of plants and animals, natural areas, or interesting buildings.',
-      translation: 'Sự bảo tồn - Bảo vệ tài nguyên thiên nhiên và di sản văn hóa.',
-      example: 'The government launched a national heritage conservation project.'
-    },
-    'sustainable': {
-      phonetic: '/səˈsteɪ.nə.bəl/',
-      partOfSpeech: 'adjective',
-      definition: 'Causing little or no damage to the environment and therefore able to continue for a long time.',
-      translation: 'Bền vững - Có thể duy trì lâu dài mà không gây tổn hại môi trường.',
-      example: 'Sustainable development balances economic growth with green practices.'
-    },
-    'ecotourism': {
-      phonetic: '/ˈiː.koʊˌtʊr.ɪ.zəm/',
-      partOfSpeech: 'noun',
-      definition: 'The business of organizing holidays to natural areas in a way that aims to cause as little damage as possible.',
-      translation: 'Du lịch sinh thái - Loại hình du lịch gắn liền với thiên nhiên và bảo vệ môi trường.',
-      example: 'Ecotourism is booming in national parks across Vietnam.'
-    },
-    'homogeneity': {
-      phonetic: '/ˌhoʊ.moʊ.dʒəˈniː.ə.t̬i/',
-      partOfSpeech: 'noun',
-      definition: 'The quality or state of being all the same or of the same kind.',
-      translation: 'Sự đồng nhất / Sự đồng đều.',
-      example: 'Cultural homogeneity represents a challenge to global diversity.'
-    },
-    'mitigate': {
-      phonetic: '/ˈmɪt̬.ə.ɡeɪt/',
-      partOfSpeech: 'verb',
-      definition: 'To make something less harmful, serious, or bad.',
-      translation: 'Giảm thiểu / Làm dịu bớt tác hại.',
-      example: 'Electric delivery fleets help mitigate carbon emissions.'
-    },
-    'intercede': {
-      phonetic: '/ˌɪn.t̬ɚˈsiːd/',
-      partOfSpeech: 'verb',
-      definition: 'To speak to someone in order to defend or help another person or stop a disagreement.',
-      translation: 'Can thiệp / Trông nom / Hòa giải.',
-      example: 'Authorities can intercede to prevent illegal poaching.'
-    },
-    'intermittent': {
-      phonetic: '/ˌɪn.t̬ɚˈmɪt.ənt/',
-      partOfSpeech: 'adjective',
-      definition: 'Not happening regularly or continuously; stopping and starting repeatedly.',
-      translation: 'Gián đoạn / Không liên tục (theo thời tiết).',
-      example: 'The intermittent nature of solar energy presents grid challenges.'
-    }
-  };
-
   const handleSearch = async (e?: React.FormEvent, targetWord?: string) => {
     if (e) e.preventDefault();
     const query = targetWord || searchTerm;
@@ -124,52 +59,26 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
     setIsSearching(true);
     setIsNotFound(false);
 
-    // 1. Check local built-in dictionary
-    if (BUILTIN_DICT[cleanWord]) {
-      const item = BUILTIN_DICT[cleanWord];
-      setWordResult({
-        word: cleanWord,
-        phonetic: item.phonetic,
-        partOfSpeech: item.partOfSpeech,
-        definition: item.definition,
-        translation: item.translation,
-        example: item.example
-      });
-      setIsSearching(false);
-      return;
-    }
-
-    // 2. Try online Free Dictionary API for real English words
+    // 1. Query unified dictionary service (in-memory cache + offline database + online fallback)
     try {
-      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(cleanWord)}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) {
-          const entry = data[0];
-          const phonetic = entry.phonetic || (entry.phonetics && entry.phonetics[0] ? entry.phonetics[0].text : `/${cleanWord}/`);
-          const meaning = entry.meanings && entry.meanings[0];
-          const pos = meaning ? meaning.partOfSpeech : 'vocabulary';
-          const defObj = meaning && meaning.definitions ? meaning.definitions[0] : null;
-          const def = defObj ? defObj.definition : `English word: ${cleanWord}`;
-          const ex = defObj && defObj.example ? defObj.example : `Contextual sentence containing "${cleanWord}".`;
-
-          setWordResult({
-            word: cleanWord,
-            phonetic,
-            partOfSpeech: pos,
-            definition: def,
-            translation: `Bản dịch Tiếng Việt cho từ "${cleanWord}".`,
-            example: ex
-          });
-          setIsSearching(false);
-          return;
-        }
+      const match = await dictionaryService.lookup(cleanWord);
+      if (match) {
+        setWordResult({
+          word: match.word,
+          phonetic: match.phonetic || `/${cleanWord}/`,
+          partOfSpeech: match.partOfSpeech || 'từ vựng',
+          definition: match.definitionEn || `Từ vựng tiếng Anh: "${cleanWord}"`,
+          translation: match.translationVi || `Bản dịch Tiếng Việt cho từ "${cleanWord}".`,
+          example: (match.examples && match.examples[0]) || `Ví dụ áp dụng từ "${cleanWord}".`
+        });
+        setIsSearching(false);
+        return;
       }
-    } catch (err) {
-      // Network or API failure fallback
+    } catch {
+      // Fallback
     }
 
-    // 3. Word not found or gibberish (e.g. "gkfhk")
+    // 2. Word not found
     setWordResult(null);
     setNotFoundWord(cleanWord);
     setIsNotFound(true);
@@ -177,13 +86,7 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
   };
 
   const handlePlayAudio = (text: string) => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
-    }
+    dictionaryService.speak(text);
   };
 
   const isSaved = wordResult ? savedWords.some(w => w.word.toLowerCase() === wordResult.word.toLowerCase()) : false;

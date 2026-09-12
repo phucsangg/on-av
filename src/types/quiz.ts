@@ -80,6 +80,8 @@ export interface SavedMistake {
   question: Question;
   addedAt: string;
   userWrongAnswersCount: number;
+  mastered?: boolean;
+  notes?: string;
 }
 
 export interface UserStats {

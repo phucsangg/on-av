@@ -10,7 +10,8 @@ import {
   Award,
   BookOpen,
   History,
-  Languages
+  Languages,
+  Settings
 } from 'lucide-react';
 import type { UserStats, PageTab } from '../types/quiz';
 
@@ -22,6 +23,7 @@ interface NavbarProps {
   stats: UserStats;
   mistakesCount: number;
   savedWordsCount?: number;
+  onOpenSettings?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -31,15 +33,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsDarkMode,
   stats,
   mistakesCount,
-  savedWordsCount = 0
+  savedWordsCount = 0,
+  onOpenSettings
 }) => {
-  const tabs: { id: PageTab; label: string; icon: React.ReactNode; badge?: number }[] = [
-    { id: 'dashboard', label: 'Trang chủ', icon: <Home size={16} /> },
-    { id: 'catalog', label: 'Kho Đề Thi', icon: <BookOpen size={16} /> },
-    { id: 'mistakes', label: 'Sổ câu sai', icon: <BookMarked size={16} />, badge: mistakesCount },
-    { id: 'history', label: 'Lịch sử & Thống kê', icon: <History size={16} /> },
-    { id: 'dictionary', label: 'Từ điển', icon: <Languages size={16} />, badge: savedWordsCount },
-    { id: 'builder', label: 'Tạo đề thi', icon: <PlusCircle size={16} /> }
+  const tabs: { id: PageTab; label: string; shortLabel: string; icon: React.ReactNode; badge?: number }[] = [
+    { id: 'dashboard', label: 'Trang chủ', shortLabel: 'Trang chủ', icon: <Home size={16} /> },
+    { id: 'catalog', label: 'Kho Đề Thi', shortLabel: 'Kho đề', icon: <BookOpen size={16} /> },
+    { id: 'mistakes', label: 'Sổ câu sai', shortLabel: 'Câu sai', icon: <BookMarked size={16} />, badge: mistakesCount },
+    { id: 'dictionary', label: 'Từ điển', shortLabel: 'Từ điển', icon: <Languages size={16} />, badge: savedWordsCount },
+    { id: 'history', label: 'Thống kê', shortLabel: 'Thống kê', icon: <History size={16} /> },
+    { id: 'builder', label: 'Tạo đề thi', shortLabel: 'Tạo đề', icon: <PlusCircle size={16} /> }
   ];
 
   return (
@@ -183,6 +186,30 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>{stats.correctAnswersCount}/{stats.totalQuestionsAnswered} câu</span>
             </div>
 
+            {/* Settings Button */}
+            {onOpenSettings && (
+              <button
+                onClick={onOpenSettings}
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  border: '1px solid var(--border-light)',
+                  background: 'var(--bg-subtle)',
+                  color: 'var(--text-main)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                title="Cài đặt & Sao lưu dữ liệu"
+                aria-label="Cài đặt & Sao lưu dữ liệu"
+              >
+                <Settings size={18} />
+              </button>
+            )}
+
             {/* Dark / Light Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
@@ -200,6 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 transition: 'all 0.2s ease'
               }}
               title={isDarkMode ? "Chuyển sang Chế độ Sáng" : "Chuyển sang Chế độ Tối"}
+              aria-label={isDarkMode ? "Chuyển sang Chế độ Sáng" : "Chuyển sang Chế độ Tối"}
             >
               {isDarkMode ? <Sun size={18} color="#f59e0b" /> : <Moon size={18} color="#4f46e5" />}
             </button>
@@ -212,23 +240,26 @@ export const Navbar: React.FC<NavbarProps> = ({
         className="mobile-bottom-nav"
         style={{
           position: 'fixed',
-          bottom: '16px',
+          bottom: '12px',
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 100,
           background: 'var(--bg-card)',
           backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           border: '1px solid var(--border-light)',
           borderRadius: 'var(--radius-pill)',
-          padding: '6px 12px',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+          padding: '6px 10px',
+          boxShadow: '0 12px 36px rgba(0, 0, 0, 0.25)',
           display: 'none', // Controlled via CSS media query
           alignItems: 'center',
-          gap: '8px',
-          maxWidth: '92vw'
+          gap: '4px',
+          maxWidth: '96vw',
+          width: 'max-content'
         }}
+        aria-label="Thanh điều hướng di động"
       >
-        {tabs.map(tab => {
+        {tabs.slice(0, 5).map(tab => {
           const isActive = activeTab === tab.id;
           return (
             <button
@@ -238,28 +269,34 @@ export const Navbar: React.FC<NavbarProps> = ({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '2px',
                 padding: '6px 10px',
+                minWidth: '54px',
+                minHeight: '44px',
                 fontSize: '0.68rem',
                 fontWeight: 700,
                 borderRadius: 'var(--radius-md)',
                 border: 'none',
-                background: isActive ? 'rgba(79, 70, 229, 0.12)' : 'transparent',
-                color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)',
+                background: isActive ? 'var(--brand-gradient)' : 'transparent',
+                color: isActive ? '#fff' : 'var(--text-muted)',
                 cursor: 'pointer',
-                position: 'relative'
+                position: 'relative',
+                transition: 'all 0.2s ease'
               }}
+              aria-label={tab.label}
+              aria-current={isActive ? 'page' : undefined}
             >
               {tab.icon}
-              <span style={{ whiteSpace: 'nowrap' }}>{tab.label.split(' ')[0]}</span>
+              <span style={{ whiteSpace: 'nowrap' }}>{tab.shortLabel}</span>
 
               {tab.badge !== undefined && tab.badge > 0 && (
                 <span style={{
                   position: 'absolute',
                   top: '2px',
                   right: '4px',
-                  background: 'var(--danger)',
-                  color: '#fff',
+                  background: isActive ? '#fff' : 'var(--danger)',
+                  color: isActive ? 'var(--brand-primary)' : '#fff',
                   fontSize: '0.6rem',
                   fontWeight: 800,
                   borderRadius: '999px',
@@ -271,7 +308,36 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           );
         })}
+
+        {/* Mobile Settings Action */}
+        {onOpenSettings && (
+          <button
+            onClick={onOpenSettings}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '2px',
+              padding: '6px 8px',
+              minWidth: '44px',
+              minHeight: '44px',
+              fontSize: '0.68rem',
+              fontWeight: 700,
+              borderRadius: 'var(--radius-md)',
+              border: 'none',
+              background: 'transparent',
+              color: 'var(--text-muted)',
+              cursor: 'pointer'
+            }}
+            aria-label="Cài đặt"
+          >
+            <Settings size={16} />
+            <span style={{ whiteSpace: 'nowrap' }}>Cài đặt</span>
+          </button>
+        )}
       </nav>
     </>
   );
 };
+
