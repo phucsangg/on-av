@@ -355,14 +355,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     });
 
     if (terms.length === 0) {
-      // If text contains cloze blanks <mark>(1) ____________</mark>, render cleanly as React elements
-      const parts = formattedText.split(/(<mark>.*?<\/mark>)/gi);
+      // If text contains cloze blanks, <mark> tags, or <u> tags, render cleanly as React elements
+      const parts = formattedText.split(/(<mark>.*?<\/mark>|<u>.*?<\/u>)/gi);
       return (
         <>
           {parts.map((part, idx) => {
             if (part.startsWith('<mark>') && part.endsWith('</mark>')) {
               const content = part.slice(6, -7);
               return <mark key={idx}>{content}</mark>;
+            }
+            if (part.startsWith('<u>') && part.endsWith('</u>')) {
+              const content = part.slice(3, -4);
+              return <u key={idx}>{content}</u>;
             }
             return part;
           })}
@@ -379,7 +383,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       return t.phrase.includes(' ') ? escaped : `\\b${escaped}\\b`;
     });
 
-    const regex = new RegExp(`(<mark>.*?</mark>|${patterns.join('|')})`, 'gi');
+    const regex = new RegExp(`(<mark>.*?</mark>|<u>.*?<\/u>|${patterns.join('|')})`, 'gi');
     const parts = formattedText.split(regex);
     let hasAutoHighlighted = false;
 
@@ -391,6 +395,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           if (part.startsWith('<mark>') && part.endsWith('</mark>')) {
             const content = part.slice(6, -7);
             return <mark key={idx}>{content}</mark>;
+          }
+
+          if (part.startsWith('<u>') && part.endsWith('</u>')) {
+            const content = part.slice(3, -4);
+            return <u key={idx}>{content}</u>;
           }
 
           const matchedTerm = terms.find(t => t.phrase.toLowerCase() === part.toLowerCase());

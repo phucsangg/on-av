@@ -20,7 +20,7 @@ Life does not end because you fail a chemistry test or oversleep and have a bad 
 
 The ability to let go of things that hold you back is essential for overcoming life’s challenges. [I] High school differs greatly from elementary or middle school. [II] You may find yourself staying up late to study, spending weekends doing homework. [III] There will be months filled with tests and exams, which can lead to significant stress and anxiety. [IV]
 
-However, these years can also be some of the most enjoyable in your life. Remember to have fun and appreciate the moments between studying and schoolwork. You will never be sixteen or seventeen again, laughing with friends at a party or swimming early in the morning on a cold day. Time moves forward, so do not be afraid to step outside your comfort zone. <mark>It is better to regret something you did than to wish you had tried.</mark> Fear should not hold you back from living fully.
+However, these years can also be some of the most enjoyable in your life. Remember to have fun and appreciate the moments between studying and schoolwork. You will never be sixteen or seventeen again, laughing with friends at a party or swimming early in the morning on a cold day. Time moves forward, so do not be afraid to step outside your comfort zone. <u>It is better to regret something you did than to wish you had tried.</u> Fear should not hold you back from living fully.
 
 This period of life is also a perfect time to meet new people and build meaningful friendships. You will meet individuals from different backgrounds and take part in <mark>thought-provoking</mark> conversations that challenge your way of thinking. Through these experiences, you will learn the true value of friendship and connection.
 

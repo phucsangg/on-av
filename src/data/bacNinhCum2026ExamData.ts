@@ -8,7 +8,7 @@ Urban areas often face challenges due to high population density and limited nat
 
 Moreover, green spaces play a crucial role in mitigating urban heat and improving air quality. Trees and plants absorb carbon dioxide and release oxygen, which can help combat pollution. Additionally, they offer shade and cooling effects, making cities more livable during hot weather.
 
-Despite the benefits, the creation and maintenance of urban green spaces are not without challenges. Limited land availability, budget constraints, and competing development interests can hinder the establishment of these areas. Nonetheless, with effective planning and community involvement, cities can develop sustainable green spaces that serve their residents well.
+Despite the benefits, the creation and maintenance of urban green spaces are not without challenges. Limited land availability, budget constraints, and competing development interests can hinder the establishment of these areas. <u>Nonetheless, with effective planning and community involvement, cities can develop sustainable green spaces that serve their residents well.</u>
 
 In conclusion, urban green spaces are essential for enhancing the well-being of city residents, improving environmental quality, and fostering community interaction. Prioritizing their development is crucial for building healthier and more sustainable urban environments.`;
 
@@ -34,7 +34,7 @@ A primary reason for these mental health concerns is the tendency for social med
 
 There is also a growing body of research suggesting a link between social media use and decreased attention spans. When users frequently switch between apps and notifications, their ability to focus for extended periods may diminish. This shift in attention can interfere with productivity, especially in academic and professional settings, where sustained focus is essential.
 
-Addressing these challenges requires a multi-faceted approach. Some mental health professionals suggest limiting screen time and setting boundaries, such as "device-free" hours before bedtime. Others recommend engaging in offline activities, like reading or exercising, to minimize reliance on social media while fostering healthier habits. According to psychologists, such strategies can enhance mental resilience and allow for more meaningful, balanced relationships.`;
+<u>Addressing these challenges requires a multi-faceted approach.</u> Some mental health professionals suggest limiting screen time and setting boundaries, such as "device-free" hours before bedtime. Others recommend engaging in offline activities, like reading or exercising, to minimize reliance on social media while fostering healthier habits. According to psychologists, such strategies can enhance mental resilience and allow for more meaningful, balanced relationships.`;
 
 const PASSAGE_SOCIAL_MEDIA_TRANS = `[ĐOẠN 1] Trong những năm gần đây, các nền tảng mạng xã hội đã trở thành một phần trung tâm của đời sống hằng ngày, mang đến cho người dùng vô số cách để kết nối, chia sẻ và giao tiếp. Mặc dù các nền tảng này đem lại nhiều lợi ích, các chuyên gia đã ghi nhận những mối lo ngày càng tăng về tác động của chúng đối với sức khỏe tâm thần, đặc biệt là ở những người trẻ tuổi. Các nghiên cứu cho thấy việc sử dụng mạng xã hội quá mức có thể góp phần tạo nên cảm giác lo âu, trầm cảm và cô đơn, mặc dù mục đích ban đầu của nó là thúc đẩy sự kết nối và tương tác xã hội.
 

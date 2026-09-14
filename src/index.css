@@ -141,19 +141,26 @@ mark:not([class*="user-hl-"]) {
   box-shadow: 0 2px 10px rgba(99, 102, 241, 0.5) !important;
 }
 
-/* Pronunciation Underlined Letter Highlight */
+/* Pronunciation & Reading Target Underline Highlight */
 u {
   text-decoration: underline !important;
   text-decoration-color: var(--brand-primary) !important;
   text-decoration-thickness: 2.5px !important;
-  text-underline-offset: 3px !important;
-  font-weight: 800 !important;
+  text-underline-offset: 4px !important;
+  font-weight: 700 !important;
   color: var(--brand-primary) !important;
+  background: rgba(79, 70, 229, 0.08) !important;
+  padding: 1px 4px !important;
+  border-radius: 4px !important;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  transition: all 0.2s ease !important;
 }
 
 [data-theme='dark'] u {
-  color: #818cf8 !important;
+  color: #a5b4fc !important;
   text-decoration-color: #818cf8 !important;
+  background: rgba(129, 140, 248, 0.16) !important;
 }
 
 /* User Drag & Select Highlighter System */

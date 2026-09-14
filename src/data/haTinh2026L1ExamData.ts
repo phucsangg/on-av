@@ -40,7 +40,7 @@ In older horror films, when protagonists were in desperation, it was difficult o
 
 Horror films love uninhabited places. This could be an abandoned hospital, a scary empty house or a ghost town. There's something about lonely, empty places. What was it like when people lived there? Why did they leave? Maybe it's also that they are so quiet, which can be very scary too. Of course, abandoned places are also handy for horror film directors in that it's more believable that you will have no phone coverage there either.
 
-The hero has been driving for hours. It's night-time and it's beginning to rain. Suddenly he sees a person on the side of the road. Maybe the company will keep him awake? <mark>In horror films, giving anybody a ride is asking for trouble.</mark> The hero always does it, and it always ends badly.
+The hero has been driving for hours. It's night-time and it's beginning to rain. Suddenly he sees a person on the side of the road. Maybe the company will keep him awake? <u>In horror films, giving anybody a ride is asking for trouble.</u> The hero always does it, and it always ends badly.
 
 This horror film cliché was especially popular with horror films of the late 20th century. It starts with a group of teenagers all enjoying themselves, and it ends with everyone dead except one girl. At the beginning the girl is usually innocent, shy and not particularly strong. By the end, she has become the toughest and most resourceful person in the world. The last girl almost always wins in the end.`;
 
