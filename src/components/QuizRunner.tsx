@@ -382,7 +382,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       return t.phrase.includes(' ') ? escaped : `\\b${escaped}\\b`;
     });
 
-    const regex = new RegExp(`(<mark>.*?</mark>|<u>.*?<\/u>|${patterns.join('|')})`, 'gi');
+    const regex = new RegExp(`(<mark>.*?</mark>|<u>.*?</u>|${patterns.join('|')})`, 'gi');
     const parts = formattedText.split(regex);
     let hasAutoHighlighted = false;
 
