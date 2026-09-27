@@ -12,10 +12,14 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
-  ExternalLink
+  ExternalLink,
+  ArrowLeftRight,
+  Copy,
+  Check,
+  Loader2
 } from 'lucide-react';
 import type { SavedWord } from '../types/quiz';
-import { dictionaryService } from '../services/dictionaryService';
+import { dictionaryService, type UnifiedTranslationResult, type DictEntryGroup } from '../services/dictionaryService';
 
 interface DictionaryPageProps {
   savedWords: SavedWord[];
@@ -29,7 +33,7 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
   onRemoveWord
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState<'lookup' | 'saved' | 'flashcards'>('lookup');
+  const [activeTab, setActiveTab] = useState<'lookup' | 'translate' | 'saved' | 'flashcards'>('lookup');
   const [savedSearchQuery, setSavedSearchQuery] = useState('');
 
   // Flashcard state
@@ -48,12 +52,61 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
     definition: string;
     translation: string;
     example?: string;
+    dictEntries?: DictEntryGroup[];
+    source?: 'local' | 'api';
   } | null>(null);
+
+  // Dedicated Sentence & Paragraph Translation State (Powered by unified Google Translate API)
+  const [sourceLang, setSourceLang] = useState<string>('auto');
+  const [targetLang, setTargetLang] = useState<string>('vi');
+  const [translateInput, setTranslateInput] = useState<string>('');
+  const [translationResult, setTranslationResult] = useState<UnifiedTranslationResult | null>(null);
+  const [isTranslating, setIsTranslating] = useState<boolean>(false);
+  const [translateError, setTranslateError] = useState<string | null>(null);
+  const [translateCopied, setTranslateCopied] = useState<boolean>(false);
+
+  const handleTranslate = async (e?: React.FormEvent, customText?: string) => {
+    if (e) e.preventDefault();
+    const text = customText !== undefined ? customText : translateInput;
+    const trimmed = text.trim();
+    if (!trimmed) return;
+
+    setIsTranslating(true);
+    setTranslateError(null);
+
+    try {
+      const res = await dictionaryService.translate(trimmed, sourceLang, targetLang);
+      setTranslationResult(res);
+    } catch {
+      setTranslateError('Không thể thực hiện dịch thuật lúc này. Vui lòng kiểm tra kết nối mạng.');
+    } finally {
+      setIsTranslating(false);
+    }
+  };
+
+  const handleSwapLanguages = () => {
+    const nextSource = targetLang;
+    const nextTarget = sourceLang === 'auto' ? 'en' : sourceLang;
+    setSourceLang(nextSource);
+    setTargetLang(nextTarget);
+    if (translationResult?.translatedText) {
+      setTranslateInput(translationResult.translatedText);
+      setTranslationResult(null);
+    }
+  };
+
+  const handleCopyTranslated = () => {
+    if (translationResult?.translatedText) {
+      navigator.clipboard.writeText(translationResult.translatedText);
+      setTranslateCopied(true);
+      setTimeout(() => setTranslateCopied(false), 2000);
+    }
+  };
 
   const handleSearch = async (e?: React.FormEvent, targetWord?: string) => {
     if (e) e.preventDefault();
     const query = targetWord || searchTerm;
-    const cleanWord = query.trim().toLowerCase();
+    const cleanWord = query.trim();
     if (!cleanWord) return;
 
     setIsSearching(true);
@@ -69,7 +122,9 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
           partOfSpeech: match.partOfSpeech || 'từ vựng',
           definition: match.definitionEn || `Từ vựng tiếng Anh: "${cleanWord}"`,
           translation: match.translationVi || `Bản dịch Tiếng Việt cho từ "${cleanWord}".`,
-          example: (match.examples && match.examples[0]) || `Ví dụ áp dụng từ "${cleanWord}".`
+          example: (match.examples && match.examples[0]) || `Ví dụ áp dụng từ "${cleanWord}".`,
+          dictEntries: match.dictEntries,
+          source: match.source
         });
         setIsSearching(false);
         return;
@@ -163,7 +218,9 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
           background: 'var(--bg-subtle)',
           padding: '4px',
           borderRadius: 'var(--radius-lg)',
-          border: '1px solid var(--border-light)'
+          border: '1px solid var(--border-light)',
+          flexWrap: 'wrap',
+          gap: '4px'
         }}>
           <button
             onClick={() => setActiveTab('lookup')}
@@ -180,7 +237,25 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
               transition: 'all 0.2s ease'
             }}
           >
-            🔍 Tra Từ Mới
+            🔍 Tra Từ Vựng
+          </button>
+
+          <button
+            onClick={() => setActiveTab('translate')}
+            style={{
+              padding: '8px 16px',
+              fontSize: '0.875rem',
+              fontWeight: 700,
+              borderRadius: 'var(--radius-md)',
+              border: 'none',
+              background: activeTab === 'translate' ? 'var(--bg-card)' : 'transparent',
+              color: activeTab === 'translate' ? 'var(--brand-primary)' : 'var(--text-muted)',
+              boxShadow: activeTab === 'translate' ? 'var(--shadow-sm)' : 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            🌐 Dịch Văn Bản
           </button>
 
           <button
@@ -474,13 +549,49 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
                   background: 'var(--bg-subtle)',
                   borderRadius: 'var(--radius-lg)',
                   padding: '14px 18px',
-                  borderLeft: '4px solid var(--brand-primary)'
+                  borderLeft: '4px solid var(--brand-primary)',
+                  marginBottom: wordResult.dictEntries && wordResult.dictEntries.length > 0 ? '16px' : '0'
                 }}>
                   <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--brand-primary)', textTransform: 'uppercase', marginBottom: '4px' }}>
                     Ví dụ câu trong bài thi (Example Context)
                   </div>
                   <div style={{ fontSize: '0.925rem', fontStyle: 'italic', color: 'var(--text-main)' }}>
                     "{wordResult.example}"
+                  </div>
+                </div>
+              )}
+
+              {/* Alternative POS breakdown if available */}
+              {wordResult.dictEntries && wordResult.dictEntries.length > 0 && (
+                <div style={{
+                  background: 'var(--bg-subtle)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: '14px 18px',
+                  border: '1px solid var(--border-light)'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>
+                    Các nghĩa theo từ loại (Google Translate API)
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {wordResult.dictEntries.map((group, idx) => (
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                        <span style={{
+                          fontSize: '0.74rem',
+                          fontWeight: 700,
+                          background: 'rgba(79, 70, 229, 0.12)',
+                          color: 'var(--brand-primary)',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          minWidth: '65px',
+                          textAlign: 'center'
+                        }}>
+                          {group.pos}
+                        </span>
+                        <span style={{ color: 'var(--text-main)', fontSize: '0.9rem', fontWeight: 600 }}>
+                          {group.terms.slice(0, 6).join(', ')}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
@@ -496,6 +607,318 @@ export const DictionaryPage: React.FC<DictionaryPageProps> = ({
               </p>
             </div>
           )}
+        </div>
+      )}
+
+      {activeTab === 'translate' && (
+        <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          {/* Controls Bar */}
+          <div className="card" style={{
+            padding: '16px 22px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '14px',
+            border: '1px solid var(--border-light)'
+          }}>
+            {/* Language Selectors */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-muted)' }}>Từ:</span>
+                <select
+                  value={sourceLang}
+                  onChange={(e) => setSourceLang(e.target.value)}
+                  className="form-input"
+                  style={{ padding: '8px 12px', fontSize: '0.88rem', fontWeight: 600, minWidth: '150px' }}
+                >
+                  <option value="auto">🌐 Tự động nhận diện</option>
+                  <option value="en">🇬🇧 Tiếng Anh (English)</option>
+                  <option value="vi">🇻🇳 Tiếng Việt (Vietnamese)</option>
+                </select>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleSwapLanguages}
+                className="btn btn-secondary"
+                style={{ padding: '8px 12px', borderRadius: 'var(--radius-pill)', display: 'flex', alignItems: 'center', gap: '6px' }}
+                title="Đổi chiều dịch"
+              >
+                <ArrowLeftRight size={15} />
+              </button>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-muted)' }}>Sang:</span>
+                <select
+                  value={targetLang}
+                  onChange={(e) => setTargetLang(e.target.value)}
+                  className="form-input"
+                  style={{ padding: '8px 12px', fontSize: '0.88rem', fontWeight: 600, minWidth: '150px' }}
+                >
+                  <option value="vi">🇻🇳 Tiếng Việt (Vietnamese)</option>
+                  <option value="en">🇬🇧 Tiếng Anh (English)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Source API Indicator */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: 'rgba(79, 70, 229, 0.08)',
+              color: 'var(--brand-primary)',
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-pill)',
+              fontSize: '0.78rem',
+              fontWeight: 700,
+              border: '1px solid rgba(79, 70, 229, 0.2)'
+            }}>
+              <Sparkles size={14} />
+              <span>Động cơ dịch: Google Translate API (Nguồn Thống Nhất)</span>
+            </div>
+          </div>
+
+          {/* Translation Panels Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '20px'
+          }}>
+            {/* Input Panel */}
+            <div className="card" style={{ padding: '22px', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)' }}>
+                  Văn bản gốc ({sourceLang === 'auto' ? 'Tự động' : sourceLang.toUpperCase()})
+                </span>
+                {translateInput && (
+                  <button
+                    onClick={() => { setTranslateInput(''); setTranslationResult(null); }}
+                    className="btn btn-secondary"
+                    style={{ padding: '4px 10px', fontSize: '0.75rem' }}
+                  >
+                    Xóa
+                  </button>
+                )}
+              </div>
+
+              <textarea
+                value={translateInput}
+                onChange={(e) => setTranslateInput(e.target.value)}
+                placeholder="Nhập câu, đoạn văn hoặc bài đọc tiếng Anh cần dịch tại đây..."
+                rows={8}
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1.5px solid var(--border-light)',
+                  background: 'var(--bg-subtle)',
+                  color: 'var(--text-main)',
+                  fontSize: '0.98rem',
+                  lineHeight: 1.6,
+                  outline: 'none',
+                  resize: 'vertical',
+                  fontFamily: 'inherit',
+                  marginBottom: '16px'
+                }}
+              />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                    {translateInput.length} ký tự
+                  </span>
+                  {translateInput && (
+                    <button
+                      type="button"
+                      onClick={() => dictionaryService.speak(translateInput, sourceLang === 'vi' ? 'vi-VN' : 'en-US')}
+                      className="btn btn-secondary"
+                      style={{ padding: '6px', borderRadius: '50%', width: '32px', height: '32px' }}
+                      title="Nghe đọc bản gốc"
+                    >
+                      <Volume2 size={15} />
+                    </button>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => handleTranslate()}
+                  disabled={isTranslating || !translateInput.trim()}
+                  className="btn btn-primary"
+                  style={{ padding: '10px 24px', fontSize: '0.92rem', fontWeight: 800, gap: '8px' }}
+                >
+                  {isTranslating ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Đang dịch...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Languages size={16} />
+                      <span>Dịch Văn Bản</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Output Panel */}
+            <div className="card" style={{ padding: '22px', display: 'flex', flexDirection: 'column', background: 'var(--bg-surface)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--brand-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <CheckCircle2 size={16} /> Bản dịch ({targetLang.toUpperCase()})
+                </span>
+
+                {translationResult?.translatedText && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <button
+                      type="button"
+                      onClick={() => dictionaryService.speak(translationResult.translatedText, targetLang === 'vi' ? 'vi-VN' : 'en-US')}
+                      className="btn btn-secondary"
+                      style={{ padding: '6px', borderRadius: '50%', width: '32px', height: '32px' }}
+                      title="Nghe phát âm bản dịch"
+                    >
+                      <Volume2 size={15} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyTranslated}
+                      className="btn btn-secondary"
+                      style={{
+                        padding: '4px 10px',
+                        fontSize: '0.78rem',
+                        fontWeight: 700,
+                        gap: '4px',
+                        color: translateCopied ? 'var(--success)' : 'inherit'
+                      }}
+                      title="Sao chép bản dịch"
+                    >
+                      {translateCopied ? <Check size={13} color="var(--success)" /> : <Copy size={13} />}
+                      <span>{translateCopied ? 'Đã sao chép' : 'Sao chép'}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {isTranslating ? (
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '180px', color: 'var(--text-muted)' }}>
+                  <Loader2 size={36} className="animate-spin" style={{ color: 'var(--brand-primary)', marginBottom: '12px' }} />
+                  <p style={{ margin: 0, fontSize: '0.92rem', fontWeight: 600 }}>Google Translate đang xử lý dữ liệu...</p>
+                </div>
+              ) : translateError ? (
+                <div style={{
+                  padding: '16px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'var(--danger-bg)',
+                  color: 'var(--danger)',
+                  fontSize: '0.9rem',
+                  textAlign: 'center',
+                  margin: 'auto 0'
+                }}>
+                  {translateError}
+                </div>
+              ) : translationResult ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', flex: 1 }}>
+                  <div style={{
+                    padding: '16px',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--success-bg)',
+                    border: '1.5px solid var(--success-border)',
+                    fontSize: '1.05rem',
+                    lineHeight: 1.6,
+                    color: 'var(--text-main)',
+                    fontWeight: 600,
+                    whiteSpace: 'pre-wrap',
+                    minHeight: '140px'
+                  }}>
+                    {translationResult.translatedText}
+                  </div>
+
+                  {translationResult.phonetic && (
+                    <div style={{ fontSize: '0.88rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                      Phiên âm: <strong>{translationResult.phonetic}</strong>
+                    </div>
+                  )}
+
+                  {translationResult.dictEntries && translationResult.dictEntries.length > 0 && (
+                    <div style={{
+                      padding: '12px 14px',
+                      borderRadius: 'var(--radius-sm)',
+                      background: 'var(--bg-subtle)',
+                      border: '1px solid var(--border-light)'
+                    }}>
+                      <span style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--text-muted)', display: 'block', marginBottom: '8px' }}>
+                        Các nghĩa khác theo từ loại:
+                      </span>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {translationResult.dictEntries.map((group, idx) => (
+                          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
+                            <span style={{ fontSize: '0.72rem', fontWeight: 700, background: 'rgba(79, 70, 229, 0.1)', color: 'var(--brand-primary)', padding: '2px 6px', borderRadius: '4px' }}>
+                              {group.pos}
+                            </span>
+                            <span style={{ color: 'var(--text-main)' }}>{group.terms.slice(0, 5).join(', ')}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: '200px',
+                  color: 'var(--text-muted)',
+                  textAlign: 'center',
+                  padding: '24px'
+                }}>
+                  <Globe size={42} style={{ opacity: 0.35, marginBottom: '12px' }} />
+                  <p style={{ margin: 0, fontSize: '0.92rem', fontWeight: 600 }}>Kết quả dịch sẽ hiển thị tại đây</p>
+                  <span style={{ fontSize: '0.8rem', marginTop: '4px', opacity: 0.8 }}>Hỗ trợ dịch chuẩn xác mọi đoạn văn tiếng Anh & tiếng Việt</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Exam Samples */}
+          <div className="card" style={{ padding: '20px 24px', border: '1px solid var(--border-light)' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', display: 'block', marginBottom: '12px' }}>
+              💡 Câu mẫu thực tế từ đề thi tốt nghiệp THPT & TOEIC (Nhấp để thử):
+            </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {[
+                'Environmental protection requires concerted international cooperation.',
+                'Candidates must present their original identification card prior to the examination.',
+                'Technological advancements have significantly enhanced modern English learning efficiency.',
+                'Việc duy trì thói quen đọc sách tiếng Anh mỗi ngày giúp mở rộng vốn từ nhanh chóng.'
+              ].map((sample, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setTranslateInput(sample);
+                    handleTranslate(undefined, sample);
+                  }}
+                  className="btn btn-secondary"
+                  style={{
+                    padding: '8px 14px',
+                    fontSize: '0.82rem',
+                    textAlign: 'left',
+                    borderRadius: 'var(--radius-md)',
+                    border: '1px solid var(--border-light)',
+                    background: 'var(--bg-subtle)'
+                  }}
+                >
+                  "{sample}"
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 

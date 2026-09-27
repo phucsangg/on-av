@@ -21,7 +21,6 @@ import {
   Grid,
   Languages,
   Sparkles,
-  Search,
   Highlighter,
   Pause,
   Play
@@ -206,7 +205,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       const raw = selection.toString();
       const selectedText = raw.replace(/[\r\n]+/g, ' ').trim();
 
-      if (selectedText && selectedText.length >= 2 && selectedText.length <= 150) {
+      if (selectedText && selectedText.length >= 2 && selectedText.length <= 500) {
         const range = selection.getRangeAt(0);
         const rect = range.getBoundingClientRect();
         if (rect && rect.top > 0 && rect.left > 0) {
@@ -1676,19 +1675,19 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             <Highlighter size={13} /> Hồng
           </button>
 
-          {/* Dictionary Lookup Button (Always show for selections up to 60 chars) */}
-          {selectionPopup.text && selectionPopup.text.length <= 60 && (
+          {/* Dictionary / Translate Button (Supports single words, phrases & sentences up to 500 chars) */}
+          {selectionPopup.text && selectionPopup.text.length <= 500 && (
             <button
               onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openDictionary(selectionPopup.text.replace(/^[^\w]+|[^\w]+$/g, ''));
+                openDictionary(selectionPopup.text.trim());
                 setSelectionPopup(null);
               }}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openDictionary(selectionPopup.text.replace(/^[^\w]+|[^\w]+$/g, ''));
+                openDictionary(selectionPopup.text.trim());
                 setSelectionPopup(null);
               }}
               className="btn btn-primary"
@@ -1701,9 +1700,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 alignItems: 'center',
                 gap: '5px'
               }}
-              title="Tra từ điển Anh-Việt"
+              title={selectionPopup.text.includes(' ') || selectionPopup.text.length > 20 ? 'Dịch câu / cụm từ qua Google Translate' : 'Tra từ điển Anh - Việt'}
             >
-              <Search size={13} /> Tra từ
+              <Languages size={13} /> {selectionPopup.text.includes(' ') || selectionPopup.text.length > 20 ? 'Dịch' : 'Tra từ'}
             </button>
           )}
 
