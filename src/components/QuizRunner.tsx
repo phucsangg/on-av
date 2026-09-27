@@ -23,7 +23,9 @@ import {
   Sparkles,
   Highlighter,
   Pause,
-  Play
+  Play,
+  Keyboard,
+  EyeOff
 } from 'lucide-react';
 
 interface QuizRunnerProps {
@@ -72,6 +74,10 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
   const [isNavigatorOpen, setIsNavigatorOpen] = useState<boolean>(true);
   const [isGridModalOpen, setIsGridModalOpen] = useState<boolean>(false);
+  const [eliminatedOptions, setEliminatedOptions] = useState<Record<string, string[]>>({});
+  const [isShortcutsModalOpen, setIsShortcutsModalOpen] = useState<boolean>(false);
+  const [gridFilter, setGridFilter] = useState<'all' | 'unanswered' | 'flagged' | 'answered'>('all');
+  const [passageFontSize, setPassageFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
 
   // Refs and scroll handlers for long reading passages
   const passagePaneRef = React.useRef<HTMLDivElement>(null);
@@ -609,6 +615,34 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       ...prev,
       [currentQuestion.id]: prev[currentQuestion.id] === optionId ? null : optionId
     }));
+    // Auto-remove option from eliminated list if selected
+    setEliminatedOptions(prev => {
+      const currentList = prev[currentQuestion.id] || [];
+      if (currentList.includes(optionId)) {
+        return {
+          ...prev,
+          [currentQuestion.id]: currentList.filter(id => id !== optionId)
+        };
+      }
+      return prev;
+    });
+  }, [currentQuestion.id]);
+
+  const toggleEliminateOption = useCallback((optionId: 'A' | 'B' | 'C' | 'D', e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setEliminatedOptions(prev => {
+      const currentList = prev[currentQuestion.id] || [];
+      const isEliminated = currentList.includes(optionId);
+      return {
+        ...prev,
+        [currentQuestion.id]: isEliminated 
+          ? currentList.filter(id => id !== optionId) 
+          : [...currentList, optionId]
+      };
+    });
   }, [currentQuestion.id]);
 
   const toggleFlag = useCallback(() => {
@@ -618,12 +652,63 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     }));
   }, [currentQuestion.id]);
 
-  // Keyboard navigation shortcuts (1-4 / A-D for options, F for flag, Arrows for navigation)
+  const handleSpeech = useCallback(() => {
+    if ('speechSynthesis' in window) {
+      if (isSpeechSpeaking) {
+        window.speechSynthesis.cancel();
+        setIsSpeechSpeaking(false);
+        return;
+      }
+      const textToRead = currentQuestion.questionText.replace(/<[^>]*>?/gm, '');
+      const utterance = new SpeechSynthesisUtterance(textToRead);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      utterance.onend = () => setIsSpeechSpeaking(false);
+      setIsSpeechSpeaking(true);
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [currentQuestion.questionText, isSpeechSpeaking]);
+
+  // Keyboard navigation shortcuts (1-4 / A-D for options, F for flag, Arrows for navigation, T for translate, P for speech, ? for help)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isSubmitModalOpen || isDictOpen) return;
       // Don't trigger if user is typing in an input
       if (['input', 'textarea'].includes((e.target as HTMLElement)?.tagName?.toLowerCase())) return;
+
+      // Escape closes active modal
+      if (e.key === 'Escape') {
+        setIsShortcutsModalOpen(false);
+        setIsGridModalOpen(false);
+        return;
+      }
+
+      // Help toggle (?)
+      if (e.key === '?') {
+        setIsShortcutsModalOpen(prev => !prev);
+        return;
+      }
+
+      // Translation toggle (T)
+      if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.altKey) {
+        setShowQuestionTranslation(prev => !prev);
+        return;
+      }
+
+      // Speech pronunciation (P)
+      if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.altKey) {
+        handleSpeech();
+        return;
+      }
+
+      // Option elimination (Alt + 1..4 or Alt + A..D)
+      if (e.altKey) {
+        if (['1', 'a', 'A'].includes(e.key)) toggleEliminateOption('A');
+        if (['2', 'b', 'B'].includes(e.key)) toggleEliminateOption('B');
+        if (['3', 'c', 'C'].includes(e.key)) toggleEliminateOption('C');
+        if (['4', 'd', 'D'].includes(e.key)) toggleEliminateOption('D');
+        return;
+      }
 
       if (['a', 'A', '1'].includes(e.key)) handleSelectOption('A');
       if (['b', 'B', '2'].includes(e.key)) handleSelectOption('B');
@@ -640,24 +725,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, isSubmitModalOpen, isDictOpen, exam.questions.length, handleSelectOption, toggleFlag]);
-
-  const handleSpeech = () => {
-    if ('speechSynthesis' in window) {
-      if (isSpeechSpeaking) {
-        window.speechSynthesis.cancel();
-        setIsSpeechSpeaking(false);
-        return;
-      }
-      const textToRead = currentQuestion.questionText.replace(/<[^>]*>?/gm, '');
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.9;
-      utterance.onend = () => setIsSpeechSpeaking(false);
-      setIsSpeechSpeaking(true);
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  }, [currentIndex, isSubmitModalOpen, isDictOpen, exam.questions.length, handleSelectOption, toggleFlag, toggleEliminateOption, handleSpeech]);
 
   const openDictionary = (word: string = '') => {
     setDictSearchWord(word);
@@ -858,6 +926,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
         {/* Right Header Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          {/* Keyboard Shortcuts Trigger Button */}
+          <button
+            onClick={() => setIsShortcutsModalOpen(true)}
+            className="btn btn-secondary"
+            style={{ height: '34px', padding: '0 10px', fontSize: '0.82rem', color: 'var(--text-main)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}
+            title="Bảng phím tắt tiện lợi (bấm phím ?)"
+            aria-label="Phím tắt"
+          >
+            <Keyboard size={15} /> <span className="hide-on-mobile">Phím tắt</span>
+          </button>
+
           {/* Dictionary Trigger Button */}
           <button
             onClick={() => openDictionary('')}
@@ -872,7 +951,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             onClick={() => setIsGridModalOpen(true)}
             className="btn btn-secondary hover-lift"
             style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}
-            title="Mở Bảng Chọn 40 Câu Hỏi Trực Quan"
+            title="Mở Bảng Chọn Câu Hỏi Trực Quan"
           >
             <Grid size={15} /> Bảng chọn <span className="hide-on-mobile">({answeredCount}/{exam.questions.length})</span>
           </button>
@@ -978,6 +1057,68 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     <ChevronDown size={16} /> Kéo xuống
                   </button>
 
+                  {/* Passage Font Size Switcher */}
+                  <div 
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      background: 'var(--bg-subtle)', 
+                      borderRadius: 'var(--radius-pill)', 
+                      padding: '2px', 
+                      border: '1px solid var(--border-light)' 
+                    }}
+                    title="Điều chỉnh cỡ chữ bài đọc"
+                  >
+                    <button
+                      onClick={() => setPassageFontSize('normal')}
+                      style={{
+                        padding: '3px 8px',
+                        border: 'none',
+                        borderRadius: 'var(--radius-pill)',
+                        background: passageFontSize === 'normal' ? 'var(--brand-gradient)' : 'transparent',
+                        color: passageFontSize === 'normal' ? '#fff' : 'var(--text-muted)',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        cursor: 'pointer'
+                      }}
+                      title="Cỡ chữ vừa (100%)"
+                    >
+                      A
+                    </button>
+                    <button
+                      onClick={() => setPassageFontSize('large')}
+                      style={{
+                        padding: '3px 8px',
+                        border: 'none',
+                        borderRadius: 'var(--radius-pill)',
+                        background: passageFontSize === 'large' ? 'var(--brand-gradient)' : 'transparent',
+                        color: passageFontSize === 'large' ? '#fff' : 'var(--text-muted)',
+                        fontSize: '0.8rem',
+                        fontWeight: 800,
+                        cursor: 'pointer'
+                      }}
+                      title="Cỡ chữ to (115%)"
+                    >
+                      A+
+                    </button>
+                    <button
+                      onClick={() => setPassageFontSize('xlarge')}
+                      style={{
+                        padding: '3px 8px',
+                        border: 'none',
+                        borderRadius: 'var(--radius-pill)',
+                        background: passageFontSize === 'xlarge' ? 'var(--brand-gradient)' : 'transparent',
+                        color: passageFontSize === 'xlarge' ? '#fff' : 'var(--text-muted)',
+                        fontSize: '0.88rem',
+                        fontWeight: 800,
+                        cursor: 'pointer'
+                      }}
+                      title="Cỡ chữ rất to (130%)"
+                    >
+                      A++
+                    </button>
+                  </div>
+
                   {/* Translation Toggle Button */}
                   <button
                     onClick={() => setIsPassageTranslated(!isPassageTranslated)}
@@ -993,12 +1134,18 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
               <div 
                 ref={passageScrollBoxRef}
                 className="custom-scrollbar"
+                onDoubleClick={() => {
+                  const sel = window.getSelection()?.toString().trim();
+                  if (sel && sel.length > 1 && !sel.includes(' ') && !sel.includes('\n')) {
+                    openDictionary(sel);
+                  }
+                }}
                 style={{
                   maxHeight: 'calc(78vh - 120px)',
                   minHeight: '340px',
                   overflowY: 'auto',
                   paddingRight: '10px',
-                  fontSize: '1.08rem',
+                  fontSize: passageFontSize === 'large' ? '1.18rem' : passageFontSize === 'xlarge' ? '1.32rem' : '1.05rem',
                   lineHeight: 1.85,
                   color: 'var(--text-main)',
                   transition: 'all 0.25s ease'
@@ -1354,12 +1501,13 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 const hasAnswered = answers[currentQuestion.id] !== undefined && answers[currentQuestion.id] !== null;
                 const isCorrect = opt.id === currentQuestion.correctAnswer;
                 const isPractice = quizMode === 'practice';
+                const isEliminated = (eliminatedOptions[currentQuestion.id] || []).includes(opt.id);
 
                 // Practice mode dynamic coloring
-                let borderStyle = `2px solid ${isSelected ? 'var(--brand-primary)' : 'var(--border-light)'}`;
-                let bgStyle = isSelected ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-surface)';
-                let colorBadgeBg = isSelected ? 'var(--brand-primary)' : 'var(--bg-subtle)';
-                let colorBadgeText = isSelected ? '#ffffff' : 'var(--text-main)';
+                let borderStyle = `2px solid ${isSelected ? 'var(--brand-primary)' : isEliminated ? 'rgba(239, 68, 68, 0.3)' : 'var(--border-light)'}`;
+                let bgStyle = isSelected ? 'rgba(79, 70, 229, 0.08)' : isEliminated ? 'rgba(239, 68, 68, 0.03)' : 'var(--bg-surface)';
+                let colorBadgeBg = isSelected ? 'var(--brand-primary)' : isEliminated ? 'rgba(239, 68, 68, 0.12)' : 'var(--bg-subtle)';
+                let colorBadgeText = isSelected ? '#ffffff' : isEliminated ? 'var(--danger)' : 'var(--text-main)';
 
                 if (isPractice && hasAnswered) {
                   if (isCorrect) {
@@ -1384,6 +1532,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     aria-checked={isSelected}
                     tabIndex={0}
                     onClick={() => handleSelectOption(opt.id)}
+                    onContextMenu={(e) => toggleEliminateOption(opt.id, e)}
                     onKeyDown={(e) => {
                       if (e.key === ' ' || e.key === 'Enter') {
                         e.preventDefault();
@@ -1405,7 +1554,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       fontWeight: isSelected ? 700 : 500,
                       outline: 'none',
                       position: 'relative',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      opacity: isEliminated ? 0.45 : 1,
+                      filter: isEliminated ? 'grayscale(0.5)' : 'none'
                     }}
                   >
                     <div style={{
@@ -1421,12 +1572,22 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       fontSize: '1.05rem',
                       flexShrink: 0,
                       boxShadow: isSelected ? '0 4px 12px rgba(var(--brand-primary-rgb), 0.35)' : '0 2px 4px rgba(0, 0, 0, 0.04)',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.2s ease',
+                      textDecoration: isEliminated ? 'line-through' : 'none'
                     }}>
                       {opt.id}
                     </div>
 
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div 
+                      style={{ flex: 1, minWidth: 0, textDecoration: isEliminated ? 'line-through' : 'none' }}
+                      onDoubleClick={(e) => {
+                        e.stopPropagation();
+                        const sel = window.getSelection()?.toString().trim();
+                        if (sel && sel.length > 1 && !sel.includes(' ') && !sel.includes('\n')) {
+                          openDictionary(sel);
+                        }
+                      }}
+                    >
                       <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.05rem', lineHeight: 1.55 }}>
                         {renderHighlightedText(opt.text)}
                       </div>
@@ -1437,8 +1598,33 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       )}
                     </div>
 
-                    {/* Right indicators: shortcut badge or correct/wrong icon */}
+                    {/* Right indicators: eliminate button, shortcut badge, or practice badge */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                      {/* Eliminate Cross-out Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => toggleEliminateOption(opt.id, e)}
+                        style={{
+                          background: isEliminated ? 'var(--danger-bg)' : 'transparent',
+                          border: isEliminated ? '1px solid var(--danger)' : '1px solid transparent',
+                          color: isEliminated ? 'var(--danger)' : 'var(--text-muted)',
+                          borderRadius: '6px',
+                          width: '28px',
+                          height: '28px',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          padding: 0,
+                          transition: 'all 0.15s ease',
+                          opacity: isEliminated ? 1 : 0.6
+                        }}
+                        title={isEliminated ? `Bỏ gạch đáp án ${opt.id} (Alt + ${shortcutKey})` : `Gạch bỏ phương án ${opt.id} (Alt + ${shortcutKey} hoặc click chuột phải)`}
+                        aria-label={isEliminated ? `Bỏ gạch ${opt.id}` : `Gạch bỏ ${opt.id}`}
+                      >
+                        <EyeOff size={14} />
+                      </button>
+
                       {isPractice && hasAnswered && isCorrect && (
                         <span className="badge badge-success" style={{ fontSize: '0.74rem' }}>
                           ✓ Đúng
@@ -2180,113 +2366,169 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 }} />
               </div>
 
-              {/* Status Legend Badges */}
+              {/* Filter Tabs */}
               <div style={{
                 display: 'flex',
-                alignItems: 'center',
-                gap: '16px',
-                marginTop: '14px',
-                fontSize: '0.82rem',
-                fontWeight: 600,
+                gap: '8px',
+                marginTop: '16px',
                 flexWrap: 'wrap'
               }}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'var(--brand-primary)' }} />
-                  Đã làm ({answeredCount})
-                </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'var(--bg-surface)', border: '1.5px solid var(--border-light)' }} />
+                <button
+                  type="button"
+                  onClick={() => setGridFilter('all')}
+                  className={`tab-chip-pill ${gridFilter === 'all' ? 'active' : ''}`}
+                  style={{ fontSize: '0.82rem', padding: '6px 14px' }}
+                >
+                  Tất cả ({exam.questions.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGridFilter('unanswered')}
+                  className={`tab-chip-pill ${gridFilter === 'unanswered' ? 'active' : ''}`}
+                  style={{
+                    fontSize: '0.82rem',
+                    padding: '6px 14px',
+                    borderColor: gridFilter === 'unanswered' ? 'var(--brand-primary)' : undefined,
+                    color: gridFilter === 'unanswered' ? 'var(--brand-primary)' : undefined
+                  }}
+                >
                   Chưa làm ({exam.questions.length - answeredCount})
-                </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', background: 'rgba(245, 158, 11, 0.25)', border: '1px solid var(--warning)' }} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGridFilter('answered')}
+                  className={`tab-chip-pill ${gridFilter === 'answered' ? 'active' : ''}`}
+                  style={{ fontSize: '0.82rem', padding: '6px 14px' }}
+                >
+                  Đã làm ({answeredCount})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGridFilter('flagged')}
+                  className={`tab-chip-pill ${gridFilter === 'flagged' ? 'active' : ''}`}
+                  style={{
+                    fontSize: '0.82rem',
+                    padding: '6px 14px',
+                    borderColor: gridFilter === 'flagged' ? 'var(--warning)' : undefined,
+                    color: gridFilter === 'flagged' ? 'var(--warning)' : undefined
+                  }}
+                >
                   Đánh dấu ({Object.values(flagged).filter(Boolean).length})
-                </span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '12px', height: '12px', borderRadius: '4px', border: '2.5px solid var(--brand-primary)', background: 'rgba(79, 70, 229, 0.15)' }} />
-                  Đang chọn (Câu {currentIndex + 1})
-                </span>
+                </button>
               </div>
             </div>
 
-            {/* 40-Question Flex/Grid Layout */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(5, 1fr)',
-              gap: '10px',
-              marginBottom: '24px'
-            }}>
-              {exam.questions.map((q, idx) => {
-                const isCurrent = idx === currentIndex;
-                const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
-                const isQuestionFlagged = !!flagged[q.id];
+            {/* Filtered Question Flex/Grid Layout */}
+            {(() => {
+              const filteredList = exam.questions
+                .map((q, idx) => ({ q, idx }))
+                .filter(({ q }) => {
+                  const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
+                  const isQuestionFlagged = !!flagged[q.id];
+                  if (gridFilter === 'answered') return isAnswered;
+                  if (gridFilter === 'unanswered') return !isAnswered;
+                  if (gridFilter === 'flagged') return isQuestionFlagged;
+                  return true;
+                });
 
-                let bg = 'var(--bg-surface)';
-                let color = 'var(--text-main)';
-                let border = '1.5px solid var(--border-light)';
-                let boxShadow = 'none';
-
-                if (isCurrent) {
-                  border = '2.5px solid var(--brand-primary)';
-                  boxShadow = '0 0 14px rgba(79, 70, 229, 0.4)';
-                  if (isAnswered) {
-                    bg = 'var(--brand-primary)';
-                    color = '#ffffff';
-                  } else {
-                    bg = 'rgba(79, 70, 229, 0.15)';
-                    color = 'var(--brand-primary)';
-                  }
-                } else if (isQuestionFlagged) {
-                  bg = 'rgba(245, 158, 11, 0.2)';
-                  color = 'var(--warning)';
-                  border = '1.5px solid var(--warning)';
-                } else if (isAnswered) {
-                  bg = 'var(--brand-primary)';
-                  color = '#ffffff';
-                  border = '1.5px solid var(--brand-primary)';
-                }
-
+              if (filteredList.length === 0) {
                 return (
-                  <button
-                    key={q.id}
-                    onClick={() => {
-                      setCurrentIndex(idx);
-                      setIsGridModalOpen(false);
-                    }}
-                    className="hover-lift"
-                    style={{
-                      padding: '10px 6px',
-                      borderRadius: 'var(--radius-md)',
-                      border: border,
-                      background: bg,
-                      color: color,
-                      fontWeight: 800,
-                      fontSize: '0.92rem',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative',
-                      boxShadow: boxShadow,
-                      transition: 'all 0.18s ease'
-                    }}
-                  >
-                    Câu {idx + 1}
-                    {isQuestionFlagged && (
-                      <span style={{
-                        position: 'absolute',
-                        top: '4px',
-                        right: '4px',
-                        width: '6px',
-                        height: '6px',
-                        borderRadius: '50%',
-                        background: 'var(--warning)'
-                      }} />
-                    )}
-                  </button>
+                  <div style={{
+                    padding: '36px 16px',
+                    textAlign: 'center',
+                    color: 'var(--text-muted)',
+                    background: 'var(--bg-subtle)',
+                    borderRadius: 'var(--radius-md)',
+                    marginBottom: '24px',
+                    border: '1px dashed var(--border-light)'
+                  }}>
+                    {gridFilter === 'unanswered' ? 'Tuyệt vời! Bạn đã trả lời hết tất cả câu hỏi.' :
+                     gridFilter === 'flagged' ? 'Bạn chưa đánh dấu câu hỏi nào cần xem lại.' :
+                     'Không có câu hỏi nào phù hợp với bộ lọc.'}
+                  </div>
                 );
-              })}
-            </div>
+              }
+
+              return (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(5, 1fr)',
+                  gap: '10px',
+                  marginBottom: '24px'
+                }}>
+                  {filteredList.map(({ q, idx }) => {
+                    const isCurrent = idx === currentIndex;
+                    const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
+                    const isQuestionFlagged = !!flagged[q.id];
+
+                    let bg = 'var(--bg-surface)';
+                    let color = 'var(--text-main)';
+                    let border = '1.5px solid var(--border-light)';
+                    let boxShadow = 'none';
+
+                    if (isCurrent) {
+                      border = '2.5px solid var(--brand-primary)';
+                      boxShadow = '0 0 14px rgba(79, 70, 229, 0.4)';
+                      if (isAnswered) {
+                        bg = 'var(--brand-primary)';
+                        color = '#ffffff';
+                      } else {
+                        bg = 'rgba(79, 70, 229, 0.15)';
+                        color = 'var(--brand-primary)';
+                      }
+                    } else if (isQuestionFlagged) {
+                      bg = 'rgba(245, 158, 11, 0.2)';
+                      color = 'var(--warning)';
+                      border = '1.5px solid var(--warning)';
+                    } else if (isAnswered) {
+                      bg = 'var(--brand-primary)';
+                      color = '#ffffff';
+                      border = '1.5px solid var(--brand-primary)';
+                    }
+
+                    return (
+                      <button
+                        key={q.id}
+                        onClick={() => {
+                          setCurrentIndex(idx);
+                          setIsGridModalOpen(false);
+                        }}
+                        className="hover-lift"
+                        style={{
+                          padding: '10px 6px',
+                          borderRadius: 'var(--radius-md)',
+                          border: border,
+                          background: bg,
+                          color: color,
+                          fontWeight: 800,
+                          fontSize: '0.92rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          position: 'relative',
+                          boxShadow: boxShadow,
+                          transition: 'all 0.18s ease'
+                        }}
+                      >
+                        Câu {idx + 1}
+                        {isQuestionFlagged && (
+                          <span style={{
+                            position: 'absolute',
+                            top: '4px',
+                            right: '4px',
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            background: 'var(--warning)'
+                          }} />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             {/* Bottom Actions */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
@@ -2321,6 +2563,119 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         onClose={() => setIsDictOpen(false)}
         initialWord={dictSearchWord}
       />
+
+      {/* Keyboard Shortcuts Cheat Sheet Modal */}
+      {isShortcutsModalOpen && (
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0, 0, 0, 0.55)',
+          backdropFilter: 'blur(6px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 110,
+          padding: '24px'
+        }}>
+          <div className="glass-card animate-fade-in" style={{
+            padding: '28px 32px',
+            maxWidth: '520px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '10px',
+                  background: 'rgba(79, 70, 229, 0.12)',
+                  color: 'var(--brand-primary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <Keyboard size={20} />
+                </div>
+                <div>
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Phím Tắt Thao Tác Nhanh</h3>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-muted)' }}>Tăng tốc độ làm bài & tập trung tối đa</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsShortcutsModalOpen(false)}
+                className="btn btn-ghost"
+                style={{ padding: '6px', borderRadius: '50%' }}
+                aria-label="Đóng"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { keys: ['1', '2', '3', '4', 'A', 'B', 'C', 'D'], desc: 'Chọn nhanh đáp án tương ứng' },
+                { keys: ['Alt + 1..4', 'Click phải', 'Nút mắt gạch'], desc: 'Gạch loại trừ phương án sai (loại suy)' },
+                { keys: ['←', '→', 'J', 'K'], desc: 'Chuyển câu hỏi trước / kế tiếp' },
+                { keys: ['F'], desc: 'Bật/tắt cờ đánh dấu câu hỏi cần xem lại' },
+                { keys: ['T'], desc: 'Bật/tắt bản dịch song ngữ Anh - Việt' },
+                { keys: ['P'], desc: 'Phát âm tiếng Anh chuẩn (Text-to-Speech)' },
+                { keys: ['Double-click'], desc: 'Tra nhanh từ điển từ vựng trong bài đọc / câu hỏi' },
+                { keys: ['?'], desc: 'Mở / đóng bảng tra cứu phím tắt' },
+                { keys: ['Esc'], desc: 'Đóng popup hoặc modal đang mở' },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '9px 14px',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'var(--bg-subtle)',
+                    border: '1px solid var(--border-light)',
+                    gap: '12px'
+                  }}
+                >
+                  <span style={{ fontSize: '0.88rem', fontWeight: 500, color: 'var(--text-main)' }}>{item.desc}</span>
+                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                    {item.keys.map((k, kidx) => (
+                      <kbd
+                        key={kidx}
+                        style={{
+                          padding: '3px 8px',
+                          background: 'var(--bg-surface)',
+                          border: '1px solid var(--border-light)',
+                          boxShadow: '0 2px 0 var(--border-light)',
+                          borderRadius: '6px',
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          color: 'var(--brand-primary)',
+                          fontFamily: 'inherit',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        {k}
+                      </kbd>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: '22px' }}>
+              <button
+                onClick={() => setIsShortcutsModalOpen(false)}
+                className="btn btn-primary"
+                style={{ width: '100%', padding: '10px' }}
+              >
+                Đã Hiểu (Tiếp Tục Làm Bài)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Submission Modal */}
       {isSubmitModalOpen && (
