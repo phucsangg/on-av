@@ -17,13 +17,17 @@ interface MistakeNotebookProps {
   onRemoveMistake: (questionId: string) => void;
   onPracticeMistakes: (questions: Question[]) => void;
   onToggleMastered?: (questionId: string) => void;
+  onClearAllMistakes?: () => void;
+  onClearMasteredMistakes?: () => void;
 }
 
 export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
   mistakes,
   onRemoveMistake,
   onPracticeMistakes,
-  onToggleMastered
+  onToggleMastered,
+  onClearAllMistakes,
+  onClearMasteredMistakes
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTopic, setSelectedTopic] = useState('all');
@@ -32,6 +36,18 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
   const [viewMode, setViewMode] = useState<'list' | 'flash_review'>('list');
   const [reviewIndex, setReviewIndex] = useState<number>(0);
   const [selectedReviewOption, setSelectedReviewOption] = useState<string | null>(null);
+
+  const handleClearAll = () => {
+    if (window.confirm('Bạn có chắc chắn muốn xóa TOÀN BỘ các câu trong sổ tay câu sai không? Thao tác này không thể hoàn tác.')) {
+      onClearAllMistakes?.();
+    }
+  };
+
+  const handleClearMastered = () => {
+    if (window.confirm(`Bạn có chắc chắn muốn xóa ${masteredCount} câu đã nắm vững khỏi sổ tay không?`)) {
+      onClearMasteredMistakes?.();
+    }
+  };
 
   const filteredMistakes = mistakes.filter(item => {
     const matchesSearch = item.question.questionText.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -98,6 +114,28 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
             >
               <Play size={16} fill="currentColor" /> Thi Lại {filteredMistakes.length} Câu
             </button>
+
+            {masteredCount > 0 && onClearMasteredMistakes && (
+              <button
+                onClick={handleClearMastered}
+                className="btn btn-secondary"
+                style={{ padding: '10px 14px', fontSize: '0.82rem', color: 'var(--success)' }}
+                title="Xóa các câu đã nắm vững"
+              >
+                <CheckCircle2 size={15} /> Xóa {masteredCount} câu đã vững
+              </button>
+            )}
+
+            {onClearAllMistakes && (
+              <button
+                onClick={handleClearAll}
+                className="btn btn-secondary"
+                style={{ padding: '10px 14px', fontSize: '0.82rem', color: 'var(--danger)' }}
+                title="Xóa tất cả câu trong sổ tay"
+              >
+                <Trash2 size={15} /> Xóa tất cả
+              </button>
+            )}
           </div>
         )}
       </div>

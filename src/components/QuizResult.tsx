@@ -44,8 +44,10 @@ export const QuizResult: React.FC<QuizResultProps> = ({
   const [showTransMap, setShowTransMap] = useState<Record<string, boolean>>({});
 
   const correctCount = answers.filter(a => a.isCorrect).length;
+  const unansweredCount = answers.filter(a => a.selectedAnswer === null || a.selectedAnswer === undefined).length;
+  const incorrectCount = answers.filter(a => a.selectedAnswer !== null && a.selectedAnswer !== undefined && !a.isCorrect).length;
   const totalQuestions = exam.questions.length;
-  const percentage = Math.round((correctCount / totalQuestions) * 100);
+  const percentage = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0;
 
   // Confetti effect on high score
   useEffect(() => {
@@ -135,17 +137,28 @@ export const QuizResult: React.FC<QuizResultProps> = ({
           {correctCount} / {totalQuestions} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>câu đúng</span>
         </h2>
 
-        {/* 3 Metrics Pills */}
+        {/* Metrics Breakdown Pills */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '16px',
+          gap: '12px',
           flexWrap: 'wrap',
           margin: '20px 0 28px'
         }}>
           <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
             🎯 Độ chính xác: <strong style={{ color: evalTag.color }}>{percentage}%</strong>
           </div>
+          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid rgba(16, 185, 129, 0.3)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--success)' }}>
+            ✅ Đúng: <strong>{correctCount}</strong>
+          </div>
+          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid rgba(239, 68, 68, 0.3)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--danger)' }}>
+            ❌ Sai: <strong>{incorrectCount}</strong>
+          </div>
+          {unansweredCount > 0 && (
+            <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+              ⚪ Chưa làm: <strong>{unansweredCount}</strong>
+            </div>
+          )}
           <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
             ⏱️ Thời gian: <strong>{formatTime(timeSpentSeconds)}</strong>
           </div>

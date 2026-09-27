@@ -61,7 +61,8 @@ class StorageService {
 
   // --- Attempts ---
   getAttempts(): UserAttempt[] {
-    return this.safeGet<UserAttempt[]>(`${STORAGE_PREFIX}attempts`, []);
+    const val = this.safeGet<UserAttempt[]>(`${STORAGE_PREFIX}attempts`, []);
+    return Array.isArray(val) ? val : [];
   }
 
   saveAttempts(attempts: UserAttempt[]): boolean {
@@ -70,16 +71,22 @@ class StorageService {
 
   // --- Mistakes ---
   getMistakes(): SavedMistake[] {
-    return this.safeGet<SavedMistake[]>(`${STORAGE_PREFIX}mistakes`, []);
+    const val = this.safeGet<SavedMistake[]>(`${STORAGE_PREFIX}mistakes`, []);
+    return Array.isArray(val) ? val : [];
   }
 
   saveMistakes(mistakes: SavedMistake[]): boolean {
     return this.safeSet(`${STORAGE_PREFIX}mistakes`, mistakes);
   }
 
+  clearMistakes(): boolean {
+    return this.saveMistakes([]);
+  }
+
   // --- Saved Words ---
   getSavedWords(): SavedWord[] {
-    return this.safeGet<SavedWord[]>(`${STORAGE_PREFIX}saved_words`, []);
+    const val = this.safeGet<SavedWord[]>(`${STORAGE_PREFIX}saved_words`, []);
+    return Array.isArray(val) ? val : [];
   }
 
   saveSavedWords(words: SavedWord[]): boolean {
@@ -96,7 +103,18 @@ class StorageService {
       lastActiveDate: '',
       skillAccuracy: {}
     };
-    return this.safeGet<UserStats>(`${STORAGE_PREFIX}stats`, defaultStats);
+    const val = this.safeGet<any>(`${STORAGE_PREFIX}stats`, defaultStats);
+    if (!val || typeof val !== 'object' || Array.isArray(val)) {
+      return defaultStats;
+    }
+    return {
+      totalTestsTaken: Math.max(0, Number(val.totalTestsTaken) || 0),
+      totalQuestionsAnswered: Math.max(0, Number(val.totalQuestionsAnswered) || 0),
+      correctAnswersCount: Math.max(0, Number(val.correctAnswersCount) || 0),
+      streakDays: Math.max(0, Number(val.streakDays) || 0),
+      lastActiveDate: typeof val.lastActiveDate === 'string' ? val.lastActiveDate : '',
+      skillAccuracy: (val.skillAccuracy && typeof val.skillAccuracy === 'object' && !Array.isArray(val.skillAccuracy)) ? val.skillAccuracy : {}
+    };
   }
 
   saveStats(stats: UserStats): boolean {
@@ -105,7 +123,8 @@ class StorageService {
 
   // --- Custom Exams ---
   getCustomExams(): ExamSet[] {
-    return this.safeGet<ExamSet[]>(`${STORAGE_PREFIX}custom_exams`, []);
+    const val = this.safeGet<ExamSet[]>(`${STORAGE_PREFIX}custom_exams`, []);
+    return Array.isArray(val) ? val : [];
   }
 
   saveCustomExams(exams: ExamSet[]): boolean {
@@ -114,7 +133,11 @@ class StorageService {
 
   // --- Active Session ---
   getActiveSession(): ActiveQuizSession | null {
-    return this.safeGet<ActiveQuizSession | null>(SESSION_KEY, null);
+    const val = this.safeGet<any>(SESSION_KEY, null);
+    if (!val || typeof val !== 'object' || Array.isArray(val)) {
+      return null;
+    }
+    return val as ActiveQuizSession;
   }
 
   saveActiveSession(session: ActiveQuizSession): boolean {

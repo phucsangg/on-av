@@ -41,7 +41,7 @@ export function useQuizTimer({
       accumulatedTimeRef.current = elapsed;
       setTimeElapsed(elapsed);
 
-      if (isCountDown && totalDurationSeconds > 0 && elapsed >= totalDurationSeconds) {
+      if (totalDurationSeconds > 0 && elapsed >= totalDurationSeconds) {
         clearInterval(intervalId);
         onTimeUpRef.current?.();
       }

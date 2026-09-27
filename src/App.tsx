@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Clock, Play } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Dashboard } from './components/Dashboard';
@@ -123,15 +123,18 @@ export const App: React.FC = () => {
   }, [isDarkMode]);
 
   // Sync state with Browser History & Address Bar
-  const navigateToView = (view: PageTab | 'runner' | 'result', tab?: PageTab) => {
+  const navigateToView = (view: PageTab | 'runner' | 'result', tab?: PageTab, examId?: string) => {
     const targetTab = tab || (view === 'runner' || view === 'result' ? activeTab : (view as PageTab));
-    const targetPath = TAB_TO_PATH[view] || '/';
+    let targetPath = TAB_TO_PATH[view] || '/';
+    if (view === 'runner' && examId) {
+      targetPath = `${targetPath}?examId=${encodeURIComponent(examId)}`;
+    }
 
     setCurrentView(view);
     setActiveTab(targetTab);
 
-    if (window.location.pathname !== targetPath) {
-      window.history.pushState({ view, tab: targetTab }, '', targetPath);
+    if (window.location.pathname + window.location.search !== targetPath) {
+      window.history.pushState({ view, tab: targetTab, examId }, '', targetPath);
     }
   };
 
@@ -154,13 +157,22 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Auto-resolve activeExam from URL query parameter ?examId=... on direct page load
+  // Auto-resolve activeExam from URL query parameter ?examId=... or activeSession on direct page load
   useEffect(() => {
     if (currentView === 'runner' && !activeExam) {
       const params = new URLSearchParams(window.location.search);
       const examId = params.get('examId');
       if (examId) {
         const found = examSets.find(e => e.id === examId);
+        if (found) {
+          setActiveExam(found);
+          return;
+        }
+      }
+      const saved = storageService.getActiveSession();
+      const savedId = (saved as any)?.examSetId || saved?.examId;
+      if (savedId) {
+        const found = examSets.find(e => e.id === savedId);
         if (found) {
           setActiveExam(found);
           return;
@@ -207,12 +219,15 @@ export const App: React.FC = () => {
     }
 
     setActiveExam(exam);
-    navigateToView('runner');
+    navigateToView('runner', undefined, exam.id);
   };
 
-  // Finish Exam Handler
+  // Finish Exam Handler with double-invocation debouncing
+  const isFinishingRef = useRef<boolean>(false);
   const handleFinishExam = (answers: UserAnswerRecord[], timeSpentSeconds: number) => {
-    if (!activeExam) return;
+    if (!activeExam || isFinishingRef.current) return;
+    isFinishingRef.current = true;
+    setTimeout(() => { isFinishingRef.current = false; }, 2000);
 
     const correctCount = answers.filter(a => a.isCorrect).length;
     const totalQ = activeExam.questions.length;
@@ -281,6 +296,17 @@ export const App: React.FC = () => {
   // Remove Mistake Handler
   const handleRemoveMistake = (questionId: string) => {
     setMistakes(prev => prev.filter(m => m.question.id !== questionId));
+  };
+
+  // Clear All Mistakes Handler
+  const handleClearAllMistakes = () => {
+    storageService.clearMistakes();
+    setMistakes([]);
+  };
+
+  // Clear Mastered Mistakes Handler
+  const handleClearMasteredMistakes = () => {
+    setMistakes(prev => prev.filter(m => !m.mastered));
   };
 
   // Practice Mistakes Handler
@@ -486,6 +512,8 @@ export const App: React.FC = () => {
               onRemoveMistake={handleRemoveMistake}
               onPracticeMistakes={handlePracticeMistakes}
               onToggleMastered={handleToggleMistakeMastered}
+              onClearAllMistakes={handleClearAllMistakes}
+              onClearMasteredMistakes={handleClearMasteredMistakes}
             />
           )}
 

@@ -45,7 +45,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       const raw = localStorage.getItem('on_av_active_session');
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed && parsed.examSetId === exam.id) {
+        if (parsed && (parsed.examSetId === exam.id || parsed.examId === exam.id)) {
           return parsed;
         }
       }
@@ -60,6 +60,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
   const [drawerFilter, setDrawerFilter] = useState<'all' | 'unanswered' | 'flagged'>('all');
   
+  const isSubmittingRef = React.useRef(false);
+
   const {
     timeElapsed: timeElapsedSeconds,
     isPaused,
@@ -68,7 +70,12 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   } = useQuizTimer({
     initialSeconds: savedSession?.timeElapsedSeconds ?? 0,
     durationMinutes: exam.durationMinutes,
-    autoStart: true
+    autoStart: true,
+    onTimeUp: () => {
+      if (isSubmittingRef.current) return;
+      alert('⏰ Đã hết thời gian làm bài thi! Hệ thống đang tự động nộp bài của bạn.');
+      handleSubmit();
+    }
   });
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState<boolean>(false);
   const [isSpeechSpeaking, setIsSpeechSpeaking] = useState<boolean>(false);
@@ -734,6 +741,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const handleSubmit = () => {
+    if (isSubmittingRef.current) return;
+    isSubmittingRef.current = true;
     storageService.clearActiveSession();
     const timeSpent = timeElapsedSeconds;
     const finalRecords: UserAnswerRecord[] = exam.questions.map(q => {

@@ -37,7 +37,7 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
     const matchesSearch = 
       exam.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       exam.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      exam.badge.toLowerCase().includes(searchQuery.toLowerCase());
+      (exam.badge?.toLowerCase() || '').includes(searchQuery.toLowerCase());
 
     const matchesCategory = 
       selectedCategory === 'all' || exam.category === selectedCategory;
@@ -253,9 +253,20 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
         <div className="card" style={{ padding: '60px 24px', textAlign: 'center' }}>
           <ListFilter size={48} color="var(--text-muted)" style={{ marginBottom: '16px', opacity: 0.6 }} />
           <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: '0 0 8px 0' }}>Không tìm thấy đề thi phù hợp</h3>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0 }}>
-            Thử thay đổi từ khóa tìm kiếm hoặc chọn danh mục khác.
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: '0 0 20px 0' }}>
+            Không có kết quả nào khớp với từ khóa tìm kiếm hoặc bộ lọc hiện tại.
           </p>
+          <button
+            onClick={() => {
+              setSearchQuery('');
+              setSelectedCategory('all');
+              setSelectedFilter('all');
+            }}
+            className="btn btn-primary"
+            style={{ padding: '8px 20px', fontSize: '0.88rem' }}
+          >
+            Xóa Bộ Lọc & Tìm Kiếm
+          </button>
         </div>
       ) : (
         <div style={{
