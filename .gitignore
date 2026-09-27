@@ -26,3 +26,12 @@ dist-ssr
 # Raw reference files & scratch scripts
 de/
 scratch/
+
+# Build & Cache
+*.tsbuildinfo
+*.tmp
+.eslintcache
+.cache
+coverage/
+Thumbs.db
+
