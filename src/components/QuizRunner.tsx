@@ -436,38 +436,75 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
   const activeTranslation = activePassageData?.translation;
 
-  // Parse passage into title + clean paragraphs separated by double newlines or blank lines
+  // Parse passage into title + clean paragraphs separated by double newlines OR single newlines
   const parsedPassage = React.useMemo(() => {
     if (!activePassageData?.passage) return { title: null, paragraphs: [] };
     const raw = activePassageData.passage.trim();
 
-    // Split into distinct blocks by double newlines or empty lines
-    const blocks = raw
-      .split(/(?:\r?\n){2,}/)
-      .map(b => b.trim())
-      .filter(b => b.length > 0);
+    const hasDoubleNewlines = /(?:\r?\n){2,}/.test(raw);
+    let candidateBlocks: string[] = [];
 
-    if (blocks.length === 0) return { title: null, paragraphs: [] };
+    if (hasDoubleNewlines) {
+      candidateBlocks = raw
+        .split(/(?:\r?\n){2,}/)
+        .map(b => b.trim())
+        .filter(b => b.length > 0);
 
-    // Check if the first block is a title line (short single line <= 110 chars, no ending period)
-    const firstBlock = blocks[0];
+      // Check if the first block contains a title on its first line
+      if (candidateBlocks.length > 0 && candidateBlocks[0].includes('\n')) {
+        const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        if (lines.length > 1) {
+          const firstLine = lines[0];
+          if (
+            firstLine.length <= 120 &&
+            !firstLine.endsWith('.') &&
+            !firstLine.startsWith('[I]') &&
+            !firstLine.startsWith('[ĐOẠN') &&
+            !firstLine.startsWith('Paragraph') &&
+            !firstLine.includes('<mark>') &&
+            !firstLine.includes('______')
+          ) {
+            candidateBlocks = [
+              firstLine,
+              lines.slice(1).join('\n'),
+              ...candidateBlocks.slice(1)
+            ];
+          }
+        }
+      }
+    } else {
+      // Passages separated by single newlines (1 paragraph per line)
+      candidateBlocks = raw
+        .split(/\r?\n/)
+        .map(b => b.trim())
+        .filter(b => b.length > 0);
+    }
+
+    if (candidateBlocks.length === 0) return { title: null, paragraphs: [] };
+
+    const firstBlock = candidateBlocks[0];
     const isFirstBlockTitle = (
       !firstBlock.includes('\n') &&
-      firstBlock.length <= 110 &&
+      firstBlock.length <= 120 &&
       !firstBlock.endsWith('.') &&
-      blocks.length > 1
+      !firstBlock.startsWith('[I]') &&
+      !firstBlock.startsWith('[ĐOẠN') &&
+      !firstBlock.startsWith('Paragraph') &&
+      !firstBlock.includes('<mark>') &&
+      !firstBlock.includes('______') &&
+      candidateBlocks.length > 1
     );
 
     if (isFirstBlockTitle) {
       return {
         title: firstBlock,
-        paragraphs: blocks.slice(1)
+        paragraphs: candidateBlocks.slice(1)
       };
     }
 
     return {
       title: null,
-      paragraphs: blocks
+      paragraphs: candidateBlocks
     };
   }, [activePassageData]);
 
@@ -475,31 +512,65 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     if (!activeTranslation) return { title: null, paragraphs: [] };
     const raw = activeTranslation.trim();
 
-    const blocks = raw
-      .split(/(?:\r?\n){2,}/)
-      .map(b => b.trim())
-      .filter(b => b.length > 0);
+    const hasDoubleNewlines = /(?:\r?\n){2,}/.test(raw);
+    let candidateBlocks: string[] = [];
 
-    if (blocks.length === 0) return { title: null, paragraphs: [] };
+    if (hasDoubleNewlines) {
+      candidateBlocks = raw
+        .split(/(?:\r?\n){2,}/)
+        .map(b => b.trim())
+        .filter(b => b.length > 0);
 
-    const firstBlock = blocks[0];
+      if (candidateBlocks.length > 0 && candidateBlocks[0].includes('\n')) {
+        const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        if (lines.length > 1) {
+          const firstLine = lines[0];
+          if (
+            firstLine.length <= 120 &&
+            !firstLine.endsWith('.') &&
+            !firstLine.startsWith('[I]') &&
+            !firstLine.startsWith('[ĐOẠN') &&
+            !firstLine.startsWith('Đoạn')
+          ) {
+            candidateBlocks = [
+              firstLine,
+              lines.slice(1).join('\n'),
+              ...candidateBlocks.slice(1)
+            ];
+          }
+        }
+      }
+    } else {
+      candidateBlocks = raw
+        .split(/\r?\n/)
+        .map(b => b.trim())
+        .filter(b => b.length > 0);
+    }
+
+    if (candidateBlocks.length === 0) return { title: null, paragraphs: [] };
+
+    const firstBlock = candidateBlocks[0];
     const isFirstBlockTitle = (
       !firstBlock.includes('\n') &&
-      firstBlock.length <= 110 &&
+      firstBlock.length <= 120 &&
       !firstBlock.endsWith('.') &&
-      blocks.length > 1
+      !firstBlock.startsWith('[I]') &&
+      !firstBlock.startsWith('[ĐOẠN') &&
+      !firstBlock.startsWith('Đoạn') &&
+      !firstBlock.startsWith('Paragraph') &&
+      candidateBlocks.length > 1
     );
 
     if (isFirstBlockTitle) {
       return {
         title: firstBlock,
-        paragraphs: blocks.slice(1)
+        paragraphs: candidateBlocks.slice(1)
       };
     }
 
     return {
       title: null,
-      paragraphs: blocks
+      paragraphs: candidateBlocks
     };
   }, [activeTranslation]);
 

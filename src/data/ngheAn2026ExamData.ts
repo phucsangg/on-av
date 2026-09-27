@@ -56,6 +56,21 @@ const PASSAGE_DEEPFAKE_TRANS = `[ĐOẠN 1] Sự ra đời của phần mềm ng
 
 [ĐOẠN 3] Khi công nghệ deepfake phát triển, khả năng lẩn tránh của nó cũng phát triển theo, tạo ra một cuộc đua vũ trang liên tục giữa các bộ phát hiện và bộ tạo. Việc nuôi dưỡng năng lực truyền thông vững chắc trong công chúng vẫn là lá chắn vững chắc nhất của chúng ta chống lại sự lừa gạt bằng thuật toán.`;
 
+const PASSAGE_RURAL_DEV = `New-Style Rural Development in Nghe An
+In recent years, the province mobilised more than VND 66 trillion for new-style rural development, <mark>(18) ____________</mark>. Massive road upgrades have helped make schools, clinics, and administrative centres easier-to-reach, <mark>(19) ____________</mark>.
+At the same time, economic transformation has focused on OCOP goods, traceability systems, and digital promotion, <mark>(20) ____________</mark>.
+However, some rural cooperatives still show hesitation in applying e-commerce platforms. There is evidence that this hesitation may be linked partly to limited technical skills. <mark>(21) ____________</mark>.
+Even so, digital tools are likely to remain important, <mark>(22) ____________</mark>.`;
+
+const PASSAGE_RURAL_DEV_TRANS = `PHÁT TRIỂN NÔNG THÔN MỚI TẠI NGHỆ AN
+[ĐOẠN 1] Trong những năm gần đây, tỉnh đã huy động hơn 66 nghìn tỷ đồng cho chương trình nông thôn mới, (18) mang lại những tiến bộ rõ rệt đồng thời chỉ ra quy mô công việc còn lại. Việc nâng cấp hạ tầng đường sá đã giúp các trường học, trạm y tế và trung tâm hành chính trở nên dễ tiếp cận hơn, (19) đó là lý do tại sao nhiều xã coi các dự án giao thông là dấu hiệu thay đổi rõ nhất.
+
+[ĐOẠN 2] Đồng thời, quá trình chuyển đổi kinh tế đã tập trung vào sản phẩm OCOP, hệ thống truy xuất nguồn gốc và quảng bá kỹ thuật số, (20) vì quảng bá tốt hơn và thông tin sản phẩm rõ ràng giúp hàng địa phương cạnh tranh xa hơn.
+
+[ĐOẠN 3] Tuy nhiên, một số hợp tác xã nông thôn vẫn còn ngập ngừng khi ứng dụng các nền tảng thương mại điện tử. Có bằng chứng cho thấy sự ngập ngừng này bắt nguồn một phần từ kỹ năng kỹ thuật còn hạn chế. (21) Rủi ro do đó cũng tác động đến các kênh quảng bá và bán sản phẩm nông thôn.
+
+[ĐOẠN 4] Dù vậy, các công cụ số vẫn sẽ giữ vai trò quan trọng, (22) đặc biệt khi việc truy xuất nguồn gốc và xây dựng thương hiệu giúp nhà sản xuất nhỏ khẳng định vị thế trên thị trường rộng lớn.`;
+
 export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q1',
@@ -339,6 +354,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q18',
     type: 'cloze_test',
+    readingPassage: PASSAGE_RURAL_DEV,
+    passageTranslation: PASSAGE_RURAL_DEV_TRANS,
     questionText: 'Question 18. the province mobilised more than VND 66 trillion for new-style rural development, (18) ...',
     options: [
       { id: 'A', text: 'most key targets had already been fully achieved', translation: 'hầu hết các mục tiêu chính đã đạt được' },
@@ -354,6 +371,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q19',
     type: 'cloze_test',
+    readingPassage: PASSAGE_RURAL_DEV,
+    passageTranslation: PASSAGE_RURAL_DEV_TRANS,
     questionText: 'Question 19. make schools, clinics, and administrative centres easier-to-reach, (19) ...',
     options: [
       { id: 'A', text: 'which is why many communes regard transport projects as the most immediate sign of rural change', translation: 'đó là lý do tại sao nhiều xã coi các dự án giao thông là dấu hiệu thay đổi rõ nhất' },
@@ -369,6 +388,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q20',
     type: 'cloze_test',
+    readingPassage: PASSAGE_RURAL_DEV,
+    passageTranslation: PASSAGE_RURAL_DEV_TRANS,
     questionText: 'Question 20. focused on OCOP goods, traceability systems, and digital promotion, (20) ...',
     options: [
       { id: 'A', text: 'suggesting expanding market access is no longer necessary', translation: 'gợi ý mở rộng thị trường không còn cần thiết' },
@@ -384,6 +405,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q21',
     type: 'cloze_test',
+    readingPassage: PASSAGE_RURAL_DEV,
+    passageTranslation: PASSAGE_RURAL_DEV_TRANS,
     questionText: 'Question 21. There is evidence that this hesitation may be linked partly to limited technical skills. (21) ...',
     options: [
       { id: 'A', text: 'Digital tools have entirely replaced traditional sales channels everywhere', translation: 'Công cụ số đã thay thế hoàn toàn kênh bán hàng truyền thống' },
@@ -399,6 +422,8 @@ export const NGHE_AN_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q22',
     type: 'cloze_test',
+    readingPassage: PASSAGE_RURAL_DEV,
+    passageTranslation: PASSAGE_RURAL_DEV_TRANS,
     questionText: 'Question 22. Even so, digital tools are likely to remain important, (22) ...',
     options: [
       { id: 'A', text: 'provided digital sales matter more than quality and trust', translation: 'với điều kiện doanh số quan trọng hơn chất lượng' },

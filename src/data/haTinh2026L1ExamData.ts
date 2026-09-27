@@ -508,7 +508,9 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   },
   {
     id: 'htl1-q28',
-    type: 'cloze_test',
+    type: 'reading_comprehension',
+    readingPassage: PASSAGE_HORROR_FILMS,
+    passageTranslation: PASSAGE_HORROR_FILMS_TRANS,
     questionText: 'Question 28. Phrasal verb "call for" in paragraph 3 is CLOSEST in meaning to:',
     options: [
       { id: 'A', text: 'ask for', translation: 'yêu cầu / gọi hỏi xin giúp đỡ' },
@@ -523,7 +525,9 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   },
   {
     id: 'htl1-q29',
-    type: 'cloze_test',
+    type: 'reading_comprehension',
+    readingPassage: PASSAGE_HORROR_FILMS,
+    passageTranslation: PASSAGE_HORROR_FILMS_TRANS,
     questionText: 'Question 29. The phrase "giving anybody a ride is asking for trouble" implies:',
     options: [
       { id: 'A', text: 'Extending kindness to hitchhikers is portrayed as a guarantee of a disastrous predicament', translation: 'Tỏ lòng tốt cho quá giang là đảm bảo cho thảm họa sắp xảy ra' },
@@ -538,7 +542,9 @@ export const HA_TINH_2026_L1_QUESTIONS: Question[] = [
   },
   {
     id: 'htl1-q30',
-    type: 'cloze_test',
+    type: 'reading_comprehension',
+    readingPassage: PASSAGE_HORROR_FILMS,
+    passageTranslation: PASSAGE_HORROR_FILMS_TRANS,
     questionText: 'Question 30. The "final girl" trope usually portrays the female survivor as:',
     options: [
       { id: 'A', text: 'starting as innocent and shy, but becoming tough and resourceful by the end', translation: 'ban đầu ngây thơ rụt rè, về sau trở nên cứng cỏi và mưu trí nhất' },

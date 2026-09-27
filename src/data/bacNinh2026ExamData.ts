@@ -32,6 +32,50 @@ const PASSAGE_GENETICS_TRANS = `[ĐOẠN 1] Di truyền học có vai trò đố
 
 [ĐOẠN 4] Không phải tất cả các nguyên nhân tử vong bên trong đều có tính di truyền như nhau; trong khi bệnh tim mạch thể hiện ảnh hưởng di truyền cao, bệnh ung thư lại có tính di truyền thấp hơn nhiều, có thể do các tác nhân môi trường thúc đẩy. Những kết quả này không chỉ ra một "số phận" được mã hóa bằng di truyền, bởi vì lối sống lành mạnh vẫn có ảnh hưởng lớn. Bạn không thể thay đổi các gen mình sinh ra, nhưng bạn có thể thay đổi lối sống để đảm bảo sống lâu hơn và khỏe mạnh hơn.`;
 
+const PASSAGE_JOB_SEARCH = `Tips to Stand Out in the Job Market
+To <mark>(24) ____________</mark> in today’s competitive job market, follow these strategies:
+• Research <mark>(25) ____________</mark>: Explore the company website, read press releases, and understand their core mission.
+• Tailor your application: Clearly explain <mark>(26) ____________</mark> your skills align with the job description.
+• Write authentically: Avoid copying and pasting keywords; <mark>(27) ____________</mark>, rewrite the job requirements in your own words.
+• Watch your tone: Be careful when using AI assistance because hiring managers can often <mark>(28) ____________</mark> non-human voices.
+• Seek feedback: Have a trusted friend <mark>(29) ____________</mark> your draft to ensure it showcases your unique voice.`;
+
+const PASSAGE_JOB_SEARCH_TRANS = `MẸO ĐỂ NỔI BẬT TRONG THỊ TRƯỜNG VIỆC LÀM
+Để nổi bật trong thị trường việc làm cạnh tranh ngày nay, hãy áp dụng những chiến lược sau:
+• Nghiên cứu kỹ lưỡng: Khám phá trang web của công ty, đọc các thông cáo báo chí và nắm rõ sứ mệnh trọng tâm của họ.
+• Điều chỉnh hồ sơ ứng tuyển: Giải thích rõ ràng cách thức các kỹ năng của bạn tương thích với mô tả vị trí tuyển dụng.
+• Viết một cách chân thực: Tránh sao chép và dán từ khóa; thay vào đó, hãy tự diễn đạt lại các yêu cầu công việc bằng lời của chính mình.
+• Chú ý giọng văn: Hãy thận trọng khi sử dụng công cụ AI vì các nhà tuyển dụng có thể dễ dàng nhận ra giọng văn nhân tạo.
+• Xin phản hồi: Nhờ một người bạn đáng tin cậy đọc qua bản nháp để đảm bảo hồ sơ làm nổi bật cá tính riêng của bạn.`;
+
+const PASSAGE_DYSON = `Dyson Gen5detect Cordless Vacuum Cleaner
+Now <mark>(30) ____________</mark> for £749, this cordless powerhouse delivers the deepest clean imaginable.
+• Unrivaled suction: <mark>(31) ____________</mark> a massive 31kPa of power, it pulls hidden dust from deep within carpets and crevices.
+• Fluffy Optic cleaner head: Switch to reveal <mark>(32) ____________</mark> dust on hard floors that ordinary vacuums miss.
+• Built-in dusting tool: You can switch tasks <mark>(33) ____________</mark> seconds without fumbling for extra attachments!
+• Up to 70 minutes of runtime: Tackle the whole house in one <mark>(34) ____________</mark> with fade-free, persistent suction.
+• Whole-machine filtration: Transform <mark>(35) ____________</mark> corner of your home today with advanced HEPA filtration.`;
+
+const PASSAGE_DYSON_TRANS = `MÁY HÚT BỤI KHÔNG DÂY DYSON GEN5DETECT
+Hiện đang được mở bán với giá 749 bảng Anh, thiết bị không dây mạnh mẽ này mang lại khả năng dọn sạch sâu vượt bậc.
+• Lực hút vô song: Mang lại lực hút cực mạnh 31kPa, máy hút sạch bụi ẩn sâu bên trong các sợi thảm và khe kẽ.
+• Đầu hút Fluffy Optic: Chiếu sáng để làm lộ rõ lớp bụi vô hình trên mặt sàn cứng mà mắt thường khó nhận ra.
+• Đầu quét tích hợp: Bạn có thể chuyển đổi chế độ làm việc chỉ trong tích tắc mà không cần tìm phụ kiện tháo lắp!
+• Thời lượng pin lên tới 70 phút: Dọn dẹp trọn vẹn ngôi nhà chỉ trong một lần thao tác với lực hút bền bỉ liên tục.
+• Màng lọc toàn diện: Biến đổi mọi không gian trong ngôi nhà của bạn trở nên trong lành sạch sẽ ngay hôm nay.`;
+
+const PASSAGE_WATSON_CRICK = `The Power of Play in Science
+James Watson and Francis Crick set out to solve the secret of life: DNA. <mark>(36) ____________</mark>, they deduced the structure of the double helix.
+Their breakthrough demonstrates how scientific breakthroughs can emerge from something that looks remarkably like play, <mark>(37) ____________</mark>.
+<mark>(38) ____________</mark>. Through guided play, children have freedom of choice, <mark>(39) ____________</mark>.
+Playing with friends allows young minds to experiment freely and make accidental discoveries. <mark>(40) ____________</mark> It eventually won Watson and Crick a Nobel Prize.`;
+
+const PASSAGE_WATSON_CRICK_TRANS = `SỨC MẠNH CỦA TRÒ CHƠI TRONG NGHIÊN CỨU KHOA HỌC
+[ĐOẠN 1] James Watson và Francis Crick đặt mục tiêu giải mã bí ẩn của sự sống: cấu trúc DNA. Bằng cách theo đuổi sự tò mò và khám phá các khả năng khác nhau, họ đã suy ra cấu trúc xoắn kép.
+[ĐOẠN 2] Đột phá của họ chứng minh rằng những phát kiến khoa học có thể nảy sinh từ điều trông giống hệt một trò chơi, một từ thường gợi lên hình ảnh về những thứ tầm thường.
+[ĐOẠN 3] Trẻ em khi sinh ra bị ném vào một thế giới đầy bất định. Thông qua trò chơi có định hướng, trẻ có quyền tự do lựa chọn nhưng vẫn được người lớn nhẹ nhàng hướng tới mục tiêu học tập.
+[ĐOẠN 4] Chơi đùa cùng bè bạn giúp tâm trí trẻ tự do thử nghiệm và tìm ra những phát hiện tình cờ. Điều tưởng như trò chơi xếp dây thép và bìa cứng hóa ra lại vô cùng quan trọng, cuối cùng đã mang về giải Nobel danh giá cho Watson và Crick.`;
+
 export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q1',
@@ -417,6 +461,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q24',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 24. To (24) ... in today’s competitive job market, follow these strategies...',
     options: [
       { id: 'A', text: 'make out', translation: 'nhìn rõ / hiểu được' },
@@ -432,6 +478,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q25',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 25. Research (25) ...: Explore the company website, read press releases...',
     options: [
       { id: 'A', text: 'correctly', translation: 'một cách đúng đắn' },
@@ -447,6 +495,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q26',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 26. explain (26) ... they align with the job description.',
     options: [
       { id: 'A', text: 'when', translation: 'khi nào' },
@@ -462,6 +512,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q27',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 27. Avoid copying and pasting keywords; (27) ..., rewrite the job requirements in your own words.',
     options: [
       { id: 'A', text: 'otherwise', translation: 'nếu không thì' },
@@ -477,6 +529,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q28',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 28. hiring managers can often (28) ... non-human voices.',
     options: [
       { id: 'A', text: 'catch', translation: 'bắt' },
@@ -492,6 +546,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q29',
     type: 'cloze_test',
+    readingPassage: PASSAGE_JOB_SEARCH,
+    passageTranslation: PASSAGE_JOB_SEARCH_TRANS,
     questionText: 'Question 29. Have a trusted friend (29) ... your draft to ensure it showcases your unique voice.',
     options: [
       { id: 'A', text: 'to read', translation: 'to V' },
@@ -507,6 +563,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q30',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 30. Dyson Gen5detect. Now (30) ... for £749, this cordless powerhouse...',
     options: [
       { id: 'A', text: 'acceptable', translation: 'chấp nhận được' },
@@ -522,6 +580,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q31',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 31. Unrivaled suction: (31) ... a massive 31kPa of power, it pulls hidden dust...',
     options: [
       { id: 'A', text: 'Delivered', translation: 'dạng bị động' },
@@ -537,6 +597,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q32',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 32. Switch to reveal (32) ... dust on hard floors.',
     options: [
       { id: 'A', text: 'visibly', translation: 'trạng từ' },
@@ -552,6 +614,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q33',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 33. You can switch tasks (33) ... seconds!',
     options: [
       { id: 'A', text: 'at', translation: 'tại thời điểm' },
@@ -567,6 +631,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q34',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 34. tackle the whole house in one (34) ...',
     options: [
       { id: 'A', text: 'turn', translation: 'lượt' },
@@ -582,6 +648,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q35',
     type: 'cloze_test',
+    readingPassage: PASSAGE_DYSON,
+    passageTranslation: PASSAGE_DYSON_TRANS,
     questionText: 'Question 35. Transform (35) ... corner of your home today...',
     options: [
       { id: 'A', text: 'every', translation: 'mọi' },
@@ -597,6 +665,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q36',
     type: 'cloze_test',
+    readingPassage: PASSAGE_WATSON_CRICK,
+    passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
     questionText: 'Question 36. James Watson and Francis Crick set out to solve DNA. (36) ..., they deduced the structure of the double helix.',
     options: [
       { id: 'A', text: 'By following their curiosity and investigating different possibilities', translation: 'Bằng cách theo đuổi sự tò mò và khám phá các khả năng' },
@@ -612,6 +682,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q37',
     type: 'cloze_test',
+    readingPassage: PASSAGE_WATSON_CRICK,
+    passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
     questionText: 'Question 37. scientific breakthroughs can emerge from something that looks remarkably like play, (37) ...',
     options: [
       { id: 'A', text: 'it is something that often conjures up trivial images', translation: 'câu độc lập sai liên từ' },
@@ -627,6 +699,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q38',
     type: 'cloze_test',
+    readingPassage: PASSAGE_WATSON_CRICK,
+    passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
     questionText: 'Question 38. Fill in blank (38):',
     options: [
       { id: 'A', text: 'We are uncertain about the world', translation: 'Chúng tôi không chắc chắn' },
@@ -642,6 +716,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'bn-q39',
     type: 'cloze_test',
+    readingPassage: PASSAGE_WATSON_CRICK,
+    passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
     questionText: 'Question 39. children have freedom of choice, (39) ...',
     options: [
       { id: 'A', text: 'or a learning goal will gently steer them', translation: 'hoặc mục tiêu học tập tự điều hướng' },
@@ -657,6 +733,8 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
   {
     id: 'na-q40_bn',
     type: 'cloze_test',
+    readingPassage: PASSAGE_WATSON_CRICK,
+    passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
     questionText: 'Question 40. Playing with friends. (40) ... It eventually won Watson and Crick a Nobel Prize.',
     options: [
       { id: 'A', text: 'Important as it might turn out to be', translation: 'Dù quan trọng nhưng trông đơn giản' },
