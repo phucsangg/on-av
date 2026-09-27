@@ -63,3 +63,26 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+---
+
+## 5. Ponytail Ladder: Stop at the First Rung
+
+1. Does this need to be built at all? (YAGNI)
+2. Already in this codebase? Reuse it.
+3. Stdlib does it? Use it.
+4. Native platform feature? Use it.
+5. Installed dependency? Use it.
+6. One line? Make it one line.
+7. Only then: write the minimum code that works.
+
+---
+
+## 6. Engineering Skills Reference
+
+Specialized skills are organized in `.agents/skills/`:
+- **Define & Plan:** `spec-driven-development`, `planning-and-task-breakdown`, `interview-me`
+- **Build & Quality:** `incremental-implementation`, `test-driven-development`, `frontend-ui-engineering`
+- **Review & Verify:** `code-review-and-quality`, `open-code-review`, `performance-optimization`
+- **Audit & Ship:** `security-and-hardening`, `ponytail-audit`, `shipping-and-launch`
+
