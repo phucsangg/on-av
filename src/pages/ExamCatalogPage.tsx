@@ -24,6 +24,8 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
 
   const categories = [
     { id: 'all', label: 'Tất Cả Đề Thi' },
+    { id: 'university', label: 'Đầu Vào Đại Học (HUIT)' },
+    { id: 'toeic', label: 'Định Hướng TOEIC' },
     { id: 'thpt_qg', label: 'Đề Thi THPT 2026' },
     { id: 'quick_quiz', label: 'Luyện Tập Nhanh' },
     { id: 'grammar_focus', label: 'Ngữ Pháp' },
@@ -72,17 +74,17 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             textTransform: 'uppercase',
             letterSpacing: '0.05em'
           }}>
-            Kho Đề Thi Mới Nhất 2026
+            Kho Đề Thi Chuẩn Hóa
           </span>
           <span style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-            • Trọn bộ {examSets.length} Đề Thi Chất Lượng High School & Sở GD
+            • Trọn bộ {examSets.length} Đề Thi Đầu Vào Đại Học, TOEIC & THPT Quốc Gia
           </span>
         </div>
         <h2 style={{ fontSize: '1.8rem', fontWeight: 800, margin: '8px 0', letterSpacing: '-0.02em' }}>
-          Danh Sách Đề Thi Trắc Nghiệm Tiếng Anh 📚
+          Hệ Thống Đề Thi Trắc Nghiệm Tiếng Anh 📚
         </h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0, maxWidth: '700px', lineHeight: 1.6 }}>
-          Lựa chọn đề thi chuẩn cấu trúc mới nhất năm 2026 từ các Sở GD&ĐT (Hải Phòng, Đà Nẵng, Thanh Hóa, Hưng Yên, Phú Thọ...) với bản dịch Tiếng Việt & giải thích từng câu chi tiết.
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0, maxWidth: '750px', lineHeight: 1.6 }}>
+          Lựa chọn đề thi chuẩn hóa: Khảo sát Anh văn đầu vào Đại học (HUIT-oriented), TOEIC Reading, chuyên đề Ngữ pháp/Từ vựng và trọn bộ đề thi thử THPT Quốc Gia mới nhất từ các Sở GD&ĐT với lời giải chi tiết và bản dịch song ngữ.
         </p>
       </div>
 

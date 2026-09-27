@@ -272,8 +272,8 @@ export const Dashboard: React.FC<DashboardProps> = ({
             <BookOpen size={24} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Kho Đề Thi 2026</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>20 bộ đề chuẩn Sở GD&ĐT</div>
+            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Kho Đề Thi Chuẩn Hóa</div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Hơn 20 bộ đề Đại học, TOEIC & Sở GD</div>
           </div>
         </div>
 

@@ -112,7 +112,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   // Auto-save active progress to storageService
+  const lastSavedTimeRef = React.useRef<number>(0);
+  const timeElapsedRef = React.useRef<number>(timeElapsedSeconds);
+
   useEffect(() => {
+    timeElapsedRef.current = timeElapsedSeconds;
+  }, [timeElapsedSeconds]);
+
+  const saveCurrentSession = React.useCallback(() => {
     storageService.saveActiveSession({
       examId: exam.id,
       selectedAnswers: answers as Record<string, 'A' | 'B' | 'C' | 'D'>,
@@ -125,11 +132,35 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         examSetId: exam.id,
         examTitle: exam.title,
         answers,
-        timeElapsedSeconds,
+        timeElapsedSeconds: timeElapsedRef.current,
         lastUpdated: new Date().toISOString()
       } as any)
     });
-  }, [exam.id, exam.title, currentIndex, answers, flagged, timeElapsedSeconds]);
+  }, [exam.id, exam.title, answers, flagged, currentIndex]);
+
+  // Immediate save on user actions (answer, flag, navigate)
+  useEffect(() => {
+    saveCurrentSession();
+  }, [saveCurrentSession]);
+
+  // Throttled periodic save on timer tick (every 10s)
+  useEffect(() => {
+    if (timeElapsedSeconds > 0 && timeElapsedSeconds - lastSavedTimeRef.current >= 10) {
+      lastSavedTimeRef.current = timeElapsedSeconds;
+      saveCurrentSession();
+    }
+  }, [timeElapsedSeconds, saveCurrentSession]);
+
+  // Flush on unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      saveCurrentSession();
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [saveCurrentSession]);
 
   const navPillsContainerRef = React.useRef<HTMLDivElement>(null);
 

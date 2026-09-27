@@ -852,7 +852,7 @@ export const HUIT_02_EXAM: ExamSet = {
   id: 'exam-huit-02-toeic',
   title: 'Đề Luyện Thi Anh Văn Đầu Vào HUIT - Mã HUIT-02 (Nâng Cao / TOEIC Format)',
   description: 'Đề luyện thi Anh văn đầu vào Đại học Công Thương TP.HCM (HUIT) mã 02 nâng cao theo định dạng chuẩn TOEIC Reading: 15 câu Ngữ pháp, 15 câu Từ vựng và 20 câu Đọc hiểu kèm lời giải chi tiết và bản dịch.',
-  category: 'toeic',
+  category: 'university',
   durationMinutes: 60,
   totalQuestions: 50,
   badge: 'HUIT - ĐẦU VÀO TOEIC',

@@ -48,7 +48,7 @@ export interface ExamSet {
   id: string;
   title: string;
   description: string;
-  category: 'thpt_qg' | 'toeic' | 'ielts' | 'quick_quiz' | 'grammar_focus' | 'vocab_focus';
+  category: 'thpt_qg' | 'toeic' | 'ielts' | 'quick_quiz' | 'grammar_focus' | 'vocab_focus' | 'university';
   durationMinutes: number; // e.g., 50 mins, 15 mins
   totalQuestions: number;
   badge: string;

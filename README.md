@@ -1,36 +1,29 @@
-# 🎓 EnglishQuiz Master – Web Ôn Thi Trắc Nghiệm Tiếng Anh THPT 2026
+# 🎓 EnglishQuiz Master – Nền Tảng Luyện Thi Tiếng Anh Chuẩn Hóa (Đại Học, TOEIC & THPT)
 
 [![CI Pipeline](https://github.com/phucsangg/on-av/actions/workflows/ci.yml/badge.svg)](https://github.com/phucsangg/on-av/actions/workflows/ci.yml)
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript 6](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite-8.2-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Bundle Size](https://img.shields.io/badge/Initial_JS-31_kB_gzip-success)](#hiệu-năng)
+[![Bundle Size](https://img.shields.io/badge/Initial_JS-34_kB_gzip-success)](#hiệu-năng)
+[![Tests](https://img.shields.io/badge/Tests-Passing_9%2F9-brightgreen)](#kiểm-thử)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-**EnglishQuiz Master** là nền tảng luyện thi trắc nghiệm Tiếng Anh THPT Quốc Gia 2026 hiện đại, hiệu năng cao, bảo mật và chuẩn cấu trúc đổi mới của Bộ Giáo dục & Đào tạo. Ứng dụng được thiết kế nhằm mang lại trải nghiệm thi thử thực chiến mượt mà, phân tích điểm mạnh - điểm yếu cá nhân hóa và hỗ trợ học sinh tối ưu điểm số.
+**EnglishQuiz Master** là nền tảng luyện thi trắc nghiệm Tiếng Anh hiện đại, hiệu năng cao, bảo mật và chuẩn hóa dành cho học sinh, sinh viên Việt Nam: từ ôn thi chuẩn đầu vào Đại học (HUIT-oriented), định hướng TOEIC Reading đến kỳ thi Tốt nghiệp THPT Quốc Gia. Ứng dụng mang lại trải nghiệm thi thử thực chiến mượt mà, phân tích điểm mạnh - điểm yếu cá nhân hóa và hỗ trợ tối ưu điểm số.
 
 ---
 
 ## 🌟 TÍNH NĂNG NỔI BẬT
 
-### 📚 1. Kho Đề Thi 800 Câu Chuẩn Cấu Trúc THPT 2026
-- **20 Bộ đề thi thực chiến** (40 câu/đề) được số hóa và thẩm định từ các Sở GD&ĐT & Trường Chuyên uy tín toàn quốc:
-  - Sở GD&ĐT Hà Nội (Đề minh họa & Khảo sát Lần 1)
-  - Cụm Chuyên Bắc Ninh (Lần 1 & Khảo sát 2026)
-  - Sở GD&ĐT TP. Đà Nẵng
-  - THPT Chuyên Phan Bội Châu (Nghệ An)
-  - THPT Chuyên Vĩnh Phúc
-  - THPT Chuyên Bắc Giang
-  - THPT Trần Phú (Hà Tĩnh) & Sở GD&ĐT Hà Tĩnh
-  - Sở GD&ĐT Điện Biên, Ninh Bình
-  - Cụm Trường THPT TP. Hải Phòng & THPT Thái Phiên
-  - THPT Lê Lợi (Thanh Hóa), THPT Mê Linh, THPT Hàn Thuyên
-  - Đề thi chuyên đề Elon Musk & Đổi mới sáng tạo
+### 📚 1. Kho Đề Thi 850 Câu Chuẩn Cấu Trúc Đa Dạng
+- **21 Bộ đề thi thực chiến** (850 câu hỏi) được số hóa, gắn thẻ metadata và thẩm định:
+  - **Đề luyện thi chuẩn đầu vào Đại học (HUIT-02)**: 50 câu nâng cao chuẩn cấu trúc TOEIC Reading (15 Grammar, 15 Vocabulary, 20 Reading Comprehension) kèm giải thích song ngữ và bản dịch đầy đủ.
+  - **20 Bộ đề thi thử THPT Quốc Gia 2026** từ các Sở GD&ĐT & Trường Chuyên uy tín toàn quốc (Hà Nội, Hải Phòng, Đà Nẵng, Nghệ An, Vĩnh Phúc, Bắc Ninh, Bắc Giang, Hà Tĩnh, Ninh Bình, Điện Biên...).
+  - **Đề luyện nhanh & chuyên đề**: Trắc nghiệm 10 phút, Chuyên đề Đọc hiểu TOEIC/THPT (Fast Fashion, Ocean Tides), Chuyên đề Elon Musk.
 - **100% câu hỏi có đáp án chuẩn xác**, dịch nghĩa chi tiết và giải thích cặn kẽ từng phương án.
 
-### ⏱️ 2. Quiz Engine Ổn Định & Bấm Giờ Không Độ Trễ (`useQuizTimer`)
-- **Đồng hồ bấm giờ chuẩn xác theo Timestamp (`Date.now()`)**: Không bị đơ, trôi lệch hay chậm lại khi chuyển tab, ẩn trình duyệt hoặc thiết bị vào chế độ ngủ.
-- **Tự động lưu tiến độ (Auto-Save)**: Đang làm dở có thể thoát ra xem từ điển hoặc tắt máy mà không sợ mất bài. Banner trực quan cho phép tiếp tục bài thi 1-click.
+### ⏱️ 2. Quiz Engine Ổn Định & Bấm Giờ Drift-Free (`useQuizTimer`)
+- **Đồng hồ bấm giờ drift-free theo Timestamp thực tế (`Date.now()`)**: Không bị đơ, trôi lệch hay chậm lại khi chuyển tab, ẩn trình duyệt hoặc thiết bị vào chế độ ngủ.
+- **Tự động lưu tiến độ thông minh (Throttled Auto-Save)**: Lưu tức thì khi làm bài và định kỳ chống nghẽn I/O LocalStorage. Phục hồi bài thi 1-click khi vô tình đóng tab hoặc reload.
 - **Tự động điền bài đọc (Cloze Test Realtime Masking)**: Điền phương án trực tiếp vào chỗ trống trong đoạn văn khi chọn đáp án.
 - **Tự động Highlight từ vựng**: Phát hiện và làm nổi bật từ/cụm từ đang được hỏi trong đoạn văn (`The word "..." in paragraph X`).
 
@@ -104,9 +97,12 @@ npm run dev
 ```
 Truy cập ứng dụng tại `http://localhost:5173`.
 
-### 4. Kiểm tra mã nguồn & Kiểm định dữ liệu đề thi
+### 4. Kiểm tra mã nguồn, Chạy Test & Kiểm định dữ liệu
 ```bash
-# Kiểm tra định dạng và chất lượng 800 câu hỏi đề thi
+# Chạy bộ kiểm thử tự động (Unit Tests)
+npm test
+
+# Kiểm tra định dạng và chất lượng 850 câu hỏi đề thi
 npm run validate:data
 
 # Kiểm tra an toàn kiểu dữ liệu TypeScript
@@ -128,7 +124,7 @@ npm run build
 ```text
 on-av/
 ├── .github/
-│   ├── workflows/ci.yml       # GitHub Actions CI pipeline
+│   ├── workflows/ci.yml       # GitHub Actions CI pipeline (Typecheck, Lint, Test, Validate, Build)
 │   └── dependabot.yml         # Dependabot automated dependency security
 ├── public/
 │   ├── favicon.svg            # Favicon chính thức
@@ -136,9 +132,13 @@ on-av/
 │   └── robots.txt             # SEO Crawling rules
 ├── scripts/
 │   └── validateData.mjs       # Script thẩm định dữ liệu đề thi tự động
+├── tests/
+│   ├── sanitize.test.mjs      # Test chống XSS & cho phép thẻ HTML giáo dục
+│   ├── scoring.test.mjs       # Test thuật toán tính điểm & độ chính xác
+│   └── timer.test.mjs         # Test đồng hồ bấm giờ drift-free & đếm ngược
 ├── src/
 │   ├── components/            # React UI components (QuizRunner, Dashboard, ErrorBoundary...)
-│   ├── data/                  # 20 bộ đề thi THPT 2026 & Cơ sở dữ liệu từ điển
+│   ├── data/                  # 21 bộ đề thi (HUIT-02, THPT 2026...) & Dữ liệu từ điển
 │   ├── hooks/                 # Custom React Hooks (useQuizTimer...)
 │   ├── pages/                 # Page-level components (ExamCatalogPage, HistoryStatsPage...)
 │   ├── services/              # Singleton services (storageService, dictionaryService)

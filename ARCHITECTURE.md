@@ -1,0 +1,74 @@
+# ARCHITECTURE.md – EnglishQuiz Master System Architecture
+
+## 1. System Overview
+**EnglishQuiz Master** (`on-av`) is a high-performance, accessible, offline-first English Exam Preparation Single Page Application (SPA). It serves Vietnamese high school and university students preparing for University English Entrance/Placement exams (such as HUIT-oriented practice), TOEIC Reading, and the National High School Graduation Exam (THPT Quốc Gia).
+
+- **Framework**: React 19.2.8 + TypeScript 6.0.2 + Vite 8.2.2 (Rolldown engine)
+- **Styling Architecture**: Vanilla CSS Design Tokens, responsive fluid typography, glassmorphism accents, light/dark themes.
+- **Persistence**: LocalStorage with schema versioning, quota-exceeded guards, safe parsing fallbacks, and throttled auto-save.
+- **Routing**: Lightweight URL pushState / popState client-side router without bloated third-party dependencies.
+
+---
+
+## 2. Dependency & Component Hierarchy Map
+
+```text
+App (Root & Route Manager)
+├── ErrorBoundary (Crash Isolation)
+├── Navbar (Global Brand, Route Navigation, Quick Word Search, Theme Toggle)
+├── Active Session Banner (Resume In-Progress Exam)
+├── Main Content Views (React.lazy + Suspense Code-Splitting):
+│   ├── Dashboard (Learning Analytics, Mastery Score, Topic Breakdown, Quick Actions)
+│   ├── ExamCatalogPage (Catalog with Filters: University, TOEIC, THPT, Quick Quiz, Grammar, Vocab)
+│   ├── QuizRunner (Exam Engine: Timer, Question View, Cloze Masking, Highlights, Navigator)
+│   ├── QuizResult (Score Breakdown, Explanations, Mistake Sync, Share/Retry)
+│   ├── MistakeNotebook (Spaced Repetition Notebook, Filter by Mastery / Topic, Practice Mode)
+│   ├── HistoryStatsPage (Historical Attempts, Time Tracking, Skill Accuracy Trends)
+│   ├── DictionaryPage (Dictionary Search, Audio Pronunciation, Word Bookmarking)
+│   └── CustomExamBuilder (Custom Exam Creator, JSON Import/Export with Schema Validation)
+├── Modals & Overlays:
+│   ├── DictionaryModal (In-quiz instant word lookup via selection or search)
+│   └── SettingsModal (Audio toggle, theme switch, data reset)
+└── Footer (SEO Links & Platform Info)
+```
+
+---
+
+## 3. Data Flow & Subsystem Architecture
+
+### 3.1 Quiz Engine Flow
+```text
+ExamCatalogPage / Dashboard (Select Exam)
+       │
+       ▼
+App.tsx (Sets activeExam, pushes /lam-bai?examId=...)
+       │
+       ▼
+QuizRunner.tsx
+   ├── useQuizTimer (Drift-free Date.now() timestamp tracking)
+   ├── Local state: answers, flagged, currentIndex
+   ├── storageService.saveActiveSession (Throttled auto-save on navigation / 10s tick)
+   │
+   ▼ [User clicks Submit or Timer times out]
+QuizResult.tsx
+   ├── Computes Score & Accuracy Percentage
+   ├── storageService.saveAttempt (Appends to attempts history)
+   ├── storageService.syncMistakes (Upserts incorrect questions to Mistake Notebook)
+   └── Confetti Animation & Action triggers (Review, Retry, Mistake Practice)
+```
+
+### 3.2 Storage & Persistence Architecture (`storageService`)
+All browser persistence is encapsulated in `src/services/storageService.ts`:
+- **Prefix Isolation**: `eq_` key prefix.
+- **Safe Parsing (`safeGet`)**: Catches invalid JSON or corrupted data, returns fallback defaults without crashing the app.
+- **Safe Writing (`safeSet`)**: Wraps `localStorage.setItem` in try/catch to handle `QuotaExceededError`. If quota is reached, it automatically prunes older test attempts.
+- **Throttling**: `QuizRunner` throttles active session saves to only trigger on state change (answers/flags/question index) and every 10 seconds of elapsed time, plus `beforeunload`, avoiding disk I/O thrashing.
+
+### 3.3 Dictionary Subsystem (`dictionaryService`)
+- Unified lookup combining offline pre-indexed datasets (`dictionaryData.ts`) and Google Dictionary API fallback.
+- In-memory Map cache prevents duplicate network requests.
+- Native Web Speech API (`window.speechSynthesis`) provides native `en-US` pronunciation with fallback state handling.
+
+### 3.4 Data Validation & Security
+- `src/utils/sanitize.ts`: Pure regex-based HTML sanitizer allowing safe pedagogical tags (`<b>`, `<i>`, `<u>`, `<mark>`, `<br>`) while stripping `<script>`, `<iframe>`, `<style>`, `javascript:` protocols, and inline DOM event attributes (`onload`, `onerror`, `onclick`).
+- `src/utils/validation.ts`: Runtime schema validation ensuring all questions contain valid `id`, `options` (A/B/C/D), `correctAnswer`, `explanation`, and `topicTag`.

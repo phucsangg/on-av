@@ -31,7 +31,6 @@ export function useQuizTimer({
 
   useEffect(() => {
     if (isPaused) {
-      accumulatedTimeRef.current = timeElapsed;
       return;
     }
 
@@ -39,18 +38,17 @@ export function useQuizTimer({
 
     const intervalId = setInterval(() => {
       const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
+      accumulatedTimeRef.current = elapsed;
       setTimeElapsed(elapsed);
 
       if (isCountDown && totalDurationSeconds > 0 && elapsed >= totalDurationSeconds) {
         clearInterval(intervalId);
-        if (onTimeUpRef.current) {
-          onTimeUpRef.current();
-        }
+        onTimeUpRef.current?.();
       }
     }, 500);
 
     return () => clearInterval(intervalId);
-  }, [isPaused, isCountDown, totalDurationSeconds, timeElapsed]);
+  }, [isPaused, isCountDown, totalDurationSeconds]);
 
   const pause = useCallback(() => setIsPaused(true), []);
   const resume = useCallback(() => setIsPaused(false), []);
