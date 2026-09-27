@@ -218,28 +218,33 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
         </div>
 
         {/* Category Filter Pills */}
-        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              style={{
-                padding: '8px 18px',
-                borderRadius: 'var(--radius-pill)',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                border: selectedCategory === cat.id ? '1px solid var(--brand-primary)' : '1px solid var(--border-light)',
-                background: selectedCategory === cat.id ? 'var(--brand-gradient)' : 'var(--bg-card)',
-                color: selectedCategory === cat.id ? '#fff' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                transition: 'all 0.2s ease',
-                boxShadow: selectedCategory === cat.id ? '0 4px 12px rgba(79, 70, 229, 0.25)' : 'none'
-              }}
-            >
-              {cat.label}
-            </button>
-          ))}
+        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px', maxWidth: '100%' }}>
+          {categories.map(cat => {
+            const count = cat.id === 'all'
+              ? examSets.length
+              : examSets.filter(e => e.category === cat.id).length;
+            const isActive = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`tab-chip-pill ${isActive ? 'active' : ''}`}
+                style={{ padding: '8px 16px', fontSize: '0.85rem' }}
+              >
+                <span>{cat.label}</span>
+                <span style={{
+                  background: isActive ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                  color: isActive ? '#ffffff' : 'var(--text-muted)',
+                  fontSize: '0.72rem',
+                  padding: '1px 6px',
+                  borderRadius: '999px',
+                  fontWeight: 800
+                }}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 

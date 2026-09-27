@@ -221,27 +221,54 @@ export const QuizResult: React.FC<QuizResultProps> = ({
         <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Xem Chi Tiết Lời Giải & Đáp Án</h3>
         
         {/* Filter Buttons */}
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
             onClick={() => setFilter('all')}
-            className={`btn ${filter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ padding: '6px 14px', fontSize: '0.85rem' }}
+            className={`tab-chip-pill ${filter === 'all' ? 'active' : ''}`}
           >
-            Tất cả ({totalQuestions})
+            <span>Tất cả</span>
+            <span style={{
+              background: filter === 'all' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+              color: filter === 'all' ? '#ffffff' : 'var(--text-muted)',
+              fontSize: '0.72rem',
+              padding: '1px 6px',
+              borderRadius: '999px',
+              fontWeight: 800
+            }}>
+              {totalQuestions}
+            </span>
           </button>
           <button
             onClick={() => setFilter('incorrect')}
-            className={`btn ${filter === 'incorrect' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ padding: '6px 14px', fontSize: '0.85rem' }}
+            className={`tab-chip-pill ${filter === 'incorrect' ? 'active' : ''}`}
           >
-            Câu sai ({totalQuestions - correctCount})
+            <span>Câu sai</span>
+            <span style={{
+              background: filter === 'incorrect' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+              color: filter === 'incorrect' ? '#ffffff' : 'var(--danger)',
+              fontSize: '0.72rem',
+              padding: '1px 6px',
+              borderRadius: '999px',
+              fontWeight: 800
+            }}>
+              {totalQuestions - correctCount}
+            </span>
           </button>
           <button
             onClick={() => setFilter('correct')}
-            className={`btn ${filter === 'correct' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ padding: '6px 14px', fontSize: '0.85rem' }}
+            className={`tab-chip-pill ${filter === 'correct' ? 'active' : ''}`}
           >
-            Câu đúng ({correctCount})
+            <span>Câu đúng</span>
+            <span style={{
+              background: filter === 'correct' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+              color: filter === 'correct' ? '#ffffff' : 'var(--success)',
+              fontSize: '0.72rem',
+              padding: '1px 6px',
+              borderRadius: '999px',
+              fontWeight: 800
+            }}>
+              {correctCount}
+            </span>
           </button>
         </div>
       </div>

@@ -52,9 +52,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const categories = [
     { id: 'all', label: 'Tất cả bộ đề' },
+    { id: 'university', label: 'Đầu Vào Đại Học (HUIT)' },
+    { id: 'toeic', label: 'Luyện thi TOEIC' },
     { id: 'thpt_qg', label: 'THPT Quốc Gia' },
     { id: 'quick_quiz', label: 'Trắc nghiệm nhanh' },
-    { id: 'toeic', label: 'Luyện thi TOEIC' },
     { id: 'vocab_focus', label: 'Từ vựng & Idioms' },
   ];
 
@@ -67,6 +68,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
+      case 'university': return <Award size={22} color="#4f46e5" />;
       case 'thpt_qg': return <GraduationCap size={22} color="#4f46e5" />;
       case 'quick_quiz': return <Zap size={22} color="#f59e0b" />;
       case 'toeic': return <Briefcase size={22} color="#06b6d4" />;
@@ -424,17 +426,33 @@ export const Dashboard: React.FC<DashboardProps> = ({
         marginBottom: '28px'
       }}>
         {/* Category Selector Tabs */}
-        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`btn ${selectedCategory === cat.id ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ padding: '10px 18px', fontSize: '0.875rem', whiteSpace: 'nowrap' }}
-            >
-              {cat.label}
-            </button>
-          ))}
+        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px', maxWidth: '100%' }}>
+          {categories.map(cat => {
+            const count = cat.id === 'all' 
+              ? examSets.length 
+              : examSets.filter(e => e.category === cat.id).length;
+            const isActive = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`tab-chip-pill ${isActive ? 'active' : ''}`}
+                style={{ padding: '8px 16px', fontSize: '0.85rem' }}
+              >
+                <span>{cat.label}</span>
+                <span style={{
+                  background: isActive ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                  color: isActive ? '#ffffff' : 'var(--text-muted)',
+                  fontSize: '0.72rem',
+                  padding: '1px 6px',
+                  borderRadius: '999px',
+                  fontWeight: 800
+                }}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Search Input Box */}

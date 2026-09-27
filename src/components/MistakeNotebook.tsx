@@ -328,27 +328,54 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
           </div>
 
           {/* Status Tabs (All / Learning / Mastered) */}
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '20px', flexWrap: 'wrap' }}>
             <button
               onClick={() => setStatusFilter('all')}
-              className={`btn ${statusFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ padding: '6px 16px', fontSize: '0.85rem', borderRadius: 'var(--radius-pill)' }}
+              className={`tab-chip-pill ${statusFilter === 'all' ? 'active' : ''}`}
             >
-              Tất cả ({mistakes.length})
+              <span>Tất cả</span>
+              <span style={{
+                background: statusFilter === 'all' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                color: statusFilter === 'all' ? '#ffffff' : 'var(--text-muted)',
+                fontSize: '0.72rem',
+                padding: '1px 6px',
+                borderRadius: '999px',
+                fontWeight: 800
+              }}>
+                {mistakes.length}
+              </span>
             </button>
             <button
               onClick={() => setStatusFilter('learning')}
-              className={`btn ${statusFilter === 'learning' ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ padding: '6px 16px', fontSize: '0.85rem', borderRadius: 'var(--radius-pill)' }}
+              className={`tab-chip-pill ${statusFilter === 'learning' ? 'active' : ''}`}
             >
-              Đang ôn luyện ({learningCount})
+              <span>Đang ôn luyện</span>
+              <span style={{
+                background: statusFilter === 'learning' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                color: statusFilter === 'learning' ? '#ffffff' : 'var(--danger)',
+                fontSize: '0.72rem',
+                padding: '1px 6px',
+                borderRadius: '999px',
+                fontWeight: 800
+              }}>
+                {learningCount}
+              </span>
             </button>
             <button
               onClick={() => setStatusFilter('mastered')}
-              className={`btn ${statusFilter === 'mastered' ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ padding: '6px 16px', fontSize: '0.85rem', borderRadius: 'var(--radius-pill)' }}
+              className={`tab-chip-pill ${statusFilter === 'mastered' ? 'active' : ''}`}
             >
-              Đã nắm vững ({masteredCount})
+              <span>Đã nắm vững</span>
+              <span style={{
+                background: statusFilter === 'mastered' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                color: statusFilter === 'mastered' ? '#ffffff' : 'var(--success)',
+                fontSize: '0.72rem',
+                padding: '1px 6px',
+                borderRadius: '999px',
+                fontWeight: 800
+              }}>
+                {masteredCount}
+              </span>
             </button>
           </div>
 
