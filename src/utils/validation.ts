@@ -1,5 +1,7 @@
 import type { Question, ExamSet } from '../types/quiz';
-import { sanitizeHtml } from './sanitize';
+import { sanitizeHtml, cleanTopicTag } from './sanitize';
+
+export { cleanTopicTag };
 
 export interface ValidationResult {
   valid: boolean;
@@ -54,7 +56,7 @@ export function validateQuestion(q: any, index?: number): { valid: boolean; erro
     errors.push(`${prefix}Đáp án đúng không hợp lệ (phải là A, B, C, hoặc D).`);
   }
 
-  const topicTag = typeof q.topicTag === 'string' && q.topicTag.trim() ? q.topicTag.trim() : 'Tổng hợp';
+  const topicTag = typeof q.topicTag === 'string' && q.topicTag.trim() ? cleanTopicTag(q.topicTag.trim()) : 'Tổng hợp';
   const explanation = typeof q.explanation === 'string' ? q.explanation.trim() : '';
   const translation = typeof q.translation === 'string' ? q.translation.trim() : undefined;
   const readingPassage = typeof q.readingPassage === 'string' ? q.readingPassage.trim() : undefined;

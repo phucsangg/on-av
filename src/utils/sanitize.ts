@@ -42,3 +42,35 @@ export function sanitizeHtml(dirty: string): string {
 
   return clean;
 }
+
+/**
+ * Strips answer spoilers from topic tags (e.g., "(Not because... but because...)", "(Must be)", "(Due to)")
+ * while preserving valid linguistic classifications like "(Word Form)", "(Double Comparative)", "(Inference)".
+ */
+export function cleanTopicTag(tag?: string): string {
+  if (!tag || typeof tag !== 'string') return 'Tổng hợp';
+
+  const safeGrammarTerms = new Set([
+    'word form', 'word formation', 'word class', 'quantifiers', 'prepositions',
+    'conjunctions', 'articles', 'stress', 'pronunciation', 'inversion',
+    'subjunctive', 'subjunctive mood', 'double comparative', 'relative pronouns',
+    'phrasal verbs', 'communication', 'paragraph structure', 'paragraph ordering',
+    'dialogue structure', 'story/event structure', 'letter structure', 'parallelism',
+    'idioms', 'synonyms', 'antonyms', 'antonym', 'vocabulary', 'vocabulary in context',
+    'detail question', 'detailed fact', 'inference', 'main idea', 'main purpose',
+    'paraphrasing', 'reference', 'implication', 'cụm từ cố định', 'động từ ghép'
+  ]);
+
+  let cleaned = tag.replace(/\s*\(([^)]+)\)/g, (match, inner) => {
+    const trimmed = inner.trim().toLowerCase();
+    if (safeGrammarTerms.has(trimmed)) {
+      return match;
+    }
+    if (trimmed.startsWith('phrasal verbs')) {
+      return ' (Phrasal Verbs)';
+    }
+    return '';
+  }).trim();
+
+  return cleaned || 'Tổng hợp';
+}

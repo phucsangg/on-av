@@ -154,7 +154,7 @@ export const HA_TINH_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• A. research - Không đi với make in.\n• B. homework - Dùng với do.\n• C. advantage - Không hợp nghĩa.\n• D. progress - ĐÚNG: Collocation "make progress in something" (đạt sự tiến bộ).',
     translation: 'Có cơ hội đạt được (5) ____________ trong kỹ năng giao tiếp.',
-    topicTag: 'Collocation (Make progress)'
+    topicTag: 'Collocation'
   },
   {
     id: 'ht-q6',
@@ -469,7 +469,7 @@ e. Ultimately, maintaining a balance between embracing foreign cultures and pres
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: Cụm từ "on condition that" (với điều kiện là) chỉ điều kiện thực tế để xe điện thực sự thân thiện môi trường.',
     translation: 'Hơn nữa, xe điện chỉ hoàn toàn thân thiện với môi trường (22) ____________ như gió và Mặt Trời.',
-    topicTag: 'Mệnh đề điều kiện (On condition that)'
+    topicTag: 'Mệnh đề điều kiện'
   },
 
   // SECTION 5: READING COMPREHENSION 1 - URBANIZATION (Q23 - Q30)

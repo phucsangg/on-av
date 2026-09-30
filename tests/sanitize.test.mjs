@@ -51,3 +51,42 @@ test('sanitizeHtml: handles plain text and empty values safely', () => {
   assert.equal(sanitizeHtml(undefined), '');
   assert.equal(sanitizeHtml('No tags here'), 'No tags here');
 });
+
+// cleanTopicTag test logic mirroring src/utils/sanitize.ts
+function cleanTopicTag(tag) {
+  if (!tag || typeof tag !== 'string') return 'Tổng hợp';
+  const safeGrammarTerms = new Set([
+    'word form', 'word formation', 'word class', 'quantifiers', 'prepositions',
+    'conjunctions', 'articles', 'stress', 'pronunciation', 'inversion',
+    'subjunctive', 'subjunctive mood', 'double comparative', 'relative pronouns',
+    'phrasal verbs', 'communication', 'paragraph structure', 'paragraph ordering',
+    'dialogue structure', 'story/event structure', 'letter structure', 'parallelism',
+    'idioms', 'synonyms', 'antonyms', 'antonym', 'vocabulary', 'vocabulary in context',
+    'detail question', 'detailed fact', 'inference', 'main idea', 'main purpose',
+    'paraphrasing', 'reference', 'implication', 'cụm từ cố định', 'động từ ghép'
+  ]);
+
+  let cleaned = tag.replace(/\s*\(([^)]+)\)/g, (match, inner) => {
+    const trimmed = inner.trim().toLowerCase();
+    if (safeGrammarTerms.has(trimmed)) {
+      return match;
+    }
+    if (trimmed.startsWith('phrasal verbs')) {
+      return ' (Phrasal Verbs)';
+    }
+    return '';
+  }).trim();
+
+  return cleaned || 'Tổng hợp';
+}
+
+test('cleanTopicTag: strips answer spoilers while preserving grammatical classification', () => {
+  assert.equal(cleanTopicTag('Cặp liên từ (Not because... but because...)'), 'Cặp liên từ');
+  assert.equal(cleanTopicTag('Bị động với Động từ khuyết thiếu (Must be)'), 'Bị động với Động từ khuyết thiếu');
+  assert.equal(cleanTopicTag('Từ loại (Word Form)'), 'Từ loại (Word Form)');
+  assert.equal(cleanTopicTag('So sánh kép (Double Comparative)'), 'So sánh kép (Double Comparative)');
+  assert.equal(cleanTopicTag('Đọc hiểu - Suy luận (Inference)'), 'Đọc hiểu - Suy luận (Inference)');
+  assert.equal(cleanTopicTag('Cụm động từ (Phrasal Verbs - Put off)'), 'Cụm động từ (Phrasal Verbs)');
+  assert.equal(cleanTopicTag(''), 'Tổng hợp');
+});
+

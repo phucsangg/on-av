@@ -114,7 +114,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Với neither…nor, động từ thường hòa hợp với chủ ngữ gần nhất; representatives số nhiều. Yesterday → were.',
     translation: 'Cả giám đốc bán hàng lẫn các đại diện khu vực đều không có mặt trong cuộc họp ngày hôm qua.',
-    topicTag: 'Sự hòa hợp Chủ ngữ - Động từ (Neither... nor)'
+    topicTag: 'Sự hòa hợp Chủ ngữ - Động từ'
   },
   {
     id: 'huit02-q5',
@@ -144,7 +144,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Regret to do something: lấy làm tiếc phải thông báo/làm điều gì (thường dùng trong thông báo trang trọng).',
     translation: 'Chúng tôi rất tiếc phải thông báo với bạn rằng hồ sơ ứng tuyển không thể được xem xét nếu thiếu các giấy tờ theo yêu cầu.',
-    topicTag: 'Dạng của động từ (Regret to V)'
+    topicTag: 'Dạng của động từ'
   },
   {
     id: 'huit02-q7',
@@ -152,14 +152,14 @@ export const HUIT_02_QUESTIONS: Question[] = [
     questionText: 'Question 7. The more carefully the data are reviewed, _____ the likelihood of costly errors.',
     options: [
       { id: 'A', text: 'lower', translation: 'lower (thiếu mạo từ the)' },
-      { id: 'B', text: 'the lower', translation: 'the lower (chuẩn cấu trúc so sánh kép)' },
+      { id: 'B', text: 'the lower', translation: 'càng thấp' },
       { id: 'C', text: 'the lowest', translation: 'the lowest (so sánh nhất)' },
       { id: 'D', text: 'it is lower', translation: 'it is lower' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Cấu trúc so sánh kép: The + comparative…, the + comparative…',
     translation: 'Dữ liệu càng được xem xét cẩn thận thì khả năng xảy ra những sai sót tốn kém càng thấp.',
-    topicTag: 'So sánh kép (The more... the more...)'
+    topicTag: 'So sánh kép'
   },
   {
     id: 'huit02-q8',
@@ -174,7 +174,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Collocation: be responsible for + noun/V-ing.',
     translation: 'Cô Patel chịu trách nhiệm điều phối các buổi đào tạo tại tất cả các chi nhánh.',
-    topicTag: 'Giới từ đi với Tính từ (Responsible for)'
+    topicTag: 'Giới từ đi với Tính từ'
   },
   {
     id: 'huit02-q9',
@@ -204,7 +204,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Modal passive: must + be + past participle.',
     translation: 'Thiết bị phải được kiểm tra trước khi đưa trở lại phòng kho.',
-    topicTag: 'Bị động với Động từ khuyết thiếu (Must be)'
+    topicTag: 'Bị động với Động từ khuyết thiếu'
   },
   {
     id: 'huit02-q11',
@@ -249,7 +249,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Bổ nghĩa cho động từ spoke cần trạng từ: quietly.',
     translation: 'Ứng viên nói quá nhỏ đến mức một số thành viên trong hội đồng phỏng vấn đã yêu cầu cô ấy nhắc lại các điểm chính.',
-    topicTag: 'Trạng từ chỉ thể cách (Adverb of Manner)'
+    topicTag: 'Trạng từ chỉ thể cách'
   },
   {
     id: 'huit02-q14',
@@ -272,14 +272,14 @@ export const HUIT_02_QUESTIONS: Question[] = [
     questionText: 'Question 15. The proposal was rejected, not because it was impractical, _____ because its financial assumptions were unrealistic.',
     options: [
       { id: 'A', text: 'and', translation: 'and' },
-      { id: 'B', text: 'but', translation: 'but (cấu trúc not because... but because...)' },
+      { id: 'B', text: 'but', translation: 'nhưng' },
       { id: 'C', text: 'or', translation: 'or' },
       { id: 'D', text: 'so', translation: 'so' }
     ],
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Cấu trúc not because…, but because… diễn đạt lý do đối lập/đính chính.',
     translation: 'Đề xuất bị bác bỏ không phải vì nó phi thực tế, mà vì các giả định tài chính của nó không có cơ sở.',
-    topicTag: 'Cặp liên từ (Not because... but because...)'
+    topicTag: 'Cặp liên từ'
   },
   {
     id: 'huit02-q16',
@@ -294,7 +294,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Extend hours = kéo dài giờ hoạt động.',
     translation: 'Công ty dự định kéo dài giờ hỗ trợ khách hàng trong suốt kỳ nghỉ lễ.',
-    topicTag: 'Từ vựng - Collocation (Extend hours)'
+    topicTag: 'Từ vựng - Collocation'
   },
   {
     id: 'huit02-q17',
@@ -309,7 +309,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: For future reference = để tiện tra cứu sau này.',
     translation: 'Vui lòng lưu giữ mã xác nhận của bạn để tiện tra cứu sau này.',
-    topicTag: 'Từ vựng - Thành ngữ (For future reference)'
+    topicTag: 'Từ vựng - Thành ngữ'
   },
   {
     id: 'huit02-q18',
@@ -324,7 +324,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Put off = hoãn lại.',
     translation: 'Buổi tập huấn đã bị hoãn lại sang thứ Hai tuần tới vì người hướng dẫn bị ốm.',
-    topicTag: 'Cụm động từ (Phrasal Verbs - Put off)'
+    topicTag: 'Cụm động từ (Phrasal Verbs)'
   },
   {
     id: 'huit02-q19',
@@ -339,7 +339,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Sau mạo từ a và trước danh từ candidate cần tính từ; reliable = đáng tin cậy.',
     translation: 'Công ty đang tìm kiếm một ứng viên đáng tin cậy, người có thể quản lý nhiều dự án cùng một lúc.',
-    topicTag: 'Từ loại - Tính từ (Reliable candidate)'
+    topicTag: 'Từ loại - Tính từ'
   },
   {
     id: 'huit02-q20',
@@ -354,7 +354,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Streamline = tinh giản, làm quy trình hiệu quả hơn.',
     translation: 'Phần mềm mới được thiết kế nhằm tinh giản quy trình nộp yêu cầu hoàn ứng chi phí.',
-    topicTag: 'Từ vựng công sở (Streamline)'
+    topicTag: 'Từ vựng công sở'
   },
   {
     id: 'huit02-q21',
@@ -369,7 +369,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Original packaging = bao bì gốc.',
     translation: 'Khách hàng muốn trả lại hàng phải xuất trình hóa đơn mua hàng và bao bì nguyên gốc.',
-    topicTag: 'Từ loại - Danh từ (Original packaging)'
+    topicTag: 'Từ loại - Danh từ'
   },
   {
     id: 'huit02-q22',
@@ -384,7 +384,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cần tính từ bổ nghĩa explanation; comprehensive = toàn diện, đầy đủ.',
     translation: 'Người quản lý yêu cầu cả nhóm đưa ra một lời giải thích toàn diện về sự gia tăng chi phí bất ngờ.',
-    topicTag: 'Từ loại - Tính từ (Comprehensive explanation)'
+    topicTag: 'Từ loại - Tính từ'
   },
   {
     id: 'huit02-q23',
@@ -399,7 +399,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Unavailable = không có sẵn/không thể sử dụng; unoccupied thường là đang trống.',
     translation: 'Phòng hội nghị hiện tại không có sẵn để sử dụng, vì vậy chúng ta sẽ phải họp ở nơi khác.',
-    topicTag: 'Từ vựng ngữ cảnh (Unavailable room)'
+    topicTag: 'Từ vựng ngữ cảnh'
   },
   {
     id: 'huit02-q24',
@@ -414,7 +414,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Conduct a survey = tiến hành khảo sát.',
     translation: 'Phòng marketing sẽ tiến hành một cuộc khảo sát để xác định những tính năng mà khách hàng đánh giá cao nhất.',
-    topicTag: 'Kết hợp từ - Collocation (Conduct a survey)'
+    topicTag: 'Kết hợp từ - Collocation'
   },
   {
     id: 'huit02-q25',
@@ -429,7 +429,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Tính từ occasional bổ nghĩa delays.',
     translation: 'Do tình trạng thiếu hụt tạm thời, các đơn đặt hàng có thể gặp phải sự chậm trễ đôi khi.',
-    topicTag: 'Từ loại - Tính từ (Occasional delays)'
+    topicTag: 'Từ loại - Tính từ'
   },
   {
     id: 'huit02-q26',
@@ -444,7 +444,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: A gesture of goodwill = thiện chí.',
     translation: 'Nhà cung cấp đã đề nghị hoàn lại một phần tiền như một cử chỉ thể hiện thiện chí.',
-    topicTag: 'Thành ngữ công sở (A gesture of goodwill)'
+    topicTag: 'Thành ngữ công sở'
   },
   {
     id: 'huit02-q27',
@@ -459,7 +459,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Review documents = kiểm tra/xem lại hồ sơ; revise thường là chỉnh sửa nội dung.',
     translation: 'Các ứng viên được khuyên nên kiểm tra lại các giấy tờ cẩn thận trước khi gửi mẫu trực tuyến.',
-    topicTag: 'Từ vựng ngữ cảnh (Review documents)'
+    topicTag: 'Từ vựng ngữ cảnh'
   },
   {
     id: 'huit02-q28',
@@ -474,7 +474,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Compliance with regulations = sự tuân thủ quy định.',
     translation: 'Nhà máy đã đưa ra các biện pháp nghiêm ngặt hơn nhằm đảm bảo sự tuân thủ các quy định về môi trường.',
-    topicTag: 'Giới từ đi với Danh từ (Compliance with)'
+    topicTag: 'Giới từ đi với Danh từ'
   },
   {
     id: 'huit02-q29',
@@ -489,7 +489,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Largely due to = phần lớn là nhờ/vì.',
     translation: 'Đợt ra mắt sản phẩm đã thành công, phần lớn là nhờ vào sự hợp tác giữa đội ngũ thiết kế và bán hàng.',
-    topicTag: 'Cụm liên từ chỉ nguyên nhân (Largely due to)'
+    topicTag: 'Cụm liên từ chỉ nguyên nhân'
   },
   {
     id: 'huit02-q30',
@@ -504,7 +504,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: In advance = trước.',
     translation: 'Vui lòng thông báo cho quầy lễ tân về bất kỳ thay đổi nào đối với việc đặt chỗ của bạn trước thời hạn.',
-    topicTag: 'Cụm giới từ thời gian (In advance)'
+    topicTag: 'Cụm giới từ thời gian'
   },
   {
     id: 'huit02-q31',
@@ -572,7 +572,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Incomplete means not having all required parts; closest is unfinished.',
     translation: 'Từ "incomplete" (chưa hoàn thiện) gần nghĩa nhất với từ nào?',
-    topicTag: 'Đọc hiểu Thông báo - Từ vựng ngữ cảnh (Incomplete)'
+    topicTag: 'Đọc hiểu Thông báo - Từ vựng ngữ cảnh'
   },
   {
     id: 'huit02-q35',
@@ -674,7 +674,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: To trace a decision is to follow its record/history.',
     translation: 'Từ "trace" trong đoạn 2 gần nghĩa nhất với:',
-    topicTag: 'Đọc hiểu Bài luận - Từ vựng ngữ cảnh (Trace)'
+    topicTag: 'Đọc hiểu Bài luận - Từ vựng ngữ cảnh'
   },
   {
     id: 'huit02-q41',
@@ -759,7 +759,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: In “skills they may use again,” they refers to visitors.',
     translation: 'Từ "they" trong đoạn 2 quy chiếu đến đối tượng nào?',
-    topicTag: 'Đọc hiểu Cộng đồng - Từ quy chiếu (They)'
+    topicTag: 'Đọc hiểu Cộng đồng - Từ quy chiếu'
   },
   {
     id: 'huit02-q46',
@@ -810,7 +810,7 @@ export const HUIT_02_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Influence means to affect or shape.',
     translation: 'Từ "influence" trong đoạn cuối gần nghĩa nhất với:',
-    topicTag: 'Đọc hiểu Cộng đồng - Từ vựng ngữ cảnh (Influence)'
+    topicTag: 'Đọc hiểu Cộng đồng - Từ vựng ngữ cảnh'
   },
   {
     id: 'huit02-q49',

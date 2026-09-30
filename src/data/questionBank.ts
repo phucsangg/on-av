@@ -475,7 +475,7 @@ e. For this reason, while exams continue to play an important role, they should 
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Đại từ "This" chỉ toàn bộ ý môi trường làm việc ở câu trước, kết hợp cấu trúc liên kết "not only ... but also ...".',
     translation: '(22) ____________.',
-    topicTag: 'Liên kết câu (Not only... but also)'
+    topicTag: 'Liên kết câu'
   },
 
   // SECTION 5: READING COMPREHENSION 1 - OCEAN TIDES (Q23 - Q30)

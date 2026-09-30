@@ -3,6 +3,7 @@ import type {
   ExamSet, 
   UserAnswerRecord 
 } from '../types/quiz';
+import { cleanTopicTag } from '../utils/sanitize';
 import { DictionaryModal } from './DictionaryModal';
 import { useQuizTimer } from '../hooks/useQuizTimer';
 import { storageService } from '../services/storageService';
@@ -1309,9 +1310,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 <span className="badge badge-primary" style={{ fontSize: '0.95rem', padding: '6px 16px' }}>
                   Câu {currentIndex + 1} / {exam.questions.length}
                 </span>
-                <span className="badge badge-warning" style={{ fontSize: '0.85rem' }}>
-                  {currentQuestion.topicTag}
-                </span>
+                {quizMode === 'practice' && answers[currentQuestion.id] && currentQuestion.topicTag && (
+                  <span className="badge badge-warning" style={{ fontSize: '0.85rem' }}>
+                    {cleanTopicTag(currentQuestion.topicTag)}
+                  </span>
+                )}
               </div>
 
               <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>

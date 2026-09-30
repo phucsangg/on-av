@@ -231,7 +231,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Sau giới từ "such as" ta dùng danh động từ V-ing (organizing).',
     translation: 'Tham gia các hoạt động như (9) ____________ các đợt quyên góp từ thiện.',
-    topicTag: 'Danh động từ sau giới từ (V-ing)'
+    topicTag: 'Danh động từ sau giới từ'
   },
   {
     id: 'ml-q10',
@@ -265,7 +265,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cấu trúc "Whether... or..." nghĩa là dù bạn có dành ít thời gian hay muốn tham gia dự án lớn.',
     translation: '(11) ____________ bạn có thể dành vài giờ một tuần hay muốn tham gia các dự án lớn.',
-    topicTag: 'Liên từ chỉ sự lựa chọn (Whether... or)'
+    topicTag: 'Liên từ chỉ sự lựa chọn'
   },
   {
     id: 'ml-q12',
@@ -378,7 +378,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "As automation expands..." chỉ mối quan hệ thời gian/nguyên nhân phù hợp với vế sau về sự biến đổi công việc.',
     translation: '(18) ____________, nhiều công việc truyền thống đang biến đổi hoặc bị thay thế bởi máy móc.',
-    topicTag: 'Mệnh đề trạng ngữ chỉ thời gian (As...)'
+    topicTag: 'Mệnh đề trạng ngữ chỉ thời gian'
   },
   {
     id: 'ml-q19',
@@ -446,7 +446,7 @@ export const ME_LINH_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "Unless" (trừ khi) diễn tả điều kiện bắt buộc để ngăn chặn nguy cơ an ninh mạng.',
     translation: '(22) ____________, người dùng vẫn sẽ dễ bị tổn thương trước các mối đe dọa trên mạng.',
-    topicTag: 'Mệnh đề điều kiện (Unless)'
+    topicTag: 'Mệnh đề điều kiện'
   },
 
   // SECTION 5: READING COMPREHENSION 1 - NEWSPAPER EVOLUTION (Q23 - Q30)

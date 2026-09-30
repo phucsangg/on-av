@@ -17,7 +17,7 @@ import {
   Languages,
   Sparkles
 } from 'lucide-react';
-import { sanitizeHtml } from '../utils/sanitize';
+import { sanitizeHtml, cleanTopicTag } from '../utils/sanitize';
 
 interface QuizResultProps {
   exam: ExamSet;
@@ -89,7 +89,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
     const map: Record<string, { total: number; correct: number }> = {};
     exam.questions.forEach(q => {
       const rec = answers.find(a => a.questionId === q.id);
-      const t = q.topicTag || 'Tổng hợp';
+      const t = cleanTopicTag(q.topicTag);
       if (!map[t]) map[t] = { total: 0, correct: 0 };
       map[t].total++;
       if (rec?.isCorrect) map[t].correct++;
@@ -309,7 +309,7 @@ export const QuizResult: React.FC<QuizResultProps> = ({
                     {isCorrect ? <Check size={14} /> : <X size={14} />}
                     {isCorrect ? 'Chính xác' : 'Chưa chính xác'}
                   </span>
-                  <span className="badge badge-primary">{q.topicTag}</span>
+                  <span className="badge badge-primary">{cleanTopicTag(q.topicTag)}</span>
                 </div>
 
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>

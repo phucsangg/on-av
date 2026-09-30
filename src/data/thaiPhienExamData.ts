@@ -84,7 +84,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cấu trúc "with + N + Adj/V-ed" đóng vai trò bổ ngữ liệt kê cụ thể các nguy cơ bệnh tật (high blood pressure, type 2 diabetes).\n• A, B, C: Sai cấu trúc ngữ pháp và lặp ý.',
     translation: 'Nghiên cứu trên tạp chí Science phát hiện các nguy cơ kéo dài đến tận tuổi trưởng thành, (1) ____________ lượng đường bổ sung tăng cao từ sớm.',
-    topicTag: 'Cấu trúc Bổ ngữ chỉ nguyên nhân (With + N + Adj)'
+    topicTag: 'Cấu trúc Bổ ngữ chỉ nguyên nhân'
   },
   {
     id: 'tp-q2',
@@ -118,7 +118,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Sử dụng phân từ hoàn thành bị động "Having been exposed to" chỉ hành động xảy ra trước làm nguyên nhân dẫn đến thói quen sở thích.',
     translation: '"(3) ____________, rất có khả năng bạn sẽ thích chúng suốt đời hơn người không bị như vậy."',
-    topicTag: 'Phân từ hoàn thành (Having been + V3)'
+    topicTag: 'Phân từ hoàn thành'
   },
   {
     id: 'tp-q4',
@@ -575,7 +575,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: Collocation "extending the lifespan" nghĩa là kéo dài tuổi thọ thiết bị.',
     translation: 'Đạt chất lượng không khí tốt đồng thời (30) ____________ tuổi thọ của thiết bị.',
-    topicTag: 'Collocation (Extend lifespan)'
+    topicTag: 'Collocation'
   },
   {
     id: 'tp-q31',
@@ -592,7 +592,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Trạng từ "naturally" bổ nghĩa cho danh động từ "cleaning".',
     translation: 'Máy lọc không khí là công cụ hữu ích để làm sạch bầu không khí một cách (31) ____________.',
-    topicTag: 'Từ loại (Trạng từ bổ nghĩa V-ing)'
+    topicTag: 'Từ loại'
   },
   {
     id: 'tp-q32',
@@ -662,7 +662,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cụm từ cố định "a wide variety of" nhấn mạnh sự đa dạng về khóa học và giáo viên.',
     translation: 'Học theo cách riêng của mình với sự (35) ____________ phong phú nhất về giáo viên và chủ đề.',
-    topicTag: 'Collocation (A wide variety of)'
+    topicTag: 'Collocation'
   },
   {
     id: 'tp-q36',
@@ -679,7 +679,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Với mốc thời gian "Since 2015", ta dùng thì Hiện tại hoàn thành (have taught).',
     translation: 'Kể từ năm 2015, các giáo viên chuyên gia của chúng tôi (36) ____________ hơn 1,5 triệu học viên.',
-    topicTag: 'Thì Hiện tại hoàn thành (Since)'
+    topicTag: 'Thì Hiện tại hoàn thành'
   },
   {
     id: 'tp-q37',
@@ -696,7 +696,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: "however" thể hiện sự đối lập: không yêu cầu bằng cấp NHƯNG vẫn có các điều kiện cần đáp ứng.',
     translation: 'Chúng tôi không yêu cầu bằng cấp chính thức. Tuy nhiên, chúng tôi (37) ____________ có các yêu cầu cần đáp ứng.',
-    topicTag: 'Trạng từ liên kết (However)'
+    topicTag: 'Trạng từ liên kết'
   },
   {
     id: 'tp-q38',
@@ -713,7 +713,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Collocation "fulfill requirements" nghĩa là đáp ứng các yêu cầu đề ra.',
     translation: 'Có một số yêu cầu mà giáo viên cần (38) ____________ để trở thành giáo viên.',
-    topicTag: 'Collocation (Fulfill requirements)'
+    topicTag: 'Collocation'
   },
   {
     id: 'tp-q39',
@@ -730,7 +730,7 @@ export const THAI_PHIEN_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cấu trúc "link A to B" nghĩa là kết nối đối tượng A với đối tượng B.',
     translation: 'Đạt được điều này bằng cách kết nối việc học (39) ____________ sở thích của trẻ.',
-    topicTag: 'Giới từ đi với Động từ (Link to)'
+    topicTag: 'Giới từ đi với Động từ'
   },
   {
     id: 'tp-q40',

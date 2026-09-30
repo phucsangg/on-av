@@ -233,7 +233,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "Due to + N/N-phrase" giải thích nguyên nhân gây ra áp lực học đường.',
     translation: '(9) ____________, nhiều học sinh trung học phải đối mặt với căng thẳng và mệt mỏi gia tăng.',
-    topicTag: 'Cụm từ chỉ nguyên nhân (Due to)'
+    topicTag: 'Cụm từ chỉ nguyên nhân'
   },
   {
     id: 'll-q10',
@@ -267,7 +267,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "To + V" đứng đầu câu chỉ mục đích (Để giải quyết/làm giảm bớt vấn đề này).',
     translation: '(11) ____________, nhà trường và gia đình cần phối hợp tạo môi trường học tập cân bằng.',
-    topicTag: 'Mệnh đề chỉ mục đích (To-V)'
+    topicTag: 'Mệnh đề chỉ mục đích'
   },
   {
     id: 'll-q12',
@@ -301,7 +301,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "Unless" chỉ điều kiện thực tế (trừ khi có chương trình hỗ trợ, học sinh sẽ tiếp tục chịu áp lực).',
     translation: 'Học sinh vẫn sẽ gặp khó khăn (13) ____________ tại các trường học.',
-    topicTag: 'Mệnh đề điều kiện (Unless)'
+    topicTag: 'Mệnh đề điều kiện'
   },
 
   // SECTION 3: CLOZE ANNOUNCEMENT - HERITAGE (Q14 - Q19)
@@ -320,7 +320,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cụm từ "connect somebody to something" nghĩa là kết nối ai đó với cái gì.',
     translation: 'Di sản văn hóa kết nối chúng ta (14) ____________ cội nguồn và lịch sử dân tộc.',
-    topicTag: 'Giới từ đi với Động từ (Connect to)'
+    topicTag: 'Giới từ đi với Động từ'
   },
   {
     id: 'll-q15',
@@ -337,7 +337,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'C',
     explanation: '• C. ĐÚNG: Liên từ "and" nối các động từ chỉ mục đích "restore monuments, protect craft villages, AND promote cultural values".',
     translation: 'Mục tiêu là tu bổ di tích, bảo vệ làng nghề (15) ____________ quảng bá giá trị văn hóa.',
-    topicTag: 'Liên từ kết hợp (And)'
+    topicTag: 'Liên từ kết hợp'
   },
   {
     id: 'll-q16',
@@ -354,7 +354,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cấu trúc "encourage somebody to do something" (khuyến khích ai làm gì).',
     translation: 'Khuyến khích mọi người tích cực (16) ____________ vào các hoạt động bảo tồn.',
-    topicTag: 'Cấu trúc Động từ (Encourage to-V)'
+    topicTag: 'Cấu trúc Động từ'
   },
   {
     id: 'll-q17',
@@ -405,7 +405,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "integration of heritage preservation into economic development" (sự kết hợp/hội nhập bảo tồn di sản vào phát triển kinh tế).',
     translation: 'Đảm bảo sự (19) ____________ nhịp nhàng của việc bảo tồn di sản vào phát triển kinh tế.',
-    topicTag: 'Từ vựng nâng cao (Integration)'
+    topicTag: 'Từ vựng nâng cao'
   },
 
   // SECTION 4: REORDERING (Q20 - Q24) - NO PASSAGE
@@ -518,7 +518,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ cố định "a wide range of + N" (đa dạng các lĩnh vực nghề nghiệp).',
     translation: 'Khám phá (26) ____________ các lĩnh vực nghề nghiệp từ IT đến du lịch sinh thái.',
-    topicTag: 'Collocation (A wide range of)'
+    topicTag: 'Collocation'
   },
   {
     id: 'll-q27',
@@ -535,7 +535,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Rút gọn mệnh đề quan hệ dạng bị động "...workshops which are delivered by industry experts" -> "delivered".',
     translation: 'Tham dự các buổi hội thảo hướng nghiệp (27) ____________ bởi các chuyên gia ngành.',
-    topicTag: 'Rút gọn mệnh đề quan hệ bị động (V-ed)'
+    topicTag: 'Rút gọn mệnh đề quan hệ bị động'
   },
   {
     id: 'll-q28',
@@ -552,7 +552,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ thành ngữ "take advantage of something" nghĩa là tận dụng lợi thế của cái gì.',
     translation: 'Tận dụng (28) ____________ từ dịch vụ sửa CV miễn phí và phỏng vấn trực tiếp.',
-    topicTag: 'Thành ngữ với Động từ (Take advantage of)'
+    topicTag: 'Thành ngữ với Động từ'
   },
   {
     id: 'll-q29',
@@ -569,7 +569,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'B',
     explanation: '• B. ĐÚNG: Cụm từ "take charge of something" nghĩa là chủ động quản lý / làm chủ cái gì.',
     translation: 'Đừng bỏ lỡ cơ hội (29) ____________ làm chủ con đường sự nghiệp của bạn!',
-    topicTag: 'Collocation (Take charge of)'
+    topicTag: 'Collocation'
   },
   {
     id: 'll-q30',
@@ -586,7 +586,7 @@ export const LE_LOI_2026_QUESTIONS: Question[] = [
     correctAnswer: 'D',
     explanation: '• D. ĐÚNG: Cấu trúc "opportunity to do something" (cơ hội để làm gì).',
     translation: 'Đừng bỏ lỡ cơ hội (30) ____________ làm chủ con đường sự nghiệp của bạn!',
-    topicTag: 'Danh từ + To-V (Opportunity to V)'
+    topicTag: 'Danh từ + To-V'
   },
 
   // SECTION 6: READING COMPREHENSION 2 - RENEWABLE ENERGY TRUTH (Q31 - Q40)
