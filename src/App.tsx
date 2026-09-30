@@ -74,25 +74,37 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<PageTab>(initialRoute.tab);
   const [currentView, setCurrentView] = useState<PageTab | 'runner' | 'result'>(initialRoute.view);
 
+  // Storage States initialized from storageService
+  const [examSets, setExamSets] = useState<ExamSet[]>(() => {
+    const custom = storageService.getCustomExams();
+    return [...SAMPLE_EXAM_SETS, ...custom];
+  });
+
   // Active Quiz State
-  const [activeExam, setActiveExam] = useState<ExamSet | null>(null);
+  const [activeExam, setActiveExam] = useState<ExamSet | null>(() => {
+    if (initialRoute.view !== 'runner') return null;
+    const params = new URLSearchParams(window.location.search);
+    const examId = params.get('examId');
+    const custom = storageService.getCustomExams();
+    const all = [...SAMPLE_EXAM_SETS, ...custom];
+    if (examId) {
+      const found = all.find(e => e.id === examId);
+      if (found) return found;
+    }
+    const saved = storageService.getActiveSession();
+    const savedId = (saved as any)?.examSetId || saved?.examId;
+    if (savedId) {
+      const found = all.find(e => e.id === savedId);
+      if (found) return found;
+    }
+    return all[0] || null;
+  });
   const [lastAttemptAnswers, setLastAttemptAnswers] = useState<UserAnswerRecord[]>([]);
   const [lastAttemptTime, setLastAttemptTime] = useState<number>(0);
 
   // Active In-Progress Session State
   const [activeSession, setActiveSession] = useState<any>(() => {
     return storageService.getActiveSession();
-  });
-
-  // Sync activeSession whenever currentView changes
-  useEffect(() => {
-    setActiveSession(storageService.getActiveSession());
-  }, [currentView]);
-
-  // Storage States initialized from storageService
-  const [examSets, setExamSets] = useState<ExamSet[]>(() => {
-    const custom = storageService.getCustomExams();
-    return [...SAMPLE_EXAM_SETS, ...custom];
   });
 
   const [attempts, setAttempts] = useState<UserAttempt[]>(() => {
@@ -128,10 +140,13 @@ export const App: React.FC = () => {
     let targetPath = TAB_TO_PATH[view] || '/';
     if (view === 'runner' && examId) {
       targetPath = `${targetPath}?examId=${encodeURIComponent(examId)}`;
+      const found = examSets.find(e => e.id === examId);
+      if (found) setActiveExam(found);
     }
 
     setCurrentView(view);
     setActiveTab(targetTab);
+    setActiveSession(storageService.getActiveSession());
 
     if (window.location.pathname + window.location.search !== targetPath) {
       window.history.pushState({ view, tab: targetTab, examId }, '', targetPath);
@@ -145,44 +160,26 @@ export const App: React.FC = () => {
       const matched = PATH_TO_VIEW[path] || 'dashboard';
 
       if (matched === 'runner' || matched === 'result') {
+        if (matched === 'runner') {
+          const params = new URLSearchParams(window.location.search);
+          const examId = params.get('examId');
+          if (examId) {
+            const found = examSets.find(e => e.id === examId);
+            if (found) setActiveExam(found);
+          }
+        }
         setCurrentView(matched);
       } else {
         const pageTab = matched as PageTab;
         setCurrentView(pageTab);
         setActiveTab(pageTab);
       }
+      setActiveSession(storageService.getActiveSession());
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
-
-  // Auto-resolve activeExam from URL query parameter ?examId=... or activeSession on direct page load
-  useEffect(() => {
-    if (currentView === 'runner' && !activeExam) {
-      const params = new URLSearchParams(window.location.search);
-      const examId = params.get('examId');
-      if (examId) {
-        const found = examSets.find(e => e.id === examId);
-        if (found) {
-          setActiveExam(found);
-          return;
-        }
-      }
-      const saved = storageService.getActiveSession();
-      const savedId = (saved as any)?.examSetId || saved?.examId;
-      if (savedId) {
-        const found = examSets.find(e => e.id === savedId);
-        if (found) {
-          setActiveExam(found);
-          return;
-        }
-      }
-      if (examSets.length > 0) {
-        setActiveExam(examSets[0]);
-      }
-    }
-  }, [currentView, activeExam, examSets]);
+  }, [examSets]);
 
   // Persist State to storageService
   useEffect(() => {

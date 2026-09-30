@@ -64,17 +64,29 @@ export const DictionaryModal: React.FC<DictionaryModalProps> = ({
     }
   }, []);
 
+  // Sync searchTerm when initialWord prop changes
+  const [prevInitial, setPrevInitial] = useState<string>(initialWord);
+  if (initialWord !== prevInitial) {
+    setPrevInitial(initialWord);
+    setSearchTerm(initialWord);
+  }
+
   useEffect(() => {
-    if (isOpen) {
-      const target = initialWord.trim();
-      setSearchTerm(target);
-      if (target) {
-        handleSearchWord(target);
-      } else {
+    if (!isOpen) return;
+    const target = initialWord.trim();
+    let isCancelled = false;
+    Promise.resolve().then(async () => {
+      if (isCancelled) return;
+      if (!target) {
         setResult(null);
         setError(null);
+      } else {
+        await handleSearchWord(target);
       }
-    }
+    });
+    return () => {
+      isCancelled = true;
+    };
   }, [initialWord, isOpen, handleSearchWord]);
 
   const handleSpeechPronunciation = () => {
