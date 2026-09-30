@@ -109,95 +109,101 @@ export const QuizResult: React.FC<QuizResultProps> = ({
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 24px' }}>
       
       {/* Score Header Card */}
-      <div className="glass-card animate-fade-in" style={{
-        padding: '36px',
+      <div className="card animate-fade-in" style={{
+        padding: '32px 36px',
         textAlign: 'center',
-        marginBottom: '28px',
-        background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.06) 0%, rgba(16, 185, 129, 0.06) 100%)'
+        marginBottom: '24px',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-card)'
       }}>
         <div style={{
-          width: '72px',
-          height: '72px',
-          borderRadius: '50%',
-          background: 'rgba(79, 70, 229, 0.12)',
-          color: 'var(--brand-primary)',
+          width: '56px',
+          height: '56px',
+          borderRadius: 'var(--radius-md)',
+          background: 'var(--color-primary-subtle)',
+          color: 'var(--color-primary)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          margin: '0 auto 16px'
+          margin: '0 auto 14px'
         }}>
-          <Trophy size={36} />
+          <Trophy size={28} />
         </div>
 
-        <span className="badge" style={{ background: `${evalTag.color}20`, color: evalTag.color, fontSize: '0.9rem', marginBottom: '8px' }}>
+        <span className="badge" style={{ background: `${evalTag.color}15`, color: evalTag.color, border: `1px solid ${evalTag.color}30`, fontSize: '0.82rem', marginBottom: '8px' }}>
           {evalTag.label}
         </span>
 
-        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, marginBottom: '8px' }}>
-          {correctCount} / {totalQuestions} <span style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}>câu đúng</span>
+        <h2 style={{ fontSize: '2.1rem', fontWeight: 700, marginBottom: '6px', letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>
+          {correctCount} / {totalQuestions} <span style={{ fontSize: '1.05rem', fontWeight: 500, color: 'var(--color-text-muted)' }}>câu đúng</span>
         </h2>
 
-        {/* Metrics Breakdown Pills */}
+        {/* Metrics Breakdown Chips */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '12px',
+          gap: '8px',
           flexWrap: 'wrap',
-          margin: '20px 0 28px'
+          margin: '18px 0 24px'
         }}>
-          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
-            🎯 Độ chính xác: <strong style={{ color: evalTag.color }}>{percentage}%</strong>
+          <div style={{ background: 'var(--color-surface-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)', fontSize: '0.85rem', fontWeight: 600 }}>
+            Độ chính xác: <strong style={{ color: evalTag.color }}>{percentage}%</strong>
           </div>
-          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid rgba(16, 185, 129, 0.3)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--success)' }}>
-            ✅ Đúng: <strong>{correctCount}</strong>
+          <div style={{ background: 'var(--color-success-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-success-border)', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-success)' }}>
+            Đúng: <strong>{correctCount}</strong>
           </div>
-          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid rgba(239, 68, 68, 0.3)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--danger)' }}>
-            ❌ Sai: <strong>{incorrectCount}</strong>
+          <div style={{ background: 'var(--color-error-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-error-border)', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-error)' }}>
+            Sai: <strong>{incorrectCount}</strong>
           </div>
           {unansweredCount > 0 && (
-            <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-muted)' }}>
-              ⚪ Chưa làm: <strong>{unansweredCount}</strong>
+            <div style={{ background: 'var(--color-surface-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-muted)' }}>
+              Chưa làm: <strong>{unansweredCount}</strong>
             </div>
           )}
-          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
-            ⏱️ Thời gian: <strong>{formatTime(timeSpentSeconds)}</strong>
+          <div style={{ background: 'var(--color-surface-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)', fontSize: '0.85rem', fontWeight: 600 }}>
+            Thời gian: <strong>{formatTime(timeSpentSeconds)}</strong>
           </div>
-          <div style={{ background: 'var(--bg-card)', padding: '10px 18px', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-light)', fontSize: '0.9rem', fontWeight: 700 }}>
-            ⚡ Tốc độ: <strong>~{avgSecondsPerQ}s / câu</strong>
+          <div style={{ background: 'var(--color-surface-subtle)', padding: '8px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)', fontSize: '0.85rem', fontWeight: 600 }}>
+            Tốc độ: <strong>~{avgSecondsPerQ}s / câu</strong>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <button onClick={onRetake} className="btn btn-primary" style={{ padding: '12px 24px' }}>
-            <RotateCcw size={16} /> Làm Lại Đề Này
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          <button onClick={onRetake} className="btn btn-primary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
+            <RotateCcw size={15} /> Làm Lại Đề Này
           </button>
-          <button onClick={onOpenMistakes} className="btn btn-secondary" style={{ padding: '12px 24px' }}>
-            <BookMarked size={16} /> Xem Sổ Tay Câu Sai
+          <button onClick={onOpenMistakes} className="btn btn-secondary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
+            <BookMarked size={15} /> Xem Sổ Tay Câu Sai
           </button>
-          <button onClick={onGoHome} className="btn btn-secondary" style={{ padding: '12px 24px' }}>
-            <Home size={16} /> Về Trang Chủ
+          <button onClick={onGoHome} className="btn btn-secondary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
+            <Home size={15} /> Về Trang Chủ
           </button>
         </div>
       </div>
 
       {/* Topic Feedback Insights */}
       {(weakExamTopics.length > 0 || strongExamTopics.length > 0) && (
-        <div className="glass-card animate-fade-in" style={{
-          padding: '24px 28px',
-          marginBottom: '28px',
+        <div className="card animate-fade-in" style={{
+          padding: '20px 24px',
+          marginBottom: '24px',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius-md)',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '20px'
+          gap: '16px'
         }}>
           {weakExamTopics.length > 0 && (
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--danger)', fontWeight: 800, fontSize: '0.95rem', marginBottom: '8px' }}>
-                <span>⚠️ Chủ đề bạn cần chú ý ôn lại:</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--color-error)', fontWeight: 600, fontSize: '0.88rem', marginBottom: '8px' }}>
+                <span>Chủ đề cần chú ý ôn lại:</span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {weakExamTopics.map(t => (
-                  <span key={t.topic} className="badge badge-danger">
+                  <span key={t.topic} className="badge badge-danger" style={{ fontSize: '0.74rem' }}>
                     {t.topic}: {t.correct}/{t.total} ({t.rate}%)
                   </span>
                 ))}
@@ -207,12 +213,12 @@ export const QuizResult: React.FC<QuizResultProps> = ({
 
           {strongExamTopics.length > 0 && (
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--success)', fontWeight: 800, fontSize: '0.95rem', marginBottom: '8px' }}>
-                <span>🌟 Chủ đề bạn làm rất tốt:</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--color-success)', fontWeight: 600, fontSize: '0.88rem', marginBottom: '8px' }}>
+                <span>Chủ đề làm rất tốt:</span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {strongExamTopics.map(t => (
-                  <span key={t.topic} className="badge badge-success">
+                  <span key={t.topic} className="badge badge-success" style={{ fontSize: '0.74rem' }}>
                     {t.topic}: {t.correct}/{t.total} ({t.rate}%)
                   </span>
                 ))}

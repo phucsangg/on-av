@@ -71,10 +71,13 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '32px 24px' }}>
       
       {/* Header Banner */}
-      <div className="glass-card animate-fade-in" style={{
-        padding: '32px',
-        marginBottom: '28px',
-        background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%)',
+      <div className="card animate-fade-in" style={{
+        padding: '24px 28px',
+        marginBottom: '24px',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-card)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -82,11 +85,13 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
         gap: '16px'
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-            <BookMarked size={28} color="#ef4444" />
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Sổ Tay Câu Làm Sai</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+            <BookMarked size={22} color="var(--color-error)" />
+            <h2 style={{ fontSize: '1.65rem', fontWeight: 700, margin: 0, letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>
+              Sổ Tay Câu Làm Sai
+            </h2>
           </div>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.9rem', margin: 0 }}>
             {mistakes.length > 0 
               ? `Đang có ${mistakes.length} câu sai (${masteredCount} câu đã nắm vững, ${learningCount} câu cần ôn tập).`
               : 'Nơi tổng hợp các câu hỏi bạn đã làm sai để chủ động ôn tập và bù đắp lỗ hổng kiến thức.'}

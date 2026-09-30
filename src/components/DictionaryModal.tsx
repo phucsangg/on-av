@@ -120,54 +120,55 @@ export const DictionaryModal: React.FC<DictionaryModalProps> = ({
       zIndex: 120,
       padding: '16px'
     }}>
-      <div className="glass-card animate-fade-in" style={{
-        padding: '28px',
+      <div className="card animate-fade-in" style={{
+        padding: '24px 28px',
         maxWidth: '620px',
         width: '100%',
         maxHeight: '90vh',
         overflowY: 'auto',
         position: 'relative',
-        boxShadow: 'var(--shadow-hover)',
-        border: '1px solid var(--border-light)'
+        boxShadow: 'var(--shadow-modal)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
+        background: 'var(--color-surface)'
       }}>
         {/* Close Button */}
         <button
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '18px',
-            right: '18px',
-            background: 'var(--bg-subtle)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '34px',
-            height: '34px',
+            top: '16px',
+            right: '16px',
+            background: 'var(--color-surface-subtle)',
+            border: '1px solid var(--color-border)',
+            borderRadius: 'var(--radius-xs)',
+            width: '30px',
+            height: '30px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            color: 'var(--text-muted)',
+            color: 'var(--color-text-secondary)',
             transition: 'all 0.15s ease'
           }}
           title="Đóng cửa sổ"
         >
-          <X size={18} />
+          <X size={15} />
         </button>
 
         {/* Modal Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', marginBottom: '20px', paddingRight: '40px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', marginBottom: '18px', paddingRight: '36px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{
-              padding: '10px',
-              borderRadius: '12px',
-              background: 'var(--brand-gradient)',
-              color: '#fff',
-              boxShadow: '0 4px 12px rgba(79, 70, 229, 0.3)'
+              padding: '8px',
+              borderRadius: 'var(--radius-sm)',
+              background: 'var(--color-primary-subtle)',
+              color: 'var(--color-primary)'
             }}>
-              <Languages size={22} />
+              <Languages size={20} />
             </div>
             <div>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, color: 'var(--text-main)' }}>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0, color: 'var(--color-text-primary)' }}>
                 Tra Từ Điển & Dịch Thuật
               </h3>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '3px' }}>

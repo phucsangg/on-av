@@ -128,61 +128,61 @@ export const Dashboard: React.FC<DashboardProps> = ({
     <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '32px 24px' }}>
       
       {/* Personalized Learning Hero & Goal Banner */}
-      <div className="glass-card animate-fade-in" style={{
-        padding: '36px 40px',
-        marginBottom: '32px',
-        background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%)',
-        border: '1.5px solid var(--border-light)',
-        borderRadius: 'var(--radius-lg)'
+      <div className="card animate-fade-in" style={{
+        padding: '32px 36px',
+        marginBottom: '28px',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-card)'
       }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', alignItems: 'center' }}>
           
           {/* Left Column: Greeting & Status */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
               <span className="badge badge-primary">
-                <Sparkles size={13} /> Luyện Thi THPT 2026 Chuẩn Bộ GD&ĐT
+                <Sparkles size={13} /> Luyện Thi Chuẩn Hóa 2026
               </span>
               <span className="badge badge-warning" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Flame size={14} fill="#f59e0b" /> Chuỗi {stats.streakDays} ngày
+                <Flame size={14} fill="var(--color-warning)" /> Chuỗi {stats.streakDays} ngày
               </span>
             </div>
 
-            <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '10px', lineHeight: 1.25 }}>
+            <h2 style={{ fontSize: '1.9rem', fontWeight: 700, marginBottom: '8px', lineHeight: 1.25, letterSpacing: '-0.02em' }}>
               {greeting.title}
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: 1.6, marginBottom: '22px' }}>
+            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.96rem', lineHeight: 1.6, marginBottom: '20px' }}>
               {greeting.subtitle}
             </p>
 
             {/* In-progress Active Exam Resume Quick Card */}
             {activeSession && onResumeActiveSession && (
               <div style={{
-                background: 'var(--bg-surface)',
-                border: '1.5px solid var(--brand-primary)',
-                padding: '16px 20px',
+                background: 'var(--color-surface-subtle)',
+                border: '1px solid var(--color-primary)',
+                padding: '14px 18px',
                 borderRadius: 'var(--radius-md)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
-                gap: '12px',
-                boxShadow: '0 4px 16px rgba(79, 70, 229, 0.15)'
+                gap: '12px'
               }}>
                 <div>
-                  <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--brand-primary)' }}>
-                    ⚡ Đang làm dở bài thi:
+                  <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '0.04em' }}>
+                    Đang làm dở bài thi:
                   </div>
-                  <div style={{ fontWeight: 800, fontSize: '0.98rem', marginTop: '2px' }}>
+                  <div style={{ fontWeight: 600, fontSize: '0.95rem', marginTop: '2px', color: 'var(--color-text-primary)' }}>
                     {activeSession.examTitle || 'Bài làm trước đó'}
                   </div>
                 </div>
                 <button
                   onClick={onResumeActiveSession}
                   className="btn btn-primary"
-                  style={{ padding: '8px 18px', fontSize: '0.85rem' }}
+                  style={{ padding: '6px 16px', fontSize: '0.84rem' }}
                 >
-                  <Play size={14} fill="currentColor" /> Tiếp tục ngay
+                  <Play size={13} fill="currentColor" /> Tiếp tục ngay
                 </button>
               </div>
             )}
@@ -190,18 +190,17 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
           {/* Right Column: Today's Goal Progress Tracker */}
           <div style={{
-            background: 'var(--bg-surface)',
-            padding: '24px 28px',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-light)',
-            boxShadow: 'var(--shadow-card)'
+            background: 'var(--color-surface-subtle)',
+            padding: '22px 24px',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--color-border)'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Target size={20} color="var(--brand-primary)" />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0 }}>Mục Tiêu Hôm Nay</h3>
+                <Target size={18} color="var(--color-primary)" />
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, margin: 0 }}>Mục Tiêu Hôm Nay</h3>
               </div>
-              <span style={{ fontSize: '0.9rem', fontWeight: 800, color: goalPercent >= 100 ? 'var(--success)' : 'var(--brand-primary)' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: goalPercent >= 100 ? 'var(--color-success)' : 'var(--color-primary)' }}>
                 {todayQuestions} / {dailyGoalTarget} câu ({goalPercent}%)
               </span>
             </div>
@@ -209,42 +208,42 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Progress Bar */}
             <div style={{
               width: '100%',
-              height: '10px',
-              borderRadius: '999px',
-              background: 'var(--bg-subtle)',
+              height: '8px',
+              borderRadius: 'var(--radius-pill)',
+              background: 'var(--color-border)',
               overflow: 'hidden',
-              marginBottom: '12px'
+              marginBottom: '10px'
             }}>
               <div style={{
                 width: `${goalPercent}%`,
                 height: '100%',
-                borderRadius: '999px',
+                borderRadius: 'var(--radius-pill)',
                 background: goalPercent >= 100 
-                  ? 'linear-gradient(90deg, #10b981 0%, #059669 100%)' 
-                  : 'var(--brand-gradient)',
-                transition: 'width 0.4s ease'
+                  ? 'var(--color-success)' 
+                  : 'var(--color-primary)',
+                transition: 'width 0.3s ease'
               }} />
             </div>
 
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '18px' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginBottom: '16px' }}>
               {goalPercent >= 100 
-                ? '🎉 Chúc mừng! Bạn đã hoàn thành xuất sắc mục tiêu câu hỏi ngày hôm nay.' 
+                ? 'Đã hoàn thành mục tiêu luyện tập ngày hôm nay.' 
                 : `Còn ${dailyGoalTarget - todayQuestions} câu nữa để hoàn thành mục tiêu 20 câu/ngày.`}
             </p>
 
             {/* 3 Metric Pills */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', textAlign: 'center' }}>
-              <div style={{ background: 'var(--bg-subtle)', padding: '10px 8px', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--brand-primary)' }}>{accuracyRate}%</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600 }}>Chính xác</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', textAlign: 'center' }}>
+              <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '8px', borderRadius: 'var(--radius-sm)' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>{accuracyRate}%</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 500 }}>Chính xác</div>
               </div>
-              <div style={{ background: 'var(--bg-subtle)', padding: '10px 8px', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--success)' }}>{stats.correctAnswersCount}</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600 }}>Câu đúng</div>
+              <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '8px', borderRadius: 'var(--radius-sm)' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-success)' }}>{stats.correctAnswersCount}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 500 }}>Câu đúng</div>
               </div>
-              <div style={{ background: 'var(--bg-subtle)', padding: '10px 8px', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--warning)' }}>{stats.totalTestsTaken}</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600 }}>Bài thi</div>
+              <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', padding: '8px', borderRadius: 'var(--radius-sm)' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-warning)' }}>{stats.totalTestsTaken}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 500 }}>Bài thi</div>
               </div>
             </div>
           </div>
@@ -256,132 +255,137 @@ export const Dashboard: React.FC<DashboardProps> = ({
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
         gap: '16px',
-        marginBottom: '32px'
+        marginBottom: '28px'
       }}>
         {/* Action 1: Catalog */}
         <div 
           onClick={() => onNavigateTab && onNavigateTab('catalog')}
-          className="glass-card hover-lift"
+          className="card"
           style={{
-            padding: '20px',
+            padding: '18px 20px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: '16px'
+            gap: '14px',
+            transition: 'all 0.15s ease'
           }}
         >
-          <div style={{ width: '46px', height: '46px', borderRadius: '12px', background: 'rgba(79, 70, 229, 0.12)', color: '#4f46e5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <BookOpen size={24} />
+          <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-sm)', background: 'var(--color-primary-subtle)', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <BookOpen size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Kho Đề Thi Chuẩn Hóa</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Hơn 20 bộ đề Đại học, TOEIC & Sở GD</div>
+            <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--color-text-primary)' }}>Kho Đề Thi Chuẩn Hóa</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>Hơn 20 bộ đề Đại học, TOEIC & Sở GD</div>
           </div>
         </div>
 
         {/* Action 2: Mistakes */}
         <div 
           onClick={() => onNavigateTab && onNavigateTab('mistakes')}
-          className="glass-card hover-lift"
+          className="card"
           style={{
-            padding: '20px',
+            padding: '18px 20px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: '16px'
+            gap: '14px',
+            transition: 'all 0.15s ease'
           }}
         >
-          <div style={{ width: '46px', height: '46px', borderRadius: '12px', background: 'var(--danger-bg)', color: 'var(--danger)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <BookMarked size={24} />
+          <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-sm)', background: 'var(--color-error-subtle)', color: 'var(--color-error)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <BookMarked size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Sổ Tay Câu Sai</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{mistakesCount} câu cần ôn tập lại</div>
+            <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--color-text-primary)' }}>Sổ Tay Câu Sai</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>{mistakesCount} câu cần ôn tập lại</div>
           </div>
         </div>
 
         {/* Action 3: Vocabulary */}
         <div 
           onClick={() => onNavigateTab && onNavigateTab('dictionary')}
-          className="glass-card hover-lift"
+          className="card"
           style={{
-            padding: '20px',
+            padding: '18px 20px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: '16px'
+            gap: '14px',
+            transition: 'all 0.15s ease'
           }}
         >
-          <div style={{ width: '46px', height: '46px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.12)', color: '#06b6d4', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <Languages size={24} />
+          <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-sm)', background: 'var(--color-info-subtle)', color: 'var(--color-info)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Languages size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Từ Điển & Flashcards</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{savedWordsCount} từ vựng đã lưu</div>
+            <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--color-text-primary)' }}>Từ Điển & Flashcards</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>{savedWordsCount} từ vựng đã lưu</div>
           </div>
         </div>
 
         {/* Action 4: Analytics */}
         <div 
           onClick={() => onNavigateTab && onNavigateTab('history')}
-          className="glass-card hover-lift"
+          className="card"
           style={{
-            padding: '20px',
+            padding: '18px 20px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: '16px'
+            gap: '14px',
+            transition: 'all 0.15s ease'
           }}
         >
-          <div style={{ width: '46px', height: '46px', borderRadius: '12px', background: 'var(--success-bg)', color: 'var(--success)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <History size={24} />
+          <div style={{ width: '40px', height: '40px', borderRadius: 'var(--radius-sm)', background: 'var(--color-success-subtle)', color: 'var(--color-success)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <History size={20} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '0.98rem' }}>Lịch Sử & Thống Kê</div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Xem tiến độ & biểu đồ kỹ năng</div>
+            <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--color-text-primary)' }}>Lịch Sử & Thống Kê</div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)' }}>Xem tiến độ & biểu đồ kỹ năng</div>
           </div>
         </div>
       </div>
 
       {/* Personalized Learning Guidance */}
       {(weakTopics.length > 0 || strongTopics.length > 0) && (
-        <div className="glass-card animate-fade-in" style={{
+        <div className="card animate-fade-in" style={{
           padding: '24px 28px',
-          marginBottom: '32px',
-          background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)',
-          border: '1.5px solid var(--border-light)'
+          marginBottom: '28px',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius-lg)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-            <Sparkles size={20} color="var(--brand-primary)" />
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>
+            <Sparkles size={18} color="var(--color-primary)" />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
               Gợi Ý Lộ Trình Ôn Tập Cá Nhân Hóa
             </h3>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
             {/* Weak topics */}
             {weakTopics.length > 0 && (
               <div style={{
-                background: 'var(--bg-card)',
-                padding: '18px 20px',
+                background: 'var(--color-surface-subtle)',
+                padding: '16px 18px',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(239, 68, 68, 0.2)'
+                border: '1px solid var(--color-error-border)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', color: 'var(--danger)', fontWeight: 700, fontSize: '0.9rem' }}>
-                  <span>⚠️ Chủ đề cần củng cố thêm:</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px', color: 'var(--color-error)', fontWeight: 600, fontSize: '0.85rem' }}>
+                  <span>Chủ đề cần củng cố thêm:</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {weakTopics.map(w => (
-                    <div key={w.topic} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.88rem' }}>
-                      <span style={{ fontWeight: 600 }}>{w.topic}</span>
-                      <span className="badge badge-danger" style={{ fontSize: '0.78rem' }}>
+                    <div key={w.topic} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
+                      <span style={{ fontWeight: 500 }}>{w.topic}</span>
+                      <span className="badge badge-danger" style={{ fontSize: '0.74rem' }}>
                         {w.rate}% ({w.correct}/{w.total})
                       </span>
                     </div>
                   ))}
                 </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '12px' }}>
-                  💡 <em>Mẹo:</em> Dùng bộ lọc đề thi để luyện riêng các câu thuộc chủ đề này hoặc mở Sổ tay câu sai.
+                <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', marginTop: '10px' }}>
+                  Mẹo: Dùng bộ lọc đề thi để luyện riêng các câu thuộc chủ đề này hoặc mở Sổ tay câu sai.
                 </div>
               </div>
             )}
@@ -389,26 +393,26 @@ export const Dashboard: React.FC<DashboardProps> = ({
             {/* Strong topics */}
             {strongTopics.length > 0 && (
               <div style={{
-                background: 'var(--bg-card)',
-                padding: '18px 20px',
+                background: 'var(--color-surface-subtle)',
+                padding: '16px 18px',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(16, 185, 129, 0.2)'
+                border: '1px solid var(--color-success-border)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', color: 'var(--success)', fontWeight: 700, fontSize: '0.9rem' }}>
-                  <span>🌟 Thế mạnh vững vàng của bạn:</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px', color: 'var(--color-success)', fontWeight: 600, fontSize: '0.85rem' }}>
+                  <span>Thế mạnh vững vàng của bạn:</span>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {strongTopics.map(s => (
-                    <div key={s.topic} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.88rem' }}>
-                      <span style={{ fontWeight: 600 }}>{s.topic}</span>
-                      <span className="badge badge-success" style={{ fontSize: '0.78rem' }}>
+                    <div key={s.topic} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
+                      <span style={{ fontWeight: 500 }}>{s.topic}</span>
+                      <span className="badge badge-success" style={{ fontSize: '0.74rem' }}>
                         {s.rate}% ({s.correct}/{s.total})
                       </span>
                     </div>
                   ))}
                 </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '12px' }}>
-                  🎯 Phong độ xuất sắc! Hãy tiếp tục duy trì và mở rộng sang các dạng đề nâng cao.
+                <div style={{ fontSize: '0.78rem', color: 'var(--color-text-muted)', marginTop: '10px' }}>
+                  Phong độ xuất sắc! Hãy tiếp tục duy trì và mở rộng sang các dạng đề nâng cao.
                 </div>
               </div>
             )}

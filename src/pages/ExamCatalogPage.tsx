@@ -54,36 +54,26 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
   return (
     <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '32px 24px' }}>
       {/* Header Banner */}
-      <div style={{
-        background: 'linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(147, 51, 234, 0.12) 100%)',
-        border: '1px solid rgba(79, 70, 229, 0.25)',
-        borderRadius: 'var(--radius-xl)',
-        padding: '32px 36px',
-        marginBottom: '32px',
-        position: 'relative',
-        overflow: 'hidden'
+      <div className="card" style={{
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
+        borderRadius: 'var(--radius-lg)',
+        padding: '28px 32px',
+        marginBottom: '28px',
+        boxShadow: 'var(--shadow-card)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-          <span style={{
-            background: 'var(--brand-gradient)',
-            color: '#fff',
-            fontSize: '0.75rem',
-            fontWeight: 800,
-            padding: '4px 12px',
-            borderRadius: '999px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em'
-          }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+          <span className="badge badge-primary" style={{ fontSize: '0.72rem', letterSpacing: '0.04em' }}>
             Kho Đề Thi Chuẩn Hóa
           </span>
-          <span style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>
+          <span style={{ color: 'var(--color-text-muted)', fontSize: '0.825rem' }}>
             • Trọn bộ {examSets.length} Đề Thi Đầu Vào Đại Học, TOEIC & THPT Quốc Gia
           </span>
         </div>
-        <h2 style={{ fontSize: '1.8rem', fontWeight: 800, margin: '8px 0', letterSpacing: '-0.02em' }}>
-          Hệ Thống Đề Thi Trắc Nghiệm Tiếng Anh 📚
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 700, margin: '6px 0', letterSpacing: '-0.02em', color: 'var(--color-text-primary)' }}>
+          Hệ Thống Đề Thi Trắc Nghiệm Tiếng Anh
         </h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', margin: 0, maxWidth: '750px', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.92rem', margin: 0, maxWidth: '780px', lineHeight: 1.6 }}>
           Lựa chọn đề thi chuẩn hóa: Khảo sát Anh văn đầu vào Đại học (HUIT-oriented), TOEIC Reading, chuyên đề Ngữ pháp/Từ vựng và trọn bộ đề thi thử THPT Quốc Gia mới nhất từ các Sở GD&ĐT với lời giải chi tiết và bản dịch song ngữ.
         </p>
       </div>
@@ -92,26 +82,26 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
-        marginBottom: '32px'
+        gap: '16px',
+        marginBottom: '28px'
       }}>
         {/* Top Controls: Search + Type Filter */}
         <div style={{
           display: 'flex',
-          gap: '16px',
+          gap: '14px',
           alignItems: 'center',
           flexWrap: 'wrap'
         }}>
           {/* Search Box */}
           <div style={{ flex: 1, minWidth: '260px', position: 'relative' }}>
             <Search 
-              size={18} 
+              size={16} 
               style={{
                 position: 'absolute',
-                left: '16px',
+                left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: 'var(--brand-primary)',
+                color: 'var(--color-text-muted)',
                 pointerEvents: 'none'
               }} 
             />
@@ -122,12 +112,13 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
               onChange={(e) => setSearchQuery(e.target.value)}
               className="form-input"
               style={{
-                paddingLeft: '46px',
-                paddingRight: searchQuery ? '40px' : '16px',
-                height: '46px',
-                fontSize: '0.925rem',
-                borderRadius: 'var(--radius-pill)',
-                background: 'var(--bg-card)'
+                paddingLeft: '40px',
+                paddingRight: searchQuery ? '36px' : '14px',
+                height: '40px',
+                fontSize: '0.88rem',
+                borderRadius: 'var(--radius-sm)',
+                background: 'var(--color-surface)',
+                border: '1px solid var(--color-border)'
               }}
             />
             {searchQuery && (
@@ -136,14 +127,14 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
                 onClick={() => setSearchQuery('')}
                 style={{
                   position: 'absolute',
-                  right: '12px',
+                  right: '10px',
                   top: '50%',
                   transform: 'translateY(-50%)',
                   background: 'none',
                   border: 'none',
-                  color: 'var(--text-muted)',
+                  color: 'var(--color-text-muted)',
                   cursor: 'pointer',
-                  fontSize: '1.2rem',
+                  fontSize: '1.1rem',
                   padding: '2px'
                 }}
                 title="Xóa tìm kiếm"
@@ -156,24 +147,27 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
           {/* Quick Filter Segmented Buttons */}
           <div style={{
             display: 'flex',
-            background: 'var(--bg-subtle)',
-            padding: '4px',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-light)'
+            background: 'var(--color-surface-subtle)',
+            padding: '2px',
+            borderRadius: 'var(--radius-sm)',
+            border: '1px solid var(--color-border)',
+            height: '40px',
+            boxSizing: 'border-box'
           }}>
             <button
               onClick={() => setSelectedFilter('all')}
               style={{
-                padding: '8px 16px',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                borderRadius: 'var(--radius-md)',
+                padding: '0 14px',
+                height: '100%',
+                fontSize: '0.82rem',
+                fontWeight: selectedFilter === 'all' ? 600 : 500,
+                borderRadius: 'var(--radius-xs)',
                 border: 'none',
-                background: selectedFilter === 'all' ? 'var(--bg-card)' : 'transparent',
-                color: selectedFilter === 'all' ? 'var(--brand-primary)' : 'var(--text-muted)',
-                boxShadow: selectedFilter === 'all' ? 'var(--shadow-sm)' : 'none',
+                background: selectedFilter === 'all' ? 'var(--color-surface)' : 'transparent',
+                color: selectedFilter === 'all' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                boxShadow: selectedFilter === 'all' ? 'var(--shadow-subtle)' : 'none',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.15s ease'
               }}
             >
               Tất cả ({examSets.length})
@@ -182,16 +176,17 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             <button
               onClick={() => setSelectedFilter('official')}
               style={{
-                padding: '8px 16px',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                borderRadius: 'var(--radius-md)',
+                padding: '0 14px',
+                height: '100%',
+                fontSize: '0.82rem',
+                fontWeight: selectedFilter === 'official' ? 600 : 500,
+                borderRadius: 'var(--radius-xs)',
                 border: 'none',
-                background: selectedFilter === 'official' ? 'var(--bg-card)' : 'transparent',
-                color: selectedFilter === 'official' ? 'var(--brand-primary)' : 'var(--text-muted)',
-                boxShadow: selectedFilter === 'official' ? 'var(--shadow-sm)' : 'none',
+                background: selectedFilter === 'official' ? 'var(--color-surface)' : 'transparent',
+                color: selectedFilter === 'official' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                boxShadow: selectedFilter === 'official' ? 'var(--shadow-subtle)' : 'none',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.15s ease'
               }}
             >
               Đề Chuẩn Sở/Trường
@@ -200,16 +195,17 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             <button
               onClick={() => setSelectedFilter('custom')}
               style={{
-                padding: '8px 16px',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                borderRadius: 'var(--radius-md)',
+                padding: '0 14px',
+                height: '100%',
+                fontSize: '0.82rem',
+                fontWeight: selectedFilter === 'custom' ? 600 : 500,
+                borderRadius: 'var(--radius-xs)',
                 border: 'none',
-                background: selectedFilter === 'custom' ? 'var(--bg-card)' : 'transparent',
-                color: selectedFilter === 'custom' ? 'var(--brand-primary)' : 'var(--text-muted)',
-                boxShadow: selectedFilter === 'custom' ? 'var(--shadow-sm)' : 'none',
+                background: selectedFilter === 'custom' ? 'var(--color-surface)' : 'transparent',
+                color: selectedFilter === 'custom' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                boxShadow: selectedFilter === 'custom' ? 'var(--shadow-subtle)' : 'none',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease'
+                transition: 'all 0.15s ease'
               }}
             >
               Đề Tự Tạo
@@ -279,58 +275,56 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
             return (
               <div
                 key={exam.id}
-                className="card card-hover hover-lift animate-fade-in"
+                className="card animate-fade-in"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  padding: '26px 28px',
+                  padding: '22px 24px',
+                  background: 'var(--color-surface)',
+                  borderRadius: 'var(--radius-md)',
                   position: 'relative',
-                  border: isCustom ? '1.5px dashed var(--brand-primary)' : '1px solid var(--border-light)',
-                  overflow: 'hidden'
+                  border: isCustom ? '1px dashed var(--color-primary)' : '1px solid var(--color-border)',
+                  overflow: 'hidden',
+                  transition: 'all 0.15s ease'
                 }}
               >
                 <div>
                   {/* Badge & Category */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                    <span style={{
-                      fontSize: '0.74rem',
-                      fontWeight: 800,
-                      padding: '4px 10px',
-                      borderRadius: 'var(--radius-pill)',
-                      background: isCustom ? 'rgba(236, 72, 153, 0.12)' : 'rgba(var(--brand-primary-rgb), 0.1)',
-                      color: isCustom ? '#ec4899' : 'var(--brand-primary)',
-                      border: isCustom ? '1px solid rgba(236, 72, 153, 0.3)' : '1px solid rgba(var(--brand-primary-rgb), 0.25)',
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                    <span className="badge badge-primary" style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 600,
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px'
                     }}>
-                      <Award size={13} />
+                      <Award size={12} />
                       {exam.badge}
                     </span>
 
-                    <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                      {exam.totalQuestions} Câu hỏi
+                    <span style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', fontWeight: 500 }}>
+                      {exam.totalQuestions} câu hỏi
                     </span>
                   </div>
 
                   {/* Title */}
                   <h3 style={{
-                    fontSize: '1.18rem',
-                    fontWeight: 800,
-                    margin: '0 0 10px 0',
+                    fontSize: '1.06rem',
+                    fontWeight: 600,
+                    margin: '0 0 8px 0',
                     lineHeight: 1.4,
-                    color: 'var(--text-main)'
+                    color: 'var(--color-text-primary)'
                   }}>
                     {exam.title}
                   </h3>
 
                   {/* Description */}
                   <p style={{
-                    fontSize: '0.88rem',
-                    color: 'var(--text-muted)',
+                    fontSize: '0.85rem',
+                    color: 'var(--color-text-secondary)',
                     lineHeight: 1.55,
-                    margin: '0 0 18px 0',
+                    margin: '0 0 16px 0',
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
@@ -341,21 +335,21 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
                 </div>
 
                 {/* Exam Meta Info & Start Button */}
-                <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '16px', marginTop: '12px' }}>
+                <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '14px', marginTop: '8px' }}>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    marginBottom: '14px'
+                    marginBottom: '12px'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '0.825rem', fontWeight: 600 }}>
-                      <Clock size={15} />
-                      <span>{exam.durationMinutes} Phút</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--color-text-muted)', fontSize: '0.8rem', fontWeight: 500 }}>
+                      <Clock size={14} />
+                      <span>{exam.durationMinutes} phút</span>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--success)', fontSize: '0.825rem', fontWeight: 700 }}>
-                      <CheckCircle2 size={15} />
-                      <span>Có bản dịch Tiếng Việt</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--color-success)', fontSize: '0.8rem', fontWeight: 600 }}>
+                      <CheckCircle2 size={14} />
+                      <span>Có lời giải & dịch</span>
                     </div>
                   </div>
 
@@ -364,16 +358,15 @@ export const ExamCatalogPage: React.FC<ExamCatalogPageProps> = ({
                     className="btn btn-primary"
                     style={{
                       width: '100%',
-                      height: '42px',
+                      height: '38px',
                       justifyContent: 'center',
                       padding: '0 16px',
-                      fontSize: '0.92rem',
-                      fontWeight: 700,
-                      gap: '8px'
+                      fontSize: '0.88rem',
+                      fontWeight: 600,
+                      gap: '6px'
                     }}
                   >
-                    <Play size={15} fill="currentColor" />
-                    <span>Bắt Đầu Làm Bài</span>
+                    <Play size={13} fill="currentColor" /> Bắt Đầu Làm Bài
                   </button>
                 </div>
               </div>

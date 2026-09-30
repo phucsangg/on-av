@@ -837,102 +837,135 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
           </div>
         </div>
 
-        {/* Center: Unified Compact Timer + Mode Switcher */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-          {/* Integrated Timer Pill with Pause/Resume */}
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            height: '34px',
-            padding: '0 8px 0 12px',
-            gap: '8px',
-            borderRadius: 'var(--radius-pill)',
-            background: 'var(--bg-subtle)',
-            border: '1px solid var(--border-light)',
-            color: isPaused ? 'var(--text-muted)' : 'var(--brand-primary)',
-            fontSize: '0.92rem',
-            fontWeight: 800,
-            letterSpacing: '0.5px'
-          }} title={isPaused ? "Đang tạm dừng - bấm nút để tiếp tục" : "Thời gian làm bài"}>
-            <Clock size={16} style={{ color: isPaused ? 'var(--text-muted)' : 'var(--brand-primary)' }} />
-            <span style={{ fontVariantNumeric: 'tabular-nums' }}>{formatTime(timeElapsedSeconds)}</span>
-            <button
-              onClick={isPaused ? resumeTimer : pauseTimer}
-              style={{
-                border: 'none',
-                background: isPaused ? 'var(--brand-primary)' : 'rgba(0,0,0,0.06)',
-                color: isPaused ? '#fff' : 'var(--text-secondary)',
-                borderRadius: '50%',
-                width: '24px',
-                height: '24px',
+        {/* Center: Unified Calm Timer + Mode Switcher */}
+        {(() => {
+          const totalExamDurationSeconds = (exam.durationMinutes || 0) * 60;
+          const remainingSeconds = totalExamDurationSeconds > 0 
+            ? Math.max(0, totalExamDurationSeconds - timeElapsedSeconds)
+            : null;
+          const timerState: 'normal' | 'warning' | 'critical' = 
+            remainingSeconds !== null
+              ? remainingSeconds <= 60
+                ? 'critical'
+                : remainingSeconds <= 300
+                  ? 'warning'
+                  : 'normal'
+              : 'normal';
+
+          let timerColor = 'var(--color-text-primary)';
+          let timerBg = 'var(--color-surface-subtle)';
+          let timerBorder = 'var(--color-border)';
+
+          if (timerState === 'critical') {
+            timerColor = 'var(--color-error)';
+            timerBg = 'var(--color-error-subtle)';
+            timerBorder = 'var(--color-error-border)';
+          } else if (timerState === 'warning') {
+            timerColor = 'var(--color-warning)';
+            timerBg = 'var(--color-warning-subtle)';
+            timerBorder = 'var(--color-warning-border)';
+          }
+
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+              {/* Integrated Calm Timer Pill with Pause/Resume */}
+              <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
-                padding: 0
-              }}
-              title={isPaused ? "Tiếp tục làm bài" : "Tạm dừng bấm giờ"}
-              aria-label={isPaused ? "Tiếp tục" : "Tạm dừng"}
-            >
-              {isPaused ? <Play size={12} style={{ marginLeft: '1px' }} /> : <Pause size={12} />}
-            </button>
-          </div>
+                height: '34px',
+                padding: '0 8px 0 12px',
+                gap: '8px',
+                borderRadius: 'var(--radius-sm)',
+                background: timerBg,
+                border: `1px solid ${timerBorder}`,
+                color: isPaused ? 'var(--color-text-muted)' : timerColor,
+                fontSize: '0.88rem',
+                fontWeight: 700,
+                letterSpacing: '0.2px'
+              }} title={isPaused ? "Đang tạm dừng - bấm nút để tiếp tục" : `Thời gian làm bài (${timerState})`}>
+                <Clock size={15} style={{ color: isPaused ? 'var(--color-text-muted)' : timerColor }} />
+                <span style={{ fontVariantNumeric: 'tabular-nums' }}>{formatTime(timeElapsedSeconds)}</span>
+                <button
+                  onClick={isPaused ? resumeTimer : pauseTimer}
+                  style={{
+                    border: '1px solid var(--color-border)',
+                    background: isPaused ? 'var(--color-primary)' : 'var(--color-surface)',
+                    color: isPaused ? '#ffffff' : 'var(--color-text-secondary)',
+                    borderRadius: 'var(--radius-xs)',
+                    width: '22px',
+                    height: '22px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    padding: 0
+                  }}
+                  title={isPaused ? "Tiếp tục làm bài" : "Tạm dừng bấm giờ"}
+                  aria-label={isPaused ? "Tiếp tục" : "Tạm dừng"}
+                >
+                  {isPaused ? <Play size={11} style={{ marginLeft: '1px' }} /> : <Pause size={11} />}
+                </button>
+              </div>
 
-          {/* Quiz Mode Switcher (Exam vs Practice) */}
-          <div style={{
-            display: 'flex',
-            background: 'var(--bg-subtle)',
-            borderRadius: 'var(--radius-pill)',
-            padding: '2px',
-            border: '1px solid var(--border-light)',
-            height: '34px',
-            boxSizing: 'border-box'
-          }}>
-            <button
-              onClick={() => setQuizMode('exam')}
-              style={{
-                padding: '0 12px',
-                height: '100%',
-                borderRadius: 'var(--radius-pill)',
-                border: 'none',
-                background: quizMode === 'exam' ? 'var(--brand-gradient)' : 'transparent',
-                color: quizMode === 'exam' ? '#fff' : 'var(--text-muted)',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
+              {/* Quiz Mode Switcher (Exam vs Practice) - Quiet Segmented Control */}
+              <div style={{
                 display: 'flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-              title="Chế độ Thi thử: Làm bài tính giờ và nộp bài để xem kết quả"
-            >
-              ⏱️ Thi thử
-            </button>
-            <button
-              onClick={() => setQuizMode('practice')}
-              style={{
-                padding: '0 12px',
-                height: '100%',
-                borderRadius: 'var(--radius-pill)',
-                border: 'none',
-                background: quizMode === 'practice' ? 'var(--brand-gradient)' : 'transparent',
-                color: quizMode === 'practice' ? '#fff' : 'var(--text-muted)',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-              title="Chế độ Luyện tập: Xem ngay lời giải chi tiết và bản dịch khi chọn đáp án"
-            >
-              🎯 Luyện tập
-            </button>
-          </div>
-        </div>
+                background: 'var(--color-surface-subtle)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '2px',
+                border: '1px solid var(--color-border)',
+                height: '34px',
+                boxSizing: 'border-box'
+              }}>
+                <button
+                  onClick={() => setQuizMode('exam')}
+                  style={{
+                    padding: '0 10px',
+                    height: '100%',
+                    borderRadius: 'var(--radius-xs)',
+                    border: 'none',
+                    background: quizMode === 'exam' ? 'var(--color-surface)' : 'transparent',
+                    color: quizMode === 'exam' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                    fontSize: '0.78rem',
+                    fontWeight: quizMode === 'exam' ? 600 : 500,
+                    boxShadow: quizMode === 'exam' ? 'var(--shadow-subtle)' : 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                  title="Chế độ Thi thử: Làm bài tính giờ và nộp bài để xem kết quả"
+                >
+                  Thi thử
+                </button>
+                <button
+                  onClick={() => setQuizMode('practice')}
+                  style={{
+                    padding: '0 10px',
+                    height: '100%',
+                    borderRadius: 'var(--radius-xs)',
+                    border: 'none',
+                    background: quizMode === 'practice' ? 'var(--color-surface)' : 'transparent',
+                    color: quizMode === 'practice' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                    fontSize: '0.78rem',
+                    fontWeight: quizMode === 'practice' ? 600 : 500,
+                    boxShadow: quizMode === 'practice' ? 'var(--shadow-subtle)' : 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                  title="Chế độ Luyện tập: Xem ngay lời giải chi tiết và bản dịch khi chọn đáp án"
+                >
+                  Luyện tập
+                </button>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Right Header Actions */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
