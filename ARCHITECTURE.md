@@ -72,3 +72,25 @@ All browser persistence is encapsulated in `src/services/storageService.ts`:
 ### 3.4 Data Validation & Security
 - `src/utils/sanitize.ts`: Pure regex-based HTML sanitizer allowing safe pedagogical tags (`<b>`, `<i>`, `<u>`, `<mark>`, `<br>`) while stripping `<script>`, `<iframe>`, `<style>`, `javascript:` protocols, and inline DOM event attributes (`onload`, `onerror`, `onclick`).
 - `src/utils/validation.ts`: Runtime schema validation ensuring all questions contain valid `id`, `options` (A/B/C/D), `correctAnswer`, `explanation`, and `topicTag`.
+
+### 3.5 Anti-Spoiler Engine Architecture
+To ensure test integrity and prevent answer giveaways:
+1. **Mode Gating (`quizMode === 'exam'`)**: The grammar/topic badge (`topicTag`) is completely omitted from the DOM during exam mode.
+2. **Practice Gating (`quizMode === 'practice'`)**: In practice mode, the badge is only rendered after the student has submitted their choice for that question.
+3. **Data Sanitization (`cleanTopicTag`)**: Strips parenthesized answer spoilers (e.g. `(Modal Perfect)`, `(Gerund)`) from metadata strings, preserving grammatical classifications (e.g. `Ngữ pháp - Thì`, `Mệnh đề quan hệ`).
+
+### 3.6 Interactive Examination Subsystem (`QuizRunner`)
+- **Option Elimination**: Allows students to eliminate unlikely distractors with visual strikethrough and opacity diminution without selecting them as an answer.
+- **Question Grid Modal**: Fast question overview modal with status indicators (current, answered, flagged, unvisited).
+- **Keyboard Shortcuts Engine**: Non-conflicting event listener binding keys (`1-4`, `A-D`, `F`, `Arrows`, `?`, `Escape`) with focus-stealing guards.
+- **Audio & Haptic Feedback**: Optional subtle sound feedback on question navigation, answer submission, and completion.
+
+---
+
+## 4. Exam Datasets Registry (23 Datasets / 950 Questions)
+All questions are modularized into separate files in `src/data/` and loaded dynamically or grouped in `questionBank.ts`:
+1. `HUIT_02_EXAM` (`huit02ToeicExamData.ts` - 50 questions, University / TOEIC)
+2. `HUIT_TOEIC_TONG_HOP_2026_EXAM` (`huitToeicTongHop2026ExamData.ts` - 50 questions, University / TOEIC)
+3. `HUIT_TOEIC_DE_02_NANG_CAO_EXAM` (`huitToeicDe02NangCaoExamData.ts` - 50 questions, University / TOEIC)
+4. 20 High School & Specialized Practice Exams (`bacNinh2026ExamData`, `hanoiExamData`, `daNangExamData`, `chuyenBacGiang2026ExamData`, etc. - 40 questions each).
+All datasets conform strictly to the `ExamSet` and `Question` schemas defined in `src/types/quiz.ts`.
