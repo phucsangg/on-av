@@ -808,8 +808,10 @@ import { DIEN_BIEN_2026_EXAM } from './dienBien2026ExamData';
 import { HAN_THUYEN_2026_EXAM } from './hanThuyen2026ExamData';
 import { NINH_BINH_2026_EXAM } from './ninhBinh2026ExamData';
 import { HUIT_02_EXAM } from './huit02ToeicExamData';
+import { HUIT_TONG_HOP_2026_EXAM } from './huitToeicTongHop2026ExamData';
 
 export const SAMPLE_EXAM_SETS: ExamSet[] = [
+  HUIT_TONG_HOP_2026_EXAM,
   HUIT_02_EXAM,
   HAN_THUYEN_2026_EXAM,
   NINH_BINH_2026_EXAM,
