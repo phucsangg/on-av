@@ -3,6 +3,8 @@ import type { UserAttempt, SavedMistake, SavedWord, UserStats, ExamSet } from '.
 const STORAGE_PREFIX = 'eq_';
 const SESSION_KEY = 'on_av_active_session';
 const THEME_KEY = 'eq_theme';
+const STORAGE_VERSION_KEY = 'eq_storage_version';
+const CURRENT_STORAGE_VERSION = 2;
 
 export interface ActiveQuizSession {
   examId: string;
@@ -15,6 +17,53 @@ export interface ActiveQuizSession {
 }
 
 class StorageService {
+  constructor() {
+    this.migrateIfNeeded();
+  }
+
+  private migrateIfNeeded(): void {
+    try {
+      const rawVer = localStorage.getItem(STORAGE_VERSION_KEY);
+      const version = rawVer ? parseInt(rawVer, 10) : 1;
+
+      if (version < 2) {
+        // v1 -> v2 migration: ensure integrity of attempts and mistake schema without losing user progress
+        const attempts = this.getAttempts();
+        if (attempts.length > 0) {
+          const sanitizedAttempts = attempts.map(att => ({
+            ...att,
+            percentage: typeof att.percentage === 'number' ? att.percentage : Math.round((att.score / (att.totalQuestions || 1)) * 100),
+            date: att.date || new Date().toISOString()
+          }));
+          this.saveAttempts(sanitizedAttempts);
+        }
+
+        const mistakes = this.getMistakes();
+        if (mistakes.length > 0) {
+          const sanitizedMistakes = mistakes.map(m => ({
+            ...m,
+            userWrongAnswersCount: Math.max(1, Number(m.userWrongAnswersCount) || 1),
+            addedAt: m.addedAt || new Date().toISOString()
+          }));
+          this.saveMistakes(sanitizedMistakes);
+        }
+
+        localStorage.setItem(STORAGE_VERSION_KEY, CURRENT_STORAGE_VERSION.toString());
+      }
+    } catch (e) {
+      console.warn('[StorageService] Error during storage migration:', e);
+    }
+  }
+
+  public getStorageVersion(): number {
+    try {
+      const ver = localStorage.getItem(STORAGE_VERSION_KEY);
+      return ver ? parseInt(ver, 10) : CURRENT_STORAGE_VERSION;
+    } catch {
+      return CURRENT_STORAGE_VERSION;
+    }
+  }
+
   private safeGet<T>(key: string, fallback: T): T {
     try {
       const raw = localStorage.getItem(key);

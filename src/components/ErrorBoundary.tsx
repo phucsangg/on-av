@@ -1,5 +1,6 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { AlertTriangle, RotateCcw, Home } from 'lucide-react';
+import { telemetry } from '../services/telemetry';
 
 interface Props {
   children: ReactNode;
@@ -25,6 +26,12 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('[ErrorBoundary caught error]:', error, errorInfo);
+    telemetry.captureError({
+      message: error.message || 'React render crash',
+      stack: error.stack || errorInfo.componentStack || undefined,
+      timestamp: Date.now(),
+      breadcrumbs: telemetry.getBreadcrumbs()
+    });
     this.setState({ errorInfo });
   }
 

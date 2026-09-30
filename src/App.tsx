@@ -6,6 +6,7 @@ import { LoadingFallback } from './components/LoadingFallback';
 import { SettingsModal } from './components/SettingsModal';
 import { SAMPLE_EXAM_SETS } from './data/questionBank';
 import { storageService } from './services/storageService';
+import { learningEngine } from './services/learningEngine';
 import type { 
   ExamSet, 
   UserAttempt, 
@@ -14,7 +15,8 @@ import type {
   UserStats, 
   Question, 
   SavedWord, 
-  PageTab 
+  PageTab,
+  SRSRating
 } from './types/quiz';
 
 // Lazy loaded views for optimal bundle splitting and performance
@@ -25,6 +27,9 @@ const CustomExamBuilder = lazy(() => import('./components/CustomExamBuilder').th
 const ExamCatalogPage = lazy(() => import('./pages/ExamCatalogPage').then(m => ({ default: m.ExamCatalogPage })));
 const HistoryStatsPage = lazy(() => import('./pages/HistoryStatsPage').then(m => ({ default: m.HistoryStatsPage })));
 const DictionaryPage = lazy(() => import('./pages/DictionaryPage').then(m => ({ default: m.DictionaryPage })));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const TermsPage = lazy(() => import('./pages/TermsPage').then(m => ({ default: m.TermsPage })));
+const AdminPage = lazy(() => import('./pages/AdminPage').then(m => ({ default: m.AdminPage })));
 
 // URL Path to View & Tab Mappings
 const TAB_TO_PATH: Record<string, string> = {
@@ -34,6 +39,9 @@ const TAB_TO_PATH: Record<string, string> = {
   history: '/lich-su-thong-ke',
   dictionary: '/tu-dien',
   builder: '/tao-de-thi',
+  privacy: '/chinh-sach-bao-mat',
+  terms: '/dieu-khoan-dich-vu',
+  admin: '/admin',
   runner: '/lam-bai',
   result: '/ket-qua'
 };
@@ -45,6 +53,9 @@ const PATH_TO_VIEW: Record<string, PageTab | 'runner' | 'result'> = {
   '/lich-su-thong-ke': 'history',
   '/tu-dien': 'dictionary',
   '/tao-de-thi': 'builder',
+  '/chinh-sach-bao-mat': 'privacy',
+  '/dieu-khoan-dich-vu': 'terms',
+  '/admin': 'admin',
   '/lam-bai': 'runner',
   '/ket-qua': 'result'
 };
@@ -347,6 +358,19 @@ export const App: React.FC = () => {
     setMistakes(prev => prev.map(m => m.question.id === questionId ? { ...m, mastered: !m.mastered } : m));
   };
 
+  const handleUpdateMistakeSchedule = (questionId: string, rating: SRSRating) => {
+    setMistakes(prev => prev.map(m => {
+      if (m.question.id !== questionId) return m;
+      const currentBox = m.srsSchedule?.box || 1;
+      const schedule = learningEngine.calculateNextReview(currentBox, rating);
+      return {
+        ...m,
+        srsSchedule: schedule,
+        mastered: schedule.box >= 5
+      };
+    }));
+  };
+
   // Word notebook handlers
   const handleSaveWord = (word: SavedWord) => {
     setSavedWords(prev => {
@@ -511,6 +535,7 @@ export const App: React.FC = () => {
               onToggleMastered={handleToggleMistakeMastered}
               onClearAllMistakes={handleClearAllMistakes}
               onClearMasteredMistakes={handleClearMasteredMistakes}
+              onUpdateMistakeSchedule={handleUpdateMistakeSchedule}
             />
           )}
 
@@ -545,6 +570,18 @@ export const App: React.FC = () => {
               onFinishExam={handleFinishExam}
               onExit={() => handleTabChange('dashboard')}
             />
+          )}
+
+          {currentView === 'privacy' && (
+            <PrivacyPolicyPage onBack={() => handleTabChange('dashboard')} />
+          )}
+
+          {currentView === 'terms' && (
+            <TermsPage onBack={() => handleTabChange('dashboard')} />
+          )}
+
+          {currentView === 'admin' && (
+            <AdminPage examSets={examSets} onBack={() => handleTabChange('dashboard')} />
           )}
 
           {currentView === 'result' && activeExam && (
@@ -588,13 +625,63 @@ export const App: React.FC = () => {
       {currentView !== 'runner' && (
         <footer style={{
           borderTop: '1px solid var(--border-light)',
-          padding: '24px',
+          padding: '24px 20px',
           textAlign: 'center',
           color: 'var(--text-muted)',
           fontSize: '0.875rem',
           background: 'var(--bg-card)'
         }}>
-          <p>© 2026 <strong>EnglishQuiz Master</strong>. Nền tảng ôn thi trắc nghiệm Tiếng Anh thông minh.</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '8px' }}>
+            <span>© 2026 <strong>EnglishQuiz Master</strong>. Nền tảng ôn thi trắc nghiệm Tiếng Anh thông minh.</span>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <button
+              onClick={() => navigateToView('privacy')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--brand-primary, #6366f1)',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+                padding: 0,
+                textDecoration: 'underline'
+              }}
+            >
+              Chính sách bảo mật
+            </button>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <button
+              onClick={() => navigateToView('terms')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--brand-primary, #6366f1)',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+                padding: 0,
+                textDecoration: 'underline'
+              }}
+            >
+              Điều khoản dịch vụ
+            </button>
+            <span style={{ opacity: 0.4 }}>•</span>
+            <button
+              onClick={() => navigateToView('admin')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--brand-primary, #6366f1)',
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+                padding: 0,
+                textDecoration: 'underline'
+              }}
+            >
+              Kiểm định đề thi (CMS)
+            </button>
+          </div>
+          <div style={{ fontSize: '0.78rem', opacity: 0.8 }}>
+            Dự án giáo dục phi lợi nhuận • Mô phỏng luyện thi không chính thức
+          </div>
         </footer>
       )}
     </div>

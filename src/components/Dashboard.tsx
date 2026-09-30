@@ -21,8 +21,10 @@ import {
   Flame,
   BookMarked,
   Languages,
-  History
+  History,
+  Compass
 } from 'lucide-react';
+import { learningEngine } from '../services/learningEngine';
 
 interface DashboardProps {
   examSets: ExamSet[];
@@ -123,6 +125,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const weakTopics = topicStats.filter(t => t.total >= 3 && t.rate < 65).slice(0, 3);
   const strongTopics = topicStats.filter(t => t.total >= 3 && t.rate >= 80).slice(0, 3);
+
+  const cefrProfile = React.useMemo(() => learningEngine.estimateCEFRLevel(attempts), [attempts]);
+  const recommendedAction = React.useMemo(() => {
+    return learningEngine.recommendNextAction(attempts, [], examSets);
+  }, [attempts, examSets]);
 
   return (
     <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '32px 24px' }}>
@@ -248,6 +255,74 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Adaptive Learning Recommendation Card */}
+      <div className="card animate-fade-in" style={{
+        padding: '20px 24px',
+        marginBottom: '28px',
+        background: 'var(--color-surface)',
+        border: '1.5px solid var(--color-primary)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-card)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '16px'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{
+            width: '44px',
+            height: '44px',
+            borderRadius: 'var(--radius-md)',
+            background: 'var(--color-primary-subtle)',
+            color: 'var(--color-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
+          }}>
+            <Compass size={22} />
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--color-primary)', letterSpacing: '0.04em' }}>
+                HƯỚNG ĐI TIẾP THEO ĐỀ XUẤT
+              </span>
+              <span className="badge badge-primary" style={{ fontSize: '0.72rem' }}>
+                Trình độ ước tính: {cefrProfile.level} (~{cefrProfile.estimatedScoreTOEIC} TOEIC)
+              </span>
+            </div>
+            <div style={{ fontWeight: 700, fontSize: '1.05rem', color: 'var(--color-text-primary)', marginTop: '3px' }}>
+              {recommendedAction.title}
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '2px', lineHeight: 1.5 }}>
+              {recommendedAction.reason}
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={() => {
+            if (recommendedAction.type === 'srs_review') {
+              if (onNavigateTab) onNavigateTab('mistakes');
+            } else if (recommendedAction.targetId) {
+              const found = examSets.find(e => e.id === recommendedAction.targetId);
+              if (found) {
+                onSelectExam(found);
+              } else {
+                if (onNavigateTab) onNavigateTab('catalog');
+              }
+            } else {
+              if (onNavigateTab) onNavigateTab('catalog');
+            }
+          }}
+          className="btn btn-primary hover-lift"
+          style={{ padding: '10px 22px', fontSize: '0.88rem', fontWeight: 700, whiteSpace: 'nowrap' }}
+        >
+          <Play size={14} fill="currentColor" /> {recommendedAction.actionText}
+        </button>
       </div>
 
       {/* Quick Action Cards Bar */}

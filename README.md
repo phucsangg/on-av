@@ -4,12 +4,12 @@
 [![React 19](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript 6](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite-8.2-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Bundle Size](https://img.shields.io/badge/Initial_JS-35_kB_gzip-success)](#hiệu-năng)
-[![Tests](https://img.shields.io/badge/Tests-Passing_19%2F19-brightgreen)](#kiểm-thử)
+[![Bundle Size](https://img.shields.io/badge/Initial_JS-38_kB_gzip-success)](#hiệu-năng)
+[![Tests](https://img.shields.io/badge/Tests-Passing_22%2F22-brightgreen)](#kiểm-thử)
 [![Linter](https://img.shields.io/badge/Oxlint-0_warnings_0_errors-brightgreen)](https://oxc.rs/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-**EnglishQuiz Master** là nền tảng luyện thi trắc nghiệm Tiếng Anh hiện đại, hiệu năng cao, bảo mật và chuẩn hóa dành cho học sinh, sinh viên Việt Nam: từ ôn thi chuẩn đầu vào Đại học (HUIT-oriented practice), định hướng TOEIC Reading đến kỳ thi Tốt nghiệp THPT Quốc Gia. Ứng dụng mang lại trải nghiệm thi thử thực chiến mượt mà, phân tích điểm mạnh - điểm yếu cá nhân hóa và hỗ trợ tối ưu điểm số.
+**ON-AV (v2.0)** là nền tảng luyện thi trắc nghiệm Tiếng Anh chuẩn hóa, hiệu năng cao, thích ứng và bảo mật dành cho học sinh, sinh viên Việt Nam: từ luyện thi chuẩn đầu vào Đại học (HUIT & TOEIC), định hướng TOEIC Reading đến kỳ thi Tốt nghiệp THPT Quốc Gia. Hệ thống vận hành theo vòng lặp sư phạm chuẩn: **Chẩn đoán (Diagnose) → Luyện tập (Practice) → Thi thử (Test) → Phân tích (Analyze) → Ôn ngắt quãng (SRS) → Thích ứng (Adapt) → Nâng cao điểm số (Improve)**.
 
 ---
 
@@ -52,14 +52,28 @@
 - Tự động tra cứu online đa tầng khi gặp từ vựng mới ngoài đề thi.
 - Phát âm giọng chuẩn bản xứ `en-US` tích hợp.
 
-### 📔 7. Sổ Tay Câu Sai & Phân Biệt Cấp Độ Thành Thạo (`Mistake Notebook`)
-- Tự động gom toàn bộ câu làm sai vào Sổ tay.
-- Hỗ trợ phân loại trạng thái: **Tất cả**, **Đang ôn luyện** và **Đã nắm vững (Mastered)**.
-- Chế độ Luyện tập lại chỉ riêng các câu làm sai.
+### 📔 7. Sổ Tay Câu Sai & Ôn Tập Ngắt Quãng Spaced Repetition (`Leitner SRS`)
+- Tự động gom toàn bộ câu làm sai vào Sổ tay với thuật toán Leitner 5 hộp nhớ (`1 ngày` → `3 ngày` → `7 ngày` → `14 ngày` → `30 ngày`).
+- Chế độ **Flash Review** với 4 mức đánh giá phản xạ: **Chưa nhớ (Again)**, **Khó (Hard)**, **Tốt (Good)**, **Dễ (Easy)**.
+- Bộ lọc thông minh: **Đến hạn ôn (Due for review)**, **Đang học (Learning)** và **Đã nắm vững (Mastered)**.
 
-### 🎯 8. Gợi Ý Lộ Trình Học Cá Nhân Hóa (Personalized Learning)
+### 🎯 8. Gợi Ý Lộ Trình Học Cá Nhân Hóa & Đánh Giá Năng Lực CEFR
 - Tự động tính toán tỷ lệ chính xác theo từng kỹ năng và chủ đề ngữ pháp từ lịch sử làm bài.
-- Nhận diện các **Chủ đề cần củng cố (< 65%)** và **Thế mạnh vững vàng (>= 80%)** để học sinh tập trung ôn đúng trọng tâm.
+- Ước lượng trình độ **CEFR (A2, B1, B2, C1)** và điểm số TOEIC Reading dự kiến.
+- Banner đề xuất hành động ưu tiên tức thì trên Dashboard (Ôn câu sai đến hạn → Luyện chủ đề yếu → Thi thử tổng hợp).
+
+### 🛡️ 9. Admin CMS & Hàng Đợi Kiểm Duyệt Câu Hỏi (`/admin`)
+- Cổng quản trị phân quyền bằng mã PIN bảo mật.
+- Tổng quan kho dữ liệu 950 câu hỏi, bộ lọc theo đề thi, độ khó và kỹ năng.
+- Hàng đợi kiểm duyệt (Review Queue) phê duyệt câu hỏi, gắn cờ báo lỗi và lưu trữ.
+
+### 🌐 10. Hoạt Động Offline Với PWA Service Worker (`sw.js`)
+- Cài đặt như native app trên Desktop/Mobile (PWA installable).
+- Bộ đệm ServiceWorker (CacheFirst) tải mượt mà ngay cả khi mất kết nối mạng hoặc mạng chập chờn.
+
+### 📊 11. Giám Sát Telemetry & Tuân Thủ Pháp Lý
+- Giám sát ngoại lệ JS runtime và chỉ số Web Vitals (LCP, FID, CLS) ẩn danh, bảo vệ quyền riêng tư tuyệt đối (Zero-PII).
+- Trang chính sách bảo mật `/chinh-sach-bao-mat` và điều khoản dịch vụ `/dieu-khoan-dich-vu`.
 
 ---
 
@@ -67,14 +81,26 @@
 
 | Lĩnh vực | Công nghệ |
 |---|---|
-| **Core Framework** | React 19 (React Compiler Ready), TypeScript 6 Strict |
+| **Core Framework** | React 19, TypeScript 6 Strict |
 | **Build & Bundler** | Vite 8 + Rolldown |
 | **Styling** | Vanilla CSS Design Tokens, Glassmorphism, Dark / Light Mode |
-| **Icons** | Lucide React |
-| **Storage** | Robust `StorageService` với cơ chế chống tràn bộ nhớ QuotaExceededError |
-| **Security** | `sanitizeHtml` chống DOM XSS, `validateExam` kiểm soát schema JSON |
-| **CI/CD** | GitHub Actions Workflow, Dependabot security scanning |
-| **PWA & SEO** | Web App Manifest, robots.txt, OpenGraph metadata |
+| **Learning Engine** | 5-Box Leitner Spaced Repetition, CEFR/TOEIC Estimator, Weak Topic Profiler |
+| **Storage & Migration** | Robust `StorageService` v2 với schema migration và auto-eviction QuotaExceededError |
+| **Security** | `sanitizeHtml` (DOMPurify), Zero-PII Policy, Security Headers (docs/SECURITY.md) |
+| **PWA & Offline** | Web App Manifest, CacheFirst ServiceWorker (`public/sw.js`) |
+| **CI/CD** | GitHub Actions Workflow (Typecheck, Lint, Test, Validate, Build) |
+
+---
+
+## 📚 TÀI LIỆU HỆ THỐNG (DOCUMENTATION)
+
+- [Báo Cáo Nghiệm Thu Nâng Cấp v2.0 (UPGRADE_FINAL_REPORT.md)](file:///d:/on_av/docs/UPGRADE_FINAL_REPORT.md)
+- [Kiến Trúc Hệ Thống (ARCHITECTURE.md)](file:///d:/on_av/ARCHITECTURE.md)
+- [Bảo Mật & Gia Cố (SECURITY.md)](file:///d:/on_av/docs/SECURITY.md)
+- [Hướng Dẫn Triển Khai (DEPLOYMENT.md)](file:///d:/on_av/docs/DEPLOYMENT.md)
+- [Quy Chuẩn Dữ Liệu & Migration (DATA_GUIDELINES.md)](file:///d:/on_av/docs/DATA_GUIDELINES.md)
+- [Chuẩn Mực Chất Lượng Câu Hỏi (QUESTION_QUALITY.md)](file:///d:/on_av/docs/QUESTION_QUALITY.md)
+
 
 ---
 
@@ -142,7 +168,8 @@ on-av/
 ├── public/
 │   ├── favicon.svg            # Favicon chính thức
 │   ├── manifest.json          # PWA Web App Manifest
-│   └── robots.txt             # SEO Crawling rules
+│   ├── robots.txt             # SEO Crawling rules
+│   └── sw.js                  # PWA CacheFirst ServiceWorker
 ├── scripts/
 │   └── validateData.mjs       # Script thẩm định dữ liệu đề thi tự động (950 câu / 23 đề)
 ├── tests/
@@ -150,23 +177,29 @@ on-av/
 │   ├── chaos_and_scoring.test.mjs # Test làm sạch dữ liệu LocalStorage & an toàn parsing
 │   ├── sanitize.test.mjs      # Test chống XSS & bộ lọc chống lộ đáp án (anti-spoiler)
 │   ├── timer.test.mjs         # Test đồng hồ bấm giờ drift-free & đếm ngược
-│   └── user_journey_simulation.test.mjs # Test mô phỏng hành vi người dùng (6 scenarios)
+│   ├── user_journey_simulation.test.mjs # Test mô phỏng hành vi người dùng (6 scenarios)
+│   └── learning_engine.test.mjs # Test thuật toán Leitner SRS, CEFR & Weak Topics
+├── docs/                      # Hệ thống tài liệu kỹ thuật & chuẩn hóa v2.0
+│   ├── UPGRADE_FINAL_REPORT.md # Báo cáo nghiệm thu nâng cấp toàn diện
+│   ├── SECURITY.md            # Mô hình đe dọa, CSP & HTTP Headers
+│   ├── DEPLOYMENT.md          # Hướng dẫn deploy Vercel, Cloudflare, Netlify, Nginx
+│   ├── DATA_GUIDELINES.md     # Đặc tả Schema, storageVersion v2 migration
+│   └── QUESTION_QUALITY.md    # Tiêu chuẩn sư phạm câu hỏi & quy trình duyệt
 ├── src/
-│   ├── components/            # React UI components (QuizRunner, Dashboard, ErrorBoundary...)
+│   ├── components/            # React UI components (Dashboard, MistakeNotebook, Navbar...)
+│   │   └── quiz/              # Module Quiz Runner: QuizHeader, QuizGridModal, QuizSubmitModal...
 │   ├── data/                  # 23 bộ đề thi (HUIT TOEIC, THPT 2026...) & Dữ liệu từ điển
 │   ├── hooks/                 # Custom React Hooks (useQuizTimer...)
-│   ├── pages/                 # Page-level components (ExamCatalogPage, HistoryStatsPage...)
-│   ├── services/              # Singleton services (storageService, dictionaryService)
+│   ├── pages/                 # Page-level components (ExamCatalogPage, AdminPage...)
+│   ├── services/              # Singleton services (storageService, learningEngine, telemetry...)
 │   ├── types/                 # TypeScript type definitions
 │   ├── utils/                 # Security sanitization, anti-spoiler & schema validation
 │   ├── App.tsx                # App Root & Code-split View Router
-│   ├── main.tsx               # Client Entry Point với ErrorBoundary
+│   ├── main.tsx               # Client Entry Point với ErrorBoundary & Telemetry
 │   └── index.css              # Design tokens & Global Glassmorphism CSS
-├── AUDIT.md                   # Báo cáo kiểm toán kỹ thuật chuyên sâu
-├── UPGRADE_PLAN.md            # Kế hoạch nâng cấp và phân loại P0 - P3
-├── FINAL_AUDIT.md             # Bảng điểm nghiệm thu & Lộ trình phát triển
-├── PERFORMANCE.md             # Báo cáo đo lường hiệu năng Before / After
-├── CHANGELOG.md               # Nhật ký chi tiết phiên bản v1.1.0
+├── ARCHITECTURE.md            # Sơ đồ kiến trúc luồng dữ liệu & Component Tree
+├── DESIGN_SYSTEM.md           # Quy chuẩn Design Tokens & Typography
+├── CHANGELOG.md               # Nhật ký phát triển phiên bản
 ├── package.json
 ├── tsconfig.json
 └── vite.config.ts             # Cấu hình Rollup Manual Chunks & Split Code

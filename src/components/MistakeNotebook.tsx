@@ -11,6 +11,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { sanitizeHtml } from '../utils/sanitize';
+import { learningEngine, type SRSRating } from '../services/learningEngine';
 
 interface MistakeNotebookProps {
   mistakes: SavedMistake[];
@@ -19,6 +20,7 @@ interface MistakeNotebookProps {
   onToggleMastered?: (questionId: string) => void;
   onClearAllMistakes?: () => void;
   onClearMasteredMistakes?: () => void;
+  onUpdateMistakeSchedule?: (questionId: string, rating: SRSRating) => void;
 }
 
 export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
@@ -27,15 +29,18 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
   onPracticeMistakes,
   onToggleMastered,
   onClearAllMistakes,
-  onClearMasteredMistakes
+  onClearMasteredMistakes,
+  onUpdateMistakeSchedule
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTopic, setSelectedTopic] = useState('all');
-  const [statusFilter, setStatusFilter] = useState<'all' | 'learning' | 'mastered'>('all');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'due' | 'learning' | 'mastered'>('all');
   const [showTransMap, setShowTransMap] = useState<Record<string, boolean>>({});
   const [viewMode, setViewMode] = useState<'list' | 'flash_review'>('list');
   const [reviewIndex, setReviewIndex] = useState<number>(0);
   const [selectedReviewOption, setSelectedReviewOption] = useState<string | null>(null);
+
+  const dueMistakes = React.useMemo(() => learningEngine.getDueMistakes(mistakes), [mistakes]);
 
   const handleClearAll = () => {
     if (window.confirm('Bạn có chắc chắn muốn xóa TOÀN BỘ các câu trong sổ tay câu sai không? Thao tác này không thể hoàn tác.')) {
@@ -53,13 +58,32 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
     const matchesSearch = item.question.questionText.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           item.question.explanation.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesTopic = selectedTopic === 'all' || item.question.topicTag === selectedTopic;
-    const matchesStatus = statusFilter === 'all' 
-      ? true 
-      : statusFilter === 'mastered' 
-        ? !!item.mastered 
-        : !item.mastered;
+    let matchesStatus = true;
+    if (statusFilter === 'due') {
+      matchesStatus = dueMistakes.some(d => d.question.id === item.question.id);
+    } else if (statusFilter === 'mastered') {
+      matchesStatus = !!item.mastered;
+    } else if (statusFilter === 'learning') {
+      matchesStatus = !item.mastered;
+    }
     return matchesSearch && matchesTopic && matchesStatus;
   });
+
+  const handleRateSRS = (rating: SRSRating) => {
+    if (!currentReviewItem) return;
+
+    if (onUpdateMistakeSchedule) {
+      onUpdateMistakeSchedule(currentReviewItem.question.id, rating);
+    }
+
+    if (reviewIndex < filteredMistakes.length - 1) {
+      setReviewIndex(prev => prev + 1);
+      setSelectedReviewOption(null);
+    } else {
+      alert('🎉 Chúc mừng bạn đã hoàn thành lượt ôn tập!');
+      setViewMode('list');
+    }
+  };
 
   const topics = Array.from(new Set(mistakes.map(m => m.question.topicTag)));
   const learningCount = mistakes.filter(m => !m.mastered).length;
@@ -277,6 +301,56 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
             </div>
           )}
 
+          {/* Spaced Repetition (SRS) Rating Scheduling Box */}
+          {selectedReviewOption && (
+            <div style={{
+              marginBottom: '20px',
+              padding: '16px',
+              background: 'var(--color-surface-subtle)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid var(--color-border)',
+              textAlign: 'center'
+            }}>
+              <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-text-secondary)', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Đánh giá mức độ ghi nhớ để lên lịch ôn tiếp theo (Spaced Repetition)
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px' }}>
+                <button
+                  onClick={() => handleRateSRS('again')}
+                  className="btn hover-lift"
+                  style={{ background: 'rgba(239, 68, 68, 0.1)', color: 'var(--color-error)', border: '1px solid var(--color-error)', fontSize: '0.8rem', padding: '8px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                >
+                  <span style={{ fontWeight: 700 }}>Chưa nhớ (Again)</span>
+                  <span style={{ fontSize: '0.68rem', opacity: 0.85 }}>Ôn lại sau 1 ngày</span>
+                </button>
+                <button
+                  onClick={() => handleRateSRS('hard')}
+                  className="btn hover-lift"
+                  style={{ background: 'rgba(245, 158, 11, 0.1)', color: 'var(--color-warning)', border: '1px solid var(--color-warning)', fontSize: '0.8rem', padding: '8px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                >
+                  <span style={{ fontWeight: 700 }}>Còn khó (Hard)</span>
+                  <span style={{ fontSize: '0.68rem', opacity: 0.85 }}>Ôn lại sau 3 ngày</span>
+                </button>
+                <button
+                  onClick={() => handleRateSRS('good')}
+                  className="btn hover-lift"
+                  style={{ background: 'rgba(59, 130, 246, 0.1)', color: 'var(--color-primary)', border: '1px solid var(--color-primary)', fontSize: '0.8rem', padding: '8px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                >
+                  <span style={{ fontWeight: 700 }}>Nhớ tốt (Good)</span>
+                  <span style={{ fontSize: '0.68rem', opacity: 0.85 }}>Ôn lại sau 7 ngày</span>
+                </button>
+                <button
+                  onClick={() => handleRateSRS('easy')}
+                  className="btn hover-lift"
+                  style={{ background: 'rgba(16, 185, 129, 0.1)', color: 'var(--color-success)', border: '1px solid var(--color-success)', fontSize: '0.8rem', padding: '8px 4px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                >
+                  <span style={{ fontWeight: 700 }}>Rất dễ (Easy)</span>
+                  <span style={{ fontSize: '0.68rem', opacity: 0.85 }}>Ôn lại sau 14 ngày</span>
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Review Navigation Controls */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid var(--border-light)' }}>
             <button
@@ -386,6 +460,22 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
                 fontWeight: 800
               }}>
                 {mistakes.length}
+              </span>
+            </button>
+            <button
+              onClick={() => setStatusFilter('due')}
+              className={`tab-chip-pill ${statusFilter === 'due' ? 'active' : ''}`}
+            >
+              <span>Đến hạn ôn (SRS)</span>
+              <span style={{
+                background: statusFilter === 'due' ? 'rgba(255, 255, 255, 0.25)' : 'var(--bg-subtle)',
+                color: statusFilter === 'due' ? '#ffffff' : 'var(--brand-primary)',
+                fontSize: '0.72rem',
+                padding: '1px 6px',
+                borderRadius: '999px',
+                fontWeight: 800
+              }}>
+                {dueMistakes.length}
               </span>
             </button>
             <button

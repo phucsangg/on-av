@@ -14,29 +14,48 @@
 
 ```text
 App (Root & Route Manager)
-├── ErrorBoundary (Crash Isolation)
+├── ErrorBoundary (Crash Isolation & Telemetry Reporting)
 ├── Navbar (Global Brand, Route Navigation, Quick Word Search, Theme Toggle)
 ├── Active Session Banner (Resume In-Progress Exam)
 ├── Main Content Views (React.lazy + Suspense Code-Splitting):
-│   ├── Dashboard (Learning Analytics, Mastery Score, Topic Breakdown, Quick Actions)
+│   ├── Dashboard (Adaptive Recommendation Banner, CEFR Bracket, Weak Topic Actions)
 │   ├── ExamCatalogPage (Catalog with Filters: University, TOEIC, THPT, Quick Quiz, Grammar, Vocab)
-│   ├── QuizRunner (Exam Engine: Timer, Question View, Cloze Masking, Highlights, Navigator)
+│   ├── QuizRunner (Modularized Exam Engine):
+│   │   ├── QuizHeader (Progress, drift-free timer, actions)
+│   │   ├── QuizShortcutsModal (A11y keyboard cheatsheet)
+│   │   ├── QuizSubmitModal (Incomplete answers audit & confirm)
+│   │   ├── QuizPauseModal (Focus isolation pause dialog)
+│   │   └── QuizGridModal (Full 50-item interactive grid)
 │   ├── QuizResult (Score Breakdown, Explanations, Mistake Sync, Share/Retry)
-│   ├── MistakeNotebook (Spaced Repetition Notebook, Filter by Mastery / Topic, Practice Mode)
+│   ├── MistakeNotebook (5-Box Leitner SRS, Due Date Filters, 4-tier Flash Review)
 │   ├── HistoryStatsPage (Historical Attempts, Time Tracking, Skill Accuracy Trends)
 │   ├── DictionaryPage (Dictionary Search, Audio Pronunciation, Word Bookmarking)
-│   └── CustomExamBuilder (Custom Exam Creator, JSON Import/Export with Schema Validation)
+│   ├── CustomExamBuilder (Custom Exam Creator, JSON Import/Export with Schema Validation)
+│   ├── AdminPage (Role-Gated CMS, Content Inventory, Question Review Queue)
+│   ├── PrivacyPolicyPage (Zero-PII Compliance & Data Rights)
+│   └── TermsPage (Educational Test Disclaimer & Terms)
 ├── Modals & Overlays:
 │   ├── DictionaryModal (In-quiz instant word lookup via selection or search)
 │   └── SettingsModal (Audio toggle, theme switch, data reset)
-└── Footer (SEO Links & Platform Info)
+└── Footer (Navigation, Legal Links, Telemetry & Status)
 ```
 
 ---
 
 ## 3. Data Flow & Subsystem Architecture
 
-### 3.1 Quiz Engine Flow
+### 3.1 Learning & SRS Subsystem (`learningEngine`)
+Located at `src/services/learningEngine.ts`:
+- **5-Box Leitner Spaced Repetition**: Calculates next review intervals based on qualitative student ratings:
+  - `again` (Rating 1): Box 1 reset (1 day interval)
+  - `hard` (Rating 2): Box $\max(1, B - 1)$ (3 days interval)
+  - `good` (Rating 3): Box $\min(5, B + 1)$ (7 or 14 days interval)
+  - `easy` (Rating 4): Box 5 jump (30 days interval / Mastered)
+- **CEFR & TOEIC Estimator**: Maps cumulative accuracy across verified attempts to Common European Framework of Reference levels (`A2` to `C1`) and projected TOEIC scores.
+- **Weak Topic Priority Analyzer**: Aggregates per-topic accuracy, flagging categories with $< 65\%$ precision as High Severity.
+- **Next Best Action Generator**: Dynamically yields prioritized study recommendations on the Dashboard (`srs_review` → `weak_topic_practice` → `diagnostic` → `full_exam`).
+
+### 3.2 Quiz Engine Flow
 ```text
 ExamCatalogPage / Dashboard (Select Exam)
        │
@@ -46,14 +65,15 @@ App.tsx (Sets activeExam, pushes /lam-bai?examId=...)
        ▼
 QuizRunner.tsx
    ├── useQuizTimer (Drift-free Date.now() timestamp tracking)
-   ├── Local state: answers, flagged, currentIndex
+   ├── Modular subcomponents: QuizHeader, QuizGridModal, QuizSubmitModal
+   ├── Local state: answers, flagged, currentIndex, eliminated options
    ├── storageService.saveActiveSession (Throttled auto-save on navigation / 10s tick)
    │
    ▼ [User clicks Submit or Timer times out]
 QuizResult.tsx
    ├── Computes Score & Accuracy Percentage
    ├── storageService.saveAttempt (Appends to attempts history)
-   ├── storageService.syncMistakes (Upserts incorrect questions to Mistake Notebook)
+   ├── storageService.syncMistakes (Upserts incorrect questions to Mistake Notebook with Box 1 SRS)
    └── Confetti Animation & Action triggers (Review, Retry, Mistake Practice)
 ```
 

@@ -5,27 +5,26 @@ import type {
 } from '../types/quiz';
 import { cleanTopicTag } from '../utils/sanitize';
 import { DictionaryModal } from './DictionaryModal';
+import { QuizShortcutsModal } from './quiz/QuizShortcutsModal';
+import { QuizSubmitModal } from './quiz/QuizSubmitModal';
+import { QuizPauseModal } from './quiz/QuizPauseModal';
+import { QuizGridModal } from './quiz/QuizGridModal';
+import { QuizHeader } from './quiz/QuizHeader';
 import { useQuizTimer } from '../hooks/useQuizTimer';
 import { storageService } from '../services/storageService';
 import { 
-  Clock, 
   Flag, 
   ChevronLeft, 
   ChevronRight, 
   ChevronDown,
   ChevronUp,
   Volume2, 
-  AlertCircle, 
-  CheckCircle,
   X,
   BookOpen,
   Grid,
   Languages,
   Sparkles,
   Highlighter,
-  Pause,
-  Play,
-  Keyboard,
   EyeOff
 } from 'lucide-react';
 
@@ -84,7 +83,6 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   const [isGridModalOpen, setIsGridModalOpen] = useState<boolean>(false);
   const [eliminatedOptions, setEliminatedOptions] = useState<Record<string, string[]>>({});
   const [isShortcutsModalOpen, setIsShortcutsModalOpen] = useState<boolean>(false);
-  const [gridFilter, setGridFilter] = useState<'all' | 'unanswered' | 'flagged' | 'answered'>('all');
   const [passageFontSize, setPassageFontSize] = useState<'normal' | 'large' | 'xlarge'>('normal');
 
   // Refs and scroll handlers for long reading passages
@@ -759,12 +757,6 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     onFinishExam(finalRecords, Math.max(1, timeSpent));
   };
 
-  const formatTime = (totalSec: number) => {
-    const mins = Math.floor(totalSec / 60);
-    const secs = totalSec % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
   const answeredCount = Object.values(answers).filter(v => v !== null).length;
 
   return (
@@ -776,238 +768,24 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       paddingBottom: isNavigatorOpen ? '110px' : '60px'
     }}>
       
-      {/* Sticky Header Bar - Compact & Balanced */}
-      <div className="glass-card" style={{
-        borderRadius: 0,
-        borderLeft: 0,
-        borderRight: 0,
-        padding: '8px 20px',
-        minHeight: '52px',
-        boxSizing: 'border-box',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '12px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
-      }}>
-        {/* Left: Exit button & Exam Title with inline badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flexShrink: 1 }}>
-          <button
-            onClick={onExit}
-            className="btn btn-secondary"
-            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', fontWeight: 600, flexShrink: 0 }}
-            title="Thoát khỏi bài thi"
-          >
-            <X size={15} /> Thoát
-          </button>
-          <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <h3
-              style={{
-                fontSize: '0.92rem',
-                fontWeight: 700,
-                margin: 0,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '320px',
-                color: 'var(--text-primary)'
-              }}
-              title={exam.title}
-            >
-              {exam.title}
-            </h3>
-            <span
-              style={{
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                color: 'var(--brand-primary)',
-                background: 'rgba(99, 102, 241, 0.08)',
-                padding: '2px 8px',
-                borderRadius: 'var(--radius-pill)',
-                whiteSpace: 'nowrap',
-                flexShrink: 0
-              }}
-              title={`Tiến độ làm bài: ${answeredCount}/${exam.questions.length} câu`}
-            >
-              {answeredCount}/{exam.questions.length}
-            </span>
-          </div>
-        </div>
-
-        {/* Center: Unified Calm Timer + Mode Switcher */}
-        {(() => {
-          const totalExamDurationSeconds = (exam.durationMinutes || 0) * 60;
-          const remainingSeconds = totalExamDurationSeconds > 0 
-            ? Math.max(0, totalExamDurationSeconds - timeElapsedSeconds)
-            : null;
-          const timerState: 'normal' | 'warning' | 'critical' = 
-            remainingSeconds !== null
-              ? remainingSeconds <= 60
-                ? 'critical'
-                : remainingSeconds <= 300
-                  ? 'warning'
-                  : 'normal'
-              : 'normal';
-
-          let timerColor = 'var(--color-text-primary)';
-          let timerBg = 'var(--color-surface-subtle)';
-          let timerBorder = 'var(--color-border)';
-
-          if (timerState === 'critical') {
-            timerColor = 'var(--color-error)';
-            timerBg = 'var(--color-error-subtle)';
-            timerBorder = 'var(--color-error-border)';
-          } else if (timerState === 'warning') {
-            timerColor = 'var(--color-warning)';
-            timerBg = 'var(--color-warning-subtle)';
-            timerBorder = 'var(--color-warning-border)';
-          }
-
-          return (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-              {/* Integrated Calm Timer Pill with Pause/Resume */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                height: '34px',
-                padding: '0 8px 0 12px',
-                gap: '8px',
-                borderRadius: 'var(--radius-sm)',
-                background: timerBg,
-                border: `1px solid ${timerBorder}`,
-                color: isPaused ? 'var(--color-text-muted)' : timerColor,
-                fontSize: '0.88rem',
-                fontWeight: 700,
-                letterSpacing: '0.2px'
-              }} title={isPaused ? "Đang tạm dừng - bấm nút để tiếp tục" : `Thời gian làm bài (${timerState})`}>
-                <Clock size={15} style={{ color: isPaused ? 'var(--color-text-muted)' : timerColor }} />
-                <span style={{ fontVariantNumeric: 'tabular-nums' }}>{formatTime(timeElapsedSeconds)}</span>
-                <button
-                  onClick={isPaused ? resumeTimer : pauseTimer}
-                  style={{
-                    border: '1px solid var(--color-border)',
-                    background: isPaused ? 'var(--color-primary)' : 'var(--color-surface)',
-                    color: isPaused ? '#ffffff' : 'var(--color-text-secondary)',
-                    borderRadius: 'var(--radius-xs)',
-                    width: '22px',
-                    height: '22px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease',
-                    padding: 0
-                  }}
-                  title={isPaused ? "Tiếp tục làm bài" : "Tạm dừng bấm giờ"}
-                  aria-label={isPaused ? "Tiếp tục" : "Tạm dừng"}
-                >
-                  {isPaused ? <Play size={11} style={{ marginLeft: '1px' }} /> : <Pause size={11} />}
-                </button>
-              </div>
-
-              {/* Quiz Mode Switcher (Exam vs Practice) - Quiet Segmented Control */}
-              <div style={{
-                display: 'flex',
-                background: 'var(--color-surface-subtle)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '2px',
-                border: '1px solid var(--color-border)',
-                height: '34px',
-                boxSizing: 'border-box'
-              }}>
-                <button
-                  onClick={() => setQuizMode('exam')}
-                  style={{
-                    padding: '0 10px',
-                    height: '100%',
-                    borderRadius: 'var(--radius-xs)',
-                    border: 'none',
-                    background: quizMode === 'exam' ? 'var(--color-surface)' : 'transparent',
-                    color: quizMode === 'exam' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
-                    fontSize: '0.78rem',
-                    fontWeight: quizMode === 'exam' ? 600 : 500,
-                    boxShadow: quizMode === 'exam' ? 'var(--shadow-subtle)' : 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                  title="Chế độ Thi thử: Làm bài tính giờ và nộp bài để xem kết quả"
-                >
-                  Thi thử
-                </button>
-                <button
-                  onClick={() => setQuizMode('practice')}
-                  style={{
-                    padding: '0 10px',
-                    height: '100%',
-                    borderRadius: 'var(--radius-xs)',
-                    border: 'none',
-                    background: quizMode === 'practice' ? 'var(--color-surface)' : 'transparent',
-                    color: quizMode === 'practice' ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
-                    fontSize: '0.78rem',
-                    fontWeight: quizMode === 'practice' ? 600 : 500,
-                    boxShadow: quizMode === 'practice' ? 'var(--shadow-subtle)' : 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.15s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                  title="Chế độ Luyện tập: Xem ngay lời giải chi tiết và bản dịch khi chọn đáp án"
-                >
-                  Luyện tập
-                </button>
-              </div>
-            </div>
-          );
-        })()}
-
-        {/* Right Header Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-          {/* Keyboard Shortcuts Trigger Button */}
-          <button
-            onClick={() => setIsShortcutsModalOpen(true)}
-            className="btn btn-secondary"
-            style={{ height: '34px', padding: '0 10px', fontSize: '0.82rem', color: 'var(--text-main)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}
-            title="Bảng phím tắt tiện lợi (bấm phím ?)"
-            aria-label="Phím tắt"
-          >
-            <Keyboard size={15} /> <span className="hide-on-mobile">Phím tắt</span>
-          </button>
-
-          {/* Dictionary Trigger Button */}
-          <button
-            onClick={() => openDictionary('')}
-            className="btn btn-secondary"
-            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: 600 }}
-            title="Mở từ điển tra từ Anh-Việt"
-          >
-            <Languages size={15} /> <span className="hide-on-mobile">Tra từ điển</span>
-          </button>
-
-          <button
-            onClick={() => setIsGridModalOpen(true)}
-            className="btn btn-secondary hover-lift"
-            style={{ height: '34px', padding: '0 12px', fontSize: '0.82rem', color: 'var(--brand-primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}
-            title="Mở Bảng Chọn Câu Hỏi Trực Quan"
-          >
-            <Grid size={15} /> Bảng chọn <span className="hide-on-mobile">({answeredCount}/{exam.questions.length})</span>
-          </button>
-
-          <button
-            onClick={() => setIsSubmitModalOpen(true)}
-            className="btn btn-primary"
-            style={{ height: '34px', padding: '0 16px', fontSize: '0.84rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
-          >
-            <CheckCircle size={15} /> Nộp Bài
-          </button>
-        </div>
-      </div>
+      {/* Sticky Header Bar */}
+      <QuizHeader
+        title={exam.title}
+        answeredCount={answeredCount}
+        totalQuestions={exam.questions.length}
+        durationMinutes={exam.durationMinutes}
+        timeElapsedSeconds={timeElapsedSeconds}
+        isPaused={isPaused}
+        quizMode={quizMode}
+        onExit={onExit}
+        onPauseTimer={pauseTimer}
+        onResumeTimer={resumeTimer}
+        onSetQuizMode={(m) => setQuizMode(m)}
+        onOpenShortcuts={() => setIsShortcutsModalOpen(true)}
+        onOpenDictionary={() => openDictionary('')}
+        onOpenGridModal={() => setIsGridModalOpen(true)}
+        onOpenSubmitModal={() => setIsSubmitModalOpen(true)}
+      />
 
       {/* Main Spacious Test Workspace */}
       <div style={{
@@ -2325,282 +2103,20 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         </div>
       )}
 
-      {/* Question Grid Navigator Modal (Bảng Chọn 40 Câu Hỏi) */}
-      {isGridModalOpen && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 100,
-          background: 'rgba(15, 23, 42, 0.65)',
-          backdropFilter: 'blur(8px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px'
-        }}>
-          <div className="glass-card animate-fade-in" style={{
-            width: '100%',
-            maxWidth: '680px',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            padding: '28px',
-            borderRadius: 'var(--radius-xl)',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-light)',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)'
-          }}>
-            {/* Modal Header */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '20px',
-              borderBottom: '1px solid var(--border-light)',
-              paddingBottom: '16px'
-            }}>
-              <div>
-                <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <Grid size={22} style={{ color: 'var(--brand-primary)' }} />
-                  <span>BẢNG CHỌN CÂU HỎI TRỰC QUAN</span>
-                </h3>
-                <p style={{ margin: '4px 0 0 0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                  Nhấp vào câu hỏi bất kỳ để chuyển nhanh đến câu đó
-                </p>
-              </div>
-
-              <button
-                onClick={() => setIsGridModalOpen(false)}
-                className="btn btn-secondary"
-                style={{ padding: '6px', borderRadius: '50%', minWidth: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            {/* Progress Summary Card */}
-            <div style={{
-              background: 'var(--bg-subtle)',
-              padding: '16px 20px',
-              borderRadius: 'var(--radius-md)',
-              marginBottom: '22px',
-              border: '1px solid var(--border-light)'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', fontWeight: 700, marginBottom: '8px' }}>
-                <span>Tiến độ hoàn thành bài thi</span>
-                <span style={{ color: 'var(--brand-primary)', fontWeight: 800 }}>
-                  {answeredCount} / {exam.questions.length} câu ({Math.round((answeredCount / exam.questions.length) * 100)}%)
-                </span>
-              </div>
-
-              <div style={{
-                height: '8px',
-                width: '100%',
-                background: 'var(--bg-tertiary)',
-                borderRadius: '4px',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  height: '100%',
-                  width: `${(answeredCount / exam.questions.length) * 100}%`,
-                  background: 'linear-gradient(90deg, #4f46e5 0%, #3b82f6 100%)',
-                  borderRadius: '4px',
-                  transition: 'width 0.3s ease'
-                }} />
-              </div>
-
-              {/* Filter Tabs */}
-              <div style={{
-                display: 'flex',
-                gap: '8px',
-                marginTop: '16px',
-                flexWrap: 'wrap'
-              }}>
-                <button
-                  type="button"
-                  onClick={() => setGridFilter('all')}
-                  className={`tab-chip-pill ${gridFilter === 'all' ? 'active' : ''}`}
-                  style={{ fontSize: '0.82rem', padding: '6px 14px' }}
-                >
-                  Tất cả ({exam.questions.length})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setGridFilter('unanswered')}
-                  className={`tab-chip-pill ${gridFilter === 'unanswered' ? 'active' : ''}`}
-                  style={{
-                    fontSize: '0.82rem',
-                    padding: '6px 14px',
-                    borderColor: gridFilter === 'unanswered' ? 'var(--brand-primary)' : undefined,
-                    color: gridFilter === 'unanswered' ? 'var(--brand-primary)' : undefined
-                  }}
-                >
-                  Chưa làm ({exam.questions.length - answeredCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setGridFilter('answered')}
-                  className={`tab-chip-pill ${gridFilter === 'answered' ? 'active' : ''}`}
-                  style={{ fontSize: '0.82rem', padding: '6px 14px' }}
-                >
-                  Đã làm ({answeredCount})
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setGridFilter('flagged')}
-                  className={`tab-chip-pill ${gridFilter === 'flagged' ? 'active' : ''}`}
-                  style={{
-                    fontSize: '0.82rem',
-                    padding: '6px 14px',
-                    borderColor: gridFilter === 'flagged' ? 'var(--warning)' : undefined,
-                    color: gridFilter === 'flagged' ? 'var(--warning)' : undefined
-                  }}
-                >
-                  Đánh dấu ({Object.values(flagged).filter(Boolean).length})
-                </button>
-              </div>
-            </div>
-
-            {/* Filtered Question Flex/Grid Layout */}
-            {(() => {
-              const filteredList = exam.questions
-                .map((q, idx) => ({ q, idx }))
-                .filter(({ q }) => {
-                  const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
-                  const isQuestionFlagged = !!flagged[q.id];
-                  if (gridFilter === 'answered') return isAnswered;
-                  if (gridFilter === 'unanswered') return !isAnswered;
-                  if (gridFilter === 'flagged') return isQuestionFlagged;
-                  return true;
-                });
-
-              if (filteredList.length === 0) {
-                return (
-                  <div style={{
-                    padding: '36px 16px',
-                    textAlign: 'center',
-                    color: 'var(--text-muted)',
-                    background: 'var(--bg-subtle)',
-                    borderRadius: 'var(--radius-md)',
-                    marginBottom: '24px',
-                    border: '1px dashed var(--border-light)'
-                  }}>
-                    {gridFilter === 'unanswered' ? 'Tuyệt vời! Bạn đã trả lời hết tất cả câu hỏi.' :
-                     gridFilter === 'flagged' ? 'Bạn chưa đánh dấu câu hỏi nào cần xem lại.' :
-                     'Không có câu hỏi nào phù hợp với bộ lọc.'}
-                  </div>
-                );
-              }
-
-              return (
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(5, 1fr)',
-                  gap: '10px',
-                  marginBottom: '24px'
-                }}>
-                  {filteredList.map(({ q, idx }) => {
-                    const isCurrent = idx === currentIndex;
-                    const isAnswered = answers[q.id] !== undefined && answers[q.id] !== null;
-                    const isQuestionFlagged = !!flagged[q.id];
-
-                    let bg = 'var(--bg-surface)';
-                    let color = 'var(--text-main)';
-                    let border = '1.5px solid var(--border-light)';
-                    let boxShadow = 'none';
-
-                    if (isCurrent) {
-                      border = '2.5px solid var(--brand-primary)';
-                      boxShadow = '0 0 14px rgba(79, 70, 229, 0.4)';
-                      if (isAnswered) {
-                        bg = 'var(--brand-primary)';
-                        color = '#ffffff';
-                      } else {
-                        bg = 'rgba(79, 70, 229, 0.15)';
-                        color = 'var(--brand-primary)';
-                      }
-                    } else if (isQuestionFlagged) {
-                      bg = 'rgba(245, 158, 11, 0.2)';
-                      color = 'var(--warning)';
-                      border = '1.5px solid var(--warning)';
-                    } else if (isAnswered) {
-                      bg = 'var(--brand-primary)';
-                      color = '#ffffff';
-                      border = '1.5px solid var(--brand-primary)';
-                    }
-
-                    return (
-                      <button
-                        key={q.id}
-                        onClick={() => {
-                          setCurrentIndex(idx);
-                          setIsGridModalOpen(false);
-                        }}
-                        className="hover-lift"
-                        style={{
-                          padding: '10px 6px',
-                          borderRadius: 'var(--radius-md)',
-                          border: border,
-                          background: bg,
-                          color: color,
-                          fontWeight: 800,
-                          fontSize: '0.92rem',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          position: 'relative',
-                          boxShadow: boxShadow,
-                          transition: 'all 0.18s ease'
-                        }}
-                      >
-                        Câu {idx + 1}
-                        {isQuestionFlagged && (
-                          <span style={{
-                            position: 'absolute',
-                            top: '4px',
-                            right: '4px',
-                            width: '6px',
-                            height: '6px',
-                            borderRadius: '50%',
-                            background: 'var(--warning)'
-                          }} />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })()}
-
-            {/* Bottom Actions */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
-              <button
-                onClick={() => {
-                  setIsNavigatorOpen(!isNavigatorOpen);
-                }}
-                className="btn btn-secondary"
-                style={{ fontSize: '0.85rem' }}
-              >
-                {isNavigatorOpen ? 'Ẩn thanh câu hỏi bên dưới' : 'Hiện thanh câu hỏi bên dưới'}
-              </button>
-
-              <button
-                onClick={() => {
-                  setIsGridModalOpen(false);
-                  setIsSubmitModalOpen(true);
-                }}
-                className="btn btn-primary"
-                style={{ padding: '8px 20px', fontSize: '0.9rem' }}
-              >
-                <CheckCircle size={16} /> Nộp Bài Ngay
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Question Grid Navigator Modal */}
+      <QuizGridModal
+        isOpen={isGridModalOpen}
+        questions={exam.questions}
+        currentIndex={currentIndex}
+        answers={answers}
+        flagged={flagged}
+        answeredCount={answeredCount}
+        isNavigatorOpen={isNavigatorOpen}
+        onSelectQuestion={(idx) => setCurrentIndex(idx)}
+        onToggleNavigator={() => setIsNavigatorOpen(!isNavigatorOpen)}
+        onOpenSubmitModal={() => setIsSubmitModalOpen(true)}
+        onClose={() => setIsGridModalOpen(false)}
+      />
 
       {/* Dictionary Modal */}
       <DictionaryModal
@@ -2610,223 +2126,25 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       />
 
       {/* Keyboard Shortcuts Cheat Sheet Modal */}
-      {isShortcutsModalOpen && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0, 0, 0, 0.55)',
-          backdropFilter: 'blur(6px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 110,
-          padding: '24px'
-        }}>
-          <div className="glass-card animate-fade-in" style={{
-            padding: '28px 32px',
-            maxWidth: '520px',
-            width: '100%',
-            maxHeight: '90vh',
-            overflowY: 'auto'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{
-                  width: '38px',
-                  height: '38px',
-                  borderRadius: '10px',
-                  background: 'rgba(79, 70, 229, 0.12)',
-                  color: 'var(--brand-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <Keyboard size={20} />
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>Phím Tắt Thao Tác Nhanh</h3>
-                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-muted)' }}>Tăng tốc độ làm bài & tập trung tối đa</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setIsShortcutsModalOpen(false)}
-                className="btn btn-ghost"
-                style={{ padding: '6px', borderRadius: '50%' }}
-                aria-label="Đóng"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {[
-                { keys: ['1', '2', '3', '4', 'A', 'B', 'C', 'D'], desc: 'Chọn nhanh đáp án tương ứng' },
-                { keys: ['Alt + 1..4', 'Click phải', 'Nút mắt gạch'], desc: 'Gạch loại trừ phương án sai (loại suy)' },
-                { keys: ['←', '→', 'J', 'K'], desc: 'Chuyển câu hỏi trước / kế tiếp' },
-                { keys: ['F'], desc: 'Bật/tắt cờ đánh dấu câu hỏi cần xem lại' },
-                { keys: ['T'], desc: 'Bật/tắt bản dịch song ngữ Anh - Việt' },
-                { keys: ['P'], desc: 'Phát âm tiếng Anh chuẩn (Text-to-Speech)' },
-                { keys: ['Double-click'], desc: 'Tra nhanh từ điển từ vựng trong bài đọc / câu hỏi' },
-                { keys: ['?'], desc: 'Mở / đóng bảng tra cứu phím tắt' },
-                { keys: ['Esc'], desc: 'Đóng popup hoặc modal đang mở' },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '9px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    background: 'var(--bg-subtle)',
-                    border: '1px solid var(--border-light)',
-                    gap: '12px'
-                  }}
-                >
-                  <span style={{ fontSize: '0.88rem', fontWeight: 500, color: 'var(--text-main)' }}>{item.desc}</span>
-                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-                    {item.keys.map((k, kidx) => (
-                      <kbd
-                        key={kidx}
-                        style={{
-                          padding: '3px 8px',
-                          background: 'var(--bg-surface)',
-                          border: '1px solid var(--border-light)',
-                          boxShadow: '0 2px 0 var(--border-light)',
-                          borderRadius: '6px',
-                          fontSize: '0.78rem',
-                          fontWeight: 700,
-                          color: 'var(--brand-primary)',
-                          fontFamily: 'inherit',
-                          whiteSpace: 'nowrap'
-                        }}
-                      >
-                        {k}
-                      </kbd>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: '22px' }}>
-              <button
-                onClick={() => setIsShortcutsModalOpen(false)}
-                className="btn btn-primary"
-                style={{ width: '100%', padding: '10px' }}
-              >
-                Đã Hiểu (Tiếp Tục Làm Bài)
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <QuizShortcutsModal
+        isOpen={isShortcutsModalOpen}
+        onClose={() => setIsShortcutsModalOpen(false)}
+      />
 
       {/* Submission Modal */}
-      {isSubmitModalOpen && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(0, 0, 0, 0.55)',
-          backdropFilter: 'blur(6px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 100,
-          padding: '24px'
-        }}>
-          <div className="glass-card animate-fade-in" style={{ padding: '36px', maxWidth: '460px', width: '100%', textAlign: 'center' }}>
-            <AlertCircle size={52} color="#f59e0b" style={{ margin: '0 auto 16px' }} />
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginBottom: '12px' }}>Xác Nhận Nộp Bài Thi</h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '28px', lineHeight: 1.6 }}>
-              Bạn đã làm <strong>{answeredCount}/{exam.questions.length}</strong> câu hỏi.
-              {answeredCount < exam.questions.length && (
-                <span style={{ color: 'var(--danger)', display: 'block', marginTop: '8px', fontWeight: 700 }}>
-                  Còn {exam.questions.length - answeredCount} câu chưa chọn đáp án!
-                </span>
-              )}
-            </p>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setIsSubmitModalOpen(false)}
-                className="btn btn-secondary"
-                style={{ flex: 1, padding: '12px' }}
-              >
-                Làm Tiếp
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="btn btn-primary"
-                style={{ flex: 1, padding: '12px' }}
-              >
-                Nộp Bài Ngay
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <QuizSubmitModal
+        isOpen={isSubmitModalOpen}
+        answeredCount={answeredCount}
+        totalQuestions={exam.questions.length}
+        onClose={() => setIsSubmitModalOpen(false)}
+        onSubmit={handleSubmit}
+      />
 
       {/* Pause Modal Overlay */}
-      {isPaused && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          background: 'rgba(15, 23, 42, 0.75)',
-          backdropFilter: 'blur(10px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 100,
-          padding: '24px'
-        }}>
-          <div className="card animate-fade-in" style={{
-            maxWidth: '460px',
-            width: '100%',
-            padding: '36px',
-            textAlign: 'center',
-            border: '1px solid var(--border-light)'
-          }}>
-            <div style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '50%',
-              background: 'var(--brand-gradient)',
-              color: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 18px auto',
-              boxShadow: '0 8px 24px rgba(79, 70, 229, 0.35)'
-            }}>
-              <Pause size={28} />
-            </div>
-
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px' }}>
-              Bài Thi Đang Tạm Dừng ⏸️
-            </h3>
-
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.925rem', marginBottom: '28px', lineHeight: 1.6 }}>
-              Đồng hồ đếm ngược và trạng thái làm bài của bạn đã tạm ngưng. Nhấn nút bên dưới khi sẵn sàng tiếp tục!
-            </p>
-
-            <button
-              onClick={resumeTimer}
-              className="btn btn-primary"
-              style={{
-                width: '100%',
-                padding: '12px 20px',
-                fontSize: '0.975rem',
-                fontWeight: 700,
-                borderRadius: 'var(--radius-lg)',
-                justifyContent: 'center'
-              }}
-            >
-              <Play size={18} fill="currentColor" />
-              <span>Tiếp Tục Làm Bài</span>
-            </button>
-          </div>
-        </div>
-      )}
+      <QuizPauseModal
+        isPaused={isPaused}
+        onResume={resumeTimer}
+      />
     </div>
   );
 };

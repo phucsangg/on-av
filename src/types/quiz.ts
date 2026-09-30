@@ -10,7 +10,7 @@ export type QuestionType =
   | 'cloze_test'
   | 'reordering';
 
-export type PageTab = 'dashboard' | 'catalog' | 'mistakes' | 'history' | 'dictionary' | 'builder';
+export type PageTab = 'dashboard' | 'catalog' | 'mistakes' | 'history' | 'dictionary' | 'builder' | 'privacy' | 'terms' | 'admin';
 
 export interface SavedWord {
   id: string;
@@ -21,6 +21,25 @@ export interface SavedWord {
   translation: string;
   example?: string;
   savedAt: string;
+}
+
+export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
+export type PrimarySkill = 'grammar' | 'vocabulary' | 'pronunciation' | 'reading_detail' | 'reading_inference' | 'listening';
+
+export interface QuestionQuality {
+  status: 'unverified' | 'community_reviewed' | 'faculty_verified';
+  reviewedBy?: string;
+  reviewedAt?: string;
+  confidenceScore?: number;
+}
+
+export interface QuestionSource {
+  type: 'simulated_huit' | 'past_paper' | 'original' | 'open_license';
+  name: string;
+  year?: number;
+  license?: string;
+  url?: string;
+  attribution?: string;
 }
 
 export interface QuestionOption {
@@ -42,6 +61,10 @@ export interface Question {
   topicTag: string; // e.g. "Thì Quá khứ đơn", "Phát âm /s/ & /z/", "Collocation"
   difficulty?: 'easy' | 'medium' | 'hard';
   audioUrl?: string; // Optional audio URL or generated speech
+  cefrLevel?: CEFRLevel;
+  primarySkill?: PrimarySkill;
+  quality?: QuestionQuality;
+  source?: QuestionSource;
 }
 
 export interface ExamSet {
@@ -76,12 +99,22 @@ export interface UserAttempt {
   answers: UserAnswerRecord[];
 }
 
+export type SRSRating = 'again' | 'hard' | 'good' | 'easy';
+
+export interface SRSItemSchedule {
+  box: number; // 1 to 5
+  intervalDays: number;
+  dueDate: string; // ISO String
+  lastReviewedAt: string;
+}
+
 export interface SavedMistake {
   question: Question;
   addedAt: string;
   userWrongAnswersCount: number;
   mastered?: boolean;
   notes?: string;
+  srsSchedule?: SRSItemSchedule;
 }
 
 export interface UserStats {
