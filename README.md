@@ -5,7 +5,7 @@
 [![TypeScript 6](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite 8](https://img.shields.io/badge/Vite-8.2-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
 [![Bundle Size](https://img.shields.io/badge/Initial_JS-35_kB_gzip-success)](#hiệu-năng)
-[![Tests](https://img.shields.io/badge/Tests-Passing_13%2F13-brightgreen)](#kiểm-thử)
+[![Tests](https://img.shields.io/badge/Tests-Passing_19%2F19-brightgreen)](#kiểm-thử)
 [![Linter](https://img.shields.io/badge/Oxlint-0_warnings_0_errors-brightgreen)](https://oxc.rs/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -147,9 +147,10 @@ on-av/
 │   └── validateData.mjs       # Script thẩm định dữ liệu đề thi tự động (950 câu / 23 đề)
 ├── tests/
 │   ├── scoring.test.mjs       # Test thuật toán tính điểm & độ chính xác
-│   ├── storage.test.mjs       # Test làm sạch dữ liệu LocalStorage & an toàn parsing
+│   ├── chaos_and_scoring.test.mjs # Test làm sạch dữ liệu LocalStorage & an toàn parsing
 │   ├── sanitize.test.mjs      # Test chống XSS & bộ lọc chống lộ đáp án (anti-spoiler)
-│   └── timer.test.mjs         # Test đồng hồ bấm giờ drift-free & đếm ngược
+│   ├── timer.test.mjs         # Test đồng hồ bấm giờ drift-free & đếm ngược
+│   └── user_journey_simulation.test.mjs # Test mô phỏng hành vi người dùng (6 scenarios)
 ├── src/
 │   ├── components/            # React UI components (QuizRunner, Dashboard, ErrorBoundary...)
 │   ├── data/                  # 23 bộ đề thi (HUIT TOEIC, THPT 2026...) & Dữ liệu từ điển

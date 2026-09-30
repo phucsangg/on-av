@@ -11,12 +11,12 @@
 
 | Metric | Count |
 |---|---|
-| Total Scenarios Tested | 65 |
-| Passed (no issue) | 56 |
+| Total Scenarios Tested | 71 |
+| Passed (no issue) | 61 |
 | Bugs Found & Fixed | 10 |
 | Warnings Remaining | 0 (0 warnings, 0 errors in oxlint) |
 | Critical (P0/P1) Bugs | 0 remaining |
-| Automated Tests Added | 13 passing (100% pass in 112ms) |
+| Automated Tests Added | 19 passing (100% pass in 224ms) |
 | Question Bank Verified | 23 files, 950 questions (0 duplicate IDs) |
 
 ---
@@ -152,7 +152,7 @@
 
 ---
 
-## 🧪 Automated Tests (13/13 Pass)
+## 🧪 Automated Tests (19/19 Pass)
 
 | Test | Result |
 |---|---|
@@ -169,6 +169,12 @@
 | timer logic: computes drift-free elapsed seconds from timestamps | ✅ Pass |
 | timer logic: computes countdown remaining time correctly | ✅ Pass |
 | timer logic: clamps remaining time at 0 on timeout | ✅ Pass |
+| Scenario 1: Fresh User Normal Flow (Select → Answer → Flag → Submit → Score) | ✅ Pass |
+| Scenario 2: Careless User Mid-Exam Refresh & Resume | ✅ Pass |
+| Scenario 3: Double-Click and Rapid Submit Guard | ✅ Pass |
+| Scenario 4: Navigation Boundaries (Q1 Previous & QLast Next) | ✅ Pass |
+| Scenario 5: Session Conflict Detection When Switching Exam | ✅ Pass |
+| Scenario 6: Perfect Score (50/50 = 100%) and Zero Score (0/50 = 0%) | ✅ Pass |
 
 ---
 
