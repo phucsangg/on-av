@@ -731,7 +731,7 @@ export const BAC_NINH_2026_QUESTIONS: Question[] = [
     topicTag: 'Cấu trúc Bị động'
   },
   {
-    id: 'na-q40_bn',
+    id: 'bn-q40',
     type: 'cloze_test',
     readingPassage: PASSAGE_WATSON_CRICK,
     passageTranslation: PASSAGE_WATSON_CRICK_TRANS,
