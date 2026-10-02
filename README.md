@@ -15,9 +15,9 @@
 
 ## 🌟 TÍNH NĂNG NỔI BẬT
 
-### 📚 1. Kho Đề Thi 950 Câu Chuẩn Cấu Trúc Đa Dạng (23 Bộ Đề)
-- **23 Bộ đề thi thực chiến** (950 câu hỏi) được số hóa, gắn thẻ metadata và thẩm định tự động:
-  - **3 Bộ đề luyện thi chuẩn đầu vào Đại học (HUIT & TOEIC)**: 150 câu nâng cao chuẩn cấu trúc TOEIC Reading & Đại học (`HUIT-02 TOEIC`, `HUIT TOEIC Tổng Hợp 2026`, `HUIT TOEIC Đề 02 Nâng Cao`) kèm giải thích song ngữ và bản dịch đầy đủ.
+### 📚 1. Kho Đề Thi 1.000 Câu Chuẩn Cấu Trúc Đa Dạng (24 Bộ Đề)
+- **24 Bộ đề thi thực chiến** (1.000 câu hỏi) được số hóa, gắn thẻ metadata và thẩm định tự động:
+  - **4 Bộ đề luyện thi chuẩn đầu vào Đại học (HUIT & TOEIC)**: 200 câu nâng cao chuẩn cấu trúc TOEIC Reading & Đại học (`HUIT-02 TOEIC`, `HUIT TOEIC Tổng Hợp 2026`, `HUIT TOEIC Đề 02 Nâng Cao`, `HUIT TOEIC Đề 03 Nâng Cao`) kèm giải thích song ngữ và bản dịch đầy đủ.
   - **20 Bộ đề thi thử THPT Quốc Gia 2026** từ các Sở GD&ĐT & Trường Chuyên uy tín toàn quốc (Hà Nội, Hải Phòng, Đà Nẵng, Nghệ An, Vĩnh Phúc, Bắc Ninh, Bắc Giang, Hà Tĩnh, Ninh Bình, Điện Biên...).
   - **Đề luyện nhanh & chuyên đề**: Trắc nghiệm 10 phút, Chuyên đề Đọc hiểu TOEIC/THPT (Fast Fashion, Ocean Tides), Chuyên đề Elon Musk.
 - **100% câu hỏi có đáp án chuẩn xác**, dịch nghĩa chi tiết và giải thích cặn kẽ từng phương án.
@@ -171,7 +171,7 @@ on-av/
 │   ├── robots.txt             # SEO Crawling rules
 │   └── sw.js                  # PWA CacheFirst ServiceWorker
 ├── scripts/
-│   └── validateData.mjs       # Script thẩm định dữ liệu đề thi tự động (950 câu / 23 đề)
+│   └── validateData.mjs       # Script thẩm định dữ liệu đề thi tự động (1.000 câu / 24 đề)
 ├── tests/
 │   ├── scoring.test.mjs       # Test thuật toán tính điểm & độ chính xác
 │   ├── chaos_and_scoring.test.mjs # Test làm sạch dữ liệu LocalStorage & an toàn parsing

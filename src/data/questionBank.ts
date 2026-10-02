@@ -810,8 +810,10 @@ import { NINH_BINH_2026_EXAM } from './ninhBinh2026ExamData';
 import { HUIT_02_EXAM } from './huit02ToeicExamData';
 import { HUIT_TONG_HOP_2026_EXAM } from './huitToeicTongHop2026ExamData';
 import { HUIT_TOEIC_DE_02_NANG_CAO_EXAM } from './huitToeicDe02NangCaoExamData';
+import { HUIT_TOEIC_DE_03_NANG_CAO_EXAM } from './huitToeicDe03NangCaoExamData';
 
 export const SAMPLE_EXAM_SETS: ExamSet[] = [
+  HUIT_TOEIC_DE_03_NANG_CAO_EXAM,
   HUIT_TOEIC_DE_02_NANG_CAO_EXAM,
   HUIT_TONG_HOP_2026_EXAM,
   HUIT_02_EXAM,
