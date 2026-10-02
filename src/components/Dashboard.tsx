@@ -104,11 +104,17 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   // Real data-driven personalized learning analytics
   const topicStats = React.useMemo(() => {
+    const questionMap = new Map<string, { topicTag?: string }>();
+    examSets.forEach(e => {
+      e.questions.forEach(q => {
+        questionMap.set(q.id, q);
+      });
+    });
+
     const map: Record<string, { total: number; correct: number }> = {};
     attempts.forEach(att => {
       att.answers.forEach(ans => {
-        const exam = examSets.find(e => e.id === att.examSetId);
-        const q = exam?.questions.find(item => item.id === ans.questionId);
+        const q = questionMap.get(ans.questionId);
         const topic = q?.topicTag || 'Tổng hợp';
         if (!map[topic]) map[topic] = { total: 0, correct: 0 };
         map[topic].total++;

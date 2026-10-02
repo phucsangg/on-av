@@ -322,18 +322,25 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     return null;
   })();
 
+  // Precompute blank number to question mapping for O(1) passage formatting
+  const blankQuestionMap = React.useMemo(() => {
+    const map = new Map<number, (typeof exam.questions)[0]>();
+    for (const q of exam.questions) {
+      const match = q.questionText.match(/(?:blank\s*\(?|Question\s*|Câu\s*)(\d+)/i);
+      if (match && match[1]) {
+        map.set(parseInt(match[1], 10), q);
+      }
+    }
+    return map;
+  }, [exam.questions]);
+
   // Mask answer keys in passage during quiz taking (only show chosen answer or blank ____________)
-  const formatPassageForTaking = (rawPassage?: string): string => {
+  const formatPassageForTaking = React.useCallback((rawPassage?: string): string => {
     if (!rawPassage) return '';
 
     return rawPassage.replace(/<mark>\(?(\d+)\)?[\s.:]*\s*([\s\S]*?)<\/mark>/gi, (_fullMatch, blankNumStr) => {
       const blankNum = parseInt(blankNumStr, 10);
-      
-      // Find matching question in exam.questions for this blank number
-      const targetQuestion = exam.questions.find(q => {
-        const numRegex = new RegExp(`(blank\\s*\\(?${blankNum}\\)?|Question\\s*${blankNum}\\b|Câu\\s*${blankNum}\\b)`, 'i');
-        return numRegex.test(q.questionText);
-      });
+      const targetQuestion = blankQuestionMap.get(blankNum);
 
       if (targetQuestion) {
         const selectedOptId = answers[targetQuestion.id];
@@ -347,9 +354,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
       return `<mark>(${blankNum}) ____________</mark>`;
     });
-  };
+  }, [blankQuestionMap, answers]);
 
-  // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
   // Pure React JSX Highlight Renderer (Zero dangerouslySetInnerHTML, native DOM TextNodes)
   const renderHighlightedText = (rawText?: string, pIdx?: number) => {
     if (!rawText) return null;
