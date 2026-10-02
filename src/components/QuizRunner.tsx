@@ -12,6 +12,7 @@ import { QuizGridModal } from './quiz/QuizGridModal';
 import { QuizHeader } from './quiz/QuizHeader';
 import { useQuizTimer } from '../hooks/useQuizTimer';
 import { storageService } from '../services/storageService';
+import { dictionaryService } from '../services/dictionaryService';
 import { 
   Flag, 
   ChevronLeft, 
@@ -198,6 +199,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   // Translation & Dictionary States
   const [isPassageTranslated, setIsPassageTranslated] = useState<boolean>(false);
   const [showQuestionTranslation, setShowQuestionTranslation] = useState<boolean>(false);
+  const [showOptionTranslations, setShowOptionTranslations] = useState<boolean>(false);
+  const [optionTranslationsCache, setOptionTranslationsCache] = useState<Record<string, Record<string, string>>>({});
+  const [isTranslatingOptions, setIsTranslatingOptions] = useState<boolean>(false);
+  const optionTranslationsCacheRef = React.useRef<Record<string, Record<string, string>>>({});
+  optionTranslationsCacheRef.current = optionTranslationsCache;
   const [isDictOpen, setIsDictOpen] = useState<boolean>(false);
   const [dictSearchWord, setDictSearchWord] = useState<string>('');
   
@@ -222,6 +228,67 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   };
 
   const currentQuestion = exam.questions[currentIndex];
+
+  // Helper to translate missing option choices on-demand via dictionaryService without leaking the answer
+  const translateMissingOptions = useCallback(async (question: typeof exam.questions[0]) => {
+    if (!question || !question.options || question.options.length === 0) return;
+
+    const missing = question.options.filter(
+      opt => !opt.translation && !optionTranslationsCacheRef.current[question.id]?.[opt.id]
+    );
+
+    if (missing.length === 0) return;
+
+    setIsTranslatingOptions(true);
+    try {
+      const results = await Promise.allSettled(
+        missing.map(async (opt) => {
+          const cleanText = opt.text.replace(/^[A-Da-d][.)]\s*/, '').trim();
+          const res = await dictionaryService.translate(cleanText || opt.text, 'en', 'vi');
+          return { id: opt.id, text: sanitizeTranslationNoAnswer(res.translatedText || '') };
+        })
+      );
+
+      const newEntries: Record<string, string> = {};
+      results.forEach(res => {
+        if (res.status === 'fulfilled' && res.value.text) {
+          newEntries[res.value.id] = res.value.text;
+        }
+      });
+
+      if (Object.keys(newEntries).length > 0) {
+        setOptionTranslationsCache(prev => {
+          const updated = {
+            ...prev,
+            [question.id]: {
+              ...(prev[question.id] || {}),
+              ...newEntries
+            }
+          };
+          optionTranslationsCacheRef.current = updated;
+          return updated;
+        });
+      }
+    } catch (err) {
+      console.error('Failed to translate options:', err);
+    } finally {
+      setIsTranslatingOptions(false);
+    }
+  }, []);
+
+  const handleToggleOptionTranslations = () => {
+    const nextState = !showOptionTranslations;
+    setShowOptionTranslations(nextState);
+    if (nextState && currentQuestion) {
+      translateMissingOptions(currentQuestion);
+    }
+  };
+
+  useEffect(() => {
+    if (showOptionTranslations && currentQuestion) {
+      translateMissingOptions(currentQuestion);
+    }
+  }, [currentIndex, showOptionTranslations, currentQuestion, translateMissingOptions]);
 
   // Clean Native Web Selection Listener (0 side effects, 0 mousedown overrides)
   useEffect(() => {
@@ -1269,6 +1336,29 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                     </button>
 
                     <button
+                      onClick={handleToggleOptionTranslations}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: `1.5px solid ${showOptionTranslations ? 'var(--brand-primary)' : 'var(--border-light)'}`,
+                        background: showOptionTranslations ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-subtle)',
+                        color: showOptionTranslations ? 'var(--brand-primary)' : 'var(--text-muted)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.85rem',
+                        fontWeight: 700,
+                        transition: 'all 0.2s ease',
+                        fontFamily: 'inherit'
+                      }}
+                      title="Dịch các phương án lựa chọn A, B, C, D sang Tiếng Việt (không tiết lộ đáp án)"
+                    >
+                      <Languages size={16} />
+                      {isTranslatingOptions ? 'Đang dịch...' : showOptionTranslations ? 'Ẩn dịch phương án' : 'Dịch phương án'}
+                    </button>
+
+                    <button
                       onClick={handleSpeech}
                       className={`btn ${isSpeechSpeaking ? 'btn-primary' : 'btn-secondary'}`}
                       style={{ padding: '8px 14px', fontSize: '0.85rem' }}
@@ -1512,11 +1602,34 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                       <div key={userHighlights.length + '-' + userHighlights.map(h => h.id).join('-')} style={{ fontSize: '1.05rem', lineHeight: 1.55 }}>
                         {renderHighlightedText(opt.text)}
                       </div>
-                      {showQuestionTranslation && opt.translation && (
-                        <div style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: 500, lineHeight: 1.5 }}>
-                          {sanitizeTranslationNoAnswer(opt.translation)}
-                        </div>
-                      )}
+                      {showOptionTranslations && (() => {
+                        const rawTranslation = opt.translation || 
+                          optionTranslationsCache[currentQuestion.id]?.[opt.id];
+
+                        if (!rawTranslation && !isTranslatingOptions) return null;
+
+                        return (
+                          <div style={{ 
+                            fontSize: '0.88rem', 
+                            color: 'var(--text-muted)', 
+                            marginTop: '6px', 
+                            fontWeight: 500, 
+                            lineHeight: 1.5,
+                            fontStyle: 'italic',
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            gap: '6px',
+                            opacity: isEliminated ? 0.6 : 1
+                          }}>
+                            <span style={{ opacity: 0.5, fontSize: '0.78rem', userSelect: 'none' }}>↳</span>
+                            <span>
+                              {rawTranslation 
+                                ? sanitizeTranslationNoAnswer(rawTranslation) 
+                                : isTranslatingOptions ? 'Đang dịch...' : ''}
+                            </span>
+                          </div>
+                        );
+                      })()}
                     </div>
 
                     {/* Right indicators: eliminate button, shortcut badge, or practice badge */}

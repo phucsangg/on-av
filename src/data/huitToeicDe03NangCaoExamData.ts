@@ -387,10 +387,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 16. The university plans to take measures to _____ unnecessary delays during registration.',
     options: [
-      { id: 'A', text: 'prevent' },
-      { id: 'B', text: 'preserve' },
-      { id: 'C', text: 'predict' },
-      { id: 'D', text: 'persuade' }
+      { id: 'A', text: 'prevent', translation: 'ngăn chặn / phòng ngừa' },
+      { id: 'B', text: 'preserve', translation: 'bảo tồn / gìn giữ' },
+      { id: 'C', text: 'predict', translation: 'dự đoán / tiên đoán' },
+      { id: 'D', text: 'persuade', translation: 'thuyết phục' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "prevent delays" có nghĩa là ngăn ngừa, hạn chế sự chậm trễ. preserve (bảo tồn), predict (dự đoán), persuade (thuyết phục).',
@@ -407,10 +407,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 17. Students should _____ themselves with the examination rules before test day.',
     options: [
-      { id: 'A', text: 'familiarize' },
-      { id: 'B', text: 'fascinate' },
-      { id: 'C', text: 'formalize' },
-      { id: 'D', text: 'fulfil' }
+      { id: 'A', text: 'familiarize', translation: 'làm quen / tìm hiểu cho quen' },
+      { id: 'B', text: 'fascinate', translation: 'lôi cuốn / làm say mê' },
+      { id: 'C', text: 'formalize', translation: 'chính thức hóa / chuẩn hóa' },
+      { id: 'D', text: 'fulfil', translation: 'hoàn thành / đáp ứng' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ cố định "familiarize oneself with something" nghĩa là tìm hiểu kỹ để quen thuộc và nắm rõ điều gì.',
@@ -427,10 +427,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 18. The workshop provides practical advice that students can _____ immediately.',
     options: [
-      { id: 'A', text: 'apply' },
-      { id: 'B', text: 'approve' },
-      { id: 'C', text: 'appoint' },
-      { id: 'D', text: 'arise' }
+      { id: 'A', text: 'apply', translation: 'áp dụng' },
+      { id: 'B', text: 'approve', translation: 'phê chuẩn / tán thành' },
+      { id: 'C', text: 'appoint', translation: 'bổ nhiệm' },
+      { id: 'D', text: 'arise', translation: 'phát sinh / nảy sinh' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "apply advice/knowledge" nghĩa là áp dụng lời khuyên vào thực tế. approve (phê chuẩn), appoint (bổ nhiệm), arise (phát sinh).',
@@ -447,10 +447,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 19. Please report any technical _____ to the support desk before the examination begins.',
     options: [
-      { id: 'A', text: 'issue' },
-      { id: 'B', text: 'occasion' },
-      { id: 'C', text: 'outcome' },
-      { id: 'D', text: 'approach' }
+      { id: 'A', text: 'issue', translation: 'sự cố / vấn đề' },
+      { id: 'B', text: 'occasion', translation: 'dịp / cơ hội' },
+      { id: 'C', text: 'outcome', translation: 'kết quả' },
+      { id: 'D', text: 'approach', translation: 'phương pháp tiếp cận' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "technical issue" (hoặc technical problem) là sự cố kỹ thuật. occasion (dịp), outcome (kết quả), approach (phương pháp tiếp cận).',
@@ -467,10 +467,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 20. Applicants must provide information that is _____ and complete.',
     options: [
-      { id: 'A', text: 'valid' },
-      { id: 'B', text: 'vacant' },
-      { id: 'C', text: 'visible' },
-      { id: 'D', text: 'vital' }
+      { id: 'A', text: 'valid', translation: 'hợp lệ / có hiệu lực' },
+      { id: 'B', text: 'vacant', translation: 'trống / bỏ không' },
+      { id: 'C', text: 'visible', translation: 'có thể nhìn thấy' },
+      { id: 'D', text: 'vital', translation: 'thiết yếu / sống còn' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "valid and complete" nghĩa là hợp lệ và đầy đủ. vacant (trống/bỏ không), visible (có thể nhìn thấy), vital (sống còn/rất quan trọng).',
@@ -487,10 +487,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 21. Students are advised to _____ a realistic study schedule before the semester becomes busy.',
     options: [
-      { id: 'A', text: 'draw up' },
-      { id: 'B', text: 'turn down' },
-      { id: 'C', text: 'put away' },
-      { id: 'D', text: 'bring about' }
+      { id: 'A', text: 'draw up', translation: 'lập ra / soạn thảo' },
+      { id: 'B', text: 'turn down', translation: 'từ chối / vặn nhỏ' },
+      { id: 'C', text: 'put away', translation: 'cất đi / dọn dẹp' },
+      { id: 'D', text: 'bring about', translation: 'gây ra / mang lại' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm động từ "draw up a schedule/plan" nghĩa là vạch ra, lập nên một thời gian biểu hoặc kế hoạch. turn down (từ chối), put away (cất đi), bring about (gây ra).',
@@ -507,10 +507,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 22. Strong passwords help _____ unauthorized access to student accounts.',
     options: [
-      { id: 'A', text: 'prevent' },
-      { id: 'B', text: 'promote' },
-      { id: 'C', text: 'permit' },
-      { id: 'D', text: 'produce' }
+      { id: 'A', text: 'prevent', translation: 'ngăn chặn / phòng ngừa' },
+      { id: 'B', text: 'promote', translation: 'thúc đẩy / khuyến khích' },
+      { id: 'C', text: 'permit', translation: 'cho phép' },
+      { id: 'D', text: 'produce', translation: 'sản xuất / tạo ra' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "prevent unauthorized access" nghĩa là ngăn chặn việc truy cập trái phép. promote (quảng bá/thúc đẩy), permit (cho phép), produce (sản xuất).',
@@ -527,10 +527,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 23. Please submit your request well in _____ if you need a special examination arrangement.',
     options: [
-      { id: 'A', text: 'advance' },
-      { id: 'B', text: 'addition' },
-      { id: 'C', text: 'absence' },
-      { id: 'D', text: 'accuracy' }
+      { id: 'A', text: 'advance', translation: 'trước / sớm hơn' },
+      { id: 'B', text: 'addition', translation: 'phần bổ sung / thêm vào' },
+      { id: 'C', text: 'absence', translation: 'sự vắng mặt' },
+      { id: 'D', text: 'accuracy', translation: 'sự chính xác' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ cố định "in advance" (hoặc well in advance) nghĩa là từ trước, sớm hơn một khoảng thời gian.',
@@ -547,10 +547,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 24. The course is designed to _____ students with the skills needed for academic communication.',
     options: [
-      { id: 'A', text: 'equip' },
-      { id: 'B', text: 'enclose' },
-      { id: 'C', text: 'enable' },
-      { id: 'D', text: 'encounter' }
+      { id: 'A', text: 'equip', translation: 'trang bị' },
+      { id: 'B', text: 'enclose', translation: 'đính kèm' },
+      { id: 'C', text: 'enable', translation: 'cho phép / tạo điều kiện' },
+      { id: 'D', text: 'encounter', translation: 'bắt gặp / đối đầu' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cấu trúc "equip somebody with something" nghĩa là trang bị cho ai những kỹ năng hoặc hành trang cần thiết. enclose (đính kèm), encounter (bắt gặp).',
@@ -567,10 +567,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 25. The accuracy of the report depends _____ the quality of the data collected.',
     options: [
-      { id: 'A', text: 'on' },
-      { id: 'B', text: 'at' },
-      { id: 'C', text: 'for' },
-      { id: 'D', text: 'with' }
+      { id: 'A', text: 'on', translation: 'vào (phụ thuộc vào)' },
+      { id: 'B', text: 'at', translation: 'tại / ở' },
+      { id: 'C', text: 'for', translation: 'cho / vì' },
+      { id: 'D', text: 'with', translation: 'với' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm động từ "depend on" nghĩa là phụ thuộc vào, căn cứ vào.',
@@ -587,10 +587,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 26. The information desk receives a large number of student _____.',
     options: [
-      { id: 'A', text: 'inquiries' },
-      { id: 'B', text: 'inventions' },
-      { id: 'C', text: 'incomes' },
-      { id: 'D', text: 'invitations' }
+      { id: 'A', text: 'inquiries', translation: 'các câu hỏi / thắc mắc' },
+      { id: 'B', text: 'inventions', translation: 'các phát minh' },
+      { id: 'C', text: 'incomes', translation: 'các khoản thu nhập' },
+      { id: 'D', text: 'invitations', translation: 'các lời mời' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "student inquiries" nghĩa là các thắc mắc, câu hỏi cần giải đáp của sinh viên. inventions (phát minh), incomes (thu nhập), invitations (lời mời).',
@@ -607,10 +607,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 27. Before submitting the form, students should _____ the instructions once more.',
     options: [
-      { id: 'A', text: 'review' },
-      { id: 'B', text: 'revise' },
-      { id: 'C', text: 'recover' },
-      { id: 'D', text: 'reveal' }
+      { id: 'A', text: 'review', translation: 'rà soát / xem lại' },
+      { id: 'B', text: 'revise', translation: 'ôn tập / sửa đổi' },
+      { id: 'C', text: 'recover', translation: 'hồi phục / khôi phục' },
+      { id: 'D', text: 'reveal', translation: 'tiết lộ / bộc lộ' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "review instructions" nghĩa là xem xét lại, rà soát lại hướng dẫn. revise (ôn thi/sửa lại văn bản), recover (phục hồi), reveal (tiết lộ).',
@@ -627,10 +627,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 28. The lecturer gave a brief _____ of the examination procedure.',
     options: [
-      { id: 'A', text: 'explanation' },
-      { id: 'B', text: 'exploration' },
-      { id: 'C', text: 'expectation' },
-      { id: 'D', text: 'extension' }
+      { id: 'A', text: 'explanation', translation: 'lời giải thích' },
+      { id: 'B', text: 'exploration', translation: 'sự khám phá / thám hiểm' },
+      { id: 'C', text: 'expectation', translation: 'sự mong đợi / kỳ vọng' },
+      { id: 'D', text: 'extension', translation: 'sự gia hạn / mở rộng' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: "give a brief explanation of" nghĩa là đưa ra một lời giải thích ngắn gọn về điều gì. exploration (sự khám phá), expectation (sự mong đợi), extension (sự mở rộng/gia hạn).',
@@ -647,10 +647,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 29. Early registration is strongly _____ because the number of places is limited.',
     options: [
-      { id: 'A', text: 'recommended' },
-      { id: 'B', text: 'recovered' },
-      { id: 'C', text: 'repeated' },
-      { id: 'D', text: 'replaced' }
+      { id: 'A', text: 'recommended', translation: 'được khuyến nghị / khuyên dùng' },
+      { id: 'B', text: 'recovered', translation: 'được hồi phục' },
+      { id: 'C', text: 'repeated', translation: 'được lặp lại' },
+      { id: 'D', text: 'replaced', translation: 'bị thay thế' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ "strongly recommended" nghĩa là được khuyến nghị hết sức mạnh mẽ. recovered (được hồi phục), repeated (được nhắc lại), replaced (bị thay thế).',
@@ -667,10 +667,10 @@ export const HUIT_TOEIC_DE_03_QUESTIONS: Question[] = [
     type: 'vocabulary',
     questionText: 'Question 30. Students are expected to _____ responsibility for checking their examination details.',
     options: [
-      { id: 'A', text: 'take' },
-      { id: 'B', text: 'make' },
-      { id: 'C', text: 'do' },
-      { id: 'D', text: 'give' }
+      { id: 'A', text: 'take', translation: 'nhận / chịu (chịu trách nhiệm)' },
+      { id: 'B', text: 'make', translation: 'làm / tạo ra' },
+      { id: 'C', text: 'do', translation: 'làm / thực hiện' },
+      { id: 'D', text: 'give', translation: 'cho / tặng' }
     ],
     correctAnswer: 'A',
     explanation: '• A. ĐÚNG: Cụm từ cố định "take responsibility for something" nghĩa là chịu trách nhiệm cho điều gì.',
