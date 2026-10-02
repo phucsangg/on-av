@@ -3,7 +3,7 @@ import type {
   ExamSet, 
   UserAnswerRecord 
 } from '../types/quiz';
-import { cleanTopicTag } from '../utils/sanitize';
+import { cleanTopicTag, sanitizeTranslationNoAnswer } from '../utils/sanitize';
 import { DictionaryModal } from './DictionaryModal';
 import { QuizShortcutsModal } from './quiz/QuizShortcutsModal';
 import { QuizSubmitModal } from './quiz/QuizSubmitModal';
@@ -1200,20 +1200,22 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                   style={{
                     padding: '8px 14px',
                     borderRadius: 'var(--radius-sm)',
-                    border: `1.5px solid ${showQuestionTranslation ? 'var(--success)' : 'var(--border-light)'}`,
-                    background: showQuestionTranslation ? 'var(--success-bg)' : 'var(--bg-subtle)',
-                    color: showQuestionTranslation ? 'var(--success)' : 'var(--text-muted)',
+                    border: `1.5px solid ${showQuestionTranslation ? 'var(--brand-primary)' : 'var(--border-light)'}`,
+                    background: showQuestionTranslation ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-subtle)',
+                    color: showQuestionTranslation ? 'var(--brand-primary)' : 'var(--text-muted)',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
                     fontSize: '0.85rem',
                     fontWeight: 700,
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    fontFamily: 'inherit'
                   }}
+                  title="Dịch câu hỏi sang Tiếng Việt"
                 >
                   <Languages size={16} />
-                  {showQuestionTranslation ? 'Ẩn bản dịch' : 'Dịch câu hỏi & câu chọn'}
+                  {showQuestionTranslation ? 'Ẩn bản dịch' : 'Dịch câu hỏi'}
                 </button>
 
                 <button
@@ -1341,17 +1343,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 marginBottom: '26px',
                 padding: '16px 20px',
                 borderRadius: 'var(--radius-md)',
-                background: 'var(--success-bg)',
-                border: '1px solid var(--success-border)',
+                background: 'rgba(79, 70, 229, 0.04)',
+                border: '1px solid rgba(79, 70, 229, 0.16)',
                 fontSize: '0.98rem',
                 color: 'var(--text-main)',
                 lineHeight: 1.65
               }}>
-                <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--success)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  <Sparkles size={14} /> Bản dịch Tiếng Việt:
+                <div style={{ fontSize: '0.78rem', textTransform: 'uppercase', fontWeight: 800, color: 'var(--brand-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                  <Languages size={14} /> Bản dịch câu hỏi:
                 </div>
                 <div style={{ whiteSpace: 'pre-line' }}>
-                  {currentQuestion.translation}
+                  {sanitizeTranslationNoAnswer(currentQuestion.translation)}
                 </div>
               </div>
             )}
@@ -1458,8 +1460,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         {renderHighlightedText(opt.text)}
                       </div>
                       {showQuestionTranslation && opt.translation && (
-                        <div style={{ fontSize: '0.88rem', color: 'var(--success)', marginTop: '6px', fontWeight: 500, lineHeight: 1.5 }}>
-                          {opt.translation}
+                        <div style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '6px', fontWeight: 500, lineHeight: 1.5 }}>
+                          {sanitizeTranslationNoAnswer(opt.translation)}
                         </div>
                       )}
                     </div>

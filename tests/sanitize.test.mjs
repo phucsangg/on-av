@@ -90,3 +90,31 @@ test('cleanTopicTag: strips answer spoilers while preserving grammatical classif
   assert.equal(cleanTopicTag(''), 'Tổng hợp');
 });
 
+// sanitizeTranslationNoAnswer test logic mirroring src/utils/sanitize.ts
+function sanitizeTranslationNoAnswer(translation) {
+  if (!translation || typeof translation !== 'string') return '';
+  return translation
+    .replace(/(?:Đáp án|Câu trả lời|Key|Answer)\s*(?:là|chính xác|đúng)?\s*[:\-–]?\s*[A-D]\b[^\n]*/gi, '')
+    .replace(/\s*\(\s*(?:Chọn|Phương án đúng là)?\s*[A-D]\s*\)/gi, '')
+    .replace(/\b(?:Chọn|Phương án đúng là)\s+[A-D]\b[^\n]*/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
+
+test('sanitizeTranslationNoAnswer: strips answer keys and spoilers during quiz', () => {
+  assert.equal(
+    sanitizeTranslationNoAnswer('Tại sao nhân vật lại rời đi? Đáp án là B vì bảo trì.'),
+    'Tại sao nhân vật lại rời đi?'
+  );
+  assert.equal(
+    sanitizeTranslationNoAnswer('Nội dung chính của đoạn văn là gì? (Chọn A)'),
+    'Nội dung chính của đoạn văn là gì?'
+  );
+  assert.equal(
+    sanitizeTranslationNoAnswer('Phương pháp luyện tập gợi nhớ (retrieval practice) bao gồm những gì?'),
+    'Phương pháp luyện tập gợi nhớ (retrieval practice) bao gồm những gì?'
+  );
+  assert.equal(sanitizeTranslationNoAnswer(''), '');
+  assert.equal(sanitizeTranslationNoAnswer(null), '');
+});
+

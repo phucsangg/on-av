@@ -74,3 +74,17 @@ export function cleanTopicTag(tag?: string): string {
 
   return cleaned || 'Tổng hợp';
 }
+
+/**
+ * Sanitizes question translations to strictly prevent answer leaks or spoilers
+ * while in quiz/testing mode.
+ */
+export function sanitizeTranslationNoAnswer(translation?: string): string {
+  if (!translation || typeof translation !== 'string') return '';
+  return translation
+    .replace(/(?:Đáp án|Câu trả lời|Key|Answer)\s*(?:là|chính xác|đúng)?\s*[:\-–]?\s*[A-D]\b[^\n]*/gi, '')
+    .replace(/\s*\(\s*(?:Chọn|Phương án đúng là)?\s*[A-D]\s*\)/gi, '')
+    .replace(/\b(?:Chọn|Phương án đúng là)\s+[A-D]\b[^\n]*/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+}
