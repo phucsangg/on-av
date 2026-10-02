@@ -115,6 +115,7 @@ export const App: React.FC = () => {
   });
   const [lastAttemptAnswers, setLastAttemptAnswers] = useState<UserAnswerRecord[]>([]);
   const [lastAttemptTime, setLastAttemptTime] = useState<number>(0);
+  const [runnerMode, setRunnerMode] = useState<'exam' | 'practice'>('exam');
 
   // Active In-Progress Session State
   const [activeSession, setActiveSession] = useState<any>(() => {
@@ -224,7 +225,7 @@ export const App: React.FC = () => {
   };
 
   // Start Exam Handler
-  const handleSelectExam = (exam: ExamSet) => {
+  const handleSelectExam = (exam: ExamSet, mode?: 'exam' | 'practice') => {
     const session = storageService.getActiveSession() as any;
     if (session && (session.examSetId !== exam.id && session.examId !== exam.id)) {
       const confirmNew = window.confirm(`Bạn đang làm dở bài thi "${session.examTitle || 'trước đó'}". Bạn có muốn hủy bài cũ đó để bắt đầu bài thi mới này không?`);
@@ -235,6 +236,8 @@ export const App: React.FC = () => {
       setActiveSession(null);
     }
 
+    const defaultMode = mode || (exam.category === 'quick_quiz' || exam.id.startsWith('exam-mistakes-') ? 'practice' : 'exam');
+    setRunnerMode(defaultMode);
     setActiveExam(exam);
     navigateToView('runner', undefined, exam.id);
   };
@@ -340,6 +343,7 @@ export const App: React.FC = () => {
       questions
     };
 
+    setRunnerMode('practice');
     setActiveExam(mistakeExam);
     navigateToView('runner');
   };
@@ -576,6 +580,7 @@ export const App: React.FC = () => {
           {currentView === 'runner' && activeExam && (
             <QuizRunner
               exam={activeExam}
+              initialMode={runnerMode}
               onFinishExam={handleFinishExam}
               onExit={() => handleTabChange('dashboard')}
             />

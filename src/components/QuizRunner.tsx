@@ -30,12 +30,14 @@ import {
 
 interface QuizRunnerProps {
   exam: ExamSet;
+  initialMode?: 'exam' | 'practice';
   onFinishExam: (answers: UserAnswerRecord[], timeSpentSeconds: number) => void;
   onExit: () => void;
 }
 
 export const QuizRunner: React.FC<QuizRunnerProps> = ({
   exam,
+  initialMode,
   onFinishExam,
   onExit
 }) => {
@@ -53,10 +55,17 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     return null;
   }, [exam.id]);
 
+  const isPracticeExamByDefault = exam.id.startsWith('exam-mistakes-') || 
+                                  exam.category === 'quick_quiz' ||
+                                  exam.id.includes('practice');
+
   const [currentIndex, setCurrentIndex] = useState<number>(savedSession?.currentIndex ?? 0);
   const [answers, setAnswers] = useState<Record<string, 'A' | 'B' | 'C' | 'D' | null>>(savedSession?.answers ?? {});
   const [flagged, setFlagged] = useState<Record<string, boolean>>(savedSession?.flagged ?? {});
-  const [quizMode, setQuizMode] = useState<'exam' | 'practice'>('exam');
+  const [quizMode, setQuizMode] = useState<'exam' | 'practice'>(
+    initialMode || (isPracticeExamByDefault ? 'practice' : 'exam')
+  );
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<string, boolean>>({});
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState<boolean>(false);
   const [drawerFilter, setDrawerFilter] = useState<'all' | 'unanswered' | 'flagged'>('all');
   
@@ -1159,94 +1168,131 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             }}
           >
             {/* Question Badge & Tools */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span className="badge badge-primary" style={{ fontSize: '0.95rem', padding: '6px 16px' }}>
-                  Câu {currentIndex + 1} / {exam.questions.length}
-                </span>
-                {quizMode === 'practice' && answers[currentQuestion.id] && currentQuestion.topicTag && (
-                  <span className="badge badge-warning" style={{ fontSize: '0.85rem' }}>
-                    {cleanTopicTag(currentQuestion.topicTag)}
-                  </span>
-                )}
-              </div>
+            {(() => {
+              const hasAnswered = answers[currentQuestion.id] !== undefined && answers[currentQuestion.id] !== null;
+              const isPracticeRevealed = quizMode === 'practice' && (hasAnswered || !!revealedAnswers[currentQuestion.id]);
 
-              <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
-                {/* Back to Passage Jump Button */}
-                {activePassageData && (
-                  <button
-                    onClick={scrollToPassageTop}
-                    style={{
-                      padding: '8px 14px',
-                      borderRadius: 'var(--radius-sm)',
-                      border: '1.5px solid var(--brand-primary)',
-                      background: 'rgba(79, 70, 229, 0.08)',
-                      color: 'var(--brand-primary)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      fontSize: '0.85rem',
-                      fontWeight: 700,
-                      transition: 'all 0.2s ease'
-                    }}
-                    title="Kéo lên xem lại đoạn văn"
-                  >
-                    <BookOpen size={15} /> Xem đoạn văn
-                  </button>
-                )}
-                <button
-                  onClick={() => setShowQuestionTranslation(!showQuestionTranslation)}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: `1.5px solid ${showQuestionTranslation ? 'var(--brand-primary)' : 'var(--border-light)'}`,
-                    background: showQuestionTranslation ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-subtle)',
-                    color: showQuestionTranslation ? 'var(--brand-primary)' : 'var(--text-muted)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700,
-                    transition: 'all 0.2s ease',
-                    fontFamily: 'inherit'
-                  }}
-                  title="Dịch câu hỏi sang Tiếng Việt"
-                >
-                  <Languages size={16} />
-                  {showQuestionTranslation ? 'Ẩn bản dịch' : 'Dịch câu hỏi'}
-                </button>
+              return (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px', flexWrap: 'wrap', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span className="badge badge-primary" style={{ fontSize: '0.95rem', padding: '6px 16px' }}>
+                      Câu {currentIndex + 1} / {exam.questions.length}
+                    </span>
+                    {quizMode === 'practice' && currentQuestion.topicTag && (
+                      <span className="badge badge-warning" style={{ fontSize: '0.85rem' }}>
+                        {cleanTopicTag(currentQuestion.topicTag)}
+                      </span>
+                    )}
+                  </div>
 
-                <button
-                  onClick={handleSpeech}
-                  className={`btn ${isSpeechSpeaking ? 'btn-primary' : 'btn-secondary'}`}
-                  style={{ padding: '8px 14px', fontSize: '0.85rem' }}
-                >
-                  <Volume2 size={16} /> Đọc phát âm
-                </button>
+                  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {/* Practice Mode: Reveal Answer & Explanation Button */}
+                    {quizMode === 'practice' && (
+                      <button
+                        type="button"
+                        onClick={() => setRevealedAnswers(prev => ({
+                          ...prev,
+                          [currentQuestion.id]: !isPracticeRevealed
+                        }))}
+                        style={{
+                          padding: '8px 14px',
+                          borderRadius: 'var(--radius-sm)',
+                          border: `1.5px solid ${isPracticeRevealed ? 'var(--brand-primary)' : 'var(--border-light)'}`,
+                          background: isPracticeRevealed ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-subtle)',
+                          color: isPracticeRevealed ? 'var(--brand-primary)' : 'var(--text-muted)',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          fontSize: '0.85rem',
+                          fontWeight: 700,
+                          transition: 'all 0.2s ease',
+                          fontFamily: 'inherit'
+                        }}
+                        title={isPracticeRevealed ? 'Ẩn đáp án & giải thích' : 'Xem ngay đáp án đúng & giải thích chi tiết'}
+                      >
+                        <Sparkles size={15} />
+                        {isPracticeRevealed ? 'Ẩn đáp án' : 'Xem đáp án'}
+                      </button>
+                    )}
 
-                <button
-                  onClick={toggleFlag}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: '1px solid var(--border-light)',
-                    background: flagged[currentQuestion.id] ? 'rgba(245, 158, 11, 0.15)' : 'var(--bg-subtle)',
-                    color: flagged[currentQuestion.id] ? 'var(--warning)' : 'var(--text-muted)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.85rem',
-                    fontWeight: 700
-                  }}
-                >
-                  <Flag size={16} fill={flagged[currentQuestion.id] ? 'currentColor' : 'none'} />
-                  {flagged[currentQuestion.id] ? 'Đã đánh dấu' : 'Đánh dấu câu'}
-                </button>
-              </div>
-            </div>
+                    {/* Back to Passage Jump Button */}
+                    {activePassageData && (
+                      <button
+                        onClick={scrollToPassageTop}
+                        style={{
+                          padding: '8px 14px',
+                          borderRadius: 'var(--radius-sm)',
+                          border: '1.5px solid var(--brand-primary)',
+                          background: 'rgba(79, 70, 229, 0.08)',
+                          color: 'var(--brand-primary)',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          fontSize: '0.85rem',
+                          fontWeight: 700,
+                          transition: 'all 0.2s ease'
+                        }}
+                        title="Kéo lên xem lại đoạn văn"
+                      >
+                        <BookOpen size={15} /> Xem đoạn văn
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setShowQuestionTranslation(!showQuestionTranslation)}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: `1.5px solid ${showQuestionTranslation ? 'var(--brand-primary)' : 'var(--border-light)'}`,
+                        background: showQuestionTranslation ? 'rgba(79, 70, 229, 0.08)' : 'var(--bg-subtle)',
+                        color: showQuestionTranslation ? 'var(--brand-primary)' : 'var(--text-muted)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.85rem',
+                        fontWeight: 700,
+                        transition: 'all 0.2s ease',
+                        fontFamily: 'inherit'
+                      }}
+                      title="Dịch câu hỏi sang Tiếng Việt"
+                    >
+                      <Languages size={16} />
+                      {showQuestionTranslation ? 'Ẩn bản dịch' : 'Dịch câu hỏi'}
+                    </button>
+
+                    <button
+                      onClick={handleSpeech}
+                      className={`btn ${isSpeechSpeaking ? 'btn-primary' : 'btn-secondary'}`}
+                      style={{ padding: '8px 14px', fontSize: '0.85rem' }}
+                    >
+                      <Volume2 size={16} /> Đọc phát âm
+                    </button>
+
+                    <button
+                      onClick={toggleFlag}
+                      style={{
+                        padding: '8px 14px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid var(--border-light)',
+                        background: flagged[currentQuestion.id] ? 'rgba(245, 158, 11, 0.15)' : 'var(--bg-subtle)',
+                        color: flagged[currentQuestion.id] ? 'var(--warning)' : 'var(--text-muted)',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.85rem',
+                        fontWeight: 700
+                      }}
+                    >
+                      <Flag size={16} fill={flagged[currentQuestion.id] ? 'currentColor' : 'none'} />
+                      {flagged[currentQuestion.id] ? 'Đã đánh dấu' : 'Đánh dấu câu'}
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
 
             {/* Question Text & Reordering Layout */}
             {(() => {
@@ -1369,6 +1415,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 const hasAnswered = answers[currentQuestion.id] !== undefined && answers[currentQuestion.id] !== null;
                 const isCorrect = opt.id === currentQuestion.correctAnswer;
                 const isPractice = quizMode === 'practice';
+                const isPracticeRevealed = isPractice && (hasAnswered || !!revealedAnswers[currentQuestion.id]);
                 const isEliminated = (eliminatedOptions[currentQuestion.id] || []).includes(opt.id);
 
                 // Practice mode dynamic coloring
@@ -1377,7 +1424,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                 let colorBadgeBg = isSelected ? 'var(--brand-primary)' : isEliminated ? 'rgba(239, 68, 68, 0.12)' : 'var(--bg-subtle)';
                 let colorBadgeText = isSelected ? '#ffffff' : isEliminated ? 'var(--danger)' : 'var(--text-main)';
 
-                if (isPractice && hasAnswered) {
+                if (isPracticeRevealed) {
                   if (isCorrect) {
                     borderStyle = '2px solid var(--success)';
                     bgStyle = 'var(--success-bg)';
@@ -1493,14 +1540,14 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         <EyeOff size={14} />
                       </button>
 
-                      {isPractice && hasAnswered && isCorrect && (
+                      {isPracticeRevealed && isCorrect && (
                         <span className="badge badge-success" style={{ fontSize: '0.74rem' }}>
-                          ✓ Đúng
+                          ✓ Đáp án đúng
                         </span>
                       )}
-                      {isPractice && hasAnswered && isSelected && !isCorrect && (
+                      {isPracticeRevealed && hasAnswered && isSelected && !isCorrect && (
                         <span className="badge badge-danger" style={{ fontSize: '0.74rem' }}>
-                          ✕ Sai
+                          ✕ Bạn chọn
                         </span>
                       )}
                       <span 
@@ -1526,63 +1573,74 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
             </div>
 
             {/* Practice Mode Instant Learning & Explanation Card */}
-            {quizMode === 'practice' && answers[currentQuestion.id] && (
-              <div 
-                className="animate-fade-in" 
-                style={{
-                  marginBottom: '28px',
-                  padding: '22px 26px',
-                  borderRadius: 'var(--radius-md)',
-                  background: answers[currentQuestion.id] === currentQuestion.correctAnswer 
-                    ? 'rgba(16, 185, 129, 0.08)' 
-                    : 'rgba(239, 68, 68, 0.08)',
-                  border: `1.5px solid ${answers[currentQuestion.id] === currentQuestion.correctAnswer ? 'var(--success-border)' : 'var(--danger-border)'}`
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '10px',
-                  fontWeight: 800,
-                  fontSize: '1.05rem',
-                  color: answers[currentQuestion.id] === currentQuestion.correctAnswer ? 'var(--success)' : 'var(--danger)'
-                }}>
-                  {answers[currentQuestion.id] === currentQuestion.correctAnswer ? (
-                    <>
+            {(() => {
+              const currentHasAnswered = answers[currentQuestion.id] !== undefined && answers[currentQuestion.id] !== null;
+              if (quizMode !== 'practice' || (!currentHasAnswered && !revealedAnswers[currentQuestion.id])) {
+                return null;
+              }
+
+              return (
+                <div 
+                  className="animate-fade-in" 
+                  style={{
+                    marginBottom: '28px',
+                    padding: '22px 26px',
+                    borderRadius: 'var(--radius-md)',
+                    background: answers[currentQuestion.id] === currentQuestion.correctAnswer 
+                      ? 'rgba(16, 185, 129, 0.08)' 
+                      : currentHasAnswered
+                        ? 'rgba(239, 68, 68, 0.08)'
+                        : 'rgba(79, 70, 229, 0.06)',
+                    border: `1.5px solid ${answers[currentQuestion.id] === currentQuestion.correctAnswer ? 'var(--success-border)' : currentHasAnswered ? 'var(--danger-border)' : 'rgba(79, 70, 229, 0.25)'}`
+                  }}
+                >
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '10px',
+                    fontWeight: 800,
+                    fontSize: '1.05rem',
+                    color: answers[currentQuestion.id] === currentQuestion.correctAnswer 
+                      ? 'var(--success)' 
+                      : currentHasAnswered
+                        ? 'var(--danger)'
+                        : 'var(--brand-primary)'
+                  }}>
+                    {answers[currentQuestion.id] === currentQuestion.correctAnswer ? (
                       <span>🎉 Chính xác! Bạn đã chọn đúng phương án {currentQuestion.correctAnswer}.</span>
-                    </>
-                  ) : (
-                    <>
+                    ) : currentHasAnswered ? (
                       <span>⚠️ Chưa đúng. Bạn chọn {answers[currentQuestion.id]}, nhưng đáp án chuẩn là {currentQuestion.correctAnswer}.</span>
-                    </>
+                    ) : (
+                      <span>💡 Đáp án chuẩn của câu hỏi này là: Phương án {currentQuestion.correctAnswer}</span>
+                    )}
+                  </div>
+
+                  <div style={{ fontSize: '0.94rem', lineHeight: 1.7, color: 'var(--text-main)', marginTop: '8px' }}>
+                    <strong style={{ color: 'var(--brand-primary)', display: 'block', marginBottom: '4px' }}>
+                      💡 Lời giải & Phân tích chi tiết:
+                    </strong>
+                    <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.explanation}</div>
+                  </div>
+
+                  {currentQuestion.translation && (
+                    <div style={{
+                      marginTop: '14px',
+                      paddingTop: '12px',
+                      borderTop: '1px dashed var(--border-light)',
+                      fontSize: '0.9rem',
+                      lineHeight: 1.6,
+                      color: 'var(--text-body)'
+                    }}>
+                      <strong style={{ color: 'var(--brand-primary)', display: 'block', marginBottom: '2px' }}>
+                        📖 Bản dịch câu hỏi:
+                      </strong>
+                      <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.translation}</div>
+                    </div>
                   )}
                 </div>
-
-                <div style={{ fontSize: '0.94rem', lineHeight: 1.7, color: 'var(--text-main)', marginTop: '8px' }}>
-                  <strong style={{ color: 'var(--brand-primary)', display: 'block', marginBottom: '4px' }}>
-                    💡 Lời giải & Phân tích ngữ pháp chi tiết:
-                  </strong>
-                  <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.explanation}</div>
-                </div>
-
-                {currentQuestion.translation && (
-                  <div style={{
-                    marginTop: '14px',
-                    paddingTop: '12px',
-                    borderTop: '1px dashed var(--border-light)',
-                    fontSize: '0.9rem',
-                    lineHeight: 1.6,
-                    color: 'var(--text-body)'
-                  }}>
-                    <strong style={{ color: 'var(--success)', display: 'block', marginBottom: '2px' }}>
-                      📖 Bản dịch câu hỏi & dịch nghĩa:
-                    </strong>
-                    <div style={{ whiteSpace: 'pre-line' }}>{currentQuestion.translation}</div>
-                  </div>
-                )}
-              </div>
-            )}
+              );
+            })()}
 
             {/* Footer Navigation Bar */}
             <div style={{

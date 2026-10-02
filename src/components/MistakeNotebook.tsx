@@ -39,6 +39,7 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
   const [viewMode, setViewMode] = useState<'list' | 'flash_review'>('list');
   const [reviewIndex, setReviewIndex] = useState<number>(0);
   const [selectedReviewOption, setSelectedReviewOption] = useState<string | null>(null);
+  const [showFlashAnswer, setShowFlashAnswer] = useState<boolean>(false);
 
   const dueMistakes = React.useMemo(() => learningEngine.getDueMistakes(mistakes), [mistakes]);
 
@@ -79,6 +80,7 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
     if (reviewIndex < filteredMistakes.length - 1) {
       setReviewIndex(prev => prev + 1);
       setSelectedReviewOption(null);
+      setShowFlashAnswer(false);
     } else {
       alert('🎉 Chúc mừng bạn đã hoàn thành lượt ôn tập!');
       setViewMode('list');
@@ -192,6 +194,20 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
             </div>
 
             <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={() => setShowFlashAnswer(!showFlashAnswer)}
+                className="btn btn-secondary"
+                style={{
+                  padding: '6px 14px',
+                  fontSize: '0.82rem',
+                  background: showFlashAnswer ? 'rgba(79, 70, 229, 0.08)' : undefined,
+                  color: showFlashAnswer ? 'var(--color-primary)' : undefined,
+                  borderColor: showFlashAnswer ? 'var(--color-primary)' : undefined
+                }}
+              >
+                <Sparkles size={15} /> {showFlashAnswer ? 'Ẩn đáp án' : 'Xem đáp án & giải thích'}
+              </button>
+
               {onToggleMastered && (
                 <button
                   onClick={() => onToggleMastered(currentReviewItem.question.id)}
@@ -209,6 +225,28 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
             </div>
           </div>
 
+          {/* Reading Passage if applicable */}
+          {currentReviewItem.question.readingPassage && (
+            <div style={{
+              background: 'var(--color-surface-subtle)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-md)',
+              padding: '18px 22px',
+              marginBottom: '20px',
+              maxHeight: '320px',
+              overflowY: 'auto',
+              fontSize: '0.94rem',
+              lineHeight: 1.7
+            }}>
+              <div style={{ fontWeight: 800, fontSize: '0.82rem', textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '8px' }}>
+                Đoạn văn đọc hiểu đính kèm:
+              </div>
+              <div style={{ whiteSpace: 'pre-line' }}>
+                {currentReviewItem.question.readingPassage}
+              </div>
+            </div>
+          )}
+
           <h3 
             style={{ fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.6, marginBottom: '24px' }} 
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(currentReviewItem.question.questionText) }} 
@@ -219,12 +257,13 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
             {currentReviewItem.question.options.map((opt) => {
               const isSelected = selectedReviewOption === opt.id;
               const isCorrect = opt.id === currentReviewItem.question.correctAnswer;
+              const isAnswerRevealed = selectedReviewOption !== null || showFlashAnswer;
               let borderStyle = '1.5px solid var(--border-light)';
               let bgStyle = 'var(--bg-surface)';
               let textBadgeBg = 'var(--bg-subtle)';
               let textBadgeColor = 'var(--text-main)';
 
-              if (selectedReviewOption) {
+              if (isAnswerRevealed) {
                 if (isCorrect) {
                   borderStyle = '2px solid var(--success)';
                   bgStyle = 'var(--success-bg)';
@@ -270,8 +309,11 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
                     {opt.id}
                   </div>
                   <div style={{ flex: 1, fontSize: '1rem' }} dangerouslySetInnerHTML={{ __html: sanitizeHtml(opt.text) }} />
-                  {selectedReviewOption && isCorrect && (
+                  {isAnswerRevealed && isCorrect && (
                     <span className="badge badge-success" style={{ fontSize: '0.75rem' }}>✓ Đáp án đúng</span>
+                  )}
+                  {isAnswerRevealed && selectedReviewOption && isSelected && !isCorrect && (
+                    <span className="badge badge-danger" style={{ fontSize: '0.75rem' }}>✕ Đã chọn</span>
                   )}
                 </div>
               );
@@ -279,7 +321,7 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
           </div>
 
           {/* Feedback & Explanation */}
-          {selectedReviewOption && (
+          {(selectedReviewOption !== null || showFlashAnswer) && (
             <div className="animate-fade-in" style={{
               padding: '20px',
               borderRadius: 'var(--radius-md)',
@@ -287,8 +329,12 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
               border: '1px solid var(--border-light)',
               marginBottom: '24px'
             }}>
-              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: selectedReviewOption === currentReviewItem.question.correctAnswer ? 'var(--success)' : 'var(--danger)', marginBottom: '8px' }}>
-                {selectedReviewOption === currentReviewItem.question.correctAnswer ? '🎉 Tuyệt vời! Bạn đã chọn chính xác.' : `Chưa đúng! Đáp án chuẩn là ${currentReviewItem.question.correctAnswer}.`}
+              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: selectedReviewOption === currentReviewItem.question.correctAnswer ? 'var(--success)' : selectedReviewOption ? 'var(--danger)' : 'var(--color-primary)', marginBottom: '8px' }}>
+                {selectedReviewOption === currentReviewItem.question.correctAnswer 
+                  ? '🎉 Tuyệt vời! Bạn đã chọn chính xác.' 
+                  : selectedReviewOption
+                    ? `Chưa đúng! Đáp án chuẩn là ${currentReviewItem.question.correctAnswer}.`
+                    : `💡 Đáp án chuẩn: Phương án ${currentReviewItem.question.correctAnswer}`}
               </div>
               <div style={{ fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '12px' }}>
                 <strong>💡 Lời giải:</strong> {currentReviewItem.question.explanation}
@@ -357,6 +403,7 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
               onClick={() => {
                 setReviewIndex(prev => Math.max(0, prev - 1));
                 setSelectedReviewOption(null);
+                setShowFlashAnswer(false);
               }}
               disabled={reviewIndex === 0}
               className="btn btn-secondary"
@@ -370,6 +417,7 @@ export const MistakeNotebook: React.FC<MistakeNotebookProps> = ({
                 if (reviewIndex < filteredMistakes.length - 1) {
                   setReviewIndex(prev => prev + 1);
                   setSelectedReviewOption(null);
+                  setShowFlashAnswer(false);
                 } else {
                   alert('🎉 Chúc mừng bạn đã hoàn thành lượt ôn tập tất cả câu sai!');
                   setViewMode('list');
