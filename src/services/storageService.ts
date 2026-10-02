@@ -3,6 +3,7 @@ import type { UserAttempt, SavedMistake, SavedWord, UserStats, ExamSet } from '.
 const STORAGE_PREFIX = 'eq_';
 const SESSION_KEY = 'on_av_active_session';
 const THEME_KEY = 'eq_theme';
+const FONT_KEY = 'eq_font';
 const STORAGE_VERSION_KEY = 'eq_storage_version';
 const CURRENT_STORAGE_VERSION = 2;
 
@@ -221,6 +222,23 @@ class StorageService {
       localStorage.setItem(THEME_KEY, theme);
     } catch (err) {
       console.warn('[StorageService] Failed to save theme:', err);
+    }
+  }
+
+  // --- Font Preference ---
+  getFont(): string {
+    try {
+      return localStorage.getItem(FONT_KEY) || 'plus-jakarta';
+    } catch {
+      return 'plus-jakarta';
+    }
+  }
+
+  setFont(font: string): void {
+    try {
+      localStorage.setItem(FONT_KEY, font);
+    } catch (err) {
+      console.warn('[StorageService] Failed to save font preference:', err);
     }
   }
 

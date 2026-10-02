@@ -8,7 +8,8 @@ import {
   Upload, 
   RotateCcw, 
   Check, 
-  AlertTriangle
+  AlertTriangle,
+  Type
 } from 'lucide-react';
 import { storageService } from '../services/storageService';
 
@@ -17,6 +18,8 @@ interface SettingsModalProps {
   onClose: () => void;
   isDarkMode: boolean;
   setIsDarkMode: (val: boolean) => void;
+  currentFont: string;
+  onFontChange: (font: string) => void;
   onResetAllData: () => void;
   onDataRestored: () => void;
 }
@@ -26,6 +29,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   isDarkMode,
   setIsDarkMode,
+  currentFont,
+  onFontChange,
   onResetAllData,
   onDataRestored
 }) => {
@@ -206,7 +211,94 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           </button>
         </div>
 
-        {/* Setting 2: Keyboard shortcuts guide */}
+        {/* Setting 2: Font Family Typography */}
+        <div style={{
+          padding: '16px',
+          borderRadius: 'var(--radius-md)',
+          background: 'var(--bg-subtle)',
+          marginBottom: '16px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+            <div>
+              <div style={{ fontWeight: 700, fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Type size={16} color="var(--brand-primary)" /> Kiểu chữ hiển thị (Typography)
+              </div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                Tùy chọn phong cách font chữ mang lại cảm giác dễ chịu và đẹp mắt nhất cho bạn
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+            {[
+              {
+                id: 'plus-jakarta',
+                name: 'Plus Jakarta Sans',
+                badge: 'Khuyên dùng',
+                desc: 'Mềm mại, hiện đại & có gu cao',
+                fontFamily: "'Plus Jakarta Sans', sans-serif"
+              },
+              {
+                id: 'lexend',
+                name: 'Lexend',
+                badge: 'Dễ đọc nhất',
+                desc: 'Tối ưu đọc hiểu, giảm mỏi mắt',
+                fontFamily: "'Lexend', sans-serif"
+              },
+              {
+                id: 'outfit',
+                name: 'Outfit',
+                badge: 'Năng động',
+                desc: 'Hình học phóng khoáng, nổi bật',
+                fontFamily: "'Outfit', sans-serif"
+              },
+              {
+                id: 'inter',
+                name: 'Inter',
+                badge: 'Chuẩn quốc tế',
+                desc: 'Sắc nét, tinh gọn công nghệ',
+                fontFamily: "'Inter', sans-serif"
+              }
+            ].map(f => {
+              const isSelected = currentFont === f.id;
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => onFontChange(f.id)}
+                  style={{
+                    padding: '12px 14px',
+                    borderRadius: 'var(--radius-md)',
+                    border: isSelected ? '2px solid var(--brand-primary)' : '1px solid var(--border-light)',
+                    background: isSelected ? 'var(--bg-highlight)' : 'var(--bg-surface)',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'all 0.2s ease',
+                    position: 'relative',
+                    fontFamily: f.fontFamily
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                    <span style={{ fontWeight: 700, fontSize: '0.92rem', color: isSelected ? 'var(--brand-primary)' : 'var(--text-main)' }}>
+                      {f.name}
+                    </span>
+                    {isSelected ? (
+                      <Check size={15} color="var(--brand-primary)" />
+                    ) : (
+                      <span style={{ fontSize: '0.7rem', padding: '1px 6px', borderRadius: '4px', background: 'var(--bg-subtle)', color: 'var(--text-muted)' }}>
+                        {f.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
+                    {f.desc}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Setting 3: Keyboard shortcuts guide */}
         <div style={{
           padding: '16px',
           borderRadius: 'var(--radius-md)',

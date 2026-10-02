@@ -61,9 +61,12 @@ const PATH_TO_VIEW: Record<string, PageTab | 'runner' | 'result'> = {
 };
 
 export const App: React.FC = () => {
-  // Theme state
+  // Theme & Typography state
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     return storageService.getTheme() === 'dark';
+  });
+  const [currentFont, setCurrentFont] = useState<string>(() => {
+    return storageService.getFont();
   });
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
 
@@ -144,6 +147,12 @@ export const App: React.FC = () => {
       storageService.setTheme('light');
     }
   }, [isDarkMode]);
+
+  // Sync Font with DOM
+  useEffect(() => {
+    document.documentElement.setAttribute('data-font', currentFont);
+    storageService.setFont(currentFont);
+  }, [currentFont]);
 
   // Sync state with Browser History & Address Bar
   const navigateToView = (view: PageTab | 'runner' | 'result', tab?: PageTab, examId?: string) => {
@@ -605,6 +614,8 @@ export const App: React.FC = () => {
         onClose={() => setIsSettingsOpen(false)}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
+        currentFont={currentFont}
+        onFontChange={setCurrentFont}
         onResetAllData={() => {
           storageService.clearAllData();
           setAttempts([]);
