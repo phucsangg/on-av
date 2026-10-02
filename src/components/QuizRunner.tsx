@@ -483,6 +483,15 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
     if (!activePassageData?.passage) return { title: null, paragraphs: [] };
     const raw = activePassageData.passage.trim();
 
+    const isEmailOrHeader = (text: string) => {
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      return lines.some(l => /^(?:To|From|Subject|Date|Cc|Gửi|Từ|Chủ đề|Ngày)\s*:/i.test(l));
+    };
+
+    const isSalutation = (text: string) => {
+      return /^(?:Dear|Thân gửi|Kính gửi|Hello|Hi)\b.*[,:]$/i.test(text.trim());
+    };
+
     const hasDoubleNewlines = /(?:\r?\n){2,}/.test(raw);
     let candidateBlocks: string[] = [];
 
@@ -492,25 +501,27 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         .map(b => b.trim())
         .filter(b => b.length > 0);
 
-      // Check if the first block contains a title on its first line
+      // Check if the first block contains a title on its first line (unless it's an email/memo header block)
       if (candidateBlocks.length > 0 && candidateBlocks[0].includes('\n')) {
-        const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-        if (lines.length > 1) {
-          const firstLine = lines[0];
-          if (
-            firstLine.length <= 120 &&
-            !firstLine.endsWith('.') &&
-            !firstLine.startsWith('[I]') &&
-            !firstLine.startsWith('[ĐOẠN') &&
-            !firstLine.startsWith('Paragraph') &&
-            !firstLine.includes('<mark>') &&
-            !firstLine.includes('______')
-          ) {
-            candidateBlocks = [
-              firstLine,
-              lines.slice(1).join('\n'),
-              ...candidateBlocks.slice(1)
-            ];
+        if (!isEmailOrHeader(candidateBlocks[0])) {
+          const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+          if (lines.length > 1) {
+            const firstLine = lines[0];
+            if (
+              firstLine.length <= 120 &&
+              !firstLine.endsWith('.') &&
+              !firstLine.startsWith('[I]') &&
+              !firstLine.startsWith('[ĐOẠN') &&
+              !firstLine.startsWith('Paragraph') &&
+              !firstLine.includes('<mark>') &&
+              !firstLine.includes('______')
+            ) {
+              candidateBlocks = [
+                firstLine,
+                lines.slice(1).join('\n'),
+                ...candidateBlocks.slice(1)
+              ];
+            }
           }
         }
       }
@@ -524,8 +535,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
     if (candidateBlocks.length === 0) return { title: null, paragraphs: [] };
 
+    let title: string | null = null;
+    let remainingBlocks = [...candidateBlocks];
+
     const firstBlock = candidateBlocks[0];
-    const isFirstBlockTitle = (
+    const isFirstBlockHeaderOrTitle = isEmailOrHeader(firstBlock) || (
       !firstBlock.includes('\n') &&
       firstBlock.length <= 120 &&
       !firstBlock.endsWith('.') &&
@@ -537,22 +551,37 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       candidateBlocks.length > 1
     );
 
-    if (isFirstBlockTitle) {
-      return {
-        title: firstBlock,
-        paragraphs: candidateBlocks.slice(1)
-      };
+    if (isFirstBlockHeaderOrTitle) {
+      title = firstBlock;
+      remainingBlocks = candidateBlocks.slice(1);
     }
 
-    return {
-      title: null,
-      paragraphs: candidateBlocks
-    };
+    // Handle standalone salutations (e.g. 'Dear Participants,')
+    const paragraphs: string[] = [];
+    for (let i = 0; i < remainingBlocks.length; i++) {
+      const block = remainingBlocks[i];
+      if (isSalutation(block) && i + 1 < remainingBlocks.length) {
+        remainingBlocks[i + 1] = block + '\n\n' + remainingBlocks[i + 1];
+      } else {
+        paragraphs.push(block);
+      }
+    }
+
+    return { title, paragraphs };
   }, [activePassageData]);
 
   const parsedTranslation = React.useMemo(() => {
     if (!activeTranslation) return { title: null, paragraphs: [] };
     const raw = activeTranslation.trim();
+
+    const isEmailOrHeader = (text: string) => {
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      return lines.some(l => /^(?:To|From|Subject|Date|Cc|Gửi|Từ|Chủ đề|Ngày)\s*:/i.test(l));
+    };
+
+    const isSalutation = (text: string) => {
+      return /^(?:Dear|Thân gửi|Kính gửi|Hello|Hi)\b.*[,:]$/i.test(text.trim());
+    };
 
     const hasDoubleNewlines = /(?:\r?\n){2,}/.test(raw);
     let candidateBlocks: string[] = [];
@@ -564,21 +593,23 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         .filter(b => b.length > 0);
 
       if (candidateBlocks.length > 0 && candidateBlocks[0].includes('\n')) {
-        const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-        if (lines.length > 1) {
-          const firstLine = lines[0];
-          if (
-            firstLine.length <= 120 &&
-            !firstLine.endsWith('.') &&
-            !firstLine.startsWith('[I]') &&
-            !firstLine.startsWith('[ĐOẠN') &&
-            !firstLine.startsWith('Đoạn')
-          ) {
-            candidateBlocks = [
-              firstLine,
-              lines.slice(1).join('\n'),
-              ...candidateBlocks.slice(1)
-            ];
+        if (!isEmailOrHeader(candidateBlocks[0])) {
+          const lines = candidateBlocks[0].split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+          if (lines.length > 1) {
+            const firstLine = lines[0];
+            if (
+              firstLine.length <= 120 &&
+              !firstLine.endsWith('.') &&
+              !firstLine.startsWith('[I]') &&
+              !firstLine.startsWith('[ĐOẠN') &&
+              !firstLine.startsWith('Đoạn')
+            ) {
+              candidateBlocks = [
+                firstLine,
+                lines.slice(1).join('\n'),
+                ...candidateBlocks.slice(1)
+              ];
+            }
           }
         }
       }
@@ -591,8 +622,11 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
 
     if (candidateBlocks.length === 0) return { title: null, paragraphs: [] };
 
+    let title: string | null = null;
+    let remainingBlocks = [...candidateBlocks];
+
     const firstBlock = candidateBlocks[0];
-    const isFirstBlockTitle = (
+    const isFirstBlockHeaderOrTitle = isEmailOrHeader(firstBlock) || (
       !firstBlock.includes('\n') &&
       firstBlock.length <= 120 &&
       !firstBlock.endsWith('.') &&
@@ -603,17 +637,22 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
       candidateBlocks.length > 1
     );
 
-    if (isFirstBlockTitle) {
-      return {
-        title: firstBlock,
-        paragraphs: candidateBlocks.slice(1)
-      };
+    if (isFirstBlockHeaderOrTitle) {
+      title = firstBlock;
+      remainingBlocks = candidateBlocks.slice(1);
     }
 
-    return {
-      title: null,
-      paragraphs: candidateBlocks
-    };
+    const paragraphs: string[] = [];
+    for (let i = 0; i < remainingBlocks.length; i++) {
+      const block = remainingBlocks[i];
+      if (isSalutation(block) && i + 1 < remainingBlocks.length) {
+        remainingBlocks[i + 1] = block + '\n\n' + remainingBlocks[i + 1];
+      } else {
+        paragraphs.push(block);
+      }
+    }
+
+    return { title, paragraphs };
   }, [activeTranslation]);
 
   const handleSelectOption = useCallback((optionId: 'A' | 'B' | 'C' | 'D') => {
@@ -986,7 +1025,9 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         background: 'var(--success-bg)',
                         borderRadius: 'var(--radius-md)',
                         borderLeft: '4px solid var(--success)',
-                        marginBottom: '8px'
+                        marginBottom: '8px',
+                        lineHeight: 1.5,
+                        whiteSpace: 'pre-line'
                       }}>
                         {parsedTranslation.title}
                       </div>
@@ -999,7 +1040,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         border: '1px solid var(--success-border)',
                         lineHeight: 1.8,
                         fontSize: '1.02rem',
-                        color: 'var(--text-main)'
+                        color: 'var(--text-main)',
+                        whiteSpace: 'pre-line'
                       }}>
                         <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--success)', marginRight: '8px', textTransform: 'uppercase' }}>
                           [Đoạn {pIdx + 1}]
@@ -1020,7 +1062,8 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         borderRadius: 'var(--radius-md)',
                         borderLeft: '4px solid var(--brand-primary)',
                         marginBottom: '8px',
-                        lineHeight: 1.5
+                        lineHeight: 1.5,
+                        whiteSpace: 'pre-line'
                       }}>
                         {renderHighlightedText(parsedPassage.title)}
                       </div>
@@ -1061,7 +1104,7 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
                         }}>
                           <BookOpen size={11} /> Đoạn {pIdx + 1}
                         </div>
-                        <div style={{ whiteSpace: 'normal', fontSize: '1.08rem', lineHeight: 1.85, color: 'var(--text-main)' }}>
+                        <div style={{ whiteSpace: 'pre-line', fontSize: '1.08rem', lineHeight: 1.85, color: 'var(--text-main)' }}>
                           {renderHighlightedText(paraText, pIdx)}
                         </div>
                       </div>

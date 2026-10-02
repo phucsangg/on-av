@@ -27,9 +27,7 @@ Dear Participants,
 
 Due to maintenance work in Building D, Saturday's workshop will no longer be held in Room D204. The session will instead take place in Room A312, beginning at the originally scheduled time of 8:30 a.m.
 
-No change has been made to the workshop content or duration. However, because Room A312 is smaller, participants are asked to bring only essential materials and to avoid leaving personal belongings in the room during breaks.
-
-If you have already downloaded the workshop handout, there is no need to download it again.`;
+No change has been made to the workshop content or duration. However, because Room A312 is smaller, participants are asked to bring only essential materials and to avoid leaving personal belongings in the room during breaks. If you have already downloaded the workshop handout, there is no need to download it again.`;
 
 const PASSAGE_EMAIL_CHANGE_OF_ROOM_TRANS = `Gửi: Người tham dự hội thảo
 Chủ đề: Thay đổi phòng học cho buổi hội thảo thứ Bảy
@@ -38,9 +36,7 @@ Thân gửi các bạn tham dự,
 
 Do công tác bảo trì tại Tòa nhà D, buổi hội thảo vào thứ Bảy sẽ không còn được tổ chức tại Phòng D204. Buổi học sẽ được chuyển sang Phòng A312, bắt đầu vào đúng thời gian đã lên lịch ban đầu là 8:30 sáng.
 
-Nội dung và thời lượng của hội thảo hoàn toàn không thay đổi. Tuy nhiên, vì Phòng A312 có diện tích nhỏ hơn, người tham gia được yêu cầu chỉ mang theo các tài liệu thiết yếu và tránh để lại đồ dùng cá nhân trong phòng trong suốt giờ giải lao.
-
-Nếu bạn đã tải tài liệu phát tay của buổi hội thảo, bạn không cần phải tải lại lần nữa.`;
+Nội dung và thời lượng của hội thảo hoàn toàn không thay đổi. Tuy nhiên, vì Phòng A312 có diện tích nhỏ hơn, người tham gia được yêu cầu chỉ mang theo các tài liệu thiết yếu và tránh để lại đồ dùng cá nhân trong phòng trong suốt giờ giải lao. Nếu bạn đã tải tài liệu phát tay của buổi hội thảo, bạn không cần phải tải lại lần nữa.`;
 
 const PASSAGE_STUDY_STRATEGY = `STUDY STRATEGY: RETRIEVAL PRACTICE
 
