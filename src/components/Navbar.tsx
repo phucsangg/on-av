@@ -58,18 +58,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         boxShadow: 'var(--shadow-subtle)'
       }}>
         <div style={{
-          maxWidth: '1280px',
+          maxWidth: '1440px',
           margin: '0 auto',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '14px'
+          flexWrap: 'nowrap',
+          gap: '12px'
         }}>
           {/* Brand Logo */}
           <div 
             onClick={() => setActiveTab('dashboard')}
-            style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '10px', 
+              cursor: 'pointer', 
+              flexShrink: 0,
+              userSelect: 'none' 
+            }}
           >
             <div style={{
               width: '36px',
@@ -80,15 +87,33 @@ export const Navbar: React.FC<NavbarProps> = ({
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
-              boxShadow: 'var(--shadow-subtle)'
+              boxShadow: 'var(--shadow-subtle)',
+              flexShrink: 0
             }}>
               <GraduationCap size={20} />
             </div>
             <div>
-              <div style={{ fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', margin: 0, color: 'var(--color-text-primary)' }}>
-                ON-AV <span style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '0.9rem' }}>Prep</span>
+              <div style={{ 
+                fontFamily: 'var(--font-heading)', 
+                fontSize: '1.18rem', 
+                fontWeight: 800, 
+                letterSpacing: '-0.02em', 
+                margin: 0, 
+                lineHeight: 1.2,
+                color: 'var(--color-text-primary)' 
+              }}>
+                ON-AV <span style={{ color: 'var(--color-primary)', fontWeight: 700, fontSize: '0.92rem' }}>Prep</span>
               </div>
-              <p style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', fontWeight: 500, margin: 0 }}>Luyện Thi Tiếng Anh Chuẩn Hóa</p>
+              <p className="navbar-subtitle" style={{ 
+                fontSize: '0.72rem', 
+                color: 'var(--color-text-muted)', 
+                fontWeight: 500, 
+                margin: 0, 
+                lineHeight: 1.2,
+                whiteSpace: 'nowrap' 
+              }}>
+                Luyện Thi Tiếng Anh Chuẩn Hóa
+              </p>
             </div>
           </div>
 
@@ -102,7 +127,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               background: 'var(--color-surface-subtle)',
               padding: '3px',
               borderRadius: 'var(--radius-sm)',
-              border: '1px solid var(--color-border)'
+              border: '1px solid var(--color-border)',
+              flexShrink: 0
             }}
           >
             {tabs.map(tab => {
@@ -115,9 +141,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
-                    padding: '6px 14px',
+                    padding: '6px 12px',
                     fontSize: '0.84rem',
-                    fontWeight: isActive ? 600 : 500,
+                    fontWeight: isActive ? 700 : 500,
                     borderRadius: 'var(--radius-xs)',
                     border: isActive ? '1px solid var(--color-border)' : '1px solid transparent',
                     background: isActive ? 'var(--color-surface)' : 'transparent',
@@ -125,11 +151,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                     boxShadow: isActive ? 'var(--shadow-subtle)' : 'none',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
-                    position: 'relative'
+                    position: 'relative',
+                    fontFamily: 'inherit',
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   {tab.icon}
-                  <span>{tab.label}</span>
+                  <span className="navbar-tab-label-full">{tab.label}</span>
+                  <span className="navbar-tab-label-short" style={{ display: 'none' }}>{tab.shortLabel}</span>
 
                   {tab.badge !== undefined && tab.badge > 0 && (
                     <span style={{
@@ -151,19 +180,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* User Stats & Dark/Light Toggle */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
             {/* Streak Counter */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
               gap: '5px',
-              padding: '4px 10px',
+              padding: '5px 10px',
               borderRadius: 'var(--radius-sm)',
               background: 'var(--color-warning-subtle)',
               color: 'var(--color-warning)',
               fontWeight: 700,
-              fontSize: '0.8rem',
-              border: '1px solid var(--color-warning-border)'
+              fontSize: '0.82rem',
+              border: '1px solid var(--color-warning-border)',
+              fontFamily: 'inherit',
+              whiteSpace: 'nowrap'
             }} title="Chuỗi ngày luyện tập liên tục">
               <Flame size={15} fill="var(--color-warning)" />
               <span>{stats.streakDays} ngày</span>
@@ -174,13 +205,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               display: 'flex',
               alignItems: 'center',
               gap: '5px',
-              padding: '4px 10px',
+              padding: '5px 10px',
               borderRadius: 'var(--radius-sm)',
               background: 'var(--color-success-subtle)',
               color: 'var(--color-success)',
               fontWeight: 700,
-              fontSize: '0.8rem',
-              border: '1px solid var(--color-success-border)'
+              fontSize: '0.82rem',
+              border: '1px solid var(--color-success-border)',
+              fontFamily: 'inherit',
+              whiteSpace: 'nowrap'
             }} title="Số câu làm đúng">
               <Award size={15} />
               <span>{stats.correctAnswersCount}/{stats.totalQuestionsAnswered} câu</span>
@@ -201,7 +234,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease'
+                  transition: 'all 0.15s ease',
+                  fontFamily: 'inherit'
                 }}
                 title="Cài đặt & Sao lưu dữ liệu"
                 aria-label="Cài đặt & Sao lưu dữ liệu"
@@ -224,7 +258,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                transition: 'all 0.15s ease',
+                fontFamily: 'inherit'
               }}
               title={isDarkMode ? "Chuyển sang Chế độ Sáng" : "Chuyển sang Chế độ Tối"}
               aria-label={isDarkMode ? "Chuyển sang Chế độ Sáng" : "Chuyển sang Chế độ Tối"}

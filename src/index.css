@@ -232,6 +232,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+button, input, select, textarea, optgroup {
+  font-family: inherit;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-main);
@@ -580,8 +584,23 @@ textarea:focus {
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
 }
 
-/* Responsive Tab Navigator Navigation */
-@media (max-width: 900px) {
+/* Responsive Tab Navigator Navigation & Navbar Balancing */
+@media (max-width: 1200px) {
+  .navbar-subtitle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1120px) {
+  .navbar-tab-label-full {
+    display: none !important;
+  }
+  .navbar-tab-label-short {
+    display: inline !important;
+  }
+}
+
+@media (max-width: 960px) {
   .desktop-tab-nav {
     display: none !important;
   }
