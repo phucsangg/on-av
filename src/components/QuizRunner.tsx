@@ -26,7 +26,9 @@ import {
   Languages,
   Sparkles,
   Highlighter,
-  EyeOff
+  EyeOff,
+  Wifi,
+  WifiOff
 } from 'lucide-react';
 
 interface QuizRunnerProps {
@@ -206,6 +208,32 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
   optionTranslationsCacheRef.current = optionTranslationsCache;
   const [isDictOpen, setIsDictOpen] = useState<boolean>(false);
   const [dictSearchWord, setDictSearchWord] = useState<string>('');
+  
+  // Offline & Network Resilience Monitor
+  const [isOnline, setIsOnline] = useState<boolean>(() => typeof navigator !== 'undefined' ? navigator.onLine : true);
+  const [networkToast, setNetworkToast] = useState<'offline' | 'restored' | null>(null);
+
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+      setNetworkToast('restored');
+      const timer = setTimeout(() => setNetworkToast(null), 3500);
+      return () => clearTimeout(timer);
+    };
+
+    const handleOffline = () => {
+      setIsOnline(false);
+      setNetworkToast('offline');
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
   
   // Floating selection lookup popup state
   const [selectionPopup, setSelectionPopup] = useState<{ text: string; x: number; y: number; paragraphIndex?: number } | null>(null);
@@ -2367,6 +2395,45 @@ export const QuizRunner: React.FC<QuizRunnerProps> = ({
         isPaused={isPaused}
         onResume={resumeTimer}
       />
+
+      {/* Network Resilience Status Toast */}
+      {(!isOnline || networkToast) && (
+        <div 
+          role="status"
+          aria-live="polite"
+          style={{
+            position: 'fixed',
+            bottom: isNavigatorOpen ? '76px' : '20px',
+            right: '20px',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 18px',
+            borderRadius: '999px',
+            background: isOnline ? 'rgba(16, 185, 129, 0.95)' : 'rgba(217, 119, 6, 0.95)',
+            color: '#ffffff',
+            boxShadow: '0 6px 20px rgba(0, 0, 0, 0.18)',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            backdropFilter: 'blur(8px)',
+            transition: 'all 0.3s ease',
+            pointerEvents: 'none'
+          }}
+        >
+          {isOnline ? (
+            <>
+              <Wifi size={16} />
+              <span>Đã kết nối lại Internet</span>
+            </>
+          ) : (
+            <>
+              <WifiOff size={16} />
+              <span>Ngoại tuyến – Tiến trình vẫn được lưu tự động trên máy</span>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };
