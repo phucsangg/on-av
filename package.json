@@ -22,7 +22,7 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@alibaba-group/open-code-review": "^1.12.9",
+    "@alibaba-group/open-code-review": "^1.12.11",
     "@dietrichgebert/ponytail": "^4.10.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^24.13.3",
